@@ -279,8 +279,8 @@
     <div class="footer">A new player every day · share with mates</div>
   </div>
 
-<script src="players.js?v=5"></script>
-<script src="bios.js?v=5"></script>
+<script src="players.js?v=6"></script>
+<script src="bios.js?v=6"></script>
 <script>
 (() => {
   const ALL_PLAYERS = window.PLAYERS;
@@ -288,16 +288,31 @@
   const BIOS = window.BIOS || {};
   const MAX_GUESSES = 5;
 
-  // Daily rotation only includes approved players. ?player=<id> overrides.
-  const pinId = new URLSearchParams(location.search).get("player");
+  // Pick a player. URL controls:
+  //   ?n=1..5    play approved players in order (n is 1-based)
+  //   ?player=id pin a specific player by id (any of the 27)
+  //   (none)     pick today's by date (rotates daily through approved pool)
+  const params = new URLSearchParams(location.search);
+  const pinId = params.get("player");
+  const seqRaw = parseInt(params.get("n"), 10);
   const pool = APPROVED.length > 0 ? APPROVED : ALL_PLAYERS;
-  const today = Math.floor(Date.now() / 86400000);
-  const todayIndex = ((today % pool.length) + pool.length) % pool.length;
-  const player = (pinId && ALL_PLAYERS.find(p => p.id === pinId)) || pool[todayIndex];
+  let seqIndex = null;
+  let player;
+  if (pinId) {
+    player = ALL_PLAYERS.find(p => p.id === pinId) || pool[0];
+  } else if (Number.isFinite(seqRaw) && seqRaw >= 1) {
+    seqIndex = ((seqRaw - 1) % pool.length + pool.length) % pool.length;
+    player = pool[seqIndex];
+  } else {
+    const today = Math.floor(Date.now() / 86400000);
+    const todayIndex = ((today % pool.length) + pool.length) % pool.length;
+    player = pool[todayIndex];
+  }
+  const nextSeqUrl = (seqIndex !== null && seqIndex + 1 < pool.length) ? `?n=${seqIndex + 2}` : null;
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=5")
+  fetch("names.json?v=6")
     .then(r => r.json())
     .then(big => {
       const seen = new Set(allNames.map(e => e.n.toLowerCase()));
@@ -411,10 +426,16 @@
     suggestionsBox.style.display = "none";
     revealLink.style.display = "none";
     const allClues = player.clues.map((c, i) => `<div style="padding:6px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--text-soft)"><span style="color:var(--accent);font-weight:700">${i + 1}.</span> ${c}</div>`).join("");
+    const nextBtn = nextSeqUrl
+      ? `<a href="${nextSeqUrl}" style="display:block;text-align:center;margin-top:12px;padding:14px 20px;background:var(--accent);color:#fff;border-radius:14px;font-weight:600;text-decoration:none;box-shadow:var(--shadow)">Next player →</a>`
+      : (seqIndex !== null
+          ? `<div style="text-align:center;margin-top:12px;padding:14px;color:var(--muted);font-size:14px">That's all 5 — well done.</div>`
+          : "");
     result.innerHTML = `
       <div class="reveal-banner ${correct ? 'good' : 'bad'}">
         ${correct ? `✓ Correct — ${player.name}` : `✕ It was ${player.name}`}
       </div>
+      ${nextBtn}
       <div class="question" style="margin-top:12px">
         <div class="label">All clues</div>
         ${allClues}
