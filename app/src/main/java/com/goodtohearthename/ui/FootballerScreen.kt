@@ -10,6 +10,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -41,7 +42,15 @@ import androidx.core.net.toUri
 import com.goodtohearthename.data.Footballer
 
 @Composable
-fun FootballerScreen(footballer: Footballer, bitmap: Bitmap?) {
+fun FootballerScreen(
+    footballer: Footballer,
+    bitmap: Bitmap?,
+    showNav: Boolean = false,
+    position: Int = 1,
+    total: Int = 1,
+    onPrev: () -> Unit = {},
+    onNext: () -> Unit = {},
+) {
     val context = LocalContext.current
     Scaffold { padding ->
         LazyColumn(
@@ -51,7 +60,12 @@ fun FootballerScreen(footballer: Footballer, bitmap: Bitmap?) {
             contentPadding = PaddingValues(bottom = 32.dp),
         ) {
             item {
-                HeroImage(bitmap)
+                Box {
+                    HeroImage(bitmap)
+                    if (showNav) {
+                        DevNavOverlay(position = position, total = total, onPrev = onPrev, onNext = onNext)
+                    }
+                }
             }
             item {
                 Column(modifier = Modifier.padding(20.dp)) {
@@ -108,6 +122,51 @@ fun FootballerScreen(footballer: Footballer, bitmap: Bitmap?) {
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun DevNavOverlay(position: Int, total: Int, onPrev: () -> Unit, onNext: () -> Unit) {
+    androidx.compose.foundation.layout.Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 12.dp, vertical = 12.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        NavButton("←", onPrev)
+        Spacer(Modifier.weight(1f))
+        Box(
+            modifier = Modifier
+                .clip(RoundedCornerShape(50))
+                .background(androidx.compose.ui.graphics.Color(0xCC000000))
+                .padding(horizontal = 14.dp, vertical = 6.dp),
+        ) {
+            Text(
+                "$position / $total",
+                color = androidx.compose.ui.graphics.Color.White,
+                style = MaterialTheme.typography.labelLarge,
+            )
+        }
+        Spacer(Modifier.weight(1f))
+        NavButton("→", onNext)
+    }
+}
+
+@Composable
+private fun NavButton(label: String, onClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(50))
+            .background(androidx.compose.ui.graphics.Color(0xCC000000))
+            .clickable(onClick = onClick)
+            .padding(horizontal = 18.dp, vertical = 8.dp),
+    ) {
+        Text(
+            label,
+            color = androidx.compose.ui.graphics.Color.White,
+            fontSize = 22.sp,
+            fontWeight = FontWeight.Bold,
+        )
     }
 }
 
