@@ -35,7 +35,7 @@ class DailyWidget : GlanceAppWidget() {
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val today = ContentRepository.forToday(context)
         // Show the silhouette in the widget — never the actual photo (would spoil the game).
-        val bitmap = ContentRepository.loadSilhouette(context, today, reqWidth = 480, reqHeight = 480)
+        val bitmap = ContentRepository.loadSilhouette(context, today, w = 480, h = 480)
 
         provideContent {
             GlanceTheme {
