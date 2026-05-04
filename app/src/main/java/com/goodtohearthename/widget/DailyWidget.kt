@@ -33,13 +33,13 @@ import com.goodtohearthename.data.ContentRepository
 class DailyWidget : GlanceAppWidget() {
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
-        val today = ContentRepository.forToday(context)
-        val bitmap = ContentRepository.loadImage(context, today)
+        val current = ContentRepository.forNow(context)
+        val bitmap = ContentRepository.loadImage(context, current)
 
         provideContent {
             GlanceTheme {
                 WidgetBody(
-                    name = today.name,
+                    name = current.name,
                     image = bitmap?.let { ImageProvider(it) },
                     onClick = actionStartActivity<MainActivity>(),
                 )

@@ -4,12 +4,15 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import kotlinx.serialization.json.Json
-import java.time.LocalDate
 
 object ContentRepository {
 
-    // Pin today's footballer for previewing. Set to null to use date-based rotation.
+    // Pin the current footballer for previewing. Set to null for normal rotation.
     private val PINNED_ID: String? = null
+
+    // Footballer rotates every 6 hours = 4 per day.
+    private const val ROTATION_HOURS = 6L
+    private const val ROTATION_MILLIS = ROTATION_HOURS * 60 * 60 * 1000
 
     private val json = Json { ignoreUnknownKeys = true }
 
@@ -23,10 +26,11 @@ object ContentRepository {
         return parsed
     }
 
-    fun forToday(context: Context, date: LocalDate = LocalDate.now()): Footballer {
+    fun forNow(context: Context, nowMillis: Long = System.currentTimeMillis()): Footballer {
         val players = all(context)
         PINNED_ID?.let { id -> players.firstOrNull { it.id == id }?.let { return it } }
-        val index = (date.toEpochDay().toInt().mod(players.size))
+        val bucket = (nowMillis / ROTATION_MILLIS).toInt()
+        val index = bucket.mod(players.size)
         return players[index]
     }
 

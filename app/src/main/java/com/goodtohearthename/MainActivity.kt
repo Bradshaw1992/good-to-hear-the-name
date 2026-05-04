@@ -12,11 +12,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val today = ContentRepository.forToday(applicationContext)
-        val image = ContentRepository.loadImage(applicationContext, today)
+        val current = ContentRepository.forNow(applicationContext)
+        val image = ContentRepository.loadImage(applicationContext, current)
         setContent {
             AppTheme {
-                FootballerScreen(footballer = today, bitmap = image)
+                FootballerScreen(footballer = current, bitmap = image)
             }
         }
     }
