@@ -41,14 +41,14 @@ window.PLAYERS = [
   },
   {
     id: "overmars", name: "Marc Overmars", country: "Netherlands", flag: "🇳🇱",
-    years: "1990–2009",
+    years: "1990–2009", approved: true,
     aliases: ["marc overmars", "overmars"],
     clues: [
-      "Dutch winger of the 1990s and 2000s",
-      "Champions League winner with Ajax in 1995",
-      "Key player in Arsenal's 1997–98 Double",
-      "Once announced his £25m transfer on his personal website",
-      "Tore his ACL in 1995, came back faster than ever",
+      "I was born on the 29th of March 1973. I played 86 times for my country, scoring 17 goals.",
+      "I announced my £25m transfer on my own personal website before telling the media — it generated 250,000 hits in a single day.",
+      "In 2022 I resigned as Ajax's director of football after admitting to sending inappropriate messages to female colleagues.",
+      "I completely tore my cruciate ligament in 1995 and came back to anchor a Premier League and FA Cup Double-winning Arsenal side.",
+      "I was a flying Dutch winger for Ajax, Arsenal and Barcelona — and a Champions League winner with Ajax in 1995.",
     ],
   },
   {
@@ -65,14 +65,14 @@ window.PLAYERS = [
   },
   {
     id: "okocha", name: "Jay-Jay Okocha", country: "Nigeria", flag: "🇳🇬",
-    years: "1990–2008",
+    years: "1990–2008", approved: true,
     aliases: ["jay-jay okocha", "jay jay okocha", "okocha", "augustine okocha"],
     clues: [
-      "Nigerian attacking midfielder",
-      "Olympic gold with Nigeria in 1996",
-      "Famous for outrageous skill at Bolton Wanderers",
-      "Played at Eintracht Frankfurt, Fenerbahçe and PSG",
-      "So good they named him twice",
+      "I was born on the 14th of August 1973. I played 73 times for my country, scoring 14 goals.",
+      "While at Fenerbahçe I took Turkish citizenship and adopted the playing name 'Muhammed Yavuz' — a tribute to a club staff member I admired.",
+      "I won an Olympic gold medal in 1996, beating Brazil in the semi-final and Argentina in the final.",
+      "I won the African Cup of Nations in 1994 and went on to play for Eintracht Frankfurt and Paris Saint-Germain.",
+      "My nickname at Bolton was so iconic the club printed it on shirts: 'so good they named him twice'.",
     ],
   },
   {
@@ -125,14 +125,14 @@ window.PLAYERS = [
   },
   {
     id: "trezeguet", name: "David Trezeguet", country: "France", flag: "🇫🇷",
-    years: "1993–2015",
+    years: "1993–2015", approved: true,
     aliases: ["david trezeguet", "trezeguet", "trezegol"],
     clues: [
-      "French striker, 1990s and 2000s",
-      "Argentine-born, French-made",
-      "Stayed at Juventus when they were relegated",
-      "Scored the golden goal in the Euro 2000 final",
-      "Juventus's all-time top foreign scorer",
+      "I was born on the 15th of October 1977. I played 71 times for my country, scoring 34 goals.",
+      "When my club was relegated to Serie B after the 2006 match-fixing scandal, I was one of the few stars who chose to stay and help them return to the top flight.",
+      "On the 9th of December 2009 I became my club's all-time top foreign goalscorer, surpassing Omar Sívori's record of 167.",
+      "I scored the golden goal in extra time of a major final, beating Italy with an assist from Robert Pirès.",
+      "I won the World Cup in 1998 and Euro 2000 with my country, and spent ten years at Juventus.",
     ],
   },
   {

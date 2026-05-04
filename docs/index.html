@@ -278,8 +278,8 @@
     <div class="footer">A new player every day · share with mates</div>
   </div>
 
-<script src="players.js?v=3"></script>
-<script src="bios.js?v=3"></script>
+<script src="players.js?v=4"></script>
+<script src="bios.js?v=4"></script>
 <script>
 (() => {
   const ALL_PLAYERS = window.PLAYERS;
@@ -296,7 +296,7 @@
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=3")
+  fetch("names.json?v=4")
     .then(r => r.json())
     .then(big => {
       const seen = new Set(allNames.map(e => e.n.toLowerCase()));
