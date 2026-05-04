@@ -34,7 +34,7 @@ class DailyWidget : GlanceAppWidget() {
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val current = ContentRepository.forNow(context)
-        val bitmap = ContentRepository.loadImage(context, current)
+        val bitmap = ContentRepository.loadImage(context, current, reqWidth = 480, reqHeight = 480)
 
         provideContent {
             GlanceTheme {

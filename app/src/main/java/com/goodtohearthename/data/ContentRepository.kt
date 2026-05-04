@@ -34,9 +34,30 @@ object ContentRepository {
         return players[index]
     }
 
-    fun loadImage(context: Context, footballer: Footballer): Bitmap? {
+    fun loadImage(
+        context: Context,
+        footballer: Footballer,
+        reqWidth: Int = 1200,
+        reqHeight: Int = 1600,
+    ): Bitmap? {
         return runCatching {
-            context.assets.open("images/${footballer.image}").use { BitmapFactory.decodeStream(it) }
+            val path = "images/${footballer.image}"
+            val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+            context.assets.open(path).use { BitmapFactory.decodeStream(it, null, bounds) }
+
+            val opts = BitmapFactory.Options().apply {
+                inSampleSize = calcSampleSize(bounds.outWidth, bounds.outHeight, reqWidth, reqHeight)
+            }
+            context.assets.open(path).use { BitmapFactory.decodeStream(it, null, opts) }
         }.getOrNull()
+    }
+
+    private fun calcSampleSize(srcW: Int, srcH: Int, reqW: Int, reqH: Int): Int {
+        if (srcW <= 0 || srcH <= 0) return 1
+        var sample = 1
+        while (srcW / (sample * 2) >= reqW && srcH / (sample * 2) >= reqH) {
+            sample *= 2
+        }
+        return sample
     }
 }
