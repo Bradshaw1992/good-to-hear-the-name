@@ -2,7 +2,9 @@ package com.goodtohearthename.widget
 
 import android.content.Context
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
@@ -25,21 +27,19 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.sp
 import com.goodtohearthename.MainActivity
 import com.goodtohearthename.data.ContentRepository
 
 class DailyWidget : GlanceAppWidget() {
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
-        val current = ContentRepository.forNow(context)
-        val bitmap = ContentRepository.loadImage(context, current, reqWidth = 480, reqHeight = 480)
+        val today = ContentRepository.forToday(context)
+        // Show the silhouette in the widget — never the actual photo (would spoil the game).
+        val bitmap = ContentRepository.loadSilhouette(context, today, reqWidth = 480, reqHeight = 480)
 
         provideContent {
             GlanceTheme {
                 WidgetBody(
-                    name = current.name,
                     image = bitmap?.let { ImageProvider(it) },
                     onClick = actionStartActivity<MainActivity>(),
                 )
@@ -49,7 +49,6 @@ class DailyWidget : GlanceAppWidget() {
 
     @Composable
     private fun WidgetBody(
-        name: String,
         image: ImageProvider?,
         onClick: androidx.glance.action.Action,
     ) {
@@ -57,18 +56,18 @@ class DailyWidget : GlanceAppWidget() {
             modifier = GlanceModifier
                 .fillMaxSize()
                 .cornerRadius(20.dp)
-                .background(GlanceTheme.colors.widgetBackground)
+                .background(ColorProvider(Color(0xFFF4EFE6))) // cream
                 .clickable(onClick),
         ) {
             if (image != null) {
                 Image(
                     provider = image,
-                    contentDescription = name,
+                    contentDescription = "Today's mystery footballer",
                     contentScale = ContentScale.Crop,
                     modifier = GlanceModifier.fillMaxSize(),
                 )
             }
-            // Bottom name plate with translucent dark background
+            // Bottom plate: brand + tap to play
             Column(
                 verticalAlignment = Alignment.Bottom,
                 horizontalAlignment = Alignment.Start,
@@ -77,17 +76,27 @@ class DailyWidget : GlanceAppWidget() {
                 Box(
                     modifier = GlanceModifier
                         .fillMaxWidth()
-                        .background(ColorProvider(Color(0x99000000)))
-                        .padding(horizontal = 12.dp, vertical = 8.dp)
+                        .background(ColorProvider(Color(0xCC0F7A3E))) // pitch green, semi-transparent
+                        .padding(horizontal = 12.dp, vertical = 10.dp),
                 ) {
-                    Text(
-                        text = name,
-                        style = TextStyle(
-                            color = ColorProvider(Color.White),
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 16.sp,
-                        ),
-                    )
+                    Column {
+                        Text(
+                            text = "Today's player",
+                            style = TextStyle(
+                                color = ColorProvider(Color.White),
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 14.sp,
+                            ),
+                        )
+                        Text(
+                            text = "Tap to play",
+                            style = TextStyle(
+                                color = ColorProvider(Color(0xFFE0F0E5)),
+                                fontWeight = FontWeight.Normal,
+                                fontSize = 11.sp,
+                            ),
+                        )
+                    }
                 }
             }
         }
