@@ -1,0 +1,240 @@
+{
+  "footballers": [
+    {
+      "id": "vieri",
+      "name": "Christian Vieri",
+      "country": "Italy",
+      "countryFlag": "🇮🇹",
+      "position": "Centre forward",
+      "yearsActive": "1991–2008",
+      "image": "vieri.jpg",
+      "story": "A nomadic Italian striker raised in Sydney who became the world's most expensive player when Inter signed him for €49m in 1999. Bullish, two-footed, devastating in the air — defined the Inter attack of the early 2000s alongside Ronaldo. Played for seven Serie A clubs, never quite settling, but scored everywhere he went.",
+      "clubs": ["Juventus", "Atlético Madrid", "Lazio", "Inter", "AC Milan"],
+      "honours": [
+        "Serie A — Juventus, 1996–97",
+        "Cup Winners' Cup — Lazio, 1998–99",
+        "Coppa Italia — Inter, 2004–05",
+        "Pichichi top scorer — Atlético, 1997–98"
+      ],
+      "numbers": "194 club goals · 23 in 49 for Italy · 4 goals at the 2002 World Cup",
+      "didYouKnow": [
+        "Grew up in Sydney and wanted to be a cricketer. Idolised Allan Border.",
+        "Won a Ferrari off Atlético president Jesús Gil for a hat-trick against PAOK — never collected it because he felt guilty about leaving the club a year later.",
+        "Successfully sued Inter and Telecom Italia in 2012 after discovering owner Massimo Moratti had him under phone surveillance."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "overmars",
+      "name": "Marc Overmars",
+      "country": "Netherlands",
+      "countryFlag": "🇳🇱",
+      "position": "Winger",
+      "yearsActive": "1990–2009",
+      "image": "overmars.jpg",
+      "story": "Lightning-quick Dutch winger who tore up three leagues in three countries. Ajax's Champions League hero, Arsenal's double-winning game-changer, and one of Barcelona's first marquee Premier League imports. Blew his ACL clean off the bone in 1995 and somehow came back faster.",
+      "clubs": ["Ajax", "Arsenal", "Barcelona"],
+      "honours": [
+        "Champions League — Ajax, 1994–95",
+        "Premier League — Arsenal, 1997–98",
+        "FA Cup — Arsenal, 1997–98",
+        "Eredivisie × 3 — Ajax, 1993–96"
+      ],
+      "numbers": "78 club goals · 17 in 86 for the Netherlands",
+      "didYouKnow": [
+        "Suffered a completely severed cruciate ligament in 1995 and recovered to anchor Arsenal's 1997–98 Double-winning side.",
+        "Announced his £25m move to Barcelona on his personal website before telling the press — got 250,000 hits in a day, an internet-era footballing first.",
+        "Resigned as Ajax's director of football in 2022 after admitting to sending inappropriate messages to female colleagues; signed with Antwerp weeks later amid sponsor backlash."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "koumas",
+      "name": "Jason Koumas",
+      "country": "Wales",
+      "countryFlag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+      "position": "Attacking midfielder",
+      "yearsActive": "1998–2014",
+      "image": "koumas.jpg",
+      "story": "The Welsh playmaker whose feet were fluent in a language his career never quite spoke. Mercurial, brilliant on his day, infuriatingly anonymous on others. The Championship's outstanding talent of the mid-2000s — he should have done more, and everyone knew it.",
+      "clubs": ["Tranmere Rovers", "West Bromwich Albion", "Cardiff City", "Wigan Athletic"],
+      "honours": [
+        "Championship Player of the Year — 2006–07",
+        "PFA Team of the Year × 4 (between 2001–02 and 2006–07)",
+        "Cardiff City Player of the Year — 2005–06"
+      ],
+      "numbers": "68 goals in 422 club appearances · 10 in 34 for Wales",
+      "didYouKnow": [
+        "Came through the Liverpool academy alongside Steven Gerrard and Michael Owen — left because they wouldn't play him centrally.",
+        "The Guardian once argued his raw talent was \"no less than Gerrard's\" and blamed his career on being \"undisciplined\".",
+        "His son Lewis came through the Liverpool academy and made his senior debut for the club in February 2024."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "okocha",
+      "name": "Jay-Jay Okocha",
+      "country": "Nigeria",
+      "countryFlag": "🇳🇬",
+      "position": "Attacking midfielder",
+      "yearsActive": "1990–2008",
+      "image": "okocha.webp",
+      "story": "So good they named him twice. The Nigerian magician who turned the Reebok Stadium into a circus tent — flicks, rabonas, no-look passes — and somehow kept Bolton in the Premier League while doing it. The patron saint of unnecessary skill.",
+      "clubs": ["Eintracht Frankfurt", "Fenerbahçe", "Paris Saint-Germain", "Bolton Wanderers"],
+      "honours": [
+        "Africa Cup of Nations — Nigeria, 1994",
+        "Olympic gold — Atlanta, 1996",
+        "UEFA Intertoto Cup — PSG, 2001"
+      ],
+      "numbers": "89 club goals · 14 in 73 for Nigeria",
+      "didYouKnow": [
+        "Took Turkish citizenship at Fenerbahçe and adopted the playing name \"Muhammed Yavuz\" in tribute to a club staff member.",
+        "Mentored a young Ronaldinho at PSG, who later credited him as a stylistic influence.",
+        "The \"so good they named him twice\" line wasn't a slogan — Bolton printed it on the back of replica shirts."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "yakubu",
+      "name": "Yakubu Aiyegbeni",
+      "country": "Nigeria",
+      "countryFlag": "🇳🇬",
+      "position": "Striker",
+      "yearsActive": "1998–2017",
+      "image": "yakubu.jpg",
+      "story": "The Yak. Built like a wardrobe, finished like a fox. Quietly one of the Premier League's most efficient strikers of his era — Portsmouth, Boro, Everton — racking up goals while half the league forgot how good he actually was.",
+      "clubs": ["Maccabi Haifa", "Portsmouth", "Middlesbrough", "Everton", "Blackburn Rovers"],
+      "honours": [
+        "Israeli Premier League × 2 — Maccabi Haifa",
+        "Football League First Division — Portsmouth, 2002–03",
+        "AFCON third place — Nigeria, 2002, 2004, 2010"
+      ],
+      "numbers": "170+ league goals across his career · 21 in 58 for Nigeria",
+      "didYouKnow": [
+        "Scored seven in eight Champions League games for Maccabi Haifa in 2002–03 — including a hat-trick against Olympiakos — which earned him his Portsmouth move.",
+        "Scored all four in Blackburn's 4–2 win over Swansea in December 2011 — his first four-goal haul since the Pompey days.",
+        "Played barefoot on the streets of Benin City until his brother bought him his first pair of boots aged 12."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "ivan_campo",
+      "name": "Iván Campo",
+      "country": "Spain",
+      "countryFlag": "🇪🇸",
+      "position": "Centre-back / Defensive midfielder",
+      "yearsActive": "1994–2010",
+      "image": "ivan_campo.jpg",
+      "story": "The wild-haired Spaniard who walked out of Real Madrid's Champions League winners' photo and into a Sam Allardyce midfield at Bolton — and looked, somehow, completely at home. A two-time European champion playing route one football in the rain at the Reebok.",
+      "clubs": ["Real Madrid", "Bolton Wanderers", "Ipswich Town"],
+      "honours": [
+        "Champions League × 2 — Real Madrid, 1999–2000 & 2001–02",
+        "La Liga — Real Madrid, 2000–01",
+        "Intercontinental Cup — Real Madrid, 1998"
+      ],
+      "numbers": "21 goals in 384 club appearances",
+      "didYouKnow": [
+        "Sam Allardyce reckoned Campo's long-range strike against Spurs in August 2006 had won Goal of the Season before the season had really started.",
+        "Battled an anxiety disorder during his Madrid years, undergoing therapy that he later credited with rescuing his career.",
+        "Loaned to Bolton in 2003 expecting to return to Madrid — instead signed permanently because he simply preferred living in Bolton."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "rui_costa",
+      "name": "Rui Costa",
+      "country": "Portugal",
+      "countryFlag": "🇵🇹",
+      "position": "Attacking midfielder",
+      "yearsActive": "1990–2008",
+      "image": "rui_costa.jpg",
+      "story": "The understated Portuguese conductor of Fiorentina's late-90s side and Milan's Champions League winners. All grace, weight of pass, and quiet authority — the kind of number 10 who made everyone around him better and never quite got the credit for it.",
+      "clubs": ["Benfica", "Fiorentina", "AC Milan"],
+      "honours": [
+        "Champions League — AC Milan, 2002–03",
+        "Serie A — AC Milan, 2003–04",
+        "Coppa Italia × 3",
+        "Primeira Liga — Benfica, 1993–94",
+        "Named in the FIFA 100 (2004)"
+      ],
+      "numbers": "66 club goals · 26 in 94 for Portugal · Euro 2004 finalist",
+      "didYouKnow": [
+        "The only red card of his entire career came in 1997 — for walking off the pitch too slowly during a World Cup qualifier, which cost Portugal qualification.",
+        "Starred in Nike's iconic 1996 \"Good vs Evil\" commercial alongside Ronaldo and Cantona — the Roman amphitheatre one.",
+        "Has been President of Benfica since October 2021, elected with 84% of the vote."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "andy_johnson",
+      "name": "Andrew Johnson",
+      "country": "England",
+      "countryFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "position": "Striker",
+      "yearsActive": "1998–2015",
+      "image": "andy_johnson.jpg",
+      "story": "The relentless Palace striker who outran Premier League defences for two seasons and very nearly carried Selhurst Park on his back. Quick, brave, fond of going down — depending on who you asked. Twenty-one league goals in his debut Premier League season at a relegated club.",
+      "clubs": ["Birmingham City", "Crystal Palace", "Everton", "Fulham", "Queens Park Rangers"],
+      "honours": [
+        "First Division Play-off — Birmingham, 2002 / Palace, 2004",
+        "PFA Team of the Year — 2003–04, 2004–05",
+        "Premier League Player of the Month — Oct 2004 & Sep 2006"
+      ],
+      "numbers": "114 club goals · 8 in 8 for England",
+      "didYouKnow": [
+        "Was eligible for Poland through his grandfather — Sven-Göran Eriksson handed him an England debut almost immediately to prevent it.",
+        "Mourinho publicly branded him \"untrustworthy\" in 2006; the PGMOL later defended him as unfairly tarred with the diving brush.",
+        "Voted into Crystal Palace's Centenary XI in 2005 — the only active player in the team."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "trezeguet",
+      "name": "David Trezeguet",
+      "country": "France",
+      "countryFlag": "🇫🇷",
+      "position": "Striker",
+      "yearsActive": "1993–2015",
+      "image": "trezeguet.jpg",
+      "story": "Argentine-born, French-made. Ten years at Juventus with one job — finish — done at a level few have matched. The man whose volley won France Euro 2000 and whose loyalty stuck through Calciopoli when most of the dressing room walked.",
+      "clubs": ["Monaco", "Juventus", "River Plate"],
+      "honours": [
+        "World Cup — France, 1998",
+        "Euro 2000 — France",
+        "Serie A × 2 — Juventus, 2001–02 & 2002–03",
+        "Ligue 1 × 2 — Monaco, 1996–97 & 1999–2000"
+      ],
+      "numbers": "227 club goals · 34 in 71 for France · Juve's all-time leading foreign scorer",
+      "didYouKnow": [
+        "Scored the golden goal in extra time of the Euro 2000 final against Italy — France's last-minute winner.",
+        "Stayed at Juventus when they were relegated to Serie B after Calciopoli, while most of the squad left for European football.",
+        "Surpassed Omar Sívori's 167 goals on 9 December 2009 to become Juve's highest-scoring foreign player ever."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "jan_koller",
+      "name": "Jan Koller",
+      "country": "Czech Republic",
+      "countryFlag": "🇨🇿",
+      "position": "Striker",
+      "yearsActive": "1993–2011",
+      "image": "jan_koller.jpg",
+      "story": "Two metres and two centimetres of Czech striker. \"Dino.\" Borussia Dortmund's aerial nightmare, the Czech Republic's all-time top scorer, and — somehow — a former goalkeeper who once kept a clean sheet between the sticks for Dortmund mid-match.",
+      "clubs": ["Sparta Prague", "Lokeren", "Anderlecht", "Borussia Dortmund", "Monaco"],
+      "honours": [
+        "Bundesliga — Borussia Dortmund, 2001–02",
+        "Belgian First Division × 2 — Anderlecht",
+        "Belgian Golden Shoe — 2000",
+        "Czech First League — Sparta, 1994–95"
+      ],
+      "numbers": "199 club goals · 55 in 91 for the Czech Republic (still the record)",
+      "didYouKnow": [
+        "Went in goal for Dortmund in 2002 after their keeper was sent off and all subs were used — kept a clean sheet for the remaining 23 minutes and was named the Bundesliga's goalkeeper of the week.",
+        "Started his career as a goalkeeper before being converted to striker — explains the in-game cameo.",
+        "Stood 2.02m / 6'8\" — universally nicknamed \"Dino\" because he was taller than the dressing room."
+      ],
+      "youtube": null
+    }
+  ]
+}
