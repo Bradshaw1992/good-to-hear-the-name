@@ -279,8 +279,8 @@
     <div class="footer">A new player every day · share with mates</div>
   </div>
 
-<script src="players.js?v=7"></script>
-<script src="bios.js?v=7"></script>
+<script src="players.js?v=8"></script>
+<script src="bios.js?v=8"></script>
 <script>
 (() => {
   const ALL_PLAYERS = window.PLAYERS;
@@ -312,7 +312,7 @@
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=7")
+  fetch("names.json?v=8")
     .then(r => r.json())
     .then(big => {
       const seen = new Set(allNames.map(e => e.n.toLowerCase()));
@@ -440,9 +440,18 @@
         <span style="color:var(--accent);font-weight:700;margin-right:6px">${i + 1}.</span>${c}${tag}
       </div>`;
     }).join("");
+    const attempt = wrongGuesses.length + (correct ? 1 : 0);
+    const ordinal = (n) => {
+      if (n === 1) return "1st"; if (n === 2) return "2nd"; if (n === 3) return "3rd";
+      return `${n}th`;
+    };
+    const scoreLine = correct
+      ? `<div style="font-size:13px;font-weight:500;opacity:0.85;margin-top:4px">${attempt === 1 ? "First try 🎯" : `Got it on your ${ordinal(attempt)} attempt`}</div>`
+      : "";
     result.innerHTML = `
       <div class="reveal-banner ${correct ? 'good' : 'bad'}">
-        ${correct ? `✓ Correct — ${player.name}` : `✕ It was ${player.name}`}
+        <div>${correct ? `✓ Correct — ${player.name}` : `✕ It was ${player.name}`}</div>
+        ${scoreLine}
       </div>
       <div class="question" style="margin-top:14px">
         <div class="label">All 5 clues</div>
