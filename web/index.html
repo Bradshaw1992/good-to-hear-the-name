@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<title>Good to hear the name…</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --card: #161616;
+    --card-hi: #1f1f1f;
+    --line: #2a2a2a;
+    --text: #f2f2f2;
+    --muted: #888;
+    --accent: #ff6b00;
+    --good: #2ecc71;
+    --bad: #e74c3c;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { min-height: 100vh; min-height: 100dvh; }
+
+  .app {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+  }
+  header h1 strong { color: var(--text); }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 820px) {
+    .layout { grid-template-columns: 1fr 1fr; align-items: start; }
+  }
+
+  .image-card {
+    background: var(--card);
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    position: relative;
+  }
+  .image-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+    transition: opacity 600ms ease;
+  }
+  .image-card .photo { position: absolute; inset: 0; opacity: 0; }
+  .image-card.revealed .photo { opacity: 1; }
+
+  .game {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .question {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+  .question .label {
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .question .text {
+    font-size: 17px;
+    line-height: 1.4;
+  }
+
+  .input-wrap { position: relative; }
+  input[type="text"] {
+    width: 100%;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+  }
+  input[type="text"]:focus { border-color: var(--accent); }
+  input[type="text"]:disabled { opacity: 0.5; }
+
+  .suggestions {
+    margin-top: 8px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    max-height: 280px;
+    overflow-y: auto;
+  }
+  .suggestion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    user-select: none;
+  }
+  .suggestion:last-child { border-bottom: none; }
+  .suggestion:hover, .suggestion:focus { background: var(--card-hi); }
+  .suggestion .name { font-size: 15px; }
+  .suggestion .flag { font-size: 18px; flex-shrink: 0; margin-left: 12px; }
+  .suggestion .meta { display: flex; align-items: center; gap: 8px; }
+  .suggestion .years { font-size: 12px; color: var(--muted); }
+
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 0 4px;
+  }
+  .meta-row a { color: var(--muted); text-decoration: underline; cursor: pointer; }
+  .meta-row a:hover { color: var(--text); }
+
+  .guesses {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 12px 16px;
+  }
+  .guesses .heading {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .guess-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    font-size: 14px;
+  }
+  .guess-row .x { color: var(--bad); font-weight: 700; }
+
+  .reveal-banner {
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .reveal-banner.good { background: rgba(46, 204, 113, 0.15); color: var(--good); }
+  .reveal-banner.bad { background: rgba(231, 76, 60, 0.12); color: var(--bad); }
+
+  .bio { display: none; margin-top: 18px; }
+  .bio.show { display: block; }
+  .bio .row { background: var(--card); border-radius: 14px; padding: 16px 18px; margin-bottom: 10px; }
+  .bio .row h3 { margin: 0 0 8px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .bio .row p, .bio .row li { font-size: 15px; line-height: 1.5; margin: 4px 0; }
+  .bio .row ul { margin: 0; padding-left: 18px; }
+  .bio .row .name-line { font-size: 28px; font-weight: 700; line-height: 1.1; margin-bottom: 4px; }
+  .bio .row .sub { font-size: 13px; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { background: var(--card-hi); color: var(--text); padding: 4px 10px; border-radius: 999px; font-size: 13px; }
+
+  .footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    padding: 24px 0;
+  }
+</style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1><strong>Good to hear the name…</strong></h1>
+    </header>
+
+    <div class="layout">
+      <div id="image" class="image-card">
+        <img id="silhouette" src="" alt="silhouette">
+        <img id="photo" class="photo" src="" alt="photo">
+      </div>
+
+      <div class="game">
+        <div id="question" class="question">
+          <div class="label">Clue 1</div>
+          <div id="clueText" class="text">—</div>
+        </div>
+
+        <div class="input-wrap">
+          <input id="guessInput" type="text" placeholder="Type a footballer's name…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+          <div id="suggestions" class="suggestions" style="display:none"></div>
+        </div>
+
+        <div class="meta-row">
+          <span><span id="guessesUsed">0</span> / 5 guesses</span>
+          <a id="revealLink">Reveal answer</a>
+        </div>
+
+        <div id="guessesPanel" class="guesses" style="display:none">
+          <div class="heading">Previous guesses</div>
+          <div id="guessesList"></div>
+        </div>
+
+        <div id="result" style="display:none"></div>
+      </div>
+    </div>
+
+    <div id="bio" class="bio"></div>
+
+    <div class="footer">A new player every day · share with mates · <span id="dateLabel"></span></div>
+  </div>
+
+<script src="players.js"></script>
+<script src="bios.js"></script>
+<script>
+(() => {
+  const PLAYERS = window.PLAYERS;
+  const NAME_POOL = window.NAME_POOL;
+  const BIOS = window.BIOS || {};
+  const MAX_GUESSES = 5;
+
+  // Pick today's player by date — same player worldwide on a given date.
+  // ?player=<id> overrides for previewing.
+  const startEpoch = Date.UTC(2026, 0, 1) / 86400000;
+  const today = Math.floor(Date.now() / 86400000);
+  const todayIndex = ((today - startEpoch) % PLAYERS.length + PLAYERS.length) % PLAYERS.length;
+  const pinId = new URLSearchParams(location.search).get("player");
+  const player = (pinId && PLAYERS.find(p => p.id === pinId)) || PLAYERS[todayIndex];
+
+  // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
+  let allNames = PLAYERS.map(p => ({ n: p.name, f: p.flag, y: "" }));
+  fetch("names.json")
+    .then(r => r.json())
+    .then(big => {
+      const seen = new Set(allNames.map(e => e.n.toLowerCase()));
+      for (const e of big) {
+        const k = e.n.toLowerCase();
+        if (!seen.has(k)) { seen.add(k); allNames.push(e); }
+      }
+      // If the user already had a partial query typed, refresh suggestions
+      if (guessInput && guessInput.value) renderSuggestions();
+    })
+    .catch(() => {/* fallback to PLAYERS only */});
+
+  // State
+  let wrongGuesses = []; // [{ name, flag }]
+  let revealed = false;
+  let currentClueIndex = 0; // shows clues[0..currentClueIndex]
+
+  // DOM
+  const $ = id => document.getElementById(id);
+  const silhouette = $("silhouette");
+  const photo = $("photo");
+  const imageCard = $("image");
+  const clueText = $("clueText");
+  const clueLabel = document.querySelector(".question .label");
+  const guessInput = $("guessInput");
+  const suggestionsBox = $("suggestions");
+  const guessesPanel = $("guessesPanel");
+  const guessesList = $("guessesList");
+  const guessesUsedEl = $("guessesUsed");
+  const revealLink = $("revealLink");
+  const result = $("result");
+  const dateLabel = $("dateLabel");
+  const bio = $("bio");
+
+  // Init
+  silhouette.src = `silhouettes/${player.id}.jpg`;
+  photo.src = `images/${player.id}.jpg`;
+  clueText.textContent = player.clues[0] || "(no clue)";
+  dateLabel.textContent = new Date().toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long" });
+
+  function normalize(s) {
+    return (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9 ]/g, "").trim();
+  }
+
+  function isCorrect(guessName) {
+    const g = normalize(guessName);
+    if (!g) return false;
+    if (g === normalize(player.name)) return true;
+    return (player.aliases || []).some(a => normalize(a) === g);
+  }
+
+  function renderSuggestions() {
+    if (revealed) { suggestionsBox.style.display = "none"; return; }
+    const q = normalize(guessInput.value);
+    if (q.length < 2) { suggestionsBox.style.display = "none"; suggestionsBox.innerHTML = ""; return; }
+    // Prefer prefix matches, then substring matches.
+    const prefix = [], substring = [];
+    for (const e of allNames) {
+      const norm = normalize(e.n);
+      if (norm.startsWith(q)) prefix.push(e);
+      else if (norm.includes(q)) substring.push(e);
+      if (prefix.length >= 8) break;
+    }
+    const matches = [...prefix, ...substring].slice(0, 8);
+    if (!matches.length) { suggestionsBox.style.display = "none"; return; }
+    suggestionsBox.innerHTML = matches.map(e =>
+      `<div class="suggestion" data-name="${e.n.replace(/"/g, '&quot;')}">
+        <span class="name">${e.n}</span>
+        <span class="meta">${e.y ? `<span class="years">${e.y}</span>` : ""}<span class="flag">${e.f || ""}</span></span>
+      </div>`
+    ).join("");
+    suggestionsBox.style.display = "block";
+  }
+
+  function submitGuess(name) {
+    if (revealed) return;
+    if (isCorrect(name)) {
+      revealAnswer(true);
+    } else {
+      const entry = allNames.find(e => normalize(e.n) === normalize(name)) || {};
+      wrongGuesses.push({ name, flag: entry.f || "", years: entry.y || "" });
+      guessInput.value = "";
+      suggestionsBox.style.display = "none";
+      renderGuesses();
+      // Reveal the next clue if available
+      if (currentClueIndex < player.clues.length - 1 && wrongGuesses.length < MAX_GUESSES) {
+        currentClueIndex++;
+        clueLabel.textContent = `Clue ${currentClueIndex + 1}`;
+        clueText.textContent = player.clues[currentClueIndex];
+      }
+      if (wrongGuesses.length >= MAX_GUESSES) {
+        revealAnswer(false);
+      }
+    }
+  }
+
+  function renderGuesses() {
+    guessesUsedEl.textContent = wrongGuesses.length;
+    if (!wrongGuesses.length) { guessesPanel.style.display = "none"; return; }
+    guessesPanel.style.display = "block";
+    guessesList.innerHTML = wrongGuesses.map(g =>
+      `<div class="guess-row">
+        <span class="x">✗</span>
+        <span>${g.name}</span>
+        <span style="margin-left:auto;display:flex;align-items:center;gap:8px">
+          ${g.years ? `<span style="font-size:12px;color:var(--muted)">${g.years}</span>` : ""}
+          <span>${g.flag || ""}</span>
+        </span>
+      </div>`
+    ).join("");
+  }
+
+  function revealAnswer(correct) {
+    revealed = true;
+    imageCard.classList.add("revealed");
+    guessInput.disabled = true;
+    suggestionsBox.style.display = "none";
+    revealLink.style.display = "none";
+    // Show all clues so the user sees what they would have got
+    const allClues = player.clues.map((c, i) => `<div style="padding:4px 0"><span style="color:var(--muted)">${i + 1}.</span> ${c}</div>`).join("");
+    result.innerHTML = `
+      <div class="reveal-banner ${correct ? 'good' : 'bad'}">
+        ${correct ? `✅ Correct! ${player.name}` : `❌ It was <strong>${player.name}</strong>`}
+      </div>
+      <div class="question" style="margin-top:10px">
+        <div class="label">All clues</div>
+        ${allClues}
+      </div>
+    `;
+    result.style.display = "block";
+    renderBio();
+  }
+
+  function renderBio() {
+    const data = BIOS[player.id];
+    if (!data) {
+      bio.innerHTML = `<div class="row"><div class="name-line">${player.name}</div><div class="sub">${player.flag} ${player.country}</div></div>`;
+    } else {
+      const chips = (data.clubs || []).map(c => `<span class="chip">${c}</span>`).join("");
+      const honoursList = (data.honours || []).map(h => `<li>${h}</li>`).join("");
+      const factsList = (data.didYouKnow || []).map(f => `<li>${f}</li>`).join("");
+      bio.innerHTML = `
+        <div class="row">
+          <div class="name-line">${player.name}</div>
+          <div class="sub">${player.flag} ${data.position || ""} · ${data.yearsActive || ""}</div>
+        </div>
+        ${data.story ? `<div class="row"><h3>The story</h3><p>${data.story}</p></div>` : ""}
+        ${chips ? `<div class="row"><h3>Notable clubs</h3><div class="chips">${chips}</div></div>` : ""}
+        ${honoursList ? `<div class="row"><h3>Honours</h3><ul>${honoursList}</ul></div>` : ""}
+        ${data.numbers ? `<div class="row"><h3>By the numbers</h3><p>${data.numbers}</p></div>` : ""}
+        ${factsList ? `<div class="row"><h3>Did you know?</h3><ul>${factsList}</ul></div>` : ""}
+      `;
+    }
+    bio.classList.add("show");
+  }
+
+  // Events
+  guessInput.addEventListener("input", renderSuggestions);
+  guessInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      const first = suggestionsBox.querySelector(".suggestion");
+      if (first) submitGuess(first.dataset.name);
+    } else if (e.key === "Escape") {
+      suggestionsBox.style.display = "none";
+    }
+  });
+  suggestionsBox.addEventListener("click", e => {
+    const el = e.target.closest(".suggestion");
+    if (el) submitGuess(el.dataset.name);
+  });
+  revealLink.addEventListener("click", () => revealAnswer(false));
+})();
+</script>
+</body>
+</html>
