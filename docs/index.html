@@ -279,8 +279,8 @@
     <div class="footer">A new player every day · share with mates</div>
   </div>
 
-<script src="players.js?v=6"></script>
-<script src="bios.js?v=6"></script>
+<script src="players.js?v=7"></script>
+<script src="bios.js?v=7"></script>
 <script>
 (() => {
   const ALL_PLAYERS = window.PLAYERS;
@@ -312,7 +312,7 @@
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=6")
+  fetch("names.json?v=7")
     .then(r => r.json())
     .then(big => {
       const seen = new Set(allNames.map(e => e.n.toLowerCase()));
@@ -427,19 +427,28 @@
     revealLink.style.display = "none";
     const allClues = player.clues.map((c, i) => `<div style="padding:6px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--text-soft)"><span style="color:var(--accent);font-weight:700">${i + 1}.</span> ${c}</div>`).join("");
     const nextBtn = nextSeqUrl
-      ? `<a href="${nextSeqUrl}" style="display:block;text-align:center;margin-top:12px;padding:14px 20px;background:var(--accent);color:#fff;border-radius:14px;font-weight:600;text-decoration:none;box-shadow:var(--shadow)">Next player →</a>`
+      ? `<a href="${nextSeqUrl}" style="display:block;text-align:center;margin-top:14px;padding:14px 20px;background:var(--accent);color:#fff;border-radius:14px;font-weight:600;text-decoration:none;box-shadow:var(--shadow)">Next player →</a>`
       : (seqIndex !== null
-          ? `<div style="text-align:center;margin-top:12px;padding:14px;color:var(--muted);font-size:14px">That's all 5 — well done.</div>`
+          ? `<div style="text-align:center;margin-top:14px;padding:14px;color:var(--muted);font-size:14px">That's all 5 — well done.</div>`
           : "");
+    const cluesSeen = currentClueIndex + 1; // 0-based → count
+    const annotatedClues = player.clues.map((c, i) => {
+      const seen = i < cluesSeen;
+      const opacity = seen ? "1" : "1";
+      const tag = seen ? "" : `<span style="font-size:10px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:2px 6px;border-radius:6px;margin-left:6px;letter-spacing:0.05em">MISSED</span>`;
+      return `<div style="padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--text-soft);line-height:1.5;opacity:${opacity}">
+        <span style="color:var(--accent);font-weight:700;margin-right:6px">${i + 1}.</span>${c}${tag}
+      </div>`;
+    }).join("");
     result.innerHTML = `
       <div class="reveal-banner ${correct ? 'good' : 'bad'}">
         ${correct ? `✓ Correct — ${player.name}` : `✕ It was ${player.name}`}
       </div>
-      ${nextBtn}
-      <div class="question" style="margin-top:12px">
-        <div class="label">All clues</div>
-        ${allClues}
+      <div class="question" style="margin-top:14px">
+        <div class="label">All 5 clues</div>
+        ${annotatedClues}
       </div>
+      ${nextBtn}
     `;
     result.style.display = "block";
     renderBio();
