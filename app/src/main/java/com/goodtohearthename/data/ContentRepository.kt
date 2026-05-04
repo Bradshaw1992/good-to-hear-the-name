@@ -8,6 +8,9 @@ import java.time.LocalDate
 
 object ContentRepository {
 
+    // Pin today's footballer for previewing. Set to null to use date-based rotation.
+    private const val PINNED_ID: String? = "overmars"
+
     private val json = Json { ignoreUnknownKeys = true }
 
     @Volatile private var cached: List<Footballer>? = null
@@ -22,6 +25,7 @@ object ContentRepository {
 
     fun forToday(context: Context, date: LocalDate = LocalDate.now()): Footballer {
         val players = all(context)
+        PINNED_ID?.let { id -> players.firstOrNull { it.id == id }?.let { return it } }
         val index = (date.toEpochDay().toInt().mod(players.size))
         return players[index]
     }
