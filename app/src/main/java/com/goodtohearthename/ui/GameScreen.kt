@@ -23,6 +23,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -84,7 +85,8 @@ fun GameScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding),
+                .padding(padding)
+                .imePadding(),
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
         ) {
             item { Header() }
@@ -95,17 +97,17 @@ fun GameScreen(
 
             if (!state.revealed) {
                 item { Spacer(Modifier.height(14.dp)) }
+                if (suggestions.isNotEmpty() && state.query.text.length >= 2) {
+                    item {
+                        SuggestionList(suggestions = suggestions, onPick = onPickSuggestion)
+                    }
+                    item { Spacer(Modifier.height(8.dp)) }
+                }
                 item {
                     GuessInput(
                         value = state.query,
                         onValueChange = onQueryChange,
                     )
-                }
-                if (suggestions.isNotEmpty() && state.query.text.length >= 2) {
-                    item { Spacer(Modifier.height(8.dp)) }
-                    item {
-                        SuggestionList(suggestions = suggestions, onPick = onPickSuggestion)
-                    }
                 }
                 item { Spacer(Modifier.height(10.dp)) }
                 item {
