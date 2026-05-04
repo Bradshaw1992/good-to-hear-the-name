@@ -235,6 +235,332 @@
         "Stood 2.02m / 6'8\" — universally nicknamed \"Dino\" because he was taller than the dressing room."
       ],
       "youtube": null
+    },
+    {
+      "id": "adel_taarabt",
+      "name": "Adel Taarabt",
+      "country": "Morocco",
+      "countryFlag": "🇲🇦",
+      "position": "Attacking midfielder",
+      "yearsActive": "2007–present",
+      "image": "adel_taarabt.jpg",
+      "story": "QPR's mercurial Moroccan — the most outrageously talented Championship player of the early 2010s, dragging Loftus Road back to the Premier League almost single-handed. Disappeared, reinvented himself as a deep-lying midfielder at Benfica, won a Portuguese title in his thirties.",
+      "clubs": ["Tottenham Hotspur", "Queens Park Rangers", "Benfica"],
+      "honours": [
+        "Championship Player of the Year — 2010–11",
+        "Primeira Liga — Benfica, 2018–19",
+        "PFA Championship Team of the Year — 2010–11"
+      ],
+      "numbers": "79 club goals · 30 caps for Morocco",
+      "didYouKnow": [
+        "Played for France at youth level before switching allegiance to Morocco in 2009.",
+        "Has publicly said signing for Tottenham instead of Arsenal was the biggest mistake of his career — blamed agent Damien Comolli's advice.",
+        "Reinvented himself at Benfica after years in the wilderness, winning the Primeira Liga in 2019 as a deep midfielder."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "charlie_adam",
+      "name": "Charlie Adam",
+      "country": "Scotland",
+      "countryFlag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+      "position": "Midfielder",
+      "yearsActive": "2003–2022",
+      "image": "charlie_adam.jpg",
+      "story": "The Scottish set-piece merchant who carried Blackpool through their fairytale Premier League season, parlayed it into a Liverpool move, and ended up as Stoke's resident hammer-of-a-left-foot. Capable of moments of genius — and a sixty-five yarder against Chelsea.",
+      "clubs": ["Rangers", "Blackpool", "Liverpool", "Stoke City", "Dundee"],
+      "honours": [
+        "League Cup — Liverpool, 2011–12",
+        "Championship play-off — Blackpool, 2010",
+        "Scottish Premiership play-off — Dundee, 2020–21"
+      ],
+      "numbers": "80 club goals · 26 caps for Scotland",
+      "didYouKnow": [
+        "Scored a 65-yard goal against Chelsea in 2015 from inside his own half — called it a \"once in a lifetime\" strike.",
+        "His Stoke teammates secretly nicknamed him \"Parched\" — a long-running joke he didn't find out about for years until Peter Crouch revealed it on his podcast.",
+        "Captained Dundee to promotion in 2021 and called it the highlight of his career — above his Rangers Champions League nights."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "danny_rose",
+      "name": "Danny Rose",
+      "country": "England",
+      "countryFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "position": "Left-back",
+      "yearsActive": "2007–2022",
+      "image": "danny_rose.jpg",
+      "story": "Spurs' rocket-fuelled left-back through the Pochettino era — full-throttle, lung-busting, and capable of one of the most thunderous Premier League debut goals you'll ever see (a screamer against Arsenal). Spoke openly about depression at a time when very few footballers did.",
+      "clubs": ["Tottenham Hotspur"],
+      "honours": [
+        "Champions League runner-up — Tottenham, 2018–19",
+        "PFA Team of the Year — 2015–16, 2016–17",
+        "UEFA Nations League third place — England, 2018–19"
+      ],
+      "numbers": "9 club goals in 232 appearances · 29 caps for England",
+      "didYouKnow": [
+        "His Premier League debut goal against Arsenal in 2010 — a left-footed volley from outside the box — won Sky Sports' Goal of the Season.",
+        "Publicly disclosed his battle with depression in 2018, becoming one of the most prominent active footballers to do so.",
+        "Was racially abused throughout a 2012 England U21 game in Serbia and sent off for retaliating after the final whistle — the resulting investigation became a flashpoint in European football."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "ravanelli",
+      "name": "Fabrizio Ravanelli",
+      "country": "Italy",
+      "countryFlag": "🇮🇹",
+      "position": "Striker",
+      "yearsActive": "1986–2005",
+      "image": "ravanelli.jpg",
+      "story": "The White Feather. Juventus's snarling Champions League winner who, in a piece of mid-90s football madness, turned up at Middlesbrough and scored a hat-trick on his Premier League debut. The shirt-over-the-head celebration belonged to him before it belonged to anyone else.",
+      "clubs": ["Perugia", "Juventus", "Middlesbrough", "Marseille", "Lazio"],
+      "honours": [
+        "Champions League — Juventus, 1995–96",
+        "Serie A — Juventus, 1994–95 / Lazio, 1999–2000",
+        "Coppa Italia × 2"
+      ],
+      "numbers": "190 club goals · 8 in 22 for Italy",
+      "didYouKnow": [
+        "Nicknamed \"the White Feather\" because of his prematurely white hair — inherited the moniker from Juve legend Roberto Bettega.",
+        "Scored all five in Juve's 5–1 demolition of CSKA Sofia in September 1994.",
+        "His shirt-over-the-head celebration was so iconic that FIFA later changed the rules to make it a yellow-card offence."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "geovanni",
+      "name": "Geovanni",
+      "country": "Brazil",
+      "countryFlag": "🇧🇷",
+      "position": "Attacking midfielder",
+      "yearsActive": "1997–2010",
+      "image": "geovanni.jpg",
+      "story": "The Brazilian who scored Hull City's first ever Premier League goal — and looked, for one season, like the most exotic thing the KC Stadium had ever seen. Free-kick specialist, hip-swivelling dribbler, briefly a Barcelona player. Hull's all-time most unlikely cult hero.",
+      "clubs": ["Cruzeiro", "Barcelona", "Benfica", "Manchester City", "Hull City"],
+      "honours": [
+        "Primeira Liga — Benfica, 2004–05",
+        "Taça de Portugal — Benfica, 2003–04",
+        "Copa do Brasil — Cruzeiro, 2000",
+        "U-17 World Championship — Brazil, 1997"
+      ],
+      "numbers": "52 club goals in 341 appearances",
+      "didYouKnow": [
+        "Scored Hull City's first ever Premier League goal on his debut against Fulham in August 2008 — also took Man of the Match.",
+        "Was twice Benfica's Player of the Year and curled in a famous late free-kick in the Lisbon derby that sealed Champions League qualification.",
+        "Signed by San Jose Earthquakes in 2010 as their first ever Designated Player — a brief but historically notable MLS stint."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "morten_gamst_pedersen",
+      "name": "Morten Gamst Pedersen",
+      "country": "Norway",
+      "countryFlag": "🇳🇴",
+      "position": "Left winger",
+      "yearsActive": "2000–2022",
+      "image": "morten_gamst_pedersen.jpg",
+      "story": "Blackburn's Norwegian left foot — nine years at Ewood Park, hundreds of inswinging deliveries, and a knack for the spectacular. Never the quickest, never the flashiest, but you knew exactly what you were getting: dead-ball danger and a left peg straight from the pages of an old coaching manual.",
+      "clubs": ["Tromsø", "Blackburn Rovers", "Rosenborg"],
+      "honours": [
+        "Tippeligaen — Rosenborg, 2015",
+        "Norwegian Cup — Rosenborg, 2015",
+        "Norwegian First Division — Tromsø, 2002"
+      ],
+      "numbers": "118 goals in 633 club appearances · 17 in 83 for Norway",
+      "didYouKnow": [
+        "His 2006 Euro qualifier goal against Hungary was so reminiscent of van Basten's 1988 final volley that the Norwegian media nicknamed him \"van Gamsten\".",
+        "Was at the centre of one of the Premier League's odder scuffles when Mikel Arteta poked him in the cheek and then the eye after a tackle in 2010.",
+        "Has Sami heritage and fronted a Norwegian footballer boyband called \"The Players\" — released a single for an anti-crime charity campaign."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "schwarzer",
+      "name": "Mark Schwarzer",
+      "country": "Australia",
+      "countryFlag": "🇦🇺",
+      "position": "Goalkeeper",
+      "yearsActive": "1990–2016",
+      "image": "schwarzer.jpg",
+      "story": "Middlesbrough's Australian wall for over a decade, then Fulham's, then a quiet medal-collecting spell at Chelsea in his forties. The most appearance-clocking non-British keeper the Premier League has ever seen — and a man who somehow kept playing top-flight football until he was 43.",
+      "clubs": ["Middlesbrough", "Fulham", "Chelsea", "Leicester City"],
+      "honours": [
+        "League Cup — Middlesbrough, 2003–04",
+        "Premier League — Leicester, 2015–16 (squad)",
+        "AFC Asian Cup runner-up — Australia, 2011",
+        "109 caps for Australia"
+      ],
+      "numbers": "150+ Premier League clean sheets · first non-Briton to 500 PL appearances",
+      "didYouKnow": [
+        "At 41, he became the oldest player ever to debut in the Champions League when Chelsea played Steaua București in December 2013 — kept a clean sheet too.",
+        "His 514 Premier League appearances make him the highest-appearing non-British player in the league's history.",
+        "His son Julian is also a goalkeeper and is eligible to represent the Philippines through his Filipino mother."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "benni_mccarthy",
+      "name": "Benni McCarthy",
+      "country": "South Africa",
+      "countryFlag": "🇿🇦",
+      "position": "Striker",
+      "yearsActive": "1995–2013",
+      "image": "benni_mccarthy.jpg",
+      "story": "South Africa's all-time top scorer, a Champions League winner with Mourinho's Porto, and the man who gave Blackburn Rovers a centre-forward of genuine pedigree for four seasons. Spiky, confident, deadly when he was on it.",
+      "clubs": ["Ajax", "Porto", "Blackburn Rovers", "Orlando Pirates"],
+      "honours": [
+        "Champions League — Porto, 2003–04",
+        "Primeira Liga × 2 — Porto, 2003–04 & 2005–06",
+        "South African Premiership — Orlando Pirates, 2011–12",
+        "AFCON runner-up — South Africa, 1998"
+      ],
+      "numbers": "32 international goals (South Africa's all-time top scorer)",
+      "didYouKnow": [
+        "The only South African ever to win the Champions League — scored crucial goals against Manchester United in Porto's run.",
+        "Scored four goals in 13 minutes against Namibia at AFCON 1998, en route to sharing the tournament's Golden Boot and winning Player of the Tournament.",
+        "Won league titles in three different countries on two continents (Netherlands, Portugal, South Africa) — a first for a South African footballer."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "brad_friedel",
+      "name": "Brad Friedel",
+      "country": "United States",
+      "countryFlag": "🇺🇸",
+      "position": "Goalkeeper",
+      "yearsActive": "1992–2015",
+      "image": "brad_friedel.jpg",
+      "story": "The American who outlasted everyone. Liverpool, Blackburn, Villa, Spurs — and 310 consecutive Premier League appearances, a record that may never be broken. Once scored a goal from open play in 2004, just because he could.",
+      "clubs": ["Liverpool", "Blackburn Rovers", "Aston Villa", "Tottenham Hotspur"],
+      "honours": [
+        "League Cup — Blackburn, 2001–02",
+        "PFA Premier League Team of the Year — 2002–03",
+        "U.S. Soccer Athlete of the Year — 2002",
+        "U.S. National Soccer Hall of Fame — 2018"
+      ],
+      "numbers": "450 Premier League appearances · 310 consecutive PL games (record) · 84 caps for the USMNT",
+      "didYouKnow": [
+        "Scored a goal from open play for Blackburn in 2004 — one of the rare goalkeeper-from-open-play goals in Premier League history.",
+        "Saved two penalties during open play at the 2002 World Cup — only the second keeper ever to do so in the tournament. Earned the nickname \"the Human Wall\".",
+        "Was repeatedly denied a UK work permit by the Home Office — Forest, Newcastle and Sunderland all tried to sign him before Liverpool finally got him through in 1997."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "niko_kranjcar",
+      "name": "Niko Kranjčar",
+      "country": "Croatia",
+      "countryFlag": "🇭🇷",
+      "position": "Attacking midfielder",
+      "yearsActive": "2001–2018",
+      "image": "niko_kranjcar.jpg",
+      "story": "The silky Croatian playmaker who followed Harry Redknapp around for a decade — Portsmouth, Tottenham, QPR, three different clubs, three different reunions. Hailed at home as \"the next Prosinečki\". Never quite delivered in the Premier League, but moments of class were never in doubt.",
+      "clubs": ["Dinamo Zagreb", "Hajduk Split", "Portsmouth", "Tottenham Hotspur", "Rangers"],
+      "honours": [
+        "Croatian league × 2 — Dinamo (2002–03), Hajduk (2004–05)",
+        "FA Cup — Portsmouth, 2007–08",
+        "Championship play-off — QPR, 2014"
+      ],
+      "numbers": "61 club goals · 81 caps for Croatia",
+      "didYouKnow": [
+        "His move from Dinamo Zagreb to bitter rivals Hajduk Split in 2005 was so divisive that 200 candles were lit in mourning outside his home — and 10,000 fans showed up for his Hajduk unveiling.",
+        "Joined up with Harry Redknapp at three different clubs (Portsmouth, Tottenham, QPR) — one of the great manager-player Premier League marriages.",
+        "Comes from football royalty — his father Zlatko coached Croatia to the 1998 World Cup semi-final."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "sylvain_distin",
+      "name": "Sylvain Distin",
+      "country": "France",
+      "countryFlag": "🇫🇷",
+      "position": "Centre-back",
+      "yearsActive": "1996–2017",
+      "image": "sylvain_distin.jpg",
+      "story": "The Premier League's most-capped foreign outfielder — and yet not a single France cap to show for it. Manchester City, Portsmouth, Everton — calm, dominant in the air, the kind of defender every relegation-threatened side wished they had. The best French centre-half never to play for France.",
+      "clubs": ["Manchester City", "Portsmouth", "Everton"],
+      "honours": [
+        "FA Cup — Portsmouth, 2007–08",
+        "Coupe de la Ligue — Gueugnon, 2000"
+      ],
+      "numbers": "402+ Premier League appearances (most by any foreign outfielder) · 0 France caps",
+      "didYouKnow": [
+        "Despite playing more Premier League games than any other foreign outfielder, he was never picked by France — announced his \"international retirement\" on Twitter in 2014, deadpan.",
+        "Was approached to represent Guadeloupe at the 2011 CONCACAF Gold Cup but turned it down to focus on Everton's preseason.",
+        "Assisted Tim Howard's freak 100-yard goal in 2011–12 — only the fourth keeper-from-open-play goal in Premier League history."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "paul_konchesky",
+      "name": "Paul Konchesky",
+      "country": "England",
+      "countryFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "position": "Left-back",
+      "yearsActive": "1997–2017",
+      "image": "paul_konchesky.jpg",
+      "story": "The East End left-back of the early 2000s — a Charlton academy product who somehow ended up at Liverpool in the absolute worst-managed transfer window of the Roy Hodgson era. Two England caps. One pie shop. No nonsense.",
+      "clubs": ["Charlton Athletic", "West Ham United", "Fulham", "Liverpool", "Leicester City"],
+      "honours": [
+        "Championship — Leicester, 2013–14",
+        "FA Cup runner-up — West Ham, 2005–06",
+        "Europa League runner-up — Fulham, 2009–10"
+      ],
+      "numbers": "14 club goals · 2 England caps",
+      "didYouKnow": [
+        "Was Charlton's youngest ever first-team player at 16 years and 93 days — a record later broken by Jonjo Shelvey.",
+        "His brief Liverpool spell is remembered for an error against Spurs that gifted Aaron Lennon the winner — and a famously unhappy public reaction from his mother on Facebook.",
+        "Opened a pie and mash café in Brentwood in 2015, with his mum on the staff — the most East End post-football career imaginable."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "llorente",
+      "name": "Fernando Llorente",
+      "country": "Spain",
+      "countryFlag": "🇪🇸",
+      "position": "Striker",
+      "yearsActive": "2005–2021",
+      "image": "llorente.jpg",
+      "story": "El Rey León. Athletic Bilbao's towering Basque number 9 in the Marcelo Bielsa era — all elbows, headers and physical authority. Won everything with Spain's golden generation, won Serie A at Juventus, and ended his career as Tottenham's most physically improbable super-sub.",
+      "clubs": ["Athletic Bilbao", "Juventus", "Sevilla", "Tottenham Hotspur"],
+      "honours": [
+        "World Cup — Spain, 2010",
+        "Euro 2012 — Spain",
+        "Serie A × 2 — Juventus, 2013–14 & 2014–15",
+        "Europa League — Sevilla, 2015–16",
+        "Champions League runner-up — Spurs, 2018–19"
+      ],
+      "numbers": "151 club goals · 7 in 24 for Spain",
+      "didYouKnow": [
+        "Born in Pamplona but qualified for Athletic Bilbao through his Navarrese roots — stayed at the club until he was 28 before finally leaving for Juventus.",
+        "Got just 8 minutes of the 2019 Champions League final against Liverpool — his second European final cameo (also lost the 2015 final with Juventus).",
+        "Reinvented himself as a late-career super-sub at Spurs and Napoli — defenders simply couldn't deal with his aerial presence in the last 20 minutes."
+      ],
+      "youtube": null
+    },
+    {
+      "id": "michu",
+      "name": "Michu",
+      "country": "Spain",
+      "countryFlag": "🇪🇸",
+      "position": "Forward / attacking midfielder",
+      "yearsActive": "2003–2017",
+      "image": "michu.jpg",
+      "story": "One season of pure magic. 22 goals for newly-promoted Swansea, the best £2m signing in Premier League history, the player every Sunday-league team wanted to compare themselves to. Then his ankle gave out and he was gone — football's most beautiful and brief shooting star.",
+      "clubs": ["Rayo Vallecano", "Swansea City"],
+      "honours": [
+        "League Cup — Swansea, 2012–13",
+        "Swansea Player of the Year — 2012–13"
+      ],
+      "numbers": "22 goals in his Premier League debut season · 83 club goals total",
+      "didYouKnow": [
+        "Bought by Swansea for around £2m from Rayo Vallecano — widely considered one of the best-value Premier League signings ever.",
+        "Bought shares in his boyhood club Real Oviedo in 2012 alongside Cazorla and Mata to help them avoid financial collapse.",
+        "Forced into early retirement at 31 by chronic ankle problems — said in 2022 that he has \"the ankle of a 90-year-old\" despite multiple operations."
+      ],
+      "youtube": null
     }
   ]
 }
