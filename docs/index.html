@@ -251,8 +251,7 @@
 
       <div class="game">
         <div id="question" class="question">
-          <div class="label">Clue 1</div>
-          <div id="clueText" class="text">—</div>
+          <div id="clueList"></div>
         </div>
 
         <div class="input-wrap">
@@ -279,8 +278,8 @@
     <div class="footer">A new player every day · share with mates</div>
   </div>
 
-<script src="players.js?v=8"></script>
-<script src="bios.js?v=8"></script>
+<script src="players.js?v=9"></script>
+<script src="bios.js?v=9"></script>
 <script>
 (() => {
   const ALL_PLAYERS = window.PLAYERS;
@@ -312,7 +311,7 @@
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=8")
+  fetch("names.json?v=9")
     .then(r => r.json())
     .then(big => {
       const seen = new Set(allNames.map(e => e.n.toLowerCase()));
@@ -330,7 +329,7 @@
 
   const $ = id => document.getElementById(id);
   const silhouette = $("silhouette"), photo = $("photo"), imageCard = $("image");
-  const clueText = $("clueText"), clueLabel = document.querySelector(".question .label");
+  const clueList = $("clueList");
   const guessInput = $("guessInput"), suggestionsBox = $("suggestions");
   const guessesPanel = $("guessesPanel"), guessesList = $("guessesList");
   const pips = $("pips"), revealLink = $("revealLink"), result = $("result");
@@ -338,9 +337,22 @@
 
   silhouette.src = `silhouettes/${player.id}.jpg`;
   photo.src = `images/${player.id}.jpg`;
-  clueText.textContent = player.clues[0] || "(no clue)";
   dateLabel.textContent = new Date().toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long" });
+  renderClues();
   renderPips();
+
+  function renderClues() {
+    const upTo = currentClueIndex; // 0-based index of latest revealed
+    let html = "";
+    for (let i = 0; i <= upTo && i < player.clues.length; i++) {
+      const isLatest = i === upTo;
+      html += `<div style="padding:10px 0${i > 0 ? ';border-top:1px solid var(--line)' : ''}">
+        <div style="text-transform:uppercase;font-size:11px;letter-spacing:0.12em;color:var(--accent);margin-bottom:6px;font-weight:700">Clue ${i + 1}</div>
+        <div style="font-size:${isLatest ? '17' : '15'}px;line-height:1.5;color:${isLatest ? 'var(--text)' : 'var(--text-soft)'}">${player.clues[i]}</div>
+      </div>`;
+    }
+    clueList.innerHTML = html;
+  }
 
   function normalize(s) {
     return (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9 ]/g, "").trim();
@@ -397,8 +409,7 @@
       renderPips();
       if (currentClueIndex < player.clues.length - 1 && wrongGuesses.length < MAX_GUESSES) {
         currentClueIndex++;
-        clueLabel.textContent = `Clue ${currentClueIndex + 1}`;
-        clueText.textContent = player.clues[currentClueIndex];
+        renderClues();
       }
       if (wrongGuesses.length >= MAX_GUESSES) revealAnswer(false);
     }
