@@ -1,10 +1,35 @@
-// 27 players + their clues + bio data.
-// Clues are placeholders — Bradshaw to replace with real ones.
-// Order is the order they're shown (clue 1 visible from start, then one per wrong guess).
+// 27 players + their clues.
+// `approved: true` = in the daily rotation. Others are previewable via ?player=<id>.
+// Clue 1 is always template (DOB + caps + goals). Clues 2-5 are decreasing difficulty.
 
 window.PLAYERS = [
   {
+    id: "ricardo_carvalho", name: "Ricardo Carvalho", country: "Portugal", flag: "🇵🇹",
+    years: "1997–2017", approved: true,
+    aliases: ["ricardo carvalho", "carvalho"],
+    clues: [
+      "I was born on the 18th of May 1978. I played 89 times for my country, scoring 5 goals.",
+      "Jose Mourinho once suggested I should take an IQ test, after I publicly questioned why he hadn't started me in a season opener.",
+      "I was named UEFA Club Defender of the Year in 2003–04.",
+      "I've been managed by Jose Mourinho at three different clubs.",
+      "At the 2006 World Cup, Wayne Rooney was sent off for stamping on me.",
+    ],
+  },
+  {
+    id: "brad_friedel", name: "Brad Friedel", country: "United States", flag: "🇺🇸",
+    years: "1992–2015", approved: true,
+    aliases: ["brad friedel", "friedel"],
+    clues: [
+      "I was born on the 18th of May 1971. I played 82 times for my country, never scoring a goal.",
+      "I was repeatedly denied a UK work permit by the Home Office — Forest, Newcastle and Sunderland all tried to sign me before Liverpool finally got me through in 1997.",
+      "I'm only the second goalkeeper ever to score from open play in the Premier League.",
+      "At the 2002 World Cup, I saved two penalties during open play to help my country reach the quarter-finals.",
+      "I hold the Premier League record for 310 consecutive appearances — across four clubs.",
+    ],
+  },
+  {
     id: "vieri", name: "Christian Vieri", country: "Italy", flag: "🇮🇹",
+    years: "1991–2008",
     aliases: ["bobo vieri", "christian vieri"],
     clues: [
       "Italian striker, 1990s and 2000s",
@@ -16,6 +41,7 @@ window.PLAYERS = [
   },
   {
     id: "overmars", name: "Marc Overmars", country: "Netherlands", flag: "🇳🇱",
+    years: "1990–2009",
     aliases: ["marc overmars", "overmars"],
     clues: [
       "Dutch winger of the 1990s and 2000s",
@@ -27,6 +53,7 @@ window.PLAYERS = [
   },
   {
     id: "koumas", name: "Jason Koumas", country: "Wales", flag: "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+    years: "1998–2014",
     aliases: ["jason koumas", "koumas"],
     clues: [
       "Welsh attacking midfielder",
@@ -38,6 +65,7 @@ window.PLAYERS = [
   },
   {
     id: "okocha", name: "Jay-Jay Okocha", country: "Nigeria", flag: "🇳🇬",
+    years: "1990–2008",
     aliases: ["jay-jay okocha", "jay jay okocha", "okocha", "augustine okocha"],
     clues: [
       "Nigerian attacking midfielder",
@@ -49,6 +77,7 @@ window.PLAYERS = [
   },
   {
     id: "yakubu", name: "Yakubu Aiyegbeni", country: "Nigeria", flag: "🇳🇬",
+    years: "1998–2017",
     aliases: ["yakubu", "the yak", "yakubu aiyegbeni"],
     clues: [
       "Nigerian striker, 2000s",
@@ -60,6 +89,7 @@ window.PLAYERS = [
   },
   {
     id: "ivan_campo", name: "Iván Campo", country: "Spain", flag: "🇪🇸",
+    years: "1994–2010",
     aliases: ["ivan campo", "iván campo", "campo"],
     clues: [
       "Spanish defender / midfielder",
@@ -71,6 +101,7 @@ window.PLAYERS = [
   },
   {
     id: "rui_costa", name: "Rui Costa", country: "Portugal", flag: "🇵🇹",
+    years: "1990–2008",
     aliases: ["rui costa", "manuel rui costa"],
     clues: [
       "Portuguese attacking midfielder",
@@ -82,6 +113,7 @@ window.PLAYERS = [
   },
   {
     id: "andy_johnson", name: "Andrew Johnson", country: "England", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    years: "1998–2015",
     aliases: ["andy johnson", "andrew johnson", "aj"],
     clues: [
       "English striker, 2000s",
@@ -93,6 +125,7 @@ window.PLAYERS = [
   },
   {
     id: "trezeguet", name: "David Trezeguet", country: "France", flag: "🇫🇷",
+    years: "1993–2015",
     aliases: ["david trezeguet", "trezeguet", "trezegol"],
     clues: [
       "French striker, 1990s and 2000s",
@@ -104,6 +137,7 @@ window.PLAYERS = [
   },
   {
     id: "jan_koller", name: "Jan Koller", country: "Czech Republic", flag: "🇨🇿",
+    years: "1993–2011",
     aliases: ["jan koller", "koller", "dino"],
     clues: [
       "Czech striker, 6'8\"",
@@ -115,6 +149,7 @@ window.PLAYERS = [
   },
   {
     id: "adel_taarabt", name: "Adel Taarabt", country: "Morocco", flag: "🇲🇦",
+    years: "2007–2025",
     aliases: ["adel taarabt", "taarabt"],
     clues: [
       "Moroccan attacking midfielder",
@@ -126,6 +161,7 @@ window.PLAYERS = [
   },
   {
     id: "charlie_adam", name: "Charlie Adam", country: "Scotland", flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+    years: "2003–2022",
     aliases: ["charlie adam", "adam"],
     clues: [
       "Scottish midfielder",
@@ -137,6 +173,7 @@ window.PLAYERS = [
   },
   {
     id: "danny_rose", name: "Danny Rose", country: "England", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    years: "2007–2022",
     aliases: ["danny rose"],
     clues: [
       "English left-back",
@@ -148,6 +185,7 @@ window.PLAYERS = [
   },
   {
     id: "ravanelli", name: "Fabrizio Ravanelli", country: "Italy", flag: "🇮🇹",
+    years: "1986–2005",
     aliases: ["fabrizio ravanelli", "ravanelli", "the white feather"],
     clues: [
       "Italian striker, 1990s and 2000s",
@@ -159,6 +197,7 @@ window.PLAYERS = [
   },
   {
     id: "geovanni", name: "Geovanni", country: "Brazil", flag: "🇧🇷",
+    years: "1997–2010",
     aliases: ["geovanni", "geovanni gomez"],
     clues: [
       "Brazilian attacking midfielder",
@@ -170,6 +209,7 @@ window.PLAYERS = [
   },
   {
     id: "morten_gamst_pedersen", name: "Morten Gamst Pedersen", country: "Norway", flag: "🇳🇴",
+    years: "2000–2022",
     aliases: ["morten gamst pedersen", "gamst pedersen", "pedersen"],
     clues: [
       "Norwegian left winger",
@@ -181,6 +221,7 @@ window.PLAYERS = [
   },
   {
     id: "schwarzer", name: "Mark Schwarzer", country: "Australia", flag: "🇦🇺",
+    years: "1990–2016",
     aliases: ["mark schwarzer", "schwarzer"],
     clues: [
       "Australian goalkeeper",
@@ -192,6 +233,7 @@ window.PLAYERS = [
   },
   {
     id: "benni_mccarthy", name: "Benni McCarthy", country: "South Africa", flag: "🇿🇦",
+    years: "1995–2013",
     aliases: ["benni mccarthy", "benni", "mccarthy"],
     clues: [
       "South African striker",
@@ -202,18 +244,8 @@ window.PLAYERS = [
     ],
   },
   {
-    id: "brad_friedel", name: "Brad Friedel", country: "United States", flag: "🇺🇸",
-    aliases: ["brad friedel", "friedel"],
-    clues: [
-      "American goalkeeper",
-      "Played for Liverpool, Blackburn, Aston Villa and Tottenham",
-      "Holds the Premier League record for consecutive appearances (310)",
-      "Once scored from open play for Blackburn",
-      "Saved two penalties in the 2002 World Cup",
-    ],
-  },
-  {
     id: "niko_kranjcar", name: "Niko Kranjčar", country: "Croatia", flag: "🇭🇷",
+    years: "2001–2018",
     aliases: ["niko kranjcar", "kranjcar", "kranjčar"],
     clues: [
       "Croatian attacking midfielder",
@@ -225,6 +257,7 @@ window.PLAYERS = [
   },
   {
     id: "sylvain_distin", name: "Sylvain Distin", country: "France", flag: "🇫🇷",
+    years: "1996–2017",
     aliases: ["sylvain distin", "distin"],
     clues: [
       "French centre-back",
@@ -236,6 +269,7 @@ window.PLAYERS = [
   },
   {
     id: "paul_konchesky", name: "Paul Konchesky", country: "England", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    years: "1997–2017",
     aliases: ["paul konchesky", "konchesky"],
     clues: [
       "English left-back",
@@ -247,6 +281,7 @@ window.PLAYERS = [
   },
   {
     id: "llorente", name: "Fernando Llorente", country: "Spain", flag: "🇪🇸",
+    years: "2005–2021",
     aliases: ["fernando llorente", "llorente", "el rey leon"],
     clues: [
       "Tall Spanish striker",
@@ -258,6 +293,7 @@ window.PLAYERS = [
   },
   {
     id: "michu", name: "Michu", country: "Spain", flag: "🇪🇸",
+    years: "2003–2017",
     aliases: ["michu", "miguel pérez cuesta"],
     clues: [
       "Spanish forward, 2010s",
@@ -269,6 +305,7 @@ window.PLAYERS = [
   },
   {
     id: "ray_parlour", name: "Ray Parlour", country: "England", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    years: "1992–2007",
     aliases: ["ray parlour", "parlour", "the romford pele"],
     clues: [
       "English midfielder",
@@ -279,18 +316,8 @@ window.PLAYERS = [
     ],
   },
   {
-    id: "ricardo_carvalho", name: "Ricardo Carvalho", country: "Portugal", flag: "🇵🇹",
-    aliases: ["ricardo carvalho", "carvalho"],
-    clues: [
-      "I was born on the 18th of May 1978. I played 89 times for my country, scoring 5 goals.",
-      "Jose Mourinho once suggested I should take an IQ test, after I publicly questioned why he hadn't started me in a season opener.",
-      "I was named UEFA Club Defender of the Year in 2003–04.",
-      "I've been managed by Jose Mourinho at three different clubs.",
-      "At the 2006 World Cup, Wayne Rooney was sent off for stamping on me.",
-    ],
-  },
-  {
     id: "wes_brown", name: "Wes Brown", country: "England", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    years: "1996–2017",
     aliases: ["wes brown", "brown"],
     clues: [
       "English defender",
@@ -302,196 +329,5 @@ window.PLAYERS = [
   },
 ];
 
-// A pool of well-known footballer names from the 1995–2025 era.
-// Used purely for the autocomplete dropdown (so players can't just process-of-eliminate).
-// Format: "Name|🇺🇸". Will be merged with the 27 above for suggestions.
-window.NAME_POOL = `
-Alessandro Del Piero|🇮🇹
-Andrea Pirlo|🇮🇹
-Andriy Shevchenko|🇺🇦
-Andy Cole|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Angel Di Maria|🇦🇷
-Antonio Cassano|🇮🇹
-Arjen Robben|🇳🇱
-Ashley Cole|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Carles Puyol|🇪🇸
-Cesc Fabregas|🇪🇸
-Clarence Seedorf|🇳🇱
-Cristiano Ronaldo|🇵🇹
-Damien Duff|🇮🇪
-Daniel Agger|🇩🇰
-David Beckham|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-David Silva|🇪🇸
-David Villa|🇪🇸
-Davor Suker|🇭🇷
-Deco|🇵🇹
-Dennis Bergkamp|🇳🇱
-Diego Forlan|🇺🇾
-Diego Maradona|🇦🇷
-Dimitar Berbatov|🇧🇬
-Dirk Kuyt|🇳🇱
-Dwight Yorke|🇹🇹
-Eden Hazard|🇧🇪
-Edgar Davids|🇳🇱
-Edinson Cavani|🇺🇾
-Edwin van der Sar|🇳🇱
-Eidur Gudjohnsen|🇮🇸
-Emile Heskey|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Eric Cantona|🇫🇷
-Fabio Cannavaro|🇮🇹
-Fernando Hierro|🇪🇸
-Fernando Morientes|🇪🇸
-Fernando Torres|🇪🇸
-Filippo Inzaghi|🇮🇹
-Francesco Totti|🇮🇹
-Frank de Boer|🇳🇱
-Frank Lampard|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Frank Rijkaard|🇳🇱
-Fredrik Ljungberg|🇸🇪
-Gabriel Batistuta|🇦🇷
-Gareth Bale|🏴󠁧󠁢󠁷󠁬󠁳󠁿
-Gary Cahill|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Gary Neville|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Gennaro Gattuso|🇮🇹
-Gianfranco Zola|🇮🇹
-Gianluca Vialli|🇮🇹
-Gianluigi Buffon|🇮🇹
-Glen Johnson|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Hernan Crespo|🇦🇷
-Hugo Sanchez|🇲🇽
-Iker Casillas|🇪🇸
-Jaap Stam|🇳🇱
-James Milner|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Jamie Carragher|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Javier Mascherano|🇦🇷
-Javier Saviola|🇦🇷
-Javier Zanetti|🇦🇷
-Jermain Defoe|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Joe Cole|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Joe Hart|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-John Arne Riise|🇳🇴
-John O'Shea|🇮🇪
-John Terry|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Jorge Campos|🇲🇽
-Jose Antonio Reyes|🇪🇸
-Juan Roman Riquelme|🇦🇷
-Juninho Pernambucano|🇧🇷
-Junichi Inamoto|🇯🇵
-Kaka|🇧🇷
-Karim Benzema|🇫🇷
-Kevin Davies|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Kevin Nolan|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Kim Kallstrom|🇸🇪
-Kolo Toure|🇨🇮
-Lassana Diarra|🇫🇷
-Laurent Blanc|🇫🇷
-Lee Bowyer|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Ledley King|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Lilian Thuram|🇫🇷
-Lionel Messi|🇦🇷
-Loic Remy|🇫🇷
-Lothar Matthaus|🇩🇪
-Louis Saha|🇫🇷
-Luca Toni|🇮🇹
-Lucas Radebe|🇿🇦
-Luis Figo|🇵🇹
-Luis Suarez|🇺🇾
-Luka Modric|🇭🇷
-Mario Balotelli|🇮🇹
-Mario Gomez|🇩🇪
-Mario Stanic|🇭🇷
-Marouane Chamakh|🇲🇦
-Marouane Fellaini|🇧🇪
-Mauro Camoranesi|🇮🇹
-Mehmet Scholl|🇩🇪
-Mesut Ozil|🇩🇪
-Michael Ballack|🇩🇪
-Michael Carrick|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Michael Essien|🇬🇭
-Michael Owen|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Mikel Arteta|🇪🇸
-Mikel John Obi|🇳🇬
-Miroslav Klose|🇩🇪
-Nemanja Vidic|🇷🇸
-Nicolas Anelka|🇫🇷
-Nigel de Jong|🇳🇱
-Nwankwo Kanu|🇳🇬
-Obafemi Martins|🇳🇬
-Olivier Bernard|🇫🇷
-Olof Mellberg|🇸🇪
-Oliver Kahn|🇩🇪
-Park Ji-sung|🇰🇷
-Patrice Evra|🇫🇷
-Patrick Kluivert|🇳🇱
-Patrick Vieira|🇫🇷
-Paul Scholes|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Paulo Maldini|🇮🇹
-Paulo Wanchope|🇨🇷
-Pavel Nedved|🇨🇿
-Peter Crouch|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Peter Schmeichel|🇩🇰
-Petr Cech|🇨🇿
-Philippe Albert|🇧🇪
-Pierre van Hooijdonk|🇳🇱
-Rafael Marquez|🇲🇽
-Raul|🇪🇸
-Rene Meulensteen|🇳🇱
-Ricardo Quaresma|🇵🇹
-Rio Ferdinand|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Robbie Fowler|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Robbie Keane|🇮🇪
-Robbie Savage|🏴󠁧󠁢󠁷󠁬󠁳󠁿
-Robert Pires|🇫🇷
-Roberto Carlos|🇧🇷
-Robin van Persie|🇳🇱
-Roman Pavlyuchenko|🇷🇺
-Romario|🇧🇷
-Ronaldinho|🇧🇷
-Ronaldo Nazario|🇧🇷
-Roque Santa Cruz|🇵🇾
-Roy Keane|🇮🇪
-Ruud Gullit|🇳🇱
-Ruud van Nistelrooy|🇳🇱
-Ryan Babel|🇳🇱
-Ryan Giggs|🏴󠁧󠁢󠁷󠁬󠁳󠁿
-Sami Hyypia|🇫🇮
-Samir Nasri|🇫🇷
-Samuel Eto'o|🇨🇲
-Sebastian Larsson|🇸🇪
-Sergio Aguero|🇦🇷
-Sergio Busquets|🇪🇸
-Sergio Ramos|🇪🇸
-Shaun Wright-Phillips|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Shay Given|🇮🇪
-Shinji Kagawa|🇯🇵
-Sol Campbell|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Sotirios Kyrgiakos|🇬🇷
-Stephen Ireland|🇮🇪
-Steve McManaman|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Steven Gerrard|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Sulley Muntari|🇬🇭
-Teddy Sheringham|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Theo Walcott|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Thierry Henry|🇫🇷
-Thomas Gravesen|🇩🇰
-Thomas Muller|🇩🇪
-Tim Cahill|🇦🇺
-Tim Howard|🇺🇸
-Tomas Rosicky|🇨🇿
-Tony Adams|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Tugay Kerimoglu|🇹🇷
-Vincent Kompany|🇧🇪
-Wayne Bridge|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Wayne Rooney|🏴󠁧󠁢󠁥󠁮󠁧󠁿
-Wesley Sneijder|🇳🇱
-Xabi Alonso|🇪🇸
-Xavi Hernandez|🇪🇸
-Yaya Toure|🇨🇮
-Yossi Benayoun|🇮🇱
-Younes Kaboul|🇫🇷
-Zinedine Zidane|🇫🇷
-Zlatan Ibrahimovic|🇸🇪
-`.trim().split("\n").map(line => {
-  const [name, flag] = line.split("|");
-  return { name: name.trim(), flag: (flag || "").trim() };
-});
+// Pool used purely as a fallback if names.json fails to load.
+window.NAME_POOL = [];

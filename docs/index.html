@@ -3,19 +3,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#f4efe6">
 <title>Good to hear the name…</title>
 <style>
   :root {
-    --bg: #0a0a0a;
-    --card: #161616;
-    --card-hi: #1f1f1f;
-    --line: #2a2a2a;
-    --text: #f2f2f2;
-    --muted: #888;
-    --accent: #ff6b00;
-    --good: #2ecc71;
-    --bad: #e74c3c;
+    --bg: #f4efe6;
+    --card: #ffffff;
+    --card-hover: #f8f5ee;
+    --line: #e6dfd0;
+    --text: #14202e;
+    --text-soft: #3a4858;
+    --muted: #8a8676;
+    --accent: #0f7a3e;
+    --accent-soft: #d6ede0;
+    --bad: #b03434;
+    --bad-soft: #f5e1de;
+    --good: #0f7a3e;
+    --good-soft: #d6ede0;
+    --shadow: 0 1px 2px rgba(20,32,46,0.04), 0 4px 14px rgba(20,32,46,0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #11181f;
+      --card: #1a2330;
+      --card-hover: #243043;
+      --line: #2a3548;
+      --text: #ecf1f7;
+      --text-soft: #b8c2d0;
+      --muted: #7c8595;
+      --accent: #4dbf7c;
+      --accent-soft: rgba(77,191,124,0.14);
+      --bad: #ed7575;
+      --bad-soft: rgba(237,117,117,0.14);
+      --good: #4dbf7c;
+      --good-soft: rgba(77,191,124,0.14);
+      --shadow: 0 1px 2px rgba(0,0,0,0.2), 0 4px 14px rgba(0,0,0,0.25);
+    }
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
@@ -24,21 +47,29 @@
   .app {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 16px;
+    padding: 18px 16px 32px;
   }
 
   header {
     text-align: center;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
   }
   header h1 {
     margin: 0;
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: var(--muted);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
   }
-  header h1 strong { color: var(--text); }
+  header .sub {
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
 
   .layout {
     display: grid;
@@ -46,20 +77,21 @@
     gap: 18px;
   }
   @media (min-width: 820px) {
-    .layout { grid-template-columns: 1fr 1fr; align-items: start; }
+    .layout { grid-template-columns: 1.05fr 1fr; align-items: start; }
   }
 
   .image-card {
     background: var(--card);
-    border-radius: 16px;
+    border-radius: 18px;
     overflow: hidden;
     aspect-ratio: 4 / 3;
     position: relative;
+    box-shadow: var(--shadow);
   }
   .image-card img {
     width: 100%; height: 100%; object-fit: cover;
     display: block;
-    transition: opacity 600ms ease;
+    transition: opacity 700ms ease;
   }
   .image-card .photo { position: absolute; inset: 0; opacity: 0; }
   .image-card.revealed .photo { opacity: 1; }
@@ -72,19 +104,23 @@
 
   .question {
     background: var(--card);
-    border-radius: 14px;
-    padding: 16px 18px;
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    border-left: 3px solid var(--accent);
   }
   .question .label {
     text-transform: uppercase;
     font-size: 11px;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    margin-bottom: 6px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 700;
   }
   .question .text {
     font-size: 17px;
-    line-height: 1.4;
+    line-height: 1.5;
+    color: var(--text);
   }
 
   .input-wrap { position: relative; }
@@ -92,14 +128,17 @@
     width: 100%;
     background: var(--card);
     color: var(--text);
-    border: 1px solid var(--line);
+    border: 1.5px solid var(--line);
     border-radius: 14px;
-    padding: 14px 16px;
+    padding: 14px 18px;
     font-size: 16px;
     font-family: inherit;
     outline: none;
+    box-shadow: var(--shadow);
+    transition: border-color 150ms ease;
   }
   input[type="text"]:focus { border-color: var(--accent); }
+  input[type="text"]::placeholder { color: var(--muted); }
   input[type="text"]:disabled { opacity: 0.5; }
 
   .suggestions {
@@ -108,8 +147,9 @@
     border: 1px solid var(--line);
     border-radius: 12px;
     overflow: hidden;
-    max-height: 280px;
+    max-height: 320px;
     overflow-y: auto;
+    box-shadow: var(--shadow);
   }
   .suggestion {
     display: flex;
@@ -119,13 +159,14 @@
     border-bottom: 1px solid var(--line);
     cursor: pointer;
     user-select: none;
+    transition: background 100ms ease;
   }
   .suggestion:last-child { border-bottom: none; }
-  .suggestion:hover, .suggestion:focus { background: var(--card-hi); }
-  .suggestion .name { font-size: 15px; }
-  .suggestion .flag { font-size: 18px; flex-shrink: 0; margin-left: 12px; }
-  .suggestion .meta { display: flex; align-items: center; gap: 8px; }
-  .suggestion .years { font-size: 12px; color: var(--muted); }
+  .suggestion:hover, .suggestion:focus { background: var(--card-hover); }
+  .suggestion .name { font-size: 15px; font-weight: 500; color: var(--text); }
+  .suggestion .meta { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .suggestion .years { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .suggestion .flag { font-size: 18px; }
 
   .meta-row {
     display: flex;
@@ -135,63 +176,88 @@
     color: var(--muted);
     padding: 0 4px;
   }
-  .meta-row a { color: var(--muted); text-decoration: underline; cursor: pointer; }
-  .meta-row a:hover { color: var(--text); }
+  .meta-row a { color: var(--accent); text-decoration: none; cursor: pointer; font-weight: 500; }
+  .meta-row a:hover { text-decoration: underline; }
+  .meta-row .pip {
+    display: inline-block;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--line);
+    margin-right: 4px;
+  }
+  .meta-row .pip.used { background: var(--bad); }
 
   .guesses {
     background: var(--card);
-    border-radius: 14px;
-    padding: 12px 16px;
+    border-radius: 16px;
+    padding: 14px 18px;
+    box-shadow: var(--shadow);
   }
   .guesses .heading {
     font-size: 11px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-weight: 700;
   }
   .guess-row {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 6px 0;
+    padding: 8px 0;
     font-size: 14px;
+    border-bottom: 1px solid var(--line);
   }
-  .guess-row .x { color: var(--bad); font-weight: 700; }
+  .guess-row:last-child { border-bottom: none; }
+  .guess-row .x {
+    color: var(--bad);
+    background: var(--bad-soft);
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  .guess-row .name { color: var(--text-soft); }
 
   .reveal-banner {
     border-radius: 14px;
-    padding: 14px 18px;
+    padding: 16px 20px;
     font-size: 16px;
     font-weight: 600;
     text-align: center;
   }
-  .reveal-banner.good { background: rgba(46, 204, 113, 0.15); color: var(--good); }
-  .reveal-banner.bad { background: rgba(231, 76, 60, 0.12); color: var(--bad); }
+  .reveal-banner.good { background: var(--good-soft); color: var(--good); border: 1px solid var(--good); }
+  .reveal-banner.bad { background: var(--bad-soft); color: var(--bad); border: 1px solid var(--bad); }
 
-  .bio { display: none; margin-top: 18px; }
+  .bio { display: none; margin-top: 22px; }
   .bio.show { display: block; }
-  .bio .row { background: var(--card); border-radius: 14px; padding: 16px 18px; margin-bottom: 10px; }
-  .bio .row h3 { margin: 0 0 8px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-  .bio .row p, .bio .row li { font-size: 15px; line-height: 1.5; margin: 4px 0; }
+  .bio .row { background: var(--card); border-radius: 16px; padding: 18px 20px; margin-bottom: 12px; box-shadow: var(--shadow); }
+  .bio .row h3 { margin: 0 0 10px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .bio .row p, .bio .row li { font-size: 15px; line-height: 1.5; margin: 4px 0; color: var(--text-soft); }
   .bio .row ul { margin: 0; padding-left: 18px; }
-  .bio .row .name-line { font-size: 28px; font-weight: 700; line-height: 1.1; margin-bottom: 4px; }
+  .bio .row .name-line { font-size: 30px; font-weight: 700; line-height: 1.1; margin-bottom: 4px; color: var(--text); letter-spacing: -0.01em; }
   .bio .row .sub { font-size: 13px; color: var(--muted); }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip { background: var(--card-hi); color: var(--text); padding: 4px 10px; border-radius: 999px; font-size: 13px; }
+  .chip { background: var(--accent-soft); color: var(--accent); padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 500; }
 
   .footer {
     text-align: center;
     color: var(--muted);
     font-size: 12px;
-    padding: 24px 0;
+    padding: 28px 0 4px;
   }
 </style>
 </head>
 <body>
   <div class="app">
     <header>
-      <h1><strong>Good to hear the name…</strong></h1>
+      <h1>Good to hear the name…</h1>
+      <div class="sub" id="dateLabel"></div>
     </header>
 
     <div class="layout">
@@ -212,7 +278,7 @@
         </div>
 
         <div class="meta-row">
-          <span><span id="guessesUsed">0</span> / 5 guesses</span>
+          <span id="pips"></span>
           <a id="revealLink">Reveal answer</a>
         </div>
 
@@ -227,28 +293,27 @@
 
     <div id="bio" class="bio"></div>
 
-    <div class="footer">A new player every day · share with mates · <span id="dateLabel"></span></div>
+    <div class="footer">A new player every day · share with mates</div>
   </div>
 
 <script src="players.js"></script>
 <script src="bios.js"></script>
 <script>
 (() => {
-  const PLAYERS = window.PLAYERS;
-  const NAME_POOL = window.NAME_POOL;
+  const ALL_PLAYERS = window.PLAYERS;
+  const APPROVED = ALL_PLAYERS.filter(p => p.approved);
   const BIOS = window.BIOS || {};
   const MAX_GUESSES = 5;
 
-  // Pick today's player by date — same player worldwide on a given date.
-  // ?player=<id> overrides for previewing.
-  const startEpoch = Date.UTC(2026, 0, 1) / 86400000;
-  const today = Math.floor(Date.now() / 86400000);
-  const todayIndex = ((today - startEpoch) % PLAYERS.length + PLAYERS.length) % PLAYERS.length;
+  // Daily rotation only includes approved players. ?player=<id> overrides.
   const pinId = new URLSearchParams(location.search).get("player");
-  const player = (pinId && PLAYERS.find(p => p.id === pinId)) || PLAYERS[todayIndex];
+  const pool = APPROVED.length > 0 ? APPROVED : ALL_PLAYERS;
+  const today = Math.floor(Date.now() / 86400000);
+  const todayIndex = ((today % pool.length) + pool.length) % pool.length;
+  const player = (pinId && ALL_PLAYERS.find(p => p.id === pinId)) || pool[todayIndex];
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
-  let allNames = PLAYERS.map(p => ({ n: p.name, f: p.flag, y: "" }));
+  let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
   fetch("names.json")
     .then(r => r.json())
     .then(big => {
@@ -257,38 +322,27 @@
         const k = e.n.toLowerCase();
         if (!seen.has(k)) { seen.add(k); allNames.push(e); }
       }
-      // If the user already had a partial query typed, refresh suggestions
       if (guessInput && guessInput.value) renderSuggestions();
     })
-    .catch(() => {/* fallback to PLAYERS only */});
+    .catch(() => {});
 
-  // State
-  let wrongGuesses = []; // [{ name, flag }]
+  let wrongGuesses = [];
   let revealed = false;
-  let currentClueIndex = 0; // shows clues[0..currentClueIndex]
+  let currentClueIndex = 0;
 
-  // DOM
   const $ = id => document.getElementById(id);
-  const silhouette = $("silhouette");
-  const photo = $("photo");
-  const imageCard = $("image");
-  const clueText = $("clueText");
-  const clueLabel = document.querySelector(".question .label");
-  const guessInput = $("guessInput");
-  const suggestionsBox = $("suggestions");
-  const guessesPanel = $("guessesPanel");
-  const guessesList = $("guessesList");
-  const guessesUsedEl = $("guessesUsed");
-  const revealLink = $("revealLink");
-  const result = $("result");
-  const dateLabel = $("dateLabel");
-  const bio = $("bio");
+  const silhouette = $("silhouette"), photo = $("photo"), imageCard = $("image");
+  const clueText = $("clueText"), clueLabel = document.querySelector(".question .label");
+  const guessInput = $("guessInput"), suggestionsBox = $("suggestions");
+  const guessesPanel = $("guessesPanel"), guessesList = $("guessesList");
+  const pips = $("pips"), revealLink = $("revealLink"), result = $("result");
+  const dateLabel = $("dateLabel"), bio = $("bio");
 
-  // Init
   silhouette.src = `silhouettes/${player.id}.jpg`;
   photo.src = `images/${player.id}.jpg`;
   clueText.textContent = player.clues[0] || "(no clue)";
   dateLabel.textContent = new Date().toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long" });
+  renderPips();
 
   function normalize(s) {
     return (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9 ]/g, "").trim();
@@ -301,11 +355,19 @@
     return (player.aliases || []).some(a => normalize(a) === g);
   }
 
+  function renderPips() {
+    let html = "";
+    for (let i = 0; i < MAX_GUESSES; i++) {
+      html += `<span class="pip ${i < wrongGuesses.length ? "used" : ""}"></span>`;
+    }
+    html += ` <span style="margin-left:6px">${wrongGuesses.length} / ${MAX_GUESSES} guesses</span>`;
+    pips.innerHTML = html;
+  }
+
   function renderSuggestions() {
     if (revealed) { suggestionsBox.style.display = "none"; return; }
     const q = normalize(guessInput.value);
     if (q.length < 2) { suggestionsBox.style.display = "none"; suggestionsBox.innerHTML = ""; return; }
-    // Prefer prefix matches, then substring matches.
     const prefix = [], substring = [];
     for (const e of allNames) {
       const norm = normalize(e.n);
@@ -334,26 +396,23 @@
       guessInput.value = "";
       suggestionsBox.style.display = "none";
       renderGuesses();
-      // Reveal the next clue if available
+      renderPips();
       if (currentClueIndex < player.clues.length - 1 && wrongGuesses.length < MAX_GUESSES) {
         currentClueIndex++;
         clueLabel.textContent = `Clue ${currentClueIndex + 1}`;
         clueText.textContent = player.clues[currentClueIndex];
       }
-      if (wrongGuesses.length >= MAX_GUESSES) {
-        revealAnswer(false);
-      }
+      if (wrongGuesses.length >= MAX_GUESSES) revealAnswer(false);
     }
   }
 
   function renderGuesses() {
-    guessesUsedEl.textContent = wrongGuesses.length;
     if (!wrongGuesses.length) { guessesPanel.style.display = "none"; return; }
     guessesPanel.style.display = "block";
     guessesList.innerHTML = wrongGuesses.map(g =>
       `<div class="guess-row">
-        <span class="x">✗</span>
-        <span>${g.name}</span>
+        <span class="x">✕</span>
+        <span class="name">${g.name}</span>
         <span style="margin-left:auto;display:flex;align-items:center;gap:8px">
           ${g.years ? `<span style="font-size:12px;color:var(--muted)">${g.years}</span>` : ""}
           <span>${g.flag || ""}</span>
@@ -368,13 +427,12 @@
     guessInput.disabled = true;
     suggestionsBox.style.display = "none";
     revealLink.style.display = "none";
-    // Show all clues so the user sees what they would have got
-    const allClues = player.clues.map((c, i) => `<div style="padding:4px 0"><span style="color:var(--muted)">${i + 1}.</span> ${c}</div>`).join("");
+    const allClues = player.clues.map((c, i) => `<div style="padding:6px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--text-soft)"><span style="color:var(--accent);font-weight:700">${i + 1}.</span> ${c}</div>`).join("");
     result.innerHTML = `
       <div class="reveal-banner ${correct ? 'good' : 'bad'}">
-        ${correct ? `✅ Correct! ${player.name}` : `❌ It was <strong>${player.name}</strong>`}
+        ${correct ? `✓ Correct — ${player.name}` : `✕ It was ${player.name}`}
       </div>
-      <div class="question" style="margin-top:10px">
+      <div class="question" style="margin-top:12px">
         <div class="label">All clues</div>
         ${allClues}
       </div>
@@ -386,7 +444,7 @@
   function renderBio() {
     const data = BIOS[player.id];
     if (!data) {
-      bio.innerHTML = `<div class="row"><div class="name-line">${player.name}</div><div class="sub">${player.flag} ${player.country}</div></div>`;
+      bio.innerHTML = `<div class="row"><div class="name-line">${player.name}</div><div class="sub">${player.flag} ${player.country} · ${player.years || ""}</div></div>`;
     } else {
       const chips = (data.clubs || []).map(c => `<span class="chip">${c}</span>`).join("");
       const honoursList = (data.honours || []).map(h => `<li>${h}</li>`).join("");
@@ -394,7 +452,7 @@
       bio.innerHTML = `
         <div class="row">
           <div class="name-line">${player.name}</div>
-          <div class="sub">${player.flag} ${data.position || ""} · ${data.yearsActive || ""}</div>
+          <div class="sub">${player.flag} ${data.position || ""} · ${data.yearsActive || player.years || ""}</div>
         </div>
         ${data.story ? `<div class="row"><h3>The story</h3><p>${data.story}</p></div>` : ""}
         ${chips ? `<div class="row"><h3>Notable clubs</h3><div class="chips">${chips}</div></div>` : ""}
@@ -406,7 +464,6 @@
     bio.classList.add("show");
   }
 
-  // Events
   guessInput.addEventListener("input", renderSuggestions);
   guessInput.addEventListener("keydown", e => {
     if (e.key === "Enter") {
