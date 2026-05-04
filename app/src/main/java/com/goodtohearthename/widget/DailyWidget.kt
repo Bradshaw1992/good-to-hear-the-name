@@ -1,7 +1,6 @@
 package com.goodtohearthename.widget
 
 import android.content.Context
-import android.content.Intent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import androidx.glance.GlanceId
@@ -42,11 +41,7 @@ class DailyWidget : GlanceAppWidget() {
                 WidgetBody(
                     name = today.name,
                     image = bitmap?.let { ImageProvider(it) },
-                    onClick = actionStartActivity(
-                        Intent(context, MainActivity::class.java).apply {
-                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        }
-                    ),
+                    onClick = actionStartActivity<MainActivity>(),
                 )
             }
         }
