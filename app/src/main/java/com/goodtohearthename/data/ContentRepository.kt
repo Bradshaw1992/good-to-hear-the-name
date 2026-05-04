@@ -9,7 +9,7 @@ import java.time.LocalDate
 object ContentRepository {
 
     // Pin today's footballer for previewing. Set to null to use date-based rotation.
-    private val PINNED_ID: String? = "overmars"
+    private val PINNED_ID: String? = null
 
     private val json = Json { ignoreUnknownKeys = true }
 
