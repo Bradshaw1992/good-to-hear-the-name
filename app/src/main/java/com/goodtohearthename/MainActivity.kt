@@ -20,6 +20,8 @@ import com.goodtohearthename.data.GameState
 import com.goodtohearthename.data.GameStatePersistence
 import com.goodtohearthename.data.GuessRecord
 import com.goodtohearthename.data.NameEntry
+import com.goodtohearthename.widget.DailyWidget
+import androidx.glance.appwidget.updateAll
 import com.goodtohearthename.ui.AppTheme
 import com.goodtohearthename.ui.GameScreen
 import com.goodtohearthename.ui.GameUiState
@@ -102,6 +104,10 @@ class MainActivity : ComponentActivity() {
                             wasCorrect = wasCorrect,
                         )
                     )
+                    // Refresh widget so it can swap silhouette → photo on correct
+                    if (revealed) {
+                        scope.launch { DailyWidget().updateAll(ctx) }
+                    }
                 }
 
                 fun pickSuggestion(e: NameEntry) {

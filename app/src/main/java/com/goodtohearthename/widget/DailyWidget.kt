@@ -29,18 +29,27 @@ import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
 import com.goodtohearthename.MainActivity
 import com.goodtohearthename.data.ContentRepository
+import com.goodtohearthename.data.GameStatePersistence
 
 class DailyWidget : GlanceAppWidget() {
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val today = ContentRepository.forToday(context)
-        // Show the silhouette in the widget — never the actual photo (would spoil the game).
-        val bitmap = ContentRepository.loadSilhouette(context, today, w = 480, h = 480)
+        val todayDay = System.currentTimeMillis() / 86_400_000L
+        val state = GameStatePersistence.load(context, todayDay)
+        val solved = state != null && state.playerId == today.id && state.wasCorrect
+
+        val bitmap = if (solved) {
+            ContentRepository.loadOriginal(context, today, w = 480, h = 480)
+        } else {
+            ContentRepository.loadSilhouette(context, today, w = 480, h = 480)
+        }
 
         provideContent {
             GlanceTheme {
                 WidgetBody(
                     image = bitmap?.let { ImageProvider(it) },
+                    solvedName = if (solved) today.name else null,
                     onClick = actionStartActivity<MainActivity>(),
                 )
             }
@@ -50,6 +59,7 @@ class DailyWidget : GlanceAppWidget() {
     @Composable
     private fun WidgetBody(
         image: ImageProvider?,
+        solvedName: String?,
         onClick: androidx.glance.action.Action,
     ) {
         Box(
@@ -62,12 +72,12 @@ class DailyWidget : GlanceAppWidget() {
             if (image != null) {
                 Image(
                     provider = image,
-                    contentDescription = "Today's mystery footballer",
+                    contentDescription = if (solvedName != null) solvedName else "Today's mystery footballer",
                     contentScale = ContentScale.Crop,
                     modifier = GlanceModifier.fillMaxSize(),
                 )
             }
-            // Bottom plate: brand + tap to play
+            // Bottom plate: brand + tap to play / solved name
             Column(
                 verticalAlignment = Alignment.Bottom,
                 horizontalAlignment = Alignment.Start,
@@ -79,23 +89,44 @@ class DailyWidget : GlanceAppWidget() {
                         .background(ColorProvider(Color(0xCC0F7A3E))) // pitch green, semi-transparent
                         .padding(horizontal = 12.dp, vertical = 10.dp),
                 ) {
-                    Column {
-                        Text(
-                            text = "Today's player",
-                            style = TextStyle(
-                                color = ColorProvider(Color.White),
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 14.sp,
-                            ),
-                        )
-                        Text(
-                            text = "Tap to play",
-                            style = TextStyle(
-                                color = ColorProvider(Color(0xFFE0F0E5)),
-                                fontWeight = FontWeight.Normal,
-                                fontSize = 11.sp,
-                            ),
-                        )
+                    if (solvedName != null) {
+                        Column {
+                            Text(
+                                text = "✓ Today's player",
+                                style = TextStyle(
+                                    color = ColorProvider(Color(0xFFE0F0E5)),
+                                    fontWeight = FontWeight.Normal,
+                                    fontSize = 11.sp,
+                                ),
+                            )
+                            Text(
+                                text = solvedName,
+                                style = TextStyle(
+                                    color = ColorProvider(Color.White),
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 14.sp,
+                                ),
+                            )
+                        }
+                    } else {
+                        Column {
+                            Text(
+                                text = "Today's player",
+                                style = TextStyle(
+                                    color = ColorProvider(Color.White),
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 14.sp,
+                                ),
+                            )
+                            Text(
+                                text = "Tap to play",
+                                style = TextStyle(
+                                    color = ColorProvider(Color(0xFFE0F0E5)),
+                                    fontWeight = FontWeight.Normal,
+                                    fontSize = 11.sp,
+                                ),
+                            )
+                        }
                     }
                 }
             }
