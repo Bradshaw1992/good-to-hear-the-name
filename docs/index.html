@@ -239,6 +239,18 @@
     font-size: 12px;
     padding: 28px 0 4px;
   }
+  .stats-card { background: var(--card); border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow); margin-top: 14px; }
+  .stats-card .heading { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; font-weight: 700; }
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 18px; }
+  .stat-cell { text-align: center; }
+  .stat-cell .v { font-size: 26px; font-weight: 700; color: var(--text); line-height: 1; }
+  .stat-cell .l { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; font-weight: 600; }
+  .dist-row { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 13px; color: var(--text-soft); }
+  .dist-row .label { width: 16px; text-align: right; color: var(--muted); }
+  .dist-row .bar { flex: 0 0 auto; min-width: 20px; height: 22px; border-radius: 4px; background: var(--line); display: flex; align-items: center; justify-content: flex-end; padding: 0 6px; color: var(--text); font-size: 12px; font-weight: 600; }
+  .dist-row .bar.filled { background: var(--accent); color: #fff; }
+  .dist-row .bar.today { background: var(--accent); color: #fff; box-shadow: 0 0 0 2px var(--accent-soft); }
+  .dist-row .empty { color: var(--muted); font-size: 12px; }
 </style>
 </head>
 <body>
@@ -283,8 +295,8 @@
     <div class="footer">A new player every day · share with mates</div>
   </div>
 
-<script src="players.js?v=13"></script>
-<script src="bios.js?v=13"></script>
+<script src="players.js?v=14"></script>
+<script src="bios.js?v=14"></script>
 <script>
 (() => {
   const ALL_PLAYERS = window.PLAYERS;
@@ -300,13 +312,75 @@
   const pool = APPROVED.length > 0 ? APPROVED : ALL_PLAYERS;
   const EPOCH_DAY = Math.floor(Date.UTC(2026, 4, 5) / 86400000);
   const today = Math.floor(Date.now() / 86400000);
+
+  // ---- Stats (localStorage) ----
+  const STATS_KEY = "gthn_stats_v1";
+  const defaultStats = () => ({
+    played: 0, won: 0,
+    currentStreak: 0, maxStreak: 0,
+    distribution: [0, 0, 0, 0, 0, 0], // 1st, 2nd, 3rd, 4th, 5th, lost
+    lastWonDay: -999,
+    lastResultDay: -999,
+    lastResult: null, // {won, attempt}
+  });
+  function loadStats() {
+    try { return Object.assign(defaultStats(), JSON.parse(localStorage.getItem(STATS_KEY)) || {}); }
+    catch { return defaultStats(); }
+  }
+  function saveStats(s) { try { localStorage.setItem(STATS_KEY, JSON.stringify(s)); } catch {} }
+  function recordResult(won, attempt) {
+    const s = loadStats();
+    if (s.lastResultDay === today) return s; // already recorded today
+    s.played++;
+    if (won) {
+      s.won++;
+      s.distribution[Math.min(attempt, 5) - 1]++;
+      s.currentStreak = (today - s.lastWonDay === 1) ? (s.currentStreak + 1) : 1;
+      if (s.currentStreak > s.maxStreak) s.maxStreak = s.currentStreak;
+      s.lastWonDay = today;
+    } else {
+      s.distribution[5]++;
+      s.currentStreak = 0;
+    }
+    s.lastResultDay = today;
+    s.lastResult = { won, attempt };
+    saveStats(s);
+    return s;
+  }
+  function renderStats(s) {
+    const winPct = s.played ? Math.round((s.won / s.played) * 100) : 0;
+    const max = Math.max(1, ...s.distribution);
+    const labels = ["1", "2", "3", "4", "5", "X"];
+    const todayWon = s.lastResultDay === today && s.lastResult && s.lastResult.won;
+    const todayLost = s.lastResultDay === today && s.lastResult && !s.lastResult.won;
+    const todayBar = todayWon ? Math.min(s.lastResult.attempt, 5) - 1 : (todayLost ? 5 : -1);
+    let dist = "";
+    for (let i = 0; i < 6; i++) {
+      const n = s.distribution[i];
+      const w = n === 0 ? 20 : Math.round(20 + (n / max) * 240);
+      const cls = i === todayBar ? "bar today" : (n > 0 ? "bar filled" : "bar");
+      dist += `<div class="dist-row"><span class="label">${labels[i]}</span><div class="${cls}" style="width:${w}px">${n > 0 ? n : ""}</div></div>`;
+    }
+    return `
+      <div class="stats-card">
+        <div class="heading">Your stats</div>
+        <div class="stat-grid">
+          <div class="stat-cell"><div class="v">${s.played}</div><div class="l">Played</div></div>
+          <div class="stat-cell"><div class="v">${winPct}%</div><div class="l">Win</div></div>
+          <div class="stat-cell"><div class="v">${s.currentStreak}</div><div class="l">Streak</div></div>
+          <div class="stat-cell"><div class="v">${s.maxStreak}</div><div class="l">Best</div></div>
+        </div>
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:700">Guess distribution</div>
+        ${dist}
+      </div>`;
+  }
   const offset = today - EPOCH_DAY;
   const todayIndex = ((offset % pool.length) + pool.length) % pool.length;
   const player = (pinId && ALL_PLAYERS.find(p => p.id === pinId)) || pool[todayIndex];
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=13")
+  fetch("names.json?v=14")
     .then(r => r.json())
     .then(big => {
       const seen = new Set(allNames.map(e => e.n.toLowerCase()));
@@ -456,6 +530,7 @@
     const scoreLine = correct
       ? `<div style="font-size:13px;font-weight:500;opacity:0.85;margin-top:4px">${attempt === 1 ? "First try 🎯" : `Got it on your ${ordinal(attempt)} attempt`}</div>`
       : "";
+    const stats = recordResult(correct, attempt);
     result.innerHTML = `
       <div class="reveal-banner ${correct ? 'good' : 'bad'}">
         <div>${correct ? `✓ Correct — ${player.name}` : `✕ It was ${player.name}`}</div>
@@ -465,6 +540,7 @@
         <div class="label">All 5 clues</div>
         ${annotatedClues}
       </div>
+      ${renderStats(stats)}
       <div style="text-align:center;margin-top:18px;padding:12px;color:var(--muted);font-size:13px">Come back tomorrow for the next player.</div>
     `;
     result.style.display = "block";

@@ -57,6 +57,7 @@ import androidx.compose.ui.unit.sp
 import com.goodtohearthename.data.Footballer
 import com.goodtohearthename.data.GuessRecord
 import com.goodtohearthename.data.NameEntry
+import com.goodtohearthename.data.Stats
 
 private const val MAX_GUESSES = 5
 
@@ -75,6 +76,7 @@ fun GameScreen(
     silhouette: Bitmap?,
     photo: Bitmap?,
     suggestions: List<NameEntry>,
+    stats: Stats?,
     onQueryChange: (TextFieldValue) -> Unit,
     onPickSuggestion: (NameEntry) -> Unit,
     onReveal: () -> Unit,
@@ -132,6 +134,10 @@ fun GameScreen(
                 }
                 item { Spacer(Modifier.height(12.dp)) }
                 item { AllCluesCard(player = player, seenUpTo = state.currentClueIndex) }
+                if (stats != null) {
+                    item { Spacer(Modifier.height(12.dp)) }
+                    item { StatsCard(stats = stats) }
+                }
                 if (player.story.isNotEmpty()) {
                     item { Spacer(Modifier.height(12.dp)) }
                     item { BioStorySection(player) }
@@ -541,6 +547,82 @@ private fun RevealBanner(correct: Boolean, playerName: String, attempt: Int) {
                 )
             }
         }
+    }
+}
+
+@Composable
+private fun StatsCard(stats: Stats) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = AppColors.Card),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+    ) {
+        Column(modifier = Modifier.padding(20.dp)) {
+            Text(
+                "YOUR STATS",
+                color = AppColors.Accent,
+                fontSize = 11.sp,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 1.4.sp,
+            )
+            Spacer(Modifier.height(14.dp))
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                StatCell(value = stats.played.toString(), label = "Played")
+                StatCell(value = "${stats.winPct}%", label = "Win")
+                StatCell(value = stats.currentStreak.toString(), label = "Streak")
+                StatCell(value = stats.maxStreak.toString(), label = "Best")
+            }
+            Spacer(Modifier.height(18.dp))
+            Text(
+                "GUESS DISTRIBUTION",
+                color = AppColors.Muted,
+                fontSize = 11.sp,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 1.4.sp,
+            )
+            Spacer(Modifier.height(8.dp))
+            val labels = listOf("1", "2", "3", "4", "5", "X")
+            val maxN = (stats.distribution.maxOrNull() ?: 1).coerceAtLeast(1)
+            val todayBar = if (stats.lastResultWon) (stats.lastResultAttempt - 1) else 5
+            for (i in 0..5) {
+                val n = stats.distribution[i]
+                val widthFrac = if (n == 0) 0.06f else 0.06f + (n.toFloat() / maxN) * 0.74f
+                val isToday = i == todayBar
+                Row(modifier = Modifier.fillMaxWidth().padding(vertical = 3.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Text(labels[i], color = AppColors.Muted, fontSize = 13.sp, modifier = Modifier.width(20.dp))
+                    Spacer(Modifier.width(8.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(widthFrac)
+                            .height(22.dp)
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(if (n > 0 || isToday) AppColors.Accent else AppColors.Line)
+                            .then(if (isToday) Modifier.border(2.dp, AppColors.AccentSoft, RoundedCornerShape(4.dp)) else Modifier),
+                        contentAlignment = Alignment.CenterEnd,
+                    ) {
+                        if (n > 0) {
+                            Text(
+                                n.toString(),
+                                color = Color.White,
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.padding(horizontal = 8.dp),
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun StatCell(value: String, label: String) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(value, color = AppColors.Text, fontSize = 26.sp, fontWeight = FontWeight.Bold)
+        Spacer(Modifier.height(2.dp))
+        Text(label.uppercase(), color = AppColors.Muted, fontSize = 10.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.6.sp)
     }
 }
 

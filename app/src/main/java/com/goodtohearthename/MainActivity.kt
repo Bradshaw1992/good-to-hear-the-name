@@ -20,6 +20,8 @@ import com.goodtohearthename.data.GameState
 import com.goodtohearthename.data.GameStatePersistence
 import com.goodtohearthename.data.GuessRecord
 import com.goodtohearthename.data.NameEntry
+import com.goodtohearthename.data.Stats
+import com.goodtohearthename.data.StatsPersistence
 import com.goodtohearthename.widget.DailyWidget
 import androidx.glance.appwidget.updateAll
 import com.goodtohearthename.ui.AppTheme
@@ -58,6 +60,16 @@ class MainActivity : ComponentActivity() {
                 var photo by remember { mutableStateOf<Bitmap?>(null) }
                 var suggestions by remember { mutableStateOf<List<NameEntry>>(emptyList()) }
                 var allNames by remember { mutableStateOf<List<NameEntry>>(emptyList()) }
+                var stats by remember { mutableStateOf<Stats?>(null) }
+
+                // If the player is already revealed when MainActivity opens (returning visit),
+                // record + load stats so the panel renders immediately.
+                LaunchedEffect(revealed) {
+                    if (revealed && stats == null) {
+                        val attempt = wrongGuesses.size + (if (wasCorrect) 1 else 0)
+                        stats = StatsPersistence.recordResult(ctx, today, wasCorrect, attempt)
+                    }
+                }
 
                 LaunchedEffect(player.id) {
                     withContext(Dispatchers.IO) {
@@ -151,6 +163,7 @@ class MainActivity : ComponentActivity() {
                     silhouette = silhouette,
                     photo = photo,
                     suggestions = suggestions,
+                    stats = stats,
                     onQueryChange = { query = it },
                     onPickSuggestion = ::pickSuggestion,
                     onReveal = ::reveal,
