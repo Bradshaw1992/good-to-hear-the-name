@@ -79,6 +79,7 @@ fun GameScreen(
     photo: Bitmap?,
     suggestions: List<NameEntry>,
     stats: Stats?,
+    dayNumber: Int,
     onQueryChange: (TextFieldValue) -> Unit,
     onPickSuggestion: (NameEntry) -> Unit,
     onReveal: () -> Unit,
@@ -94,7 +95,7 @@ fun GameScreen(
                 .imePadding(),
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
         ) {
-            item { Header() }
+            item { Header(dayNumber = dayNumber) }
             item { Spacer(Modifier.height(12.dp)) }
             item { HeroCard(silhouette = silhouette, photo = photo, revealed = state.revealed) }
             item { Spacer(Modifier.height(14.dp)) }
@@ -121,6 +122,10 @@ fun GameScreen(
                         max = MAX_GUESSES,
                         onReveal = onReveal,
                     )
+                }
+                if (state.wrongGuesses.isEmpty()) {
+                    item { Spacer(Modifier.height(10.dp)) }
+                    item { TipCard() }
                 }
                 if (state.wrongGuesses.isNotEmpty()) {
                     item { Spacer(Modifier.height(12.dp)) }
@@ -170,31 +175,90 @@ fun GameScreen(
 }
 
 @Composable
-private fun Header() {
+private fun Header(dayNumber: Int) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(
-            "Good to hear the name…",
-            color = AppColors.Text,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
-        )
-        Spacer(Modifier.height(4.dp))
-        Text(
-            "Today's player",
-            color = AppColors.Muted,
-            fontSize = 11.sp,
-            fontWeight = FontWeight.SemiBold,
-        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Box(
+                modifier = Modifier
+                    .size(28.dp)
+                    .clip(CircleShape)
+                    .background(AppColors.Accent),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text("⚽", fontSize = 16.sp)
+            }
+            Spacer(Modifier.width(10.dp))
+            Text(
+                "Good to hear the name…",
+                color = AppColors.Text,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+            )
+        }
         Spacer(Modifier.height(8.dp))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(50))
+                    .background(AppColors.AccentSoft)
+                    .padding(horizontal = 9.dp, vertical = 3.dp),
+            ) {
+                Text(
+                    "DAY #$dayNumber",
+                    color = AppColors.Accent,
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = 0.8.sp,
+                )
+            }
+            Spacer(Modifier.width(10.dp))
+            val today = remember {
+                java.text.SimpleDateFormat("EEEE d MMMM", java.util.Locale.getDefault())
+                    .format(java.util.Date())
+                    .uppercase()
+            }
+            Text(today, color = AppColors.Muted, fontSize = 11.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.5.sp)
+        }
+        Spacer(Modifier.height(10.dp))
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(1.dp)
                 .background(AppColors.Line)
         )
+    }
+}
+
+@Composable
+private fun TipCard() {
+    androidx.compose.foundation.layout.Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(14.dp))
+            .border(1.dp, AppColors.Line, RoundedCornerShape(14.dp))
+            .background(AppColors.Card)
+            .padding(horizontal = 16.dp, vertical = 14.dp),
+    ) {
+        Row(verticalAlignment = Alignment.Top) {
+            Text(
+                "HOW TO PLAY",
+                color = AppColors.Accent,
+                fontSize = 11.sp,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 1.0.sp,
+                modifier = Modifier.padding(end = 12.dp, top = 1.dp),
+            )
+            Text(
+                "Type a footballer's name above. You get 5 guesses and a new clue each time you're wrong. New player every day.",
+                color = AppColors.TextSoft,
+                fontSize = 13.sp,
+                lineHeight = 19.sp,
+                modifier = Modifier.weight(1f),
+            )
+        }
     }
 }
 
@@ -206,14 +270,14 @@ private fun ShareButton(onShare: () -> Unit) {
             .clip(RoundedCornerShape(14.dp))
             .background(AppColors.Accent)
             .clickable { onShare() }
-            .padding(vertical = 14.dp),
+            .padding(vertical = 16.dp),
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            "Share result",
+            "📤  Share with mates",
             color = Color.White,
             fontSize = 15.sp,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Bold,
         )
     }
 }
@@ -462,24 +526,25 @@ private fun PipsRow(used: Int, max: Int, onReveal: () -> Unit) {
         repeat(max) { i ->
             Box(
                 modifier = Modifier
-                    .padding(end = 5.dp)
-                    .size(9.dp)
+                    .padding(end = 6.dp)
+                    .size(14.dp)
                     .clip(CircleShape)
                     .background(if (i < used) AppColors.Bad else AppColors.Line)
             )
         }
         Spacer(Modifier.width(6.dp))
         Text(
-            "$used / $max guesses",
-            color = AppColors.Muted,
+            "${max - used} left",
+            color = AppColors.TextSoft,
             fontSize = 13.sp,
+            fontWeight = FontWeight.SemiBold,
         )
         Spacer(Modifier.weight(1f))
         Text(
-            "Reveal answer",
+            "Bottle it",
             color = AppColors.Accent,
             fontSize = 13.sp,
-            fontWeight = FontWeight.Medium,
+            fontWeight = FontWeight.SemiBold,
             modifier = Modifier.clickable { onReveal() },
         )
     }
@@ -537,34 +602,50 @@ private fun RevealBanner(correct: Boolean, playerName: String, attempt: Int) {
     val color = if (correct) AppColors.Good else AppColors.Bad
     val bgColor = if (correct) AppColors.GoodSoft else AppColors.BadSoft
     val ordinal = when (attempt) {
-        1 -> "1st"
-        2 -> "2nd"
-        3 -> "3rd"
-        else -> "${attempt}th"
+        1 -> "1st"; 2 -> "2nd"; 3 -> "3rd"; else -> "${attempt}th"
     }
     val scoreLine = if (correct) {
-        if (attempt == 1) "First try 🎯" else "Got it on your $ordinal attempt"
+        if (attempt == 1) "First try 🎯" else "Nailed it on the $ordinal"
     } else null
+    // Subtle entrance animation: fade + slight rise
+    val animProgress by animateFloatAsState(
+        targetValue = 1f,
+        animationSpec = tween(durationMillis = 480),
+        label = "banner-in",
+    )
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .alpha(animProgress),
         shape = RoundedCornerShape(14.dp),
         colors = CardDefaults.cardColors(containerColor = bgColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
-        border = androidx.compose.foundation.BorderStroke(1.dp, color),
+        border = androidx.compose.foundation.BorderStroke(2.dp, color),
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            modifier = Modifier.fillMaxWidth().padding(18.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            // First line: prefix + name
+            val prefix = if (correct) "✓" else "✕ It was"
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    "$prefix ",
+                    color = color,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
             Text(
-                if (correct) "✓ Correct — $playerName" else "✕ It was $playerName",
+                playerName,
                 color = color,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
+                fontSize = 24.sp,
+                fontWeight = FontWeight.ExtraBold,
                 textAlign = TextAlign.Center,
+                letterSpacing = (-0.2).sp,
             )
             scoreLine?.let {
-                Spacer(Modifier.height(4.dp))
+                Spacer(Modifier.height(6.dp))
                 Text(
                     it,
                     color = color.copy(alpha = 0.85f),

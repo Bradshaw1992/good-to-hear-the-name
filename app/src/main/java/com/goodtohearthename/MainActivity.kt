@@ -26,9 +26,6 @@ import com.goodtohearthename.data.StatsPersistence
 import com.goodtohearthename.widget.DailyWidget
 import androidx.glance.appwidget.updateAll
 import com.goodtohearthename.ui.AppTheme
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 import com.goodtohearthename.ui.GameScreen
 import com.goodtohearthename.ui.GameUiState
 import kotlinx.coroutines.Dispatchers
@@ -43,6 +40,8 @@ class MainActivity : ComponentActivity() {
         val app = applicationContext
         val player = ContentRepository.forToday(app)
         val today = System.currentTimeMillis() / 86_400_000L
+        val epochDay = java.time.LocalDate.of(2026, 5, 5).toEpochDay()
+        val dayNumber = ((today - epochDay) + 1).toInt().coerceAtLeast(1)
 
         val savedState = GameStatePersistence.load(app, today)?.takeIf { it.playerId == player.id }
         val initial = savedState ?: GameState(playerId = player.id)
@@ -75,10 +74,9 @@ class MainActivity : ComponentActivity() {
 
                 fun shareResult() {
                     val attempt = wrongGuesses.size + (if (wasCorrect) 1 else 0)
-                    val date = SimpleDateFormat("d MMMM", Locale.getDefault()).format(Date())
                     val score = if (wasCorrect) "$attempt/5" else "✕/5"
                     val grid = if (wasCorrect) "❌".repeat(attempt - 1) + "⚽" else "❌".repeat(5)
-                    val text = "Good to hear the name — $date\n$score  $grid\nbradshaw1992.github.io/good-to-hear-the-name"
+                    val text = "⚽ Good to hear the name — Day #$dayNumber\n$score  $grid\nbradshaw1992.github.io/good-to-hear-the-name"
                     val intent = Intent(Intent.ACTION_SEND).apply {
                         type = "text/plain"
                         putExtra(Intent.EXTRA_TEXT, text)
@@ -179,6 +177,7 @@ class MainActivity : ComponentActivity() {
                     photo = photo,
                     suggestions = suggestions,
                     stats = stats,
+                    dayNumber = dayNumber,
                     onQueryChange = { query = it },
                     onPickSuggestion = ::pickSuggestion,
                     onReveal = ::reveal,
