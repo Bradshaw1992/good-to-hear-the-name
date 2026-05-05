@@ -251,6 +251,61 @@
   .dist-row .bar.filled { background: var(--accent); color: #fff; }
   .dist-row .bar.today { background: var(--accent); color: #fff; box-shadow: 0 0 0 2px var(--accent-soft); }
   .dist-row .empty { color: var(--muted); font-size: 12px; }
+
+  /* Display-name pill in header */
+  .name-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    margin-top: 6px;
+    font-family: inherit;
+  }
+  .name-pill:hover { background: var(--accent); color: #fff; }
+  .name-pill .icon { font-size: 11px; opacity: 0.7; }
+
+  /* Modal */
+  .modal-backdrop {
+    position: fixed; inset: 0; background: rgba(20,32,46,0.5);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100; padding: 20px;
+  }
+  .modal {
+    background: var(--card); border-radius: 18px; max-width: 380px; width: 100%;
+    padding: 24px; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+  .modal h2 { margin: 0 0 8px; font-size: 20px; color: var(--text); }
+  .modal p { margin: 0 0 16px; font-size: 14px; color: var(--text-soft); line-height: 1.5; }
+  .modal input[type="text"] { margin-bottom: 12px; }
+  .modal-actions { display: flex; gap: 8px; }
+  .modal-btn {
+    flex: 1; padding: 12px 16px; border-radius: 12px; font-size: 15px;
+    font-weight: 600; border: none; cursor: pointer; font-family: inherit;
+  }
+  .modal-btn.primary { background: var(--accent); color: #fff; }
+  .modal-btn.primary:hover { background: #0a5e30; }
+  .modal-btn.primary:disabled { opacity: 0.5; cursor: default; }
+  .modal-btn.secondary { background: var(--line); color: var(--text-soft); }
+
+  /* Leaderboard */
+  .lb-card { background: var(--card); border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow); margin-top: 14px; }
+  .lb-card .heading { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; font-weight: 700; }
+  .lb-row { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; padding: 10px 0; align-items: center; border-bottom: 1px solid var(--line); font-size: 14px; }
+  .lb-row:last-child { border-bottom: none; }
+  .lb-row .pos { color: var(--muted); font-weight: 600; text-align: center; font-size: 13px; }
+  .lb-row .name { color: var(--text-soft); }
+  .lb-row .score { font-weight: 600; color: var(--text); }
+  .lb-row.you { background: var(--accent-soft); margin: 0 -8px; padding: 10px 8px; border-radius: 8px; border-bottom: none; }
+  .lb-row.you .name, .lb-row.you .score, .lb-row.you .pos { color: var(--accent); }
+  .lb-row.failed .score { color: var(--bad); }
+  .lb-empty { color: var(--muted); font-size: 14px; text-align: center; padding: 16px 0; }
 </style>
 </head>
 <body>
@@ -258,7 +313,19 @@
     <header>
       <h1>Good to hear the name…</h1>
       <div class="sub" id="dateLabel"></div>
+      <button id="namePill" class="name-pill" style="display:none"></button>
     </header>
+    <div id="modal" class="modal-backdrop" style="display:none">
+      <div class="modal">
+        <h2 id="modalTitle">Pick a display name</h2>
+        <p id="modalSubtitle">Other players will see this on the leaderboard. Up to 30 characters. You can change it later.</p>
+        <input id="modalNameInput" type="text" maxlength="30" placeholder="e.g. Tom B.">
+        <div class="modal-actions">
+          <button id="modalSkip" class="modal-btn secondary">Skip</button>
+          <button id="modalSave" class="modal-btn primary" disabled>Save</button>
+        </div>
+      </div>
+    </div>
 
     <div class="layout">
       <div id="image" class="image-card">
@@ -295,14 +362,134 @@
     <div class="footer">A new player every day · share with mates</div>
   </div>
 
-<script src="players.js?v=14"></script>
-<script src="bios.js?v=14"></script>
+<script src="players.js?v=15"></script>
+<script src="bios.js?v=15"></script>
 <script>
 (() => {
   const ALL_PLAYERS = window.PLAYERS;
   const APPROVED = ALL_PLAYERS.filter(p => p.approved);
   const BIOS = window.BIOS || {};
   const MAX_GUESSES = 5;
+
+  // Supabase config
+  const SUPABASE_URL = "https://bwohtrjkguveynfepqwi.supabase.co";
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3b2h0cmprZ3V2ZXluZmVwcXdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5NDQzNzksImV4cCI6MjA5MDUyMDM3OX0.Z0PwiN_EX_hNHyH4TT9K95SWlWyssUShxkV-0VasxpE";
+  const SB_HEADERS = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` };
+
+  function getDeviceId() {
+    let id = localStorage.getItem("gthn_device_id");
+    if (!id) {
+      id = (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36) + Date.now().toString(36)).replace(/-/g, "").slice(0, 32);
+      localStorage.setItem("gthn_device_id", id);
+    }
+    return id;
+  }
+  function getDisplayName() { return localStorage.getItem("gthn_display_name"); }
+  function setDisplayNameStorage(n) {
+    if (n) localStorage.setItem("gthn_display_name", n);
+    else localStorage.removeItem("gthn_display_name");
+  }
+  function hasDismissedNameModal() { return localStorage.getItem("gthn_name_skipped") === "1"; }
+  function setDismissedNameModal() { localStorage.setItem("gthn_name_skipped", "1"); }
+
+  async function submitScore(playerId, dayIndex, correct, attempt) {
+    const name = getDisplayName();
+    if (!name) return false;
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/scores`, {
+        method: "POST",
+        headers: { ...SB_HEADERS, "Content-Type": "application/json", Prefer: "return=minimal" },
+        body: JSON.stringify({
+          display_name: name.trim().slice(0, 30),
+          device_id: getDeviceId(),
+          player_id: playerId,
+          day_index: dayIndex,
+          attempts: correct ? attempt : null,
+          correct,
+        }),
+      });
+      return res.ok || res.status === 409; // 409 = already submitted today, fine
+    } catch (e) { return false; }
+  }
+
+  async function fetchLeaderboard(dayIndex) {
+    try {
+      const url = `${SUPABASE_URL}/rest/v1/scores?day_index=eq.${dayIndex}&select=display_name,attempts,correct,created_at&order=correct.desc,attempts.asc.nullslast,created_at.asc&limit=100`;
+      const res = await fetch(url, { headers: SB_HEADERS });
+      return res.ok ? await res.json() : [];
+    } catch (e) { return []; }
+  }
+
+  function renderLeaderboard(rows, myName) {
+    if (!rows.length) {
+      return `<div class="lb-card"><div class="heading">Today's leaderboard</div><div class="lb-empty">No scores yet today. Be the first.</div></div>`;
+    }
+    let html = `<div class="lb-card"><div class="heading">Today's leaderboard</div>`;
+    rows.forEach((r, i) => {
+      const isYou = myName && r.display_name.toLowerCase() === myName.toLowerCase();
+      const score = r.correct
+        ? `${r.attempts}/${MAX_GUESSES}`
+        : `<span class="failed">✕</span>`;
+      const cls = `lb-row${isYou ? ' you' : ''}${r.correct ? '' : ' failed'}`;
+      html += `<div class="${cls}"><div class="pos">${i + 1}</div><div class="name">${escapeHtml(r.display_name)}${isYou ? ' (you)' : ''}</div><div class="score">${score}</div></div>`;
+    });
+    html += `</div>`;
+    return html;
+  }
+
+  function escapeHtml(s) {
+    return (s || "").replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  }
+
+  // ---- Name pill UI ----
+  const namePill = $("namePill");
+  function renderNamePill() {
+    const n = getDisplayName();
+    if (n) {
+      namePill.innerHTML = `<span class="icon">👤</span><span>${escapeHtml(n)}</span>`;
+      namePill.style.display = "inline-flex";
+    } else {
+      namePill.innerHTML = `<span class="icon">+</span><span>Add display name</span>`;
+      namePill.style.display = "inline-flex";
+    }
+  }
+  function $modal(id) { return document.getElementById(id); }
+  function openNameModal() {
+    const m = $("modal");
+    const input = $("modalNameInput");
+    const save = $("modalSave");
+    input.value = getDisplayName() || "";
+    save.disabled = !input.value.trim();
+    m.style.display = "flex";
+    setTimeout(() => input.focus(), 50);
+  }
+  function closeNameModal() { $("modal").style.display = "none"; }
+  $("modalNameInput").addEventListener("input", e => {
+    $("modalSave").disabled = !e.target.value.trim();
+  });
+  $("modalSave").addEventListener("click", async () => {
+    const v = $("modalNameInput").value.trim().slice(0, 30);
+    if (!v) return;
+    setDisplayNameStorage(v);
+    closeNameModal();
+    renderNamePill();
+    if (revealed) {
+      afterReveal();
+      await submitScore(player.id, today, lastRevealCorrect, lastRevealAttempt);
+      await refreshLeaderboard();
+    }
+  });
+  $("modalSkip").addEventListener("click", () => {
+    setDismissedNameModal();
+    closeNameModal();
+  });
+  namePill.addEventListener("click", openNameModal);
+
+  // Show modal on first visit
+  if (!getDisplayName() && !hasDismissedNameModal()) {
+    openNameModal();
+  }
+  renderNamePill();
 
   // One player a day, picked by date — same player worldwide.
   // Fixed epoch: 2026-05-05 = day 0 = PLAYERS[0]. Tomorrow = PLAYERS[1]. Etc.
@@ -380,7 +567,7 @@
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=14")
+  fetch("names.json?v=15")
     .then(r => r.json())
     .then(big => {
       const seen = new Set(allNames.map(e => e.n.toLowerCase()));
@@ -531,9 +718,43 @@
       ? `<div style="font-size:13px;font-weight:500;opacity:0.85;margin-top:4px">${attempt === 1 ? "First try 🎯" : `Got it on your ${ordinal(attempt)} attempt`}</div>`
       : "";
     const stats = recordResult(correct, attempt);
+    lastRevealAttempt = attempt;
+    lastRevealCorrect = correct;
+    afterReveal(stats, scoreLine, annotatedClues);
+    result.style.display = "block";
+    renderBio();
+    // Fire-and-forget: submit score + refresh leaderboard
+    (async () => {
+      await submitScore(player.id, today, correct, attempt);
+      await refreshLeaderboard();
+    })();
+  }
+
+  let lastRevealAttempt = 0;
+  let lastRevealCorrect = false;
+
+  function afterReveal(stats, scoreLine, annotatedClues) {
+    if (!revealed) return;
+    if (!stats) stats = loadStats();
+    if (scoreLine == null) {
+      const ord = (n) => n === 1 ? "1st" : n === 2 ? "2nd" : n === 3 ? "3rd" : `${n}th`;
+      scoreLine = lastRevealCorrect
+        ? `<div style="font-size:13px;font-weight:500;opacity:0.85;margin-top:4px">${lastRevealAttempt === 1 ? "First try 🎯" : `Got it on your ${ord(lastRevealAttempt)} attempt`}</div>`
+        : "";
+    }
+    if (annotatedClues == null) {
+      const seen = currentClueIndex + 1;
+      annotatedClues = player.clues.map((c, i) => {
+        const tag = i < seen ? "" : `<span style="font-size:10px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:2px 6px;border-radius:6px;margin-left:6px;letter-spacing:0.05em">MISSED</span>`;
+        return `<div style="padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--text-soft);line-height:1.5"><span style="color:var(--accent);font-weight:700;margin-right:6px">${i + 1}.</span>${c}${tag}</div>`;
+      }).join("");
+    }
+    const lbContainer = `<div id="leaderboardContainer">${getDisplayName()
+      ? `<div class="lb-card"><div class="heading">Today's leaderboard</div><div class="lb-empty">Loading…</div></div>`
+      : `<div class="lb-card"><div class="heading">Today's leaderboard</div><div class="lb-empty">Add a display name above to join the leaderboard.</div></div>`}</div>`;
     result.innerHTML = `
-      <div class="reveal-banner ${correct ? 'good' : 'bad'}">
-        <div>${correct ? `✓ Correct — ${player.name}` : `✕ It was ${player.name}`}</div>
+      <div class="reveal-banner ${lastRevealCorrect ? 'good' : 'bad'}">
+        <div>${lastRevealCorrect ? `✓ Correct — ${player.name}` : `✕ It was ${player.name}`}</div>
         ${scoreLine}
       </div>
       <div class="question" style="margin-top:14px">
@@ -541,10 +762,17 @@
         ${annotatedClues}
       </div>
       ${renderStats(stats)}
+      ${lbContainer}
       <div style="text-align:center;margin-top:18px;padding:12px;color:var(--muted);font-size:13px">Come back tomorrow for the next player.</div>
     `;
     result.style.display = "block";
-    renderBio();
+  }
+
+  async function refreshLeaderboard() {
+    const c = document.getElementById("leaderboardContainer");
+    if (!c) return;
+    const rows = await fetchLeaderboard(today);
+    c.innerHTML = renderLeaderboard(rows, getDisplayName());
   }
 
   function renderBio() {
