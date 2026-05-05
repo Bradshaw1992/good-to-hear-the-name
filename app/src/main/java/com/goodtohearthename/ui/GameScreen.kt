@@ -316,12 +316,15 @@ fun NameDialog(
     onDismiss: () -> Unit,
 ) {
     var text by remember { mutableStateOf(initial.orEmpty()) }
+    val trimmed = text.trim()
+    val isClean = trimmed.isNotEmpty() && com.goodtohearthename.data.NameFilter.isClean(trimmed)
+    val showBlocked = trimmed.isNotEmpty() && !com.goodtohearthename.data.NameFilter.isClean(trimmed)
     androidx.compose.material3.AlertDialog(
         onDismissRequest = onDismiss,
         confirmButton = {
             androidx.compose.material3.TextButton(
-                onClick = { if (text.isNotBlank()) onSave(text.trim().take(30)) },
-                enabled = text.isNotBlank(),
+                onClick = { if (isClean) onSave(trimmed.take(30)) },
+                enabled = isClean,
             ) { Text("Save", color = AppColors.Accent, fontWeight = FontWeight.SemiBold) }
         },
         dismissButton = {
@@ -333,8 +336,9 @@ fun NameDialog(
         text = {
             Column {
                 Text(
-                    "Other players will see this on the leaderboard. Up to 30 characters. Editable later.",
-                    color = AppColors.TextSoft,
+                    if (showBlocked) "Pick a different name — that one's blocked."
+                    else "Other players will see this on the leaderboard. Up to 30 characters. Editable later.",
+                    color = if (showBlocked) AppColors.Bad else AppColors.TextSoft,
                     fontSize = 14.sp,
                 )
                 Spacer(Modifier.height(12.dp))

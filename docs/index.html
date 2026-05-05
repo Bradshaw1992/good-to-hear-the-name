@@ -362,8 +362,8 @@
     <div class="footer">A new player every day · share with mates</div>
   </div>
 
-<script src="players.js?v=15"></script>
-<script src="bios.js?v=15"></script>
+<script src="players.js?v=16"></script>
+<script src="bios.js?v=16"></script>
 <script>
 (() => {
   const ALL_PLAYERS = window.PLAYERS;
@@ -371,10 +371,25 @@
   const BIOS = window.BIOS || {};
   const MAX_GUESSES = 5;
 
+  const $ = (id) => document.getElementById(id);
+
   // Supabase config
   const SUPABASE_URL = "https://bwohtrjkguveynfepqwi.supabase.co";
   const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3b2h0cmprZ3V2ZXluZmVwcXdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5NDQzNzksImV4cCI6MjA5MDUyMDM3OX0.Z0PwiN_EX_hNHyH4TT9K95SWlWyssUShxkV-0VasxpE";
   const SB_HEADERS = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` };
+
+  // Basic profanity filter — catches casual rude names. Not a perfect solution,
+  // but stops "fuckface69" appearing on the leaderboard. Backend has a regex check too.
+  const NAME_BLOCKLIST = [
+    "fuck","shit","cunt","wank","bollock","bastard","prick","dick","cock",
+    "twat","arse","slut","whore","bitch","nigger","nigga","faggot","fag",
+    "retard","spastic","paki","chink","gook","jew","tranny",
+    "nazi","hitler","rape","pedo","paedo",
+  ];
+  function isNameClean(name) {
+    const s = (name || "").toLowerCase().replace(/[^a-z]/g, "");
+    return !NAME_BLOCKLIST.some(w => s.includes(w));
+  }
 
   function getDeviceId() {
     let id = localStorage.getItem("gthn_device_id");
@@ -465,11 +480,21 @@
   }
   function closeNameModal() { $("modal").style.display = "none"; }
   $("modalNameInput").addEventListener("input", e => {
-    $("modalSave").disabled = !e.target.value.trim();
+    const v = e.target.value.trim();
+    const clean = isNameClean(v);
+    $("modalSave").disabled = !v || !clean;
+    const subtitle = $("modalSubtitle");
+    if (v && !clean) {
+      subtitle.style.color = "var(--bad)";
+      subtitle.textContent = "Pick a different name — that one's blocked.";
+    } else {
+      subtitle.style.color = "";
+      subtitle.textContent = "Other players will see this on the leaderboard. Up to 30 characters. You can change it later.";
+    }
   });
   $("modalSave").addEventListener("click", async () => {
     const v = $("modalNameInput").value.trim().slice(0, 30);
-    if (!v) return;
+    if (!v || !isNameClean(v)) return;
     setDisplayNameStorage(v);
     closeNameModal();
     renderNamePill();
@@ -567,7 +592,7 @@
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=15")
+  fetch("names.json?v=16")
     .then(r => r.json())
     .then(big => {
       const seen = new Set(allNames.map(e => e.n.toLowerCase()));
@@ -583,7 +608,6 @@
   let revealed = false;
   let currentClueIndex = 0;
 
-  const $ = id => document.getElementById(id);
   const silhouette = $("silhouette"), photo = $("photo"), imageCard = $("image");
   const clueList = $("clueList");
   const guessInput = $("guessInput"), suggestionsBox = $("suggestions");

@@ -91,6 +91,21 @@ object Supabase {
     }
 }
 
+object NameFilter {
+    private val BLOCKLIST = listOf(
+        "fuck", "shit", "cunt", "wank", "bollock", "bastard", "prick", "cock",
+        "twat", "arse", "slut", "whore", "bitch", "nigger", "nigga", "faggot",
+        "retard", "spastic", "paki", "chink", "gook", "tranny",
+        "nazi", "hitler", "rape", "pedo", "paedo",
+    )
+
+    /** Returns true if the name is acceptable (no banned substrings). */
+    fun isClean(name: String): Boolean {
+        val s = name.lowercase().filter { it in 'a'..'z' }
+        return BLOCKLIST.none { s.contains(it) }
+    }
+}
+
 object Profile {
     private const val PREFS = "gthn_profile"
     private const val K_DEVICE_ID = "device_id"
