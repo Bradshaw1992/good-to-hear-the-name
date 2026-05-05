@@ -43,6 +43,23 @@
     padding-bottom: 14px;
     border-bottom: 1px solid var(--line);
   }
+  header .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+  }
+  header .brand-icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(15, 122, 62, 0.3);
+  }
   header h1 {
     margin: 0;
     font-size: 20px;
@@ -50,8 +67,23 @@
     letter-spacing: -0.01em;
     color: var(--text);
   }
-  header .sub {
-    margin-top: 4px;
+  header .sub-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+  }
+  header .day-badge {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  header .date {
     font-size: 12px;
     color: var(--muted);
     letter-spacing: 0.04em;
@@ -166,14 +198,26 @@
   }
   .meta-row a { color: var(--accent); text-decoration: none; cursor: pointer; font-weight: 500; }
   .meta-row a:hover { text-decoration: underline; }
+  .meta-row .pips { display: inline-flex; align-items: center; gap: 6px; }
   .meta-row .pip {
     display: inline-block;
-    width: 9px; height: 9px;
+    width: 14px; height: 14px;
     border-radius: 50%;
     background: var(--line);
-    margin-right: 4px;
+    border: 2px solid transparent;
+    transition: background 200ms ease, transform 200ms ease;
   }
-  .meta-row .pip.used { background: var(--bad); }
+  .meta-row .pip.used {
+    background: var(--bad);
+    border-color: var(--bad);
+    animation: pip-pop 280ms ease;
+  }
+  @keyframes pip-pop {
+    0%   { transform: scale(0.6); }
+    60%  { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+  .meta-row .pips-count { color: var(--text-soft); font-weight: 600; font-size: 13px; margin-left: 4px; }
 
   .guesses {
     background: var(--card);
@@ -214,13 +258,39 @@
 
   .reveal-banner {
     border-radius: 14px;
-    padding: 16px 20px;
+    padding: 18px 20px;
     font-size: 16px;
     font-weight: 600;
     text-align: center;
+    animation: banner-in 480ms cubic-bezier(0.2, 0.9, 0.3, 1.4);
   }
-  .reveal-banner.good { background: var(--good-soft); color: var(--good); border: 1px solid var(--good); }
-  .reveal-banner.bad { background: var(--bad-soft); color: var(--bad); border: 1px solid var(--bad); }
+  .reveal-banner.good { background: var(--good-soft); color: var(--good); border: 2px solid var(--good); }
+  .reveal-banner.bad { background: var(--bad-soft); color: var(--bad); border: 2px solid var(--bad); }
+  .reveal-banner .name-line { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }
+  .reveal-banner .score-line { font-size: 13px; font-weight: 500; opacity: 0.85; margin-top: 6px; }
+  .reveal-banner.first-try { animation: banner-in 480ms cubic-bezier(0.2, 0.9, 0.3, 1.4), banner-pulse 1400ms ease 480ms 2; }
+  @keyframes banner-in {
+    0%   { opacity: 0; transform: translateY(12px) scale(0.96); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes banner-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(15, 122, 62, 0.0); }
+    50%      { box-shadow: 0 0 0 10px rgba(15, 122, 62, 0.18); }
+  }
+  /* Confetti-ish sparkles around win banner */
+  .sparkles { position: absolute; pointer-events: none; inset: -20px; overflow: hidden; }
+  .sparkle {
+    position: absolute;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkle 1100ms ease forwards;
+  }
+  @keyframes sparkle {
+    0%   { opacity: 0; transform: translate(0,0) scale(0); }
+    20%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.2); }
+  }
 
   .bio { display: none; margin-top: 22px; }
   .bio.show { display: block; }
@@ -235,10 +305,74 @@
 
   .footer {
     text-align: center;
-    color: var(--muted);
+    color: var(--text-soft);
     font-size: 12px;
-    padding: 28px 0 4px;
+    padding: 32px 0 12px;
+    border-top: 1px solid var(--line);
+    margin-top: 24px;
   }
+  .footer strong { color: var(--text); }
+  .footer .sep { color: var(--line); margin: 0 6px; }
+
+  /* Empty-state tip card (shown before any guess) */
+  .tip-card {
+    background: var(--card);
+    border: 1px dashed var(--line);
+    border-radius: 14px;
+    padding: 14px 18px;
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+  .tip-card .tip-label {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    margin-right: 8px;
+  }
+
+  /* Image skeleton (while loading) */
+  .image-card.loading::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(110deg, var(--card) 0%, var(--card-hover) 50%, var(--card) 100%);
+    background-size: 200% 100%;
+    animation: skeleton 1400ms linear infinite;
+  }
+  .image-card.loading img { opacity: 0; }
+  @keyframes skeleton { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+
+  /* Slide-in for newly added clue */
+  .clue-enter { animation: clue-in 380ms ease; }
+  @keyframes clue-in {
+    0%   { opacity: 0; transform: translateY(-6px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Share button — bigger, with icon */
+  .share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 4px 12px rgba(15, 122, 62, 0.25);
+    transition: transform 120ms ease, box-shadow 120ms ease;
+    margin-top: 14px;
+  }
+  .share-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(15, 122, 62, 0.32); }
+  .share-btn:active { transform: translateY(0); }
   .stats-card { background: var(--card); border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow); margin-top: 14px; }
   .stats-card .heading { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; font-weight: 700; }
   .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 18px; }
@@ -257,12 +391,18 @@
 <body>
   <div class="app">
     <header>
-      <h1>Good to hear the name…</h1>
-      <div class="sub" id="dateLabel"></div>
+      <div class="brand">
+        <span class="brand-icon">⚽</span>
+        <h1>Good to hear the name…</h1>
+      </div>
+      <div class="sub-row">
+        <span class="day-badge" id="dayBadge">DAY #1</span>
+        <span class="date" id="dateLabel"></span>
+      </div>
     </header>
 
     <div class="layout">
-      <div id="image" class="image-card">
+      <div id="image" class="image-card loading">
         <img id="silhouette" src="" alt="silhouette">
         <img id="photo" class="photo" src="" alt="photo">
       </div>
@@ -278,8 +418,12 @@
         </div>
 
         <div class="meta-row">
-          <span id="pips"></span>
-          <a id="revealLink">Reveal answer</a>
+          <span class="pips" id="pips"></span>
+          <a id="revealLink">Bottle it</a>
+        </div>
+
+        <div id="tipCard" class="tip-card">
+          <span class="tip-label">HOW TO PLAY</span>Type a footballer's name above. You get 5 guesses and a new clue each time you're wrong. New player every day.
         </div>
 
         <div id="guessesPanel" class="guesses" style="display:none">
@@ -293,11 +437,14 @@
 
     <div id="bio" class="bio"></div>
 
-    <div class="footer">A new player every day · share with mates</div>
+    <div class="footer">
+      <strong>Good to hear the name…</strong><span class="sep">·</span>a daily for cult footballers<br>
+      <span style="color:var(--muted)">made by Bradshaw · share with mates</span>
+    </div>
   </div>
 
-<script src="players.js?v=17"></script>
-<script src="bios.js?v=17"></script>
+<script src="players.js?v=18"></script>
+<script src="bios.js?v=18"></script>
 <script>
 (() => {
   const ALL_PLAYERS = window.PLAYERS;
@@ -384,7 +531,7 @@
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=17")
+  fetch("names.json?v=18")
     .then(r => r.json())
     .then(big => {
       const seen = new Set(allNames.map(e => e.n.toLowerCase()));
@@ -415,7 +562,11 @@
     if (silhouette.naturalWidth && silhouette.naturalHeight) {
       imageCard.style.aspectRatio = `${silhouette.naturalWidth} / ${silhouette.naturalHeight}`;
     }
+    imageCard.classList.remove("loading");
   }, { once: true });
+  // Day badge: how many days since the epoch (1-indexed for display)
+  const dayNumber = (today - EPOCH_DAY) + 1;
+  document.getElementById("dayBadge").textContent = `DAY #${dayNumber}`;
   dateLabel.textContent = new Date().toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long" });
   renderClues();
   renderPips();
@@ -425,7 +576,9 @@
     let html = "";
     for (let i = 0; i <= upTo && i < player.clues.length; i++) {
       const isLatest = i === upTo;
-      html += `<div style="padding:10px 0${i > 0 ? ';border-top:1px solid var(--line)' : ''}">
+      // Only animate the LATEST clue (otherwise everything would re-animate every render)
+      const cls = isLatest && upTo > 0 ? "clue-enter" : "";
+      html += `<div class="${cls}" style="padding:10px 0${i > 0 ? ';border-top:1px solid var(--line)' : ''}">
         <div style="text-transform:uppercase;font-size:11px;letter-spacing:0.12em;color:var(--accent);margin-bottom:6px;font-weight:700">Clue ${i + 1}</div>
         <div style="font-size:${isLatest ? '17' : '15'}px;line-height:1.5;color:${isLatest ? 'var(--text)' : 'var(--text-soft)'}">${player.clues[i]}</div>
       </div>`;
@@ -449,8 +602,12 @@
     for (let i = 0; i < MAX_GUESSES; i++) {
       html += `<span class="pip ${i < wrongGuesses.length ? "used" : ""}"></span>`;
     }
-    html += ` <span style="margin-left:6px">${wrongGuesses.length} / ${MAX_GUESSES} guesses</span>`;
+    const remaining = MAX_GUESSES - wrongGuesses.length;
+    html += `<span class="pips-count">${remaining} left</span>`;
     pips.innerHTML = html;
+    // Hide tip card once they start guessing
+    const tip = document.getElementById("tipCard");
+    if (tip) tip.style.display = wrongGuesses.length > 0 || revealed ? "none" : "";
   }
 
   function renderSuggestions() {
@@ -530,76 +687,100 @@
       if (n === 1) return "1st"; if (n === 2) return "2nd"; if (n === 3) return "3rd";
       return `${n}th`;
     };
-    const scoreLine = correct
-      ? `<div style="font-size:13px;font-weight:500;opacity:0.85;margin-top:4px">${attempt === 1 ? "First try 🎯" : `Got it on your ${ordinal(attempt)} attempt`}</div>`
-      : "";
     const stats = recordResult(correct, attempt);
     lastRevealAttempt = attempt;
     lastRevealCorrect = correct;
-    afterReveal(stats, scoreLine, annotatedClues);
+    afterReveal(stats);
     result.style.display = "block";
     renderBio();
+    if (correct) addSparkles();
   }
 
   let lastRevealAttempt = 0;
   let lastRevealCorrect = false;
 
-  function afterReveal(stats, scoreLine, annotatedClues) {
+  function buildScoreLine() {
+    const ord = (n) => n === 1 ? "1st" : n === 2 ? "2nd" : n === 3 ? "3rd" : `${n}th`;
+    if (!lastRevealCorrect) return "";
+    if (lastRevealAttempt === 1) return `<div class="score-line">First try 🎯</div>`;
+    return `<div class="score-line">Nailed it on the ${ord(lastRevealAttempt)}</div>`;
+  }
+
+  function buildAnnotatedClues() {
+    const seen = currentClueIndex + 1;
+    return player.clues.map((c, i) => {
+      const tag = i < seen ? "" : `<span style="font-size:10px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:2px 6px;border-radius:6px;margin-left:6px;letter-spacing:0.05em">MISSED</span>`;
+      return `<div style="padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--text-soft);line-height:1.5"><span style="color:var(--accent);font-weight:700;margin-right:6px">${i + 1}.</span>${c}${tag}</div>`;
+    }).join("");
+  }
+
+  function afterReveal(stats) {
     if (!revealed) return;
     if (!stats) stats = loadStats();
-    if (scoreLine == null) {
-      const ord = (n) => n === 1 ? "1st" : n === 2 ? "2nd" : n === 3 ? "3rd" : `${n}th`;
-      scoreLine = lastRevealCorrect
-        ? `<div style="font-size:13px;font-weight:500;opacity:0.85;margin-top:4px">${lastRevealAttempt === 1 ? "First try 🎯" : `Got it on your ${ord(lastRevealAttempt)} attempt`}</div>`
-        : "";
-    }
-    if (annotatedClues == null) {
-      const seen = currentClueIndex + 1;
-      annotatedClues = player.clues.map((c, i) => {
-        const tag = i < seen ? "" : `<span style="font-size:10px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:2px 6px;border-radius:6px;margin-left:6px;letter-spacing:0.05em">MISSED</span>`;
-        return `<div style="padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--text-soft);line-height:1.5"><span style="color:var(--accent);font-weight:700;margin-right:6px">${i + 1}.</span>${c}${tag}</div>`;
-      }).join("");
-    }
+    const scoreLine = buildScoreLine();
+    const annotatedClues = buildAnnotatedClues();
+    const bannerClass = lastRevealCorrect && lastRevealAttempt === 1 ? "good first-try" : (lastRevealCorrect ? "good" : "bad");
+    const bannerLine = lastRevealCorrect
+      ? `<div>✓ <span class="name-line">${player.name}</span></div>`
+      : `<div>✕ It was <span class="name-line">${player.name}</span></div>`;
     result.innerHTML = `
-      <div class="reveal-banner ${lastRevealCorrect ? 'good' : 'bad'}">
-        <div>${lastRevealCorrect ? `✓ Correct — ${player.name}` : `✕ It was ${player.name}`}</div>
+      <div class="reveal-banner ${bannerClass}" style="position:relative">
+        ${bannerLine}
         ${scoreLine}
+        <div class="sparkles" id="sparkles"></div>
       </div>
       <div class="question" style="margin-top:14px">
         <div class="label">All 5 clues</div>
         ${annotatedClues}
       </div>
       ${renderStats(stats)}
-      ${renderShareButton()}
-      <div style="text-align:center;margin-top:18px;padding:12px;color:var(--muted);font-size:13px">Come back tomorrow for the next player.</div>
+      <button class="share-btn" id="shareBtn">📤 Share with mates</button>
+      <div style="text-align:center;margin-top:18px;padding:12px;color:var(--muted);font-size:13px">Back tomorrow for a new face.</div>
     `;
     result.style.display = "block";
   }
 
+  function addSparkles() {
+    const host = document.getElementById("sparkles");
+    if (!host) return;
+    const colors = ["#0f7a3e", "#e8b13a", "#5fbf85", "#0a5e30", "#e89c3a"];
+    for (let i = 0; i < 12; i++) {
+      const s = document.createElement("span");
+      s.className = "sparkle";
+      s.style.background = colors[i % colors.length];
+      s.style.left = "50%";
+      s.style.top = "50%";
+      const angle = (i / 12) * Math.PI * 2;
+      const dist = 60 + Math.random() * 40;
+      s.style.setProperty("--dx", `${Math.cos(angle) * dist}px`);
+      s.style.setProperty("--dy", `${Math.sin(angle) * dist}px`);
+      s.style.animationDelay = `${i * 30}ms`;
+      host.appendChild(s);
+    }
+  }
+
   // ---- Share (Wordle-style: copies a spoiler-free result to the clipboard) ----
   function buildShareText() {
-    const dateStr = new Date().toLocaleDateString(undefined, { day: "numeric", month: "long" });
     const guesses = lastRevealCorrect
       ? `${lastRevealAttempt}/${MAX_GUESSES}`
       : `✕/${MAX_GUESSES}`;
     const grid = lastRevealCorrect
       ? "❌".repeat(lastRevealAttempt - 1) + "⚽"
       : "❌".repeat(MAX_GUESSES);
-    return `Good to hear the name — ${dateStr}\n${guesses}  ${grid}\nbradshaw1992.github.io/good-to-hear-the-name`;
-  }
-  function renderShareButton() {
-    return `<button id="shareBtn" style="margin-top:14px;width:100%;padding:14px;border:none;background:var(--accent);color:#fff;border-radius:14px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;box-shadow:var(--shadow)">Share result</button>`;
+    return `⚽ Good to hear the name — Day #${dayNumber}\n${guesses}  ${grid}\nbradshaw1992.github.io/good-to-hear-the-name`;
   }
   document.addEventListener("click", async (e) => {
-    if (e.target && e.target.id === "shareBtn") {
+    const btn = e.target && e.target.closest && e.target.closest("#shareBtn");
+    if (btn) {
       const text = buildShareText();
       try {
         if (navigator.share) {
           await navigator.share({ text });
         } else {
           await navigator.clipboard.writeText(text);
-          e.target.textContent = "Copied! Paste in your group chat";
-          setTimeout(() => { if (e.target) e.target.textContent = "Share result"; }, 2200);
+          const original = btn.innerHTML;
+          btn.innerHTML = "✓ Copied! Paste it in the chat";
+          setTimeout(() => { btn.innerHTML = original; }, 2200);
         }
       } catch {}
     }
