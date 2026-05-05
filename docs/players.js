@@ -2,7 +2,66 @@
 // Clue 1 is always template (DOB + caps + goals). Clues 2-5 decrease in difficulty.
 
 window.PLAYERS = [
-
+  {
+    id: "wes_morgan", name: "Wes Morgan", country: "Jamaica", flag: "🇯🇲",
+    years: "2002–2021", approved: true,
+    aliases: ["wes morgan", "morgan"],
+    clues: [
+      "I was born on the 21st of January 1984. I played 30 times for my country, never scoring a goal.",
+      "I'm the first Jamaican ever to win a Premier League medal — and the first to score in a Champions League game (against Sevilla in 2017).",
+      "I spent ten years at Nottingham Forest before transferring up the road.",
+      "Born in Nottingham, I switched my international allegiance from England's youth ranks to Jamaica in 2013 — and captained them to the 2015 Gold Cup final.",
+      "I captained Leicester City to the Premier League title in 2015–16 — and played every single minute of all 38 games.",
+    ],
+  },
+  {
+    id: "diego_godin", name: "Diego Godín", country: "Uruguay", flag: "🇺🇾",
+    years: "2003–2022", approved: true,
+    aliases: ["diego godin", "diego godín", "godin", "godín"],
+    clues: [
+      "I was born on the 16th of February 1986. I played 161 times for my country, scoring 8 goals.",
+      "I'm one of only six players ever to score in finals of both major European trophies — the Champions League and the Europa League.",
+      "I'm Uruguay's all-time most-capped player.",
+      "I scored a header against Barcelona on the final day of La Liga 2013–14 to win Atlético Madrid their first title in 18 years.",
+      "I scored the opening goal of the 2014 Champions League final against Real Madrid — though we lost 4–1.",
+    ],
+  },
+  {
+    id: "michail_antonio", name: "Michail Antonio", country: "Jamaica", flag: "🇯🇲",
+    years: "2008–present", approved: true,
+    aliases: ["michail antonio", "antonio"],
+    clues: [
+      "I was born on the 28th of March 1990. I played 24 times for my country, scoring 5 goals.",
+      "I once recreated the famous Dirty Dancing lift after scoring against Arsenal — using a cardboard cutout of myself.",
+      "I came through non-league football, starting out at Tooting & Mitcham before Reading signed me.",
+      "In August 2021 I broke Paolo Di Canio's record to become my Premier League club's all-time top scorer.",
+      "I won the Europa Conference League in 2023 — my club's first trophy in 43 years.",
+    ],
+  },
+  {
+    id: "dusan_tadic", name: "Dušan Tadić", country: "Serbia", flag: "🇷🇸",
+    years: "2006–present", approved: true,
+    aliases: ["dusan tadic", "dušan tadić", "tadic", "tadić"],
+    clues: [
+      "I was born on the 20th of November 1988. I played 111 times for my country, scoring 23 goals.",
+      "After my display in a 4–1 Champions League win at the Bernabéu in 2019, I became only the ninth player ever to receive a 10/10 rating from L'Équipe.",
+      "I captained my country at the 2022 World Cup.",
+      "I was the 2020–21 Dutch Footballer of the Year and Ajax Player of the Year.",
+      "After four years at Southampton I joined Ajax — and tore Real Madrid apart in the Champions League with a goal and two assists.",
+    ],
+  },
+  {
+    id: "phil_jones", name: "Phil Jones", country: "England", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    years: "2010–2024", approved: true,
+    aliases: ["phil jones", "philip jones", "jones"],
+    clues: [
+      "I was born on the 21st of February 1992. I played 27 times for my country, never scoring a goal.",
+      "After a serious injury in 2019 I spent 20 months sidelined — described it as the lowest I've ever felt in my life.",
+      "Sir Alex Ferguson said in 2013: 'The way he is looking, he could be our best ever player.'",
+      "I won 4 major trophies at Manchester United including a Premier League and a Europa League.",
+      "I became a running joke for football's social media age — particularly for my contorted facial expressions.",
+    ],
+  },
   {
     id: "wes_brown", name: "Wes Brown", country: "England", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
     years: "1996–2017", approved: true,

@@ -71,13 +71,13 @@
     background: var(--card);
     border-radius: 18px;
     overflow: hidden;
-    aspect-ratio: 3 / 4;
     position: relative;
     box-shadow: var(--shadow);
     max-height: 60vh;
+    /* aspect-ratio set dynamically via JS based on the silhouette's natural dimensions */
   }
   .image-card img {
-    width: 100%; height: 100%; object-fit: cover; object-position: top center;
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
     display: block;
     transition: opacity 700ms ease;
   }
@@ -283,8 +283,8 @@
     <div class="footer">A new player every day · share with mates</div>
   </div>
 
-<script src="players.js?v=12"></script>
-<script src="bios.js?v=12"></script>
+<script src="players.js?v=13"></script>
+<script src="bios.js?v=13"></script>
 <script>
 (() => {
   const ALL_PLAYERS = window.PLAYERS;
@@ -293,17 +293,20 @@
   const MAX_GUESSES = 5;
 
   // One player a day, picked by date — same player worldwide.
-  // ?player=<id> is preserved for testing (any of the 27).
+  // Fixed epoch: 2026-05-05 = day 0 = PLAYERS[0]. Tomorrow = PLAYERS[1]. Etc.
+  // ?player=<id> is preserved for testing (any of the 32).
   const params = new URLSearchParams(location.search);
   const pinId = params.get("player");
   const pool = APPROVED.length > 0 ? APPROVED : ALL_PLAYERS;
+  const EPOCH_DAY = Math.floor(Date.UTC(2026, 4, 5) / 86400000);
   const today = Math.floor(Date.now() / 86400000);
-  const todayIndex = ((today % pool.length) + pool.length) % pool.length;
+  const offset = today - EPOCH_DAY;
+  const todayIndex = ((offset % pool.length) + pool.length) % pool.length;
   const player = (pinId && ALL_PLAYERS.find(p => p.id === pinId)) || pool[todayIndex];
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=12")
+  fetch("names.json?v=13")
     .then(r => r.json())
     .then(big => {
       const seen = new Set(allNames.map(e => e.n.toLowerCase()));
@@ -329,6 +332,13 @@
 
   silhouette.src = `silhouettes/${player.id}.jpg`;
   photo.src = `images/${player.id}.jpg`;
+  // Set the image card's aspect ratio to match the silhouette's natural dimensions —
+  // means no zoom (object-fit: cover fits exactly) and no letterbox bars.
+  silhouette.addEventListener("load", () => {
+    if (silhouette.naturalWidth && silhouette.naturalHeight) {
+      imageCard.style.aspectRatio = `${silhouette.naturalWidth} / ${silhouette.naturalHeight}`;
+    }
+  }, { once: true });
   dateLabel.textContent = new Date().toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long" });
   renderClues();
   renderPips();

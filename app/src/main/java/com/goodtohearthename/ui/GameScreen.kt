@@ -194,10 +194,16 @@ private fun HeroCard(silhouette: Bitmap?, photo: Bitmap?, revealed: Boolean) {
         animationSpec = tween(durationMillis = 700),
         label = "photo-fade",
     )
+    // Dynamic aspect = match the silhouette's natural dimensions so cover
+    // fits perfectly (no zoom, no letterbox bars). Falls back to 3:4 portrait
+    // before the bitmap loads.
+    val ratio = silhouette
+        ?.let { it.width.toFloat() / it.height.toFloat() }
+        ?: (3f / 4f)
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .aspectRatio(3f / 4f)
+            .aspectRatio(ratio)
             .heightIn(max = 540.dp),
         shape = RoundedCornerShape(18.dp),
         colors = CardDefaults.cardColors(containerColor = AppColors.Card),
@@ -209,7 +215,7 @@ private fun HeroCard(silhouette: Bitmap?, photo: Bitmap?, revealed: Boolean) {
                     bitmap = it.asImageBitmap(),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
-                    alignment = Alignment.TopCenter,
+                    alignment = Alignment.Center,
                     modifier = Modifier.fillMaxSize(),
                 )
             }
@@ -218,7 +224,7 @@ private fun HeroCard(silhouette: Bitmap?, photo: Bitmap?, revealed: Boolean) {
                     bitmap = it.asImageBitmap(),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
-                    alignment = Alignment.TopCenter,
+                    alignment = Alignment.Center,
                     modifier = Modifier.fillMaxSize().alpha(photoAlpha),
                 )
             }

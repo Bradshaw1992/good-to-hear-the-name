@@ -42,12 +42,16 @@ object ContentRepository {
         return merged
     }
 
+    // Fixed epoch: 2026-05-05 = day 0 = footballers[0].
+    private val EPOCH_DAY: Long = java.time.LocalDate.of(2026, 5, 5).toEpochDay()
+
     /** Today's player by date — same player worldwide on a given day. */
     fun forToday(context: Context, dayMillis: Long = System.currentTimeMillis()): Footballer {
         val players = all(context)
         PINNED_ID?.let { id -> players.firstOrNull { it.id == id }?.let { return it } }
         val day = dayMillis / 86_400_000L
-        val index = ((day % players.size).toInt() + players.size) % players.size
+        val offset = day - EPOCH_DAY
+        val index = ((offset % players.size).toInt() + players.size) % players.size
         return players[index]
     }
 
