@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="GTHN">
-<title>Good to hear the name…</title>
+<title>It's good to hear the name — Wordle for niche footballers</title>
 <style>
   :root {
     --bg: #f4efe6;
@@ -393,7 +393,7 @@
     <header>
       <div class="brand">
         <span class="brand-icon">⚽</span>
-        <h1>Good to hear the name…</h1>
+        <h1>It's good to hear the name</h1>
       </div>
       <div class="sub-row">
         <span class="day-badge" id="dayBadge">DAY #1</span>
@@ -438,13 +438,13 @@
     <div id="bio" class="bio"></div>
 
     <div class="footer">
-      <strong>Good to hear the name…</strong><span class="sep">·</span>a daily for cult footballers<br>
+      <strong>It's good to hear the name</strong><span class="sep">·</span>Wordle for niche footballers<br>
       <span style="color:var(--muted)">made by Bradshaw · share with mates</span>
     </div>
   </div>
 
-<script src="players.js?v=19"></script>
-<script src="bios.js?v=19"></script>
+<script src="players.js?v=20"></script>
+<script src="bios.js?v=20"></script>
 <script>
 (() => {
   const ALL_PLAYERS = window.PLAYERS;
@@ -531,7 +531,7 @@
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=19")
+  fetch("names.json?v=20")
     .then(r => r.json())
     .then(big => {
       const seen = new Set(allNames.map(e => e.n.toLowerCase()));
@@ -769,7 +769,7 @@
     const grid = lastRevealCorrect
       ? "❌".repeat(lastRevealAttempt - 1) + "⚽"
       : "❌".repeat(MAX_GUESSES);
-    return `⚽ Good to hear the name — Day #${dayNumber}\n${guesses}  ${grid}\nbradshaw1992.github.io/good-to-hear-the-name`;
+    return `⚽ It's good to hear the name — Day #${dayNumber}\n${guesses}  ${grid}\nbradshaw1992.github.io/good-to-hear-the-name`;
   }
   document.addEventListener("click", async (e) => {
     const btn = e.target && e.target.closest && e.target.closest("#shareBtn");

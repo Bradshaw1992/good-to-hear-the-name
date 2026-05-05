@@ -76,7 +76,7 @@ class MainActivity : ComponentActivity() {
                     val attempt = wrongGuesses.size + (if (wasCorrect) 1 else 0)
                     val score = if (wasCorrect) "$attempt/5" else "✕/5"
                     val grid = if (wasCorrect) "❌".repeat(attempt - 1) + "⚽" else "❌".repeat(5)
-                    val text = "⚽ Good to hear the name — Day #$dayNumber\n$score  $grid\nbradshaw1992.github.io/good-to-hear-the-name"
+                    val text = "⚽ It's good to hear the name — Day #$dayNumber\n$score  $grid\nbradshaw1992.github.io/good-to-hear-the-name"
                     val intent = Intent(Intent.ACTION_SEND).apply {
                         type = "text/plain"
                         putExtra(Intent.EXTRA_TEXT, text)

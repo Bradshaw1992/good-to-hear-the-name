@@ -192,7 +192,7 @@ private fun Header(dayNumber: Int) {
             }
             Spacer(Modifier.width(10.dp))
             Text(
-                "Good to hear the name…",
+                "It's good to hear the name",
                 color = AppColors.Text,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
