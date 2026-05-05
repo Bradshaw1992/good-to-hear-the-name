@@ -13,8 +13,8 @@ android {
         applicationId = "com.goodtohearthename"
         minSdk = 26
         targetSdk = 35
-        versionCode = 9
-        versionName = "0.2.8"
+        versionCode = 10
+        versionName = "1.0.0"
     }
 
     signingConfigs {
@@ -23,6 +23,12 @@ android {
             storePassword = "android"
             keyAlias = "androiddebugkey"
             keyPassword = "android"
+        }
+        create("release") {
+            storeFile = rootProject.file("release.keystore")
+            storePassword = "GTHN_release_2026"
+            keyAlias = "gthn-release"
+            keyPassword = "GTHN_release_2026"
         }
     }
 
@@ -33,7 +39,7 @@ android {
         }
         release {
             isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 
