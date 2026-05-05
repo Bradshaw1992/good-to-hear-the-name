@@ -58,6 +58,7 @@ import com.goodtohearthename.data.Footballer
 import com.goodtohearthename.data.GuessRecord
 import com.goodtohearthename.data.NameEntry
 import com.goodtohearthename.data.Stats
+import com.goodtohearthename.data.Supabase
 
 private const val MAX_GUESSES = 5
 
@@ -77,9 +78,12 @@ fun GameScreen(
     photo: Bitmap?,
     suggestions: List<NameEntry>,
     stats: Stats?,
+    displayName: String?,
+    leaderboard: List<Supabase.LeaderboardRow>?,
     onQueryChange: (TextFieldValue) -> Unit,
     onPickSuggestion: (NameEntry) -> Unit,
     onReveal: () -> Unit,
+    onEditName: () -> Unit,
 ) {
     Scaffold(
         containerColor = AppColors.Bg,
@@ -91,7 +95,7 @@ fun GameScreen(
                 .imePadding(),
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
         ) {
-            item { Header() }
+            item { Header(displayName = displayName, onEditName = onEditName) }
             item { Spacer(Modifier.height(12.dp)) }
             item { HeroCard(silhouette = silhouette, photo = photo, revealed = state.revealed) }
             item { Spacer(Modifier.height(14.dp)) }
@@ -138,6 +142,8 @@ fun GameScreen(
                     item { Spacer(Modifier.height(12.dp)) }
                     item { StatsCard(stats = stats) }
                 }
+                item { Spacer(Modifier.height(12.dp)) }
+                item { LeaderboardCard(rows = leaderboard, myName = displayName, onAddName = onEditName) }
                 if (player.story.isNotEmpty()) {
                     item { Spacer(Modifier.height(12.dp)) }
                     item { BioStorySection(player) }
@@ -165,7 +171,7 @@ fun GameScreen(
 }
 
 @Composable
-private fun Header() {
+private fun Header(displayName: String?, onEditName: () -> Unit) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -186,11 +192,161 @@ private fun Header() {
         Spacer(Modifier.height(8.dp))
         Box(
             modifier = Modifier
+                .clip(RoundedCornerShape(50))
+                .background(AppColors.AccentSoft)
+                .clickable { onEditName() }
+                .padding(horizontal = 12.dp, vertical = 5.dp),
+        ) {
+            Text(
+                text = if (displayName != null) "👤  $displayName" else "+  Add display name",
+                color = AppColors.Accent,
+                fontSize = 12.sp,
+                fontWeight = FontWeight.SemiBold,
+            )
+        }
+        Spacer(Modifier.height(10.dp))
+        Box(
+            modifier = Modifier
                 .fillMaxWidth()
                 .height(1.dp)
                 .background(AppColors.Line)
         )
     }
+}
+
+@Composable
+private fun LeaderboardCard(
+    rows: List<Supabase.LeaderboardRow>?,
+    myName: String?,
+    onAddName: () -> Unit,
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = AppColors.Card),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+    ) {
+        Column(modifier = Modifier.padding(20.dp)) {
+            Text(
+                "TODAY'S LEADERBOARD",
+                color = AppColors.Accent,
+                fontSize = 11.sp,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 1.4.sp,
+            )
+            Spacer(Modifier.height(12.dp))
+            when {
+                myName == null -> {
+                    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(
+                            "Add a display name to compete on the leaderboard.",
+                            color = AppColors.Muted,
+                            fontSize = 13.sp,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.padding(vertical = 8.dp),
+                        )
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(50))
+                                .background(AppColors.Accent)
+                                .clickable { onAddName() }
+                                .padding(horizontal = 18.dp, vertical = 10.dp),
+                        ) {
+                            Text("Add display name", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                        }
+                    }
+                }
+                rows == null -> {
+                    Text("Loading…", color = AppColors.Muted, fontSize = 14.sp)
+                }
+                rows.isEmpty() -> {
+                    Text("No scores yet today. Be the first.", color = AppColors.Muted, fontSize = 14.sp)
+                }
+                else -> {
+                    rows.forEachIndexed { i, row ->
+                        if (i > 0) {
+                            Box(modifier = Modifier.fillMaxWidth().height(1.dp).background(AppColors.Line))
+                        }
+                        val isYou = myName.equals(row.display_name, ignoreCase = true)
+                        Row(
+                            modifier = Modifier.fillMaxWidth().padding(vertical = 10.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text(
+                                "${i + 1}",
+                                color = if (isYou) AppColors.Accent else AppColors.Muted,
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                modifier = Modifier.width(28.dp),
+                                textAlign = TextAlign.Center,
+                            )
+                            Spacer(Modifier.width(8.dp))
+                            Text(
+                                row.display_name + if (isYou) "  (you)" else "",
+                                color = if (isYou) AppColors.Accent else AppColors.TextSoft,
+                                fontSize = 14.sp,
+                                fontWeight = if (isYou) FontWeight.Bold else FontWeight.Normal,
+                                modifier = Modifier.weight(1f),
+                            )
+                            val scoreText = if (row.correct) "${row.attempts}/5" else "✕"
+                            Text(
+                                scoreText,
+                                color = when {
+                                    !row.correct -> AppColors.Bad
+                                    isYou -> AppColors.Accent
+                                    else -> AppColors.Text
+                                },
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun NameDialog(
+    initial: String?,
+    onSave: (String) -> Unit,
+    onDismiss: () -> Unit,
+) {
+    var text by remember { mutableStateOf(initial.orEmpty()) }
+    androidx.compose.material3.AlertDialog(
+        onDismissRequest = onDismiss,
+        confirmButton = {
+            androidx.compose.material3.TextButton(
+                onClick = { if (text.isNotBlank()) onSave(text.trim().take(30)) },
+                enabled = text.isNotBlank(),
+            ) { Text("Save", color = AppColors.Accent, fontWeight = FontWeight.SemiBold) }
+        },
+        dismissButton = {
+            androidx.compose.material3.TextButton(onClick = onDismiss) {
+                Text("Skip", color = AppColors.Muted)
+            }
+        },
+        title = { Text("Pick a display name", color = AppColors.Text) },
+        text = {
+            Column {
+                Text(
+                    "Other players will see this on the leaderboard. Up to 30 characters. Editable later.",
+                    color = AppColors.TextSoft,
+                    fontSize = 14.sp,
+                )
+                Spacer(Modifier.height(12.dp))
+                androidx.compose.material3.OutlinedTextField(
+                    value = text,
+                    onValueChange = { if (it.length <= 30) text = it },
+                    singleLine = true,
+                    placeholder = { Text("e.g. Tom B.", color = AppColors.Muted) },
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
+        },
+        containerColor = AppColors.Card,
+    )
 }
 
 @Composable

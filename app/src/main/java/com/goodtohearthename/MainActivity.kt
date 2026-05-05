@@ -20,8 +20,11 @@ import com.goodtohearthename.data.GameState
 import com.goodtohearthename.data.GameStatePersistence
 import com.goodtohearthename.data.GuessRecord
 import com.goodtohearthename.data.NameEntry
+import com.goodtohearthename.data.Profile
 import com.goodtohearthename.data.Stats
 import com.goodtohearthename.data.StatsPersistence
+import com.goodtohearthename.data.Supabase
+import com.goodtohearthename.ui.NameDialog
 import com.goodtohearthename.widget.DailyWidget
 import androidx.glance.appwidget.updateAll
 import com.goodtohearthename.ui.AppTheme
@@ -61,13 +64,38 @@ class MainActivity : ComponentActivity() {
                 var suggestions by remember { mutableStateOf<List<NameEntry>>(emptyList()) }
                 var allNames by remember { mutableStateOf<List<NameEntry>>(emptyList()) }
                 var stats by remember { mutableStateOf<Stats?>(null) }
+                var displayName by remember { mutableStateOf(Profile.displayName(ctx)) }
+                var showNameDialog by remember {
+                    mutableStateOf(displayName == null && !Profile.nameDismissed(ctx))
+                }
+                var leaderboard by remember { mutableStateOf<List<Supabase.LeaderboardRow>?>(null) }
 
-                // If the player is already revealed when MainActivity opens (returning visit),
-                // record + load stats so the panel renders immediately.
+                suspend fun refreshLeaderboard() {
+                    leaderboard = Supabase.fetchTodayLeaderboard(today)
+                }
+
+                fun submitAndRefresh(correct: Boolean, attempt: Int) {
+                    val name = displayName ?: return
+                    scope.launch {
+                        Supabase.submitScore(
+                            deviceId = Profile.deviceId(ctx),
+                            displayName = name,
+                            playerId = player.id,
+                            dayIndex = today,
+                            correct = correct,
+                            attempt = attempt,
+                        )
+                        refreshLeaderboard()
+                    }
+                }
+
+                // If the player is already revealed when MainActivity opens, record stats
+                // and (re)submit + load leaderboard.
                 LaunchedEffect(revealed) {
                     if (revealed && stats == null) {
                         val attempt = wrongGuesses.size + (if (wasCorrect) 1 else 0)
                         stats = StatsPersistence.recordResult(ctx, today, wasCorrect, attempt)
+                        submitAndRefresh(wasCorrect, attempt)
                     }
                 }
 
@@ -164,10 +192,33 @@ class MainActivity : ComponentActivity() {
                     photo = photo,
                     suggestions = suggestions,
                     stats = stats,
+                    displayName = displayName,
+                    leaderboard = leaderboard,
                     onQueryChange = { query = it },
                     onPickSuggestion = ::pickSuggestion,
                     onReveal = ::reveal,
+                    onEditName = { showNameDialog = true },
                 )
+
+                if (showNameDialog) {
+                    NameDialog(
+                        initial = displayName,
+                        onSave = { name ->
+                            Profile.setDisplayName(ctx, name)
+                            displayName = name
+                            showNameDialog = false
+                            // If they've already revealed today, submit and refresh
+                            if (revealed) {
+                                val attempt = wrongGuesses.size + (if (wasCorrect) 1 else 0)
+                                submitAndRefresh(wasCorrect, attempt)
+                            }
+                        },
+                        onDismiss = {
+                            if (displayName == null) Profile.setNameDismissed(ctx)
+                            showNameDialog = false
+                        },
+                    )
+                }
             }
         }
     }
