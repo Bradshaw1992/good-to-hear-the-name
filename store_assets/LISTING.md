@@ -85,10 +85,12 @@ https://bradshaw1992.github.io/good-to-hear-the-name/
 |---|---|
 | `icon_512.png` | App icon (Play Console > App content > App icon) |
 | `feature_graphic.png` | Feature graphic (Store presence > Main store listing) |
-| `screenshot_initial.png` | Phone screenshot 1 |
-| `screenshot_reveal.png` | Phone screenshot 2 |
+| `screenshot_1_silhouette.png` | Phone screenshot 1 — initial silhouette |
+| `screenshot_2_midgame.png` | Phone screenshot 2 — mid-game with stacked clues + previous guesses |
+| `screenshot_3_correct.png` | Phone screenshot 3 — winning reveal with photo + stats |
+| `screenshot_4_reveal.png` | Phone screenshot 4 — gave-up reveal with all clues + MISSED tags |
 
-You'll need at least 2 phone screenshots. We have 2.
+Upload all 4 — Play Store wants min 2, more is better.
 
 ## The AAB
 Download from the latest GitHub Actions run on the repo:
