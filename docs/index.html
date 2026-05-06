@@ -443,8 +443,8 @@
     </div>
   </div>
 
-<script src="players.js?v=21"></script>
-<script src="bios.js?v=21"></script>
+<script src="players.js?v=22"></script>
+<script src="bios.js?v=22"></script>
 <script>
 (() => {
   const ALL_PLAYERS = window.PLAYERS;
@@ -531,7 +531,7 @@
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=21")
+  fetch("names.json?v=22")
     .then(r => r.json())
     .then(big => {
       const seen = new Set(allNames.map(e => e.n.toLowerCase()));
@@ -810,6 +810,11 @@
     }
     bio.classList.add("show");
   }
+
+  // ?demo=reveal — auto-reveals (used for store screenshots)
+  // ?demo=correct — auto-wins on first try (used for store screenshots)
+  if (params.get("demo") === "reveal") setTimeout(() => reveal(), 50);
+  if (params.get("demo") === "correct") setTimeout(() => submitGuess(player.name), 50);
 
   guessInput.addEventListener("input", renderSuggestions);
   guessInput.addEventListener("keydown", e => {
