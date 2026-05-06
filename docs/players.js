@@ -31,10 +31,10 @@ window.PLAYERS = [
     years: "2008–present", approved: true,
     aliases: ["michail antonio", "antonio"],
     clues: [
-      "I was born on the 28th of March 1990. I played 24 times for my country, scoring 5 goals.",
-      "I once recreated the famous Dirty Dancing lift after scoring against Arsenal — using a cardboard cutout of myself.",
+      "I was born on the 28th of March 1990. I have 5 goals from 24 appearances for my country — but not my country of birth.",
       "I came through non-league football, starting out at Tooting & Mitcham before Reading signed me.",
-      "In August 2021 I broke Paolo Di Canio's record to become my Premier League club's all-time top scorer.",
+      "I once recreated the famous Dirty Dancing lift after scoring against Arsenal — using a cardboard cutout of myself.",
+      "In August 2021 I became my club's all-time Premier League top scorer, replacing the previous holder who was himself an iconic Italian striker.",
       "I won the Europa Conference League in 2023 — my club's first trophy in 43 years.",
     ],
   },
