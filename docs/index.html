@@ -443,8 +443,8 @@
     </div>
   </div>
 
-<script src="players.js?v=23"></script>
-<script src="bios.js?v=23"></script>
+<script src="players.js?v=24"></script>
+<script src="bios.js?v=24"></script>
 <script>
 (() => {
   const ALL_PLAYERS = window.PLAYERS;
@@ -531,7 +531,7 @@
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=23")
+  fetch("names.json?v=24")
     .then(r => r.json())
     .then(big => {
       const seen = new Set(allNames.map(e => e.n.toLowerCase()));
@@ -820,8 +820,19 @@
 
   // ?demo=reveal — auto-reveals (used for store screenshots)
   // ?demo=correct — auto-wins on first try (used for store screenshots)
-  if (params.get("demo") === "reveal") setTimeout(() => reveal(), 50);
-  if (params.get("demo") === "correct") setTimeout(() => submitGuess(player.name), 50);
+  // ?demo=mid — fakes 2 wrong guesses (3 clues visible)
+  const demoMode = params.get("demo");
+  if (demoMode) {
+    // Disable CSS transitions in demo mode so screenshots capture final state
+    const demoCss = document.createElement("style");
+    demoCss.textContent = "*, *::before, *::after { animation-duration: 0ms !important; transition-duration: 0ms !important; }";
+    document.head.appendChild(demoCss);
+  }
+  if (demoMode === "reveal") setTimeout(() => reveal(), 100);
+  if (demoMode === "correct") setTimeout(() => submitGuess(player.name), 100);
+  if (demoMode === "mid") setTimeout(() => {
+    submitGuess("Wayne Rooney"); submitGuess("Steven Gerrard");
+  }, 100);
 
   guessInput.addEventListener("input", renderSuggestions);
   guessInput.addEventListener("keydown", e => {
