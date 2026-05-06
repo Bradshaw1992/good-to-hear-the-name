@@ -167,9 +167,19 @@
     border: 1px solid var(--line);
     border-radius: 12px;
     overflow: hidden;
-    max-height: 320px;
     overflow-y: auto;
     box-shadow: var(--shadow);
+    /* Smooth in/out: fade + collapse instead of abrupt display:none */
+    max-height: 0;
+    opacity: 0;
+    border-width: 0;
+    transition: max-height 200ms ease, opacity 150ms ease, border-width 0ms 200ms;
+  }
+  .suggestions.open {
+    max-height: 320px;
+    opacity: 1;
+    border-width: 1px;
+    transition: max-height 200ms ease, opacity 150ms ease, border-width 0ms;
   }
   .suggestion {
     display: flex;
@@ -443,8 +453,8 @@
     </div>
   </div>
 
-<script src="players.js?v=25"></script>
-<script src="bios.js?v=25"></script>
+<script src="players.js?v=26"></script>
+<script src="bios.js?v=26"></script>
 <script>
 (() => {
   const ALL_PLAYERS = window.PLAYERS;
@@ -531,7 +541,7 @@
 
   // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=25")
+  fetch("names.json?v=26")
     .then(r => r.json())
     .then(big => {
       const seen = new Set(allNames.map(e => e.n.toLowerCase()));
@@ -539,6 +549,9 @@
         const k = e.n.toLowerCase();
         if (!seen.has(k)) { seen.add(k); allNames.push(e); }
       }
+      // Alphabetise so our 27 named players don't always surface at the top.
+      // (Without this, prefix matches return our players first because they were added first.)
+      allNames.sort((a, b) => a.n.toLowerCase().localeCompare(b.n.toLowerCase()));
       if (guessInput && guessInput.value) renderSuggestions();
     })
     .catch(() => {});
@@ -613,9 +626,9 @@
   }
 
   function renderSuggestions() {
-    if (revealed) { suggestionsBox.style.display = "none"; return; }
+    if (revealed) { suggestionsBox.classList.remove("open"); return; }
     const q = normalize(guessInput.value);
-    if (q.length < 2) { suggestionsBox.style.display = "none"; suggestionsBox.innerHTML = ""; return; }
+    if (q.length < 2) { suggestionsBox.classList.remove("open"); return; }
     const prefix = [], substring = [];
     for (const e of allNames) {
       const norm = normalize(e.n);
@@ -624,14 +637,16 @@
       if (prefix.length >= 8) break;
     }
     const matches = [...prefix, ...substring].slice(0, 8);
-    if (!matches.length) { suggestionsBox.style.display = "none"; return; }
-    suggestionsBox.innerHTML = matches.map(e =>
+    if (!matches.length) { suggestionsBox.classList.remove("open"); return; }
+    // Only update HTML if the matches actually changed (avoids re-render flicker)
+    const newHtml = matches.map(e =>
       `<div class="suggestion" data-name="${e.n.replace(/"/g, '&quot;')}">
         <span class="name">${e.n}</span>
         <span class="meta">${e.y ? `<span class="years">${e.y}</span>` : ""}<span class="flag">${e.f || ""}</span></span>
       </div>`
     ).join("");
-    suggestionsBox.style.display = "block";
+    if (suggestionsBox.innerHTML !== newHtml) suggestionsBox.innerHTML = newHtml;
+    suggestionsBox.classList.add("open");
   }
 
   function submitGuess(name) {
@@ -642,7 +657,7 @@
       const entry = allNames.find(e => normalize(e.n) === normalize(name)) || {};
       wrongGuesses.push({ name, flag: entry.f || "", years: entry.y || "" });
       guessInput.value = "";
-      suggestionsBox.style.display = "none";
+      suggestionsBox.classList.remove("open");
       renderGuesses();
       renderPips();
       if (currentClueIndex < player.clues.length - 1 && wrongGuesses.length < MAX_GUESSES) {
@@ -672,7 +687,7 @@
     revealed = true;
     imageCard.classList.add("revealed");
     guessInput.disabled = true;
-    suggestionsBox.style.display = "none";
+    suggestionsBox.classList.remove("open");
     revealLink.style.display = "none";
     const allClues = player.clues.map((c, i) => `<div style="padding:6px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--text-soft)"><span style="color:var(--accent);font-weight:700">${i + 1}.</span> ${c}</div>`).join("");
     const cluesSeen = currentClueIndex + 1; // 0-based → count
@@ -840,7 +855,7 @@
       const first = suggestionsBox.querySelector(".suggestion");
       if (first) submitGuess(first.dataset.name);
     } else if (e.key === "Escape") {
-      suggestionsBox.style.display = "none";
+      suggestionsBox.classList.remove("open");
     }
   });
   suggestionsBox.addEventListener("click", e => {
