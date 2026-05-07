@@ -51,6 +51,18 @@ window.PLAYERS = [
     ],
   },
   {
+    id: "wes_brown", name: "Wes Brown", country: "England", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    years: "1996–2017", approved: true,
+    aliases: ["wes brown", "brown"],
+    clues: [
+      "I was born on the 13th of October 1979. I played 23 times for my country, scoring 1 goal.",
+      "I won five league titles and two Champions Leagues at a single club.",
+      "I was once sent off for a foul that was actually committed by John O'Shea.",
+      "Sir Alex Ferguson once called me 'without question the best natural defender this club has had for years'.",
+      "I played alongside John O'Shea at two different clubs — and he got me sent off at the second one.",
+    ],
+  },
+  {
     id: "phil_jones", name: "Phil Jones", country: "England", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
     years: "2010–2024", approved: true,
     aliases: ["phil jones", "philip jones", "jones"],
@@ -63,15 +75,27 @@ window.PLAYERS = [
     ],
   },
   {
-    id: "wes_brown", name: "Wes Brown", country: "England", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    years: "1996–2017", approved: true,
-    aliases: ["wes brown", "brown"],
+    id: "danny_rose", name: "Danny Rose", country: "England", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    years: "2007–2022", approved: true,
+    aliases: ["danny rose"],
     clues: [
-      "I was born on the 13th of October 1979. I played 23 times for my country, scoring 1 goal.",
-      "I was sent off in 2015 for a foul that John O'Shea had actually committed — the red card was rescinded on appeal but the moment became one of the strangest dismissals in Premier League history.",
-      "I won the Jimmy Murphy Young Player of the Year award twice as a Manchester United youth — only Ryan Giggs had done it before me.",
-      "Sir Alex Ferguson once called me 'without question the best natural defender this club has had for years'.",
-      "I spent fifteen years at Manchester United — five Premier League titles, two Champions Leagues.",
+      "I was born on the 2nd of July 1990. I played 29 times for my country, never scoring a goal.",
+      "During an England U21 qualifier in Serbia in 2012 I was racially abused throughout the match — and was sent off for kicking the ball into the crowd at the final whistle.",
+      "I publicly disclosed in 2018 that I'd been diagnosed with depression — became one of the most prominent active footballers to do so.",
+      "My Premier League debut goal — a left-footed volley from outside the box against Arsenal — won Sky Sports' Goal of the Season.",
+      "I started in the 2019 Champions League final and spent over a decade at Tottenham.",
+    ],
+  },
+  {
+    id: "brad_friedel", name: "Brad Friedel", country: "United States", flag: "🇺🇸",
+    years: "1992–2015", approved: true,
+    aliases: ["brad friedel", "friedel"],
+    clues: [
+      "I was born on the 18th of May 1971. I played 82 times for my country, never scoring a goal.",
+      "I was repeatedly denied a UK work permit by the Home Office — Forest, Newcastle and Sunderland all tried to sign me before Liverpool finally got me through in 1997.",
+      "I'm only the second goalkeeper ever to score from open play in the Premier League.",
+      "At the 2002 World Cup, I saved two penalties during open play to help my country reach the quarter-finals.",
+      "I hold the Premier League record for 310 consecutive appearances — across four clubs.",
     ],
   },
   {
@@ -204,18 +228,6 @@ window.PLAYERS = [
       "I inherited my nickname 'The White Feather' from Juventus legend Roberto Bettega — both because of my prematurely white hair.",
       "I scored a Premier League hat-trick on my debut for Middlesbrough against Liverpool, opening day of the 1996–97 season.",
       "I won the Champions League with Juventus in 1996 — scored their goal in the final against Ajax in Rome.",
-    ],
-  },
-  {
-    id: "danny_rose", name: "Danny Rose", country: "England", flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    years: "2007–2022", approved: true,
-    aliases: ["danny rose"],
-    clues: [
-      "I was born on the 2nd of July 1990. I played 29 times for my country, never scoring a goal.",
-      "During an England U21 qualifier in Serbia in 2012 I was racially abused throughout the match — and was sent off for kicking the ball into the crowd at the final whistle.",
-      "I publicly disclosed in 2018 that I'd been diagnosed with depression — became one of the most prominent active footballers to do so.",
-      "My Premier League debut goal — a left-footed volley from outside the box against Arsenal — won Sky Sports' Goal of the Season.",
-      "I started in the 2019 Champions League final and spent over a decade at Tottenham.",
     ],
   },
   {
@@ -360,18 +372,6 @@ window.PLAYERS = [
       "On the 9th of December 2009 I became my club's all-time top foreign goalscorer, surpassing Omar Sívori's record of 167.",
       "I scored the golden goal in extra time of a major final, beating Italy with an assist from Robert Pirès.",
       "I won the World Cup in 1998 and Euro 2000 with my country, and spent ten years at Juventus.",
-    ],
-  },
-  {
-    id: "brad_friedel", name: "Brad Friedel", country: "United States", flag: "🇺🇸",
-    years: "1992–2015", approved: true,
-    aliases: ["brad friedel", "friedel"],
-    clues: [
-      "I was born on the 18th of May 1971. I played 82 times for my country, never scoring a goal.",
-      "I was repeatedly denied a UK work permit by the Home Office — Forest, Newcastle and Sunderland all tried to sign me before Liverpool finally got me through in 1997.",
-      "I'm only the second goalkeeper ever to score from open play in the Premier League.",
-      "At the 2002 World Cup, I saved two penalties during open play to help my country reach the quarter-finals.",
-      "I hold the Premier League record for 310 consecutive appearances — across four clubs.",
     ],
   },
   {
