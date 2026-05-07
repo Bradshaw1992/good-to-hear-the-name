@@ -44,10 +44,10 @@ window.PLAYERS = [
     aliases: ["dusan tadic", "dušan tadić", "tadic", "tadić"],
     clues: [
       "I was born on the 20th of November 1988. I played 111 times for my country, scoring 23 goals.",
-      "After my display in a 4–1 Champions League win at the Bernabéu in 2019, I became only the ninth player ever to receive a 10/10 rating from L'Équipe.",
       "I captained my country at the 2022 World Cup.",
-      "I was the 2020–21 Dutch Footballer of the Year and Ajax Player of the Year.",
-      "After four years at Southampton I joined Ajax — and tore Real Madrid apart in the Champions League with a goal and two assists.",
+      "I spent four years on the south coast of England, scoring 23 goals in 162 Premier League appearances.",
+      "I was the 2020–21 Footballer of the Year in the Eredivisie.",
+      "After my display in a 4–1 Champions League win at the Bernabéu in 2019, I became only the ninth player ever to receive a 10/10 rating from L'Équipe.",
     ],
   },
   {
