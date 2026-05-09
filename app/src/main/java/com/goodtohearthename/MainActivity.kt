@@ -29,6 +29,7 @@ import com.goodtohearthename.ui.AppTheme
 import com.goodtohearthename.ui.GameScreen
 import com.goodtohearthename.ui.GameUiState
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -97,12 +98,15 @@ class MainActivity : ComponentActivity() {
                         allNames = ContentRepository.autocompleteNames(ctx)
                     }
                 }
+                var suggestionsReadyAt by remember { mutableStateOf(0L) }
+
                 LaunchedEffect(query.text, allNames) {
                     val q = ContentRepository.normalize(query.text)
-                    if (q.length < 2 || allNames.isEmpty()) {
+                    if (q.length < 3 || allNames.isEmpty()) {
                         suggestions = emptyList()
                         return@LaunchedEffect
                     }
+                    delay(200)
                     withContext(Dispatchers.Default) {
                         val prefix = mutableListOf<NameEntry>()
                         val substring = mutableListOf<NameEntry>()
@@ -114,7 +118,11 @@ class MainActivity : ComponentActivity() {
                             }
                             if (prefix.size >= 8) break
                         }
-                        suggestions = (prefix + substring).take(8)
+                        val matches = (prefix + substring).take(8)
+                        if (matches.size < 3) emptyList() else matches
+                    }.let {
+                        suggestions = it
+                        if (it.isNotEmpty()) suggestionsReadyAt = System.currentTimeMillis() + 200
                     }
                 }
 
@@ -136,7 +144,7 @@ class MainActivity : ComponentActivity() {
                 }
 
                 fun pickSuggestion(e: NameEntry) {
-                    if (revealed) return
+                    if (revealed || System.currentTimeMillis() < suggestionsReadyAt) return
                     if (ContentRepository.isCorrect(player, e.n)) {
                         wasCorrect = true
                         revealed = true

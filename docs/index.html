@@ -552,7 +552,7 @@
       // Alphabetise so our 27 named players don't always surface at the top.
       // (Without this, prefix matches return our players first because they were added first.)
       allNames.sort((a, b) => a.n.toLowerCase().localeCompare(b.n.toLowerCase()));
-      if (guessInput && guessInput.value) renderSuggestions();
+      if (guessInput && guessInput.value) debouncedRenderSuggestions();
     })
     .catch(() => {});
 
@@ -625,10 +625,13 @@
     if (tip) tip.style.display = wrongGuesses.length > 0 || revealed ? "none" : "";
   }
 
+  let debounceTimer = null;
+  let suggestionsReady = 0;
+
   function renderSuggestions() {
     if (revealed) { suggestionsBox.classList.remove("open"); return; }
     const q = normalize(guessInput.value);
-    if (q.length < 2) { suggestionsBox.classList.remove("open"); return; }
+    if (q.length < 3) { suggestionsBox.classList.remove("open"); return; }
     const prefix = [], substring = [];
     for (const e of allNames) {
       const norm = normalize(e.n);
@@ -637,16 +640,23 @@
       if (prefix.length >= 8) break;
     }
     const matches = [...prefix, ...substring].slice(0, 8);
-    if (!matches.length) { suggestionsBox.classList.remove("open"); return; }
-    // Only update HTML if the matches actually changed (avoids re-render flicker)
+    if (matches.length < 3) { suggestionsBox.classList.remove("open"); return; }
     const newHtml = matches.map(e =>
       `<div class="suggestion" data-name="${e.n.replace(/"/g, '&quot;')}">
         <span class="name">${e.n}</span>
         <span class="meta">${e.y ? `<span class="years">${e.y}</span>` : ""}<span class="flag">${e.f || ""}</span></span>
       </div>`
     ).join("");
-    if (suggestionsBox.innerHTML !== newHtml) suggestionsBox.innerHTML = newHtml;
+    if (suggestionsBox.innerHTML !== newHtml) {
+      suggestionsBox.innerHTML = newHtml;
+      suggestionsReady = Date.now() + 200;
+    }
     suggestionsBox.classList.add("open");
+  }
+
+  function debouncedRenderSuggestions() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(renderSuggestions, 200);
   }
 
   function submitGuess(name) {
@@ -849,7 +859,7 @@
     submitGuess("Wayne Rooney"); submitGuess("Steven Gerrard");
   }, 100);
 
-  guessInput.addEventListener("input", renderSuggestions);
+  guessInput.addEventListener("input", debouncedRenderSuggestions);
   guessInput.addEventListener("keydown", e => {
     if (e.key === "Enter") {
       const first = suggestionsBox.querySelector(".suggestion");
@@ -859,6 +869,7 @@
     }
   });
   suggestionsBox.addEventListener("click", e => {
+    if (Date.now() < suggestionsReady) return;
     const el = e.target.closest(".suggestion");
     if (el) submitGuess(el.dataset.name);
   });
