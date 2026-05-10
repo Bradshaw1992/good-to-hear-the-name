@@ -119,7 +119,7 @@ class MainActivity : ComponentActivity() {
                             if (prefix.size >= 8) break
                         }
                         val matches = (prefix + substring).take(8)
-                        if (matches.size < 3) emptyList() else matches
+                        matches
                     }.let {
                         suggestions = it
                         if (it.isNotEmpty()) suggestionsReadyAt = System.currentTimeMillis() + 200
@@ -165,6 +165,14 @@ class MainActivity : ComponentActivity() {
                     persistState()
                 }
 
+                fun skipClue() {
+                    if (revealed) return
+                    if (clueIndex < player.clues.size - 1) {
+                        clueIndex++
+                        persistState()
+                    }
+                }
+
                 fun reveal() {
                     if (revealed) return
                     wasCorrect = false
@@ -189,6 +197,7 @@ class MainActivity : ComponentActivity() {
                     onQueryChange = { query = it },
                     onPickSuggestion = ::pickSuggestion,
                     onReveal = ::reveal,
+                    onSkipClue = ::skipClue,
                     onShare = ::shareResult,
                 )
             }

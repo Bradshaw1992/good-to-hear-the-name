@@ -83,6 +83,7 @@ fun GameScreen(
     onQueryChange: (TextFieldValue) -> Unit,
     onPickSuggestion: (NameEntry) -> Unit,
     onReveal: () -> Unit,
+    onSkipClue: () -> Unit,
     onShare: () -> Unit,
 ) {
     Scaffold(
@@ -121,6 +122,8 @@ fun GameScreen(
                         used = state.wrongGuesses.size,
                         max = MAX_GUESSES,
                         onReveal = onReveal,
+                        onSkipClue = onSkipClue,
+                        isLastClue = state.currentClueIndex >= player.clues.size - 1,
                     )
                 }
                 if (state.wrongGuesses.isEmpty()) {
@@ -518,7 +521,7 @@ private fun SuggestionList(suggestions: List<NameEntry>, onPick: (NameEntry) -> 
 }
 
 @Composable
-private fun PipsRow(used: Int, max: Int, onReveal: () -> Unit) {
+private fun PipsRow(used: Int, max: Int, onReveal: () -> Unit, onSkipClue: () -> Unit, isLastClue: Boolean) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -540,9 +543,18 @@ private fun PipsRow(used: Int, max: Int, onReveal: () -> Unit) {
             fontWeight = FontWeight.SemiBold,
         )
         Spacer(Modifier.weight(1f))
+        if (!isLastClue) {
+            Text(
+                "Next clue",
+                color = AppColors.Accent,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.clickable { onSkipClue() }.padding(end = 16.dp),
+            )
+        }
         Text(
             "Bottle it",
-            color = AppColors.Accent,
+            color = AppColors.TextSoft,
             fontSize = 13.sp,
             fontWeight = FontWeight.SemiBold,
             modifier = Modifier.clickable { onReveal() },

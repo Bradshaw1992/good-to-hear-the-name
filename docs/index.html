@@ -206,8 +206,10 @@
     color: var(--muted);
     padding: 0 4px;
   }
-  .meta-row a { color: var(--accent); text-decoration: none; cursor: pointer; font-weight: 500; }
+  .meta-row a { text-decoration: none; cursor: pointer; font-weight: 500; }
   .meta-row a:hover { text-decoration: underline; }
+  .meta-row #skipClueLink { color: var(--accent); margin-right: 16px; }
+  .meta-row #revealLink { color: var(--text-soft); }
   .meta-row .pips { display: inline-flex; align-items: center; gap: 6px; }
   .meta-row .pip {
     display: inline-block;
@@ -429,6 +431,7 @@
 
         <div class="meta-row">
           <span class="pips" id="pips"></span>
+          <a id="skipClueLink" style="display:none">Next clue</a>
           <a id="revealLink">Bottle it</a>
         </div>
 
@@ -564,7 +567,7 @@
   const clueList = $("clueList");
   const guessInput = $("guessInput"), suggestionsBox = $("suggestions");
   const guessesPanel = $("guessesPanel"), guessesList = $("guessesList");
-  const pips = $("pips"), revealLink = $("revealLink"), result = $("result");
+  const pips = $("pips"), revealLink = $("revealLink"), skipClueLink = $("skipClueLink"), result = $("result");
   const dateLabel = $("dateLabel"), bio = $("bio");
 
   silhouette.src = `silhouettes/${player.id}.jpg`;
@@ -585,6 +588,7 @@
   dateLabel.textContent = new Date().toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long" });
   renderClues();
   renderPips();
+  updateSkipClueVisibility();
 
   function renderClues() {
     const upTo = currentClueIndex; // 0-based index of latest revealed
@@ -640,7 +644,7 @@
       if (prefix.length >= 8) break;
     }
     const matches = [...prefix, ...substring].slice(0, 8);
-    if (matches.length < 3) { suggestionsBox.classList.remove("open"); return; }
+    if (matches.length === 0) { suggestionsBox.classList.remove("open"); return; }
     const newHtml = matches.map(e =>
       `<div class="suggestion" data-name="${e.n.replace(/"/g, '&quot;')}">
         <span class="name">${e.n}</span>
@@ -673,6 +677,7 @@
       if (currentClueIndex < player.clues.length - 1 && wrongGuesses.length < MAX_GUESSES) {
         currentClueIndex++;
         renderClues();
+        updateSkipClueVisibility();
       }
       if (wrongGuesses.length >= MAX_GUESSES) revealAnswer(false);
     }
@@ -693,12 +698,21 @@
     ).join("");
   }
 
+  function updateSkipClueVisibility() {
+    if (revealed || currentClueIndex >= player.clues.length - 1) {
+      skipClueLink.style.display = "none";
+    } else {
+      skipClueLink.style.display = "";
+    }
+  }
+
   function revealAnswer(correct) {
     revealed = true;
     imageCard.classList.add("revealed");
     guessInput.disabled = true;
     suggestionsBox.classList.remove("open");
     revealLink.style.display = "none";
+    skipClueLink.style.display = "none";
     const allClues = player.clues.map((c, i) => `<div style="padding:6px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--text-soft)"><span style="color:var(--accent);font-weight:700">${i + 1}.</span> ${c}</div>`).join("");
     const cluesSeen = currentClueIndex + 1; // 0-based → count
     const annotatedClues = player.clues.map((c, i) => {
@@ -872,6 +886,15 @@
     if (Date.now() < suggestionsReady) return;
     const el = e.target.closest(".suggestion");
     if (el) submitGuess(el.dataset.name);
+  });
+  skipClueLink.addEventListener("click", () => {
+    if (revealed) return;
+    if (currentClueIndex < player.clues.length - 1) {
+      currentClueIndex++;
+      renderClues();
+      updateSkipClueVisibility();
+      saveState();
+    }
   });
   revealLink.addEventListener("click", () => revealAnswer(false));
 })();
