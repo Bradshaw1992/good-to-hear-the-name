@@ -508,9 +508,9 @@
   .archive-grid .day-cell.future { opacity: 0.25; cursor: default; pointer-events: none; }
   .archive-grid .day-cell.before-epoch { opacity: 0.15; cursor: default; pointer-events: none; }
   .archive-grid .day-cell.is-today { background: var(--accent-soft); border-radius: 10px; }
-  .archive-grid .day-cell .ball { font-size: 20px; line-height: 1; }
-  .archive-grid .day-cell .ball.won { filter: hue-rotate(0deg); }
-  .archive-grid .day-cell .ball.lost { filter: grayscale(0.4) sepia(1) hue-rotate(-40deg) saturate(3); }
+  .archive-grid .day-cell .ball { font-size: 18px; line-height: 1; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+  .archive-grid .day-cell .ball.won { background: rgba(15, 122, 62, 0.2); }
+  .archive-grid .day-cell .ball.lost { background: rgba(176, 52, 52, 0.2); }
   .archive-grid .day-cell .ball.unplayed { filter: grayscale(1); opacity: 0.4; }
   .archive-grid .day-cell .day-num {
     font-size: 10px;
