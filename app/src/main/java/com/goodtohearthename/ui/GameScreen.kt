@@ -245,15 +245,6 @@ private fun Header(dayNumber: Int, onOpenArchive: () -> Unit = {}) {
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
             )
-            Spacer(Modifier.width(8.dp))
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(8.dp))
-                    .clickable { onOpenArchive() }
-                    .padding(4.dp),
-            ) {
-                Text("📅", fontSize = 18.sp)
-            }
         }
         Spacer(Modifier.height(8.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -278,6 +269,22 @@ private fun Header(dayNumber: Int, onOpenArchive: () -> Unit = {}) {
                     .uppercase()
             }
             Text(today, color = AppColors.Muted, fontSize = 11.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.5.sp)
+        }
+        Spacer(Modifier.height(8.dp))
+        Box(
+            modifier = Modifier
+                .clip(RoundedCornerShape(20.dp))
+                .background(AppColors.AccentSoft)
+                .clickable { onOpenArchive() }
+                .padding(horizontal = 14.dp, vertical = 6.dp),
+        ) {
+            Text(
+                "📅 Previous days",
+                color = AppColors.Accent,
+                fontSize = 12.sp,
+                fontWeight = FontWeight.SemiBold,
+                letterSpacing = 0.3.sp,
+            )
         }
         Spacer(Modifier.height(10.dp))
         Box(

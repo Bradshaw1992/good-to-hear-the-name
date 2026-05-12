@@ -520,19 +520,22 @@
   .archive-grid .empty-cell { }
 
   .archive-btn {
-    background: none;
+    background: var(--accent-soft);
     border: none;
     cursor: pointer;
-    font-size: 18px;
-    padding: 4px 8px;
-    border-radius: 8px;
-    color: var(--text-soft);
-    transition: background 150ms;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    color: var(--accent);
+    transition: background 150ms, transform 100ms;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
+    letter-spacing: 0.02em;
+    margin: 8px auto 0;
   }
-  .archive-btn:hover { background: var(--bg); }
+  .archive-btn:hover { background: var(--bg); transform: scale(1.03); }
 
   .archive-playing-banner {
     text-align: center;
@@ -557,13 +560,13 @@
       <div class="brand">
         <span class="brand-icon">⚽</span>
         <h1>It's good to hear the name</h1>
-        <button class="archive-btn" id="archiveBtn" title="Play previous days">📅</button>
       </div>
       <div id="archivePlayingBanner" class="archive-playing-banner"></div>
       <div class="sub-row">
         <span class="day-badge" id="dayBadge">DAY #1</span>
         <span class="date" id="dateLabel"></span>
       </div>
+      <button class="archive-btn" id="archiveBtn" title="Play previous days">📅 Previous days</button>
     </header>
 
     <div class="archive-overlay" id="archiveOverlay">
