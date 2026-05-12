@@ -156,7 +156,7 @@ window.PLAYERS = [
     "clues": [
       "I was born on the 28th of April 1970. I played 106 times for my country, scoring 11 goals.",
       "During my career I played alongside Diego Maradona.",
-      "I played in Serie A for three of Italy's biggest clubs, including both sides of the Milan derby and a spell in the capital.",
+      "I won the UEFA Cup with a Milan club and the domestic double with a Rome-based club.",
       "I won a UEFA Cup and a league-and-cup double at the same Spanish club.",
       "At the 1998 World Cup, I was involved in one of football's most infamous incidents."
     ]
@@ -173,7 +173,7 @@ window.PLAYERS = [
       "solanke"
     ],
     "clues": [
-      "I was born on the 14th of September 1997. I have been capped once at senior level, scoring 0 goals. My only appearance came against Brazil in 2017.",
+      "I was born on the 14th of September 1997. I have been capped 5 times at senior level, scoring 0 goals. My first appearance came against Brazil in 2017.",
       "I won the Golden Ball at the U-20 World Cup in South Korea, finishing as the tournament's best player.",
       "I came through an academy in west London but never made a league appearance for the first team, leaving on a free transfer.",
       "I scored just one Premier League goal in two seasons on Merseyside.",

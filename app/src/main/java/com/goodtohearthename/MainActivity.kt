@@ -26,6 +26,7 @@ import com.goodtohearthename.data.StatsPersistence
 import com.goodtohearthename.widget.DailyWidget
 import androidx.glance.appwidget.updateAll
 import com.goodtohearthename.ui.AppTheme
+import com.goodtohearthename.ui.ArchiveDialog
 import com.goodtohearthename.ui.GameScreen
 import com.goodtohearthename.ui.GameUiState
 import kotlinx.coroutines.Dispatchers
@@ -39,37 +40,68 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         val app = applicationContext
-        val player = ContentRepository.forToday(app)
-        val today = System.currentTimeMillis() / 86_400_000L
+        val todayMillis = System.currentTimeMillis()
+        val todayDayIndex = todayMillis / 86_400_000L
         val epochDay = java.time.LocalDate.of(2026, 5, 5).toEpochDay()
-        val dayNumber = ((today - epochDay) + 1).toInt().coerceAtLeast(1)
-
-        val savedState = GameStatePersistence.load(app, today)?.takeIf { it.playerId == player.id }
-        val initial = savedState ?: GameState(playerId = player.id)
 
         setContent {
             AppTheme {
                 val ctx = LocalContext.current
                 val scope = rememberCoroutineScope()
 
-                var query by remember { mutableStateOf(TextFieldValue("")) }
-                val wrongGuesses = remember {
-                    mutableStateListOf<GuessRecord>().apply { addAll(initial.wrongGuesses) }
-                }
-                var clueIndex by remember { mutableStateOf(initial.currentClueIndex) }
-                var revealed by remember { mutableStateOf(initial.revealed) }
-                var wasCorrect by remember { mutableStateOf(initial.wasCorrect) }
+                // Which day we're playing — can differ from today when using archive
+                var playingDayIndex by remember { mutableStateOf(todayDayIndex) }
+                var showArchive by remember { mutableStateOf(false) }
 
-                var silhouette by remember { mutableStateOf<Bitmap?>(null) }
-                var photo by remember { mutableStateOf<Bitmap?>(null) }
+                // Derived from playingDayIndex
+                val player = remember(playingDayIndex) {
+                    ContentRepository.forDay(app, playingDayIndex * 86_400_000L)
+                }
+                val dayNumber = remember(playingDayIndex) {
+                    ((playingDayIndex - epochDay) + 1).toInt().coerceAtLeast(1)
+                }
+                val isArchiveDay = playingDayIndex != todayDayIndex
+
+                // Game state — reset when day changes
+                var query by remember(playingDayIndex) { mutableStateOf(TextFieldValue("")) }
+                val wrongGuesses = remember(playingDayIndex) {
+                    val saved = GameStatePersistence.load(app, playingDayIndex)
+                        ?.takeIf { it.playerId == player.id }
+                    mutableStateListOf<GuessRecord>().apply {
+                        addAll(saved?.wrongGuesses ?: emptyList())
+                    }
+                }
+                var clueIndex by remember(playingDayIndex) {
+                    val saved = GameStatePersistence.load(app, playingDayIndex)
+                        ?.takeIf { it.playerId == player.id }
+                    mutableStateOf(saved?.currentClueIndex ?: 0)
+                }
+                var revealed by remember(playingDayIndex) {
+                    val saved = GameStatePersistence.load(app, playingDayIndex)
+                        ?.takeIf { it.playerId == player.id }
+                    mutableStateOf(saved?.revealed ?: false)
+                }
+                var wasCorrect by remember(playingDayIndex) {
+                    val saved = GameStatePersistence.load(app, playingDayIndex)
+                        ?.takeIf { it.playerId == player.id }
+                    mutableStateOf(saved?.wasCorrect ?: false)
+                }
+
+                var silhouette by remember(playingDayIndex) { mutableStateOf<Bitmap?>(null) }
+                var photo by remember(playingDayIndex) { mutableStateOf<Bitmap?>(null) }
                 var suggestions by remember { mutableStateOf<List<NameEntry>>(emptyList()) }
                 var allNames by remember { mutableStateOf<List<NameEntry>>(emptyList()) }
-                var stats by remember { mutableStateOf<Stats?>(null) }
+                var stats by remember(playingDayIndex) { mutableStateOf<Stats?>(null) }
 
-                LaunchedEffect(revealed) {
+                LaunchedEffect(revealed, playingDayIndex) {
                     if (revealed && stats == null) {
                         val attempt = wrongGuesses.size + (if (wasCorrect) 1 else 0)
-                        stats = StatsPersistence.recordResult(ctx, today, wasCorrect, attempt)
+                        // Only record stats for today's game
+                        stats = if (playingDayIndex == todayDayIndex) {
+                            StatsPersistence.recordResult(ctx, playingDayIndex, wasCorrect, attempt)
+                        } else {
+                            StatsPersistence.load(ctx)
+                        }
                     }
                 }
 
@@ -128,7 +160,7 @@ class MainActivity : ComponentActivity() {
 
                 fun persistState() {
                     GameStatePersistence.save(
-                        ctx, today,
+                        ctx, playingDayIndex,
                         GameState(
                             playerId = player.id,
                             wrongGuesses = wrongGuesses.toList(),
@@ -138,7 +170,7 @@ class MainActivity : ComponentActivity() {
                         )
                     )
                     // Refresh widget so it can swap silhouette → photo on correct
-                    if (revealed) {
+                    if (revealed && playingDayIndex == todayDayIndex) {
                         scope.launch { DailyWidget().updateAll(ctx) }
                     }
                 }
@@ -180,6 +212,17 @@ class MainActivity : ComponentActivity() {
                     persistState()
                 }
 
+                // Archive dialog
+                if (showArchive) {
+                    ArchiveDialog(
+                        onDismiss = { showArchive = false },
+                        onDaySelected = { selectedDayIndex ->
+                            showArchive = false
+                            playingDayIndex = selectedDayIndex
+                        },
+                    )
+                }
+
                 GameScreen(
                     player = player,
                     state = GameUiState(
@@ -194,11 +237,14 @@ class MainActivity : ComponentActivity() {
                     suggestions = suggestions,
                     stats = stats,
                     dayNumber = dayNumber,
+                    isArchiveDay = isArchiveDay,
                     onQueryChange = { query = it },
                     onPickSuggestion = ::pickSuggestion,
                     onReveal = ::reveal,
                     onSkipClue = ::skipClue,
                     onShare = ::shareResult,
+                    onOpenArchive = { showArchive = true },
+                    onBackToToday = { playingDayIndex = todayDayIndex },
                 )
             }
         }

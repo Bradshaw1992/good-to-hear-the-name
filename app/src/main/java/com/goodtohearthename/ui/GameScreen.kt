@@ -80,11 +80,14 @@ fun GameScreen(
     suggestions: List<NameEntry>,
     stats: Stats?,
     dayNumber: Int,
+    isArchiveDay: Boolean = false,
     onQueryChange: (TextFieldValue) -> Unit,
     onPickSuggestion: (NameEntry) -> Unit,
     onReveal: () -> Unit,
     onSkipClue: () -> Unit,
     onShare: () -> Unit,
+    onOpenArchive: () -> Unit = {},
+    onBackToToday: () -> Unit = {},
 ) {
     Scaffold(
         containerColor = AppColors.Bg,
@@ -96,7 +99,28 @@ fun GameScreen(
                 .imePadding(),
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
         ) {
-            item { Header(dayNumber = dayNumber) }
+            item { Header(dayNumber = dayNumber, onOpenArchive = onOpenArchive) }
+            if (isArchiveDay) {
+                item {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(AppColors.AccentSoft)
+                            .clickable { onBackToToday() }
+                            .padding(vertical = 6.dp),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Text(
+                            "PLAYING DAY #$dayNumber — tap to return to today",
+                            color = AppColors.Accent,
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = 0.08.sp,
+                        )
+                    }
+                }
+            }
             item { Spacer(Modifier.height(12.dp)) }
             item { HeroCard(silhouette = silhouette, photo = photo, revealed = state.revealed) }
             item { Spacer(Modifier.height(14.dp)) }
@@ -151,6 +175,27 @@ fun GameScreen(
                 }
                 item { Spacer(Modifier.height(12.dp)) }
                 item { ShareButton(onShare = onShare) }
+                if (isArchiveDay) {
+                    item { Spacer(Modifier.height(10.dp)) }
+                    item {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(14.dp))
+                                .background(AppColors.Text)
+                                .clickable { onBackToToday() }
+                                .padding(vertical = 16.dp),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Text(
+                                "↩  Back to today's player",
+                                color = Color.White,
+                                fontSize = 15.sp,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        }
+                    }
+                }
                 if (player.story.isNotEmpty()) {
                     item { Spacer(Modifier.height(12.dp)) }
                     item { BioStorySection(player) }
@@ -178,7 +223,7 @@ fun GameScreen(
 }
 
 @Composable
-private fun Header(dayNumber: Int) {
+private fun Header(dayNumber: Int, onOpenArchive: () -> Unit = {}) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -200,6 +245,15 @@ private fun Header(dayNumber: Int) {
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
             )
+            Spacer(Modifier.width(8.dp))
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(8.dp))
+                    .clickable { onOpenArchive() }
+                    .padding(4.dp),
+            ) {
+                Text("📅", fontSize = 18.sp)
+            }
         }
         Spacer(Modifier.height(8.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {

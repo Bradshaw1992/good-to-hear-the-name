@@ -12,6 +12,9 @@ data class GameState(
     val wasCorrect: Boolean = false,
 )
 
+/** Result for a completed day — used by the archive calendar. */
+data class DayResult(val won: Boolean, val attempt: Int)
+
 object GameStatePersistence {
     private const val PREFS = "gthn_game_state"
     private const val K_DAY = "day_index"
@@ -21,13 +24,30 @@ object GameStatePersistence {
     private const val K_REVEALED = "revealed"
     private const val K_CORRECT = "was_correct"
 
+    // Per-day prefs
+    private const val PREFS_PREFIX = "gthn_day_"
+
     private const val SEP = ""
     private const val ROW_SEP = ""
 
-    fun load(context: Context, todayDayIndex: Long): GameState? {
+    /** Load game state for a specific day. */
+    fun load(context: Context, dayIndex: Long): GameState? {
+        // Try per-day store first
+        val perDay = loadPerDay(context, dayIndex)
+        if (perDay != null) return perDay
+        // Fall back to legacy single-day store
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         val savedDay = prefs.getLong(K_DAY, -1L)
-        if (savedDay != todayDayIndex) return null
+        if (savedDay != dayIndex) return null
+        return loadFromPrefs(prefs)
+    }
+
+    private fun loadPerDay(context: Context, dayIndex: Long): GameState? {
+        val prefs = context.getSharedPreferences(PREFS_PREFIX + dayIndex, Context.MODE_PRIVATE)
+        return loadFromPrefs(prefs)
+    }
+
+    private fun loadFromPrefs(prefs: android.content.SharedPreferences): GameState? {
         val playerId = prefs.getString(K_PLAYER, null) ?: return null
         val guessesRaw = prefs.getString(K_GUESSES, "") ?: ""
         val guesses = if (guessesRaw.isEmpty()) emptyList() else guessesRaw.split(ROW_SEP).map {
@@ -43,18 +63,35 @@ object GameStatePersistence {
         )
     }
 
-    fun save(context: Context, todayDayIndex: Long, state: GameState) {
-        val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+    /** Save game state for a specific day (per-day store). */
+    fun save(context: Context, dayIndex: Long, state: GameState) {
         val guessesRaw = state.wrongGuesses.joinToString(ROW_SEP) {
             "${it.name}$SEP${it.flag}$SEP${it.years}"
         }
-        prefs.edit()
-            .putLong(K_DAY, todayDayIndex)
+        // Write to per-day store
+        context.getSharedPreferences(PREFS_PREFIX + dayIndex, Context.MODE_PRIVATE).edit()
             .putString(K_PLAYER, state.playerId)
             .putString(K_GUESSES, guessesRaw)
             .putInt(K_CLUE, state.currentClueIndex)
             .putBoolean(K_REVEALED, state.revealed)
             .putBoolean(K_CORRECT, state.wasCorrect)
             .apply()
+        // Also write to legacy store so the widget still works
+        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit()
+            .putLong(K_DAY, dayIndex)
+            .putString(K_PLAYER, state.playerId)
+            .putString(K_GUESSES, guessesRaw)
+            .putInt(K_CLUE, state.currentClueIndex)
+            .putBoolean(K_REVEALED, state.revealed)
+            .putBoolean(K_CORRECT, state.wasCorrect)
+            .apply()
+    }
+
+    /** Get result for a completed day (for the archive calendar). */
+    fun getDayResult(context: Context, dayIndex: Long): DayResult? {
+        val state = load(context, dayIndex) ?: return null
+        if (!state.revealed) return null
+        val attempt = state.wrongGuesses.size + (if (state.wasCorrect) 1 else 0)
+        return DayResult(won = state.wasCorrect, attempt = attempt)
     }
 }

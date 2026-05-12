@@ -398,6 +398,157 @@
   .dist-row .bar.today { background: var(--accent); color: #fff; box-shadow: 0 0 0 2px var(--accent-soft); }
   .dist-row .empty { color: var(--muted); font-size: 12px; }
 
+  /* Archive overlay */
+  .archive-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20,32,46,0.55);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    animation: overlay-in 200ms ease;
+  }
+  .archive-overlay.open { display: flex; }
+  @keyframes overlay-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+  .archive-modal {
+    background: var(--card);
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(20,32,46,0.18);
+    width: 92%;
+    max-width: 400px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 24px 20px;
+    animation: modal-in 280ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
+  }
+  @keyframes modal-in { 0% { opacity: 0; transform: translateY(16px) scale(0.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+
+  .archive-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .archive-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .archive-close {
+    width: 32px; height: 32px;
+    border: none;
+    background: var(--bg);
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-soft);
+    transition: background 150ms;
+  }
+  .archive-close:hover { background: var(--line); }
+
+  .archive-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .archive-nav button {
+    width: 36px; height: 36px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--text-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 150ms;
+  }
+  .archive-nav button:hover { background: var(--bg); }
+  .archive-nav button:disabled { opacity: 0.3; cursor: default; }
+  .archive-nav .month-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  .archive-grid .dow {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    padding: 4px 0 8px;
+  }
+  .archive-grid .day-cell {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 120ms;
+    gap: 2px;
+    position: relative;
+  }
+  .archive-grid .day-cell:hover { background: var(--bg); }
+  .archive-grid .day-cell.future { opacity: 0.25; cursor: default; pointer-events: none; }
+  .archive-grid .day-cell.before-epoch { opacity: 0.15; cursor: default; pointer-events: none; }
+  .archive-grid .day-cell.is-today { background: var(--accent-soft); border-radius: 10px; }
+  .archive-grid .day-cell .ball { font-size: 20px; line-height: 1; }
+  .archive-grid .day-cell .ball.won { filter: hue-rotate(0deg); }
+  .archive-grid .day-cell .ball.lost { filter: grayscale(0.4) sepia(1) hue-rotate(-40deg) saturate(3); }
+  .archive-grid .day-cell .ball.unplayed { filter: grayscale(1); opacity: 0.4; }
+  .archive-grid .day-cell .day-num {
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .archive-grid .empty-cell { }
+
+  .archive-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    color: var(--text-soft);
+    transition: background 150ms;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .archive-btn:hover { background: var(--bg); }
+
+  .archive-playing-banner {
+    text-align: center;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 6px 12px;
+    background: var(--accent-soft);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: none;
+    cursor: pointer;
+  }
+  .archive-playing-banner:hover { opacity: 0.85; }
+
 </style>
 </head>
 <body>
@@ -406,12 +557,29 @@
       <div class="brand">
         <span class="brand-icon">⚽</span>
         <h1>It's good to hear the name</h1>
+        <button class="archive-btn" id="archiveBtn" title="Play previous days">📅</button>
       </div>
+      <div id="archivePlayingBanner" class="archive-playing-banner"></div>
       <div class="sub-row">
         <span class="day-badge" id="dayBadge">DAY #1</span>
         <span class="date" id="dateLabel"></span>
       </div>
     </header>
+
+    <div class="archive-overlay" id="archiveOverlay">
+      <div class="archive-modal">
+        <div class="archive-header">
+          <h2>📅 Previous days</h2>
+          <button class="archive-close" id="archiveClose">✕</button>
+        </div>
+        <div class="archive-nav">
+          <button id="archivePrev">‹</button>
+          <span class="month-label" id="archiveMonthLabel"></span>
+          <button id="archiveNext">›</button>
+        </div>
+        <div class="archive-grid" id="archiveGrid"></div>
+      </div>
+    </div>
 
     <div class="layout">
       <div id="image" class="image-card loading">
@@ -464,60 +632,66 @@
   const APPROVED = ALL_PLAYERS.filter(p => p.approved);
   const BIOS = window.BIOS || {};
   const MAX_GUESSES = 5;
-
   const $ = (id) => document.getElementById(id);
-
-
-  // One player a day, picked by date — same player worldwide.
-  // Fixed epoch: 2026-05-05 = day 0 = PLAYERS[0]. Tomorrow = PLAYERS[1]. Etc.
-  // ?player=<id> is preserved for testing (any of the 32).
   const params = new URLSearchParams(location.search);
   const pinId = params.get("player");
   const pool = APPROVED.length > 0 ? APPROVED : ALL_PLAYERS;
   const EPOCH_DAY = Math.floor(Date.UTC(2026, 4, 5) / 86400000);
   const today = Math.floor(Date.now() / 86400000);
 
+  // ---- Per-day state persistence (localStorage) ----
+  const STATE_PREFIX = "gthn_day_";
+  function loadDayState(day) {
+    try { return JSON.parse(localStorage.getItem(STATE_PREFIX + day)); } catch { return null; }
+  }
+  function saveDayState(day, state) {
+    try { localStorage.setItem(STATE_PREFIX + day, JSON.stringify(state)); } catch {}
+  }
+  // Get result for archive calendar: returns {won,attempt} or null
+  function getDayResult(day) {
+    const s = loadDayState(day);
+    if (!s || !s.revealed) return null;
+    return { won: s.wasCorrect, attempt: s.wrongGuesses.length + (s.wasCorrect ? 1 : 0) };
+  }
+
   // ---- Stats (localStorage) ----
   const STATS_KEY = "gthn_stats_v1";
   const defaultStats = () => ({
-    played: 0, won: 0,
-    currentStreak: 0, maxStreak: 0,
-    distribution: [0, 0, 0, 0, 0, 0], // 1st, 2nd, 3rd, 4th, 5th, lost
-    lastWonDay: -999,
-    lastResultDay: -999,
-    lastResult: null, // {won, attempt}
+    played: 0, won: 0, currentStreak: 0, maxStreak: 0,
+    distribution: [0, 0, 0, 0, 0, 0],
+    lastWonDay: -999, lastResultDay: -999, lastResult: null,
   });
   function loadStats() {
     try { return Object.assign(defaultStats(), JSON.parse(localStorage.getItem(STATS_KEY)) || {}); }
     catch { return defaultStats(); }
   }
   function saveStats(s) { try { localStorage.setItem(STATS_KEY, JSON.stringify(s)); } catch {} }
-  function recordResult(won, attempt) {
+  function recordResult(day, won, attempt) {
     const s = loadStats();
-    if (s.lastResultDay === today) return s; // already recorded today
+    if (s.lastResultDay === day) return s;
     s.played++;
     if (won) {
       s.won++;
       s.distribution[Math.min(attempt, 5) - 1]++;
-      s.currentStreak = (today - s.lastWonDay === 1) ? (s.currentStreak + 1) : 1;
+      s.currentStreak = (day - s.lastWonDay === 1) ? (s.currentStreak + 1) : 1;
       if (s.currentStreak > s.maxStreak) s.maxStreak = s.currentStreak;
-      s.lastWonDay = today;
+      s.lastWonDay = day;
     } else {
       s.distribution[5]++;
       s.currentStreak = 0;
     }
-    s.lastResultDay = today;
+    s.lastResultDay = day;
     s.lastResult = { won, attempt };
     saveStats(s);
     return s;
   }
-  function renderStats(s) {
+  function renderStats(s, highlightDay) {
     const winPct = s.played ? Math.round((s.won / s.played) * 100) : 0;
     const max = Math.max(1, ...s.distribution);
     const labels = ["1", "2", "3", "4", "5", "X"];
-    const todayWon = s.lastResultDay === today && s.lastResult && s.lastResult.won;
-    const todayLost = s.lastResultDay === today && s.lastResult && !s.lastResult.won;
-    const todayBar = todayWon ? Math.min(s.lastResult.attempt, 5) - 1 : (todayLost ? 5 : -1);
+    const dayWon = s.lastResultDay === highlightDay && s.lastResult && s.lastResult.won;
+    const dayLost = s.lastResultDay === highlightDay && s.lastResult && !s.lastResult.won;
+    const todayBar = dayWon ? Math.min(s.lastResult.attempt, 5) - 1 : (dayLost ? 5 : -1);
     let dist = "";
     for (let i = 0; i < 6; i++) {
       const n = s.distribution[i];
@@ -525,77 +699,150 @@
       const cls = i === todayBar ? "bar today" : (n > 0 ? "bar filled" : "bar");
       dist += `<div class="dist-row"><span class="label">${labels[i]}</span><div class="${cls}" style="width:${w}px">${n > 0 ? n : ""}</div></div>`;
     }
-    return `
-      <div class="stats-card">
-        <div class="heading">Your stats</div>
-        <div class="stat-grid">
-          <div class="stat-cell"><div class="v">${s.played}</div><div class="l">Played</div></div>
-          <div class="stat-cell"><div class="v">${winPct}%</div><div class="l">Win</div></div>
-          <div class="stat-cell"><div class="v">${s.currentStreak}</div><div class="l">Streak</div></div>
-          <div class="stat-cell"><div class="v">${s.maxStreak}</div><div class="l">Best</div></div>
-        </div>
-        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:700">Guess distribution</div>
-        ${dist}
-      </div>`;
+    return `<div class="stats-card"><div class="heading">Your stats</div>
+      <div class="stat-grid">
+        <div class="stat-cell"><div class="v">${s.played}</div><div class="l">Played</div></div>
+        <div class="stat-cell"><div class="v">${winPct}%</div><div class="l">Win</div></div>
+        <div class="stat-cell"><div class="v">${s.currentStreak}</div><div class="l">Streak</div></div>
+        <div class="stat-cell"><div class="v">${s.maxStreak}</div><div class="l">Best</div></div>
+      </div>
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:700">Guess distribution</div>
+      ${dist}</div>`;
   }
-  const offset = today - EPOCH_DAY;
-  const todayIndex = ((offset % pool.length) + pool.length) % pool.length;
-  const player = (pinId && ALL_PLAYERS.find(p => p.id === pinId)) || pool[todayIndex];
 
-  // Lazily-loaded big database (~3.4MB). Until it loads, fall back to PLAYERS.
+  // ---- Autocomplete names (lazy-loaded) ----
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=29")
-    .then(r => r.json())
-    .then(big => {
-      const seen = new Set(allNames.map(e => e.n.toLowerCase()));
-      for (const e of big) {
-        const k = e.n.toLowerCase();
-        if (!seen.has(k)) { seen.add(k); allNames.push(e); }
-      }
-      // Alphabetise so our 27 named players don't always surface at the top.
-      // (Without this, prefix matches return our players first because they were added first.)
-      allNames.sort((a, b) => a.n.toLowerCase().localeCompare(b.n.toLowerCase()));
-      if (guessInput && guessInput.value) debouncedRenderSuggestions();
-    })
-    .catch(() => {});
+  fetch("names.json?v=29").then(r => r.json()).then(big => {
+    const seen = new Set(allNames.map(e => e.n.toLowerCase()));
+    for (const e of big) { const k = e.n.toLowerCase(); if (!seen.has(k)) { seen.add(k); allNames.push(e); } }
+    allNames.sort((a, b) => a.n.toLowerCase().localeCompare(b.n.toLowerCase()));
+  }).catch(() => {});
 
+  // ---- Game state (mutable — reset when switching days) ----
+  let playingDay = today;
+  let player = null;
+  let dayNumber = 0;
   let wrongGuesses = [];
   let revealed = false;
+  let wasCorrect = false;
   let currentClueIndex = 0;
+  let lastRevealAttempt = 0;
+  let lastRevealCorrect = false;
+  let debounceTimer = null;
+  let suggestionsReady = 0;
 
+  // DOM refs
   const silhouette = $("silhouette"), photo = $("photo"), imageCard = $("image");
   const clueList = $("clueList");
   const guessInput = $("guessInput"), suggestionsBox = $("suggestions");
   const guessesPanel = $("guessesPanel"), guessesList = $("guessesList");
-  const pips = $("pips"), revealLink = $("revealLink"), skipClueLink = $("skipClueLink"), result = $("result");
+  const pipsEl = $("pips"), revealLink = $("revealLink"), skipClueLink = $("skipClueLink"), result = $("result");
   const dateLabel = $("dateLabel"), bio = $("bio");
+  const archiveBanner = $("archivePlayingBanner");
 
-  silhouette.src = `silhouettes/${player.id}.jpg`;
-  photo.src = `images/${player.id}.jpg`;
-  // Set the image card's aspect ratio to match the silhouette's natural dimensions —
-  // means no zoom (object-fit: cover fits exactly) and no letterbox bars.
-  function onSilLoaded() {
-    if (silhouette.naturalWidth && silhouette.naturalHeight) {
-      imageCard.style.aspectRatio = `${silhouette.naturalWidth} / ${silhouette.naturalHeight}`;
-    }
-    imageCard.classList.remove("loading");
+  function playerForDay(day) {
+    const off = day - EPOCH_DAY;
+    const idx = ((off % pool.length) + pool.length) % pool.length;
+    return pool[idx];
   }
-  if (silhouette.complete && silhouette.naturalWidth > 0) onSilLoaded();
-  else silhouette.addEventListener("load", onSilLoaded, { once: true });
-  // Day badge: how many days since the epoch (1-indexed for display)
-  const dayNumber = (today - EPOCH_DAY) + 1;
-  document.getElementById("dayBadge").textContent = `DAY #${dayNumber}`;
-  dateLabel.textContent = new Date().toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long" });
-  renderClues();
-  renderPips();
-  updateSkipClueVisibility();
 
+  function dateFromDay(day) {
+    return new Date(day * 86400000);
+  }
+
+  // ---- Load a specific day's game ----
+  function loadGame(day) {
+    playingDay = day;
+    player = (pinId && ALL_PLAYERS.find(p => p.id === pinId)) || playerForDay(day);
+    dayNumber = (day - EPOCH_DAY) + 1;
+
+    // Restore saved state for this day
+    const saved = loadDayState(day);
+    if (saved && saved.playerId === player.id) {
+      wrongGuesses = saved.wrongGuesses || [];
+      currentClueIndex = saved.clueIndex || 0;
+      revealed = saved.revealed || false;
+      wasCorrect = saved.wasCorrect || false;
+    } else {
+      wrongGuesses = [];
+      currentClueIndex = 0;
+      revealed = false;
+      wasCorrect = false;
+    }
+
+    lastRevealAttempt = wrongGuesses.length + (wasCorrect ? 1 : 0);
+    lastRevealCorrect = wasCorrect;
+
+    // Update images
+    imageCard.classList.add("loading");
+    imageCard.classList.remove("revealed");
+    silhouette.src = `silhouettes/${player.id}.jpg`;
+    photo.src = `images/${player.id}.jpg`;
+    function onSilLoaded() {
+      if (silhouette.naturalWidth && silhouette.naturalHeight) {
+        imageCard.style.aspectRatio = `${silhouette.naturalWidth} / ${silhouette.naturalHeight}`;
+      }
+      imageCard.classList.remove("loading");
+    }
+    if (silhouette.complete && silhouette.naturalWidth > 0) onSilLoaded();
+    else silhouette.addEventListener("load", onSilLoaded, { once: true });
+
+    // Update header
+    $("dayBadge").textContent = `DAY #${dayNumber}`;
+    const d = dateFromDay(day);
+    dateLabel.textContent = d.toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long" });
+
+    // Archive banner
+    if (day !== today) {
+      archiveBanner.textContent = `PLAYING DAY #${dayNumber} — tap to return to today`;
+      archiveBanner.style.display = "block";
+    } else {
+      archiveBanner.style.display = "none";
+    }
+
+    // Reset UI
+    guessInput.value = "";
+    guessInput.disabled = false;
+    suggestionsBox.classList.remove("open");
+    suggestionsBox.innerHTML = "";
+    result.style.display = "none";
+    result.innerHTML = "";
+    bio.classList.remove("show");
+    bio.innerHTML = "";
+    const inputWrap = document.querySelector(".input-wrap");
+    if (inputWrap) inputWrap.style.display = "";
+    const metaRow = document.querySelector(".meta-row");
+    if (metaRow) metaRow.style.display = "";
+    guessesPanel.style.display = "none";
+    guessesList.innerHTML = "";
+
+    renderClues();
+    renderPips();
+    updateSkipClueVisibility();
+    renderGuesses();
+
+    // If already revealed, show the result
+    if (revealed) {
+      showRevealedState();
+    }
+  }
+
+  function persistCurrentState() {
+    saveDayState(playingDay, {
+      playerId: player.id,
+      wrongGuesses,
+      clueIndex: currentClueIndex,
+      revealed,
+      wasCorrect,
+    });
+  }
+
+  // ---- Rendering functions ----
   function renderClues() {
-    const upTo = currentClueIndex; // 0-based index of latest revealed
+    const upTo = currentClueIndex;
     let html = "";
     for (let i = 0; i <= upTo && i < player.clues.length; i++) {
       const isLatest = i === upTo;
-      // Only animate the LATEST clue (otherwise everything would re-animate every render)
       const cls = isLatest && upTo > 0 ? "clue-enter" : "";
       html += `<div class="${cls}" style="padding:10px 0${i > 0 ? ';border-top:1px solid var(--line)' : ''}">
         <div style="text-transform:uppercase;font-size:11px;letter-spacing:0.12em;color:var(--accent);margin-bottom:6px;font-weight:700">Clue ${i + 1}</div>
@@ -621,16 +868,11 @@
     for (let i = 0; i < MAX_GUESSES; i++) {
       html += `<span class="pip ${i < wrongGuesses.length ? "used" : ""}"></span>`;
     }
-    const remaining = MAX_GUESSES - wrongGuesses.length;
-    html += `<span class="pips-count">${remaining} left</span>`;
-    pips.innerHTML = html;
-    // Hide tip card once they start guessing
+    html += `<span class="pips-count">${MAX_GUESSES - wrongGuesses.length} left</span>`;
+    pipsEl.innerHTML = html;
     const tip = document.getElementById("tipCard");
     if (tip) tip.style.display = wrongGuesses.length > 0 || revealed ? "none" : "";
   }
-
-  let debounceTimer = null;
-  let suggestionsReady = 0;
 
   function renderSuggestions() {
     if (revealed) { suggestionsBox.classList.remove("open"); return; }
@@ -663,26 +905,6 @@
     debounceTimer = setTimeout(renderSuggestions, 200);
   }
 
-  function submitGuess(name) {
-    if (revealed) return;
-    if (isCorrect(name)) {
-      revealAnswer(true);
-    } else {
-      const entry = allNames.find(e => normalize(e.n) === normalize(name)) || {};
-      wrongGuesses.push({ name, flag: entry.f || "", years: entry.y || "" });
-      guessInput.value = "";
-      suggestionsBox.classList.remove("open");
-      renderGuesses();
-      renderPips();
-      if (currentClueIndex < player.clues.length - 1 && wrongGuesses.length < MAX_GUESSES) {
-        currentClueIndex++;
-        renderClues();
-        updateSkipClueVisibility();
-      }
-      if (wrongGuesses.length >= MAX_GUESSES) revealAnswer(false);
-    }
-  }
-
   function renderGuesses() {
     if (!wrongGuesses.length) { guessesPanel.style.display = "none"; return; }
     guessesPanel.style.display = "block";
@@ -706,46 +928,87 @@
     }
   }
 
+  function submitGuess(name) {
+    if (revealed) return;
+    if (isCorrect(name)) {
+      wasCorrect = true;
+      revealAnswer(true);
+    } else {
+      const entry = allNames.find(e => normalize(e.n) === normalize(name)) || {};
+      wrongGuesses.push({ name, flag: entry.f || "", years: entry.y || "" });
+      guessInput.value = "";
+      suggestionsBox.classList.remove("open");
+      renderGuesses();
+      renderPips();
+      if (currentClueIndex < player.clues.length - 1 && wrongGuesses.length < MAX_GUESSES) {
+        currentClueIndex++;
+        renderClues();
+        updateSkipClueVisibility();
+      }
+      if (wrongGuesses.length >= MAX_GUESSES) { wasCorrect = false; revealAnswer(false); }
+      persistCurrentState();
+    }
+  }
+
   function revealAnswer(correct) {
     revealed = true;
+    wasCorrect = correct;
+    persistCurrentState();
+
+    const attempt = wrongGuesses.length + (correct ? 1 : 0);
+    // Only record stats for today's game (not archive replays)
+    const stats = (playingDay === today) ? recordResult(playingDay, correct, attempt) : loadStats();
+
+    lastRevealAttempt = attempt;
+    lastRevealCorrect = correct;
+
+    showRevealedState(stats);
+  }
+
+  function showRevealedState(stats) {
+    if (!stats) stats = loadStats();
     imageCard.classList.add("revealed");
     guessInput.disabled = true;
     suggestionsBox.classList.remove("open");
     revealLink.style.display = "none";
     skipClueLink.style.display = "none";
-    const allClues = player.clues.map((c, i) => `<div style="padding:6px 0;border-bottom:1px solid var(--line);font-size:14px;color:var(--text-soft)"><span style="color:var(--accent);font-weight:700">${i + 1}.</span> ${c}</div>`).join("");
-    const cluesSeen = currentClueIndex + 1; // 0-based → count
-    const annotatedClues = player.clues.map((c, i) => {
-      const seen = i < cluesSeen;
-      const opacity = seen ? "1" : "1";
-      const tag = seen ? "" : `<span style="font-size:10px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:2px 6px;border-radius:6px;margin-left:6px;letter-spacing:0.05em">MISSED</span>`;
-      return `<div style="padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--text-soft);line-height:1.5;opacity:${opacity}">
-        <span style="color:var(--accent);font-weight:700;margin-right:6px">${i + 1}.</span>${c}${tag}
-      </div>`;
-    }).join("");
-    const attempt = wrongGuesses.length + (correct ? 1 : 0);
-    const ordinal = (n) => {
-      if (n === 1) return "1st"; if (n === 2) return "2nd"; if (n === 3) return "3rd";
-      return `${n}th`;
-    };
-    const stats = recordResult(correct, attempt);
-    lastRevealAttempt = attempt;
-    lastRevealCorrect = correct;
-    afterReveal(stats);
-    result.style.display = "block";
-    // Hide the now-irrelevant play UI
     const inputWrap = document.querySelector(".input-wrap");
     if (inputWrap) inputWrap.style.display = "none";
     const metaRow = document.querySelector(".meta-row");
     if (metaRow) metaRow.style.display = "none";
     const tip = document.getElementById("tipCard");
     if (tip) tip.style.display = "none";
-    renderBio();
-    if (correct) addSparkles();
-  }
 
-  let lastRevealAttempt = 0;
-  let lastRevealCorrect = false;
+    const scoreLine = buildScoreLine();
+    const annotatedClues = buildAnnotatedClues();
+    const bannerClass = lastRevealCorrect && lastRevealAttempt === 1 ? "good first-try" : (lastRevealCorrect ? "good" : "bad");
+    const bannerLine = lastRevealCorrect
+      ? `<div>✓ <span class="name-line">${player.name}</span></div>`
+      : `<div>✕ It was <span class="name-line">${player.name}</span></div>`;
+
+    const backTodayBtn = playingDay !== today
+      ? `<button class="share-btn" id="backTodayBtn" style="background:var(--text);margin-top:10px">↩ Back to today's player</button>`
+      : "";
+
+    result.innerHTML = `
+      <div class="reveal-banner ${bannerClass}" style="position:relative">
+        ${bannerLine}
+        ${scoreLine}
+        <div class="sparkles" id="sparkles"></div>
+      </div>
+      <div class="question" style="margin-top:14px">
+        <div class="label">All 5 clues</div>
+        ${annotatedClues}
+      </div>
+      ${playingDay === today ? renderStats(stats, playingDay) : ""}
+      <button class="share-btn" id="shareBtn">📤 Share with mates</button>
+      ${backTodayBtn}
+      <div style="text-align:center;margin-top:18px;padding:12px;color:var(--muted);font-size:13px">${playingDay === today ? "Back tomorrow for a new face." : `Day #${dayNumber} from the archive.`}</div>
+    `;
+    result.style.display = "block";
+    renderBio();
+    if (lastRevealCorrect) addSparkles();
+  }
 
   function buildScoreLine() {
     const ord = (n) => n === 1 ? "1st" : n === 2 ? "2nd" : n === 3 ? "3rd" : `${n}th`;
@@ -760,32 +1023,6 @@
       const tag = i < seen ? "" : `<span style="font-size:10px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:2px 6px;border-radius:6px;margin-left:6px;letter-spacing:0.05em">MISSED</span>`;
       return `<div style="padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--text-soft);line-height:1.5"><span style="color:var(--accent);font-weight:700;margin-right:6px">${i + 1}.</span>${c}${tag}</div>`;
     }).join("");
-  }
-
-  function afterReveal(stats) {
-    if (!revealed) return;
-    if (!stats) stats = loadStats();
-    const scoreLine = buildScoreLine();
-    const annotatedClues = buildAnnotatedClues();
-    const bannerClass = lastRevealCorrect && lastRevealAttempt === 1 ? "good first-try" : (lastRevealCorrect ? "good" : "bad");
-    const bannerLine = lastRevealCorrect
-      ? `<div>✓ <span class="name-line">${player.name}</span></div>`
-      : `<div>✕ It was <span class="name-line">${player.name}</span></div>`;
-    result.innerHTML = `
-      <div class="reveal-banner ${bannerClass}" style="position:relative">
-        ${bannerLine}
-        ${scoreLine}
-        <div class="sparkles" id="sparkles"></div>
-      </div>
-      <div class="question" style="margin-top:14px">
-        <div class="label">All 5 clues</div>
-        ${annotatedClues}
-      </div>
-      ${renderStats(stats)}
-      <button class="share-btn" id="shareBtn">📤 Share with mates</button>
-      <div style="text-align:center;margin-top:18px;padding:12px;color:var(--muted);font-size:13px">Back tomorrow for a new face.</div>
-    `;
-    result.style.display = "block";
   }
 
   function addSparkles() {
@@ -807,33 +1044,6 @@
     }
   }
 
-  // ---- Share (Wordle-style: copies a spoiler-free result to the clipboard) ----
-  function buildShareText() {
-    const guesses = lastRevealCorrect
-      ? `${lastRevealAttempt}/${MAX_GUESSES}`
-      : `✕/${MAX_GUESSES}`;
-    const grid = lastRevealCorrect
-      ? "❌".repeat(lastRevealAttempt - 1) + "⚽"
-      : "❌".repeat(MAX_GUESSES);
-    return `⚽ It's good to hear the name — Day #${dayNumber}\n${guesses}  ${grid}\nbradshaw1992.github.io/good-to-hear-the-name`;
-  }
-  document.addEventListener("click", async (e) => {
-    const btn = e.target && e.target.closest && e.target.closest("#shareBtn");
-    if (btn) {
-      const text = buildShareText();
-      try {
-        if (navigator.share) {
-          await navigator.share({ text });
-        } else {
-          await navigator.clipboard.writeText(text);
-          const original = btn.innerHTML;
-          btn.innerHTML = "✓ Copied! Paste it in the chat";
-          setTimeout(() => { btn.innerHTML = original; }, 2200);
-        }
-      } catch {}
-    }
-  });
-
   function renderBio() {
     const data = BIOS[player.id];
     if (!data) {
@@ -843,44 +1053,135 @@
       const honoursList = (data.honours || []).map(h => `<li>${h}</li>`).join("");
       const factsList = (data.didYouKnow || []).map(f => `<li>${f}</li>`).join("");
       bio.innerHTML = `
-        <div class="row">
-          <div class="name-line">${player.name}</div>
-          <div class="sub">${player.flag} ${data.position || ""} · ${data.yearsActive || player.years || ""}</div>
-        </div>
+        <div class="row"><div class="name-line">${player.name}</div>
+          <div class="sub">${player.flag} ${data.position || ""} · ${data.yearsActive || player.years || ""}</div></div>
         ${data.story ? `<div class="row"><h3>The story</h3><p>${data.story}</p></div>` : ""}
         ${chips ? `<div class="row"><h3>Notable clubs</h3><div class="chips">${chips}</div></div>` : ""}
         ${honoursList ? `<div class="row"><h3>Honours</h3><ul>${honoursList}</ul></div>` : ""}
         ${data.numbers ? `<div class="row"><h3>By the numbers</h3><p>${data.numbers}</p></div>` : ""}
-        ${factsList ? `<div class="row"><h3>Did you know?</h3><ul>${factsList}</ul></div>` : ""}
-      `;
+        ${factsList ? `<div class="row"><h3>Did you know?</h3><ul>${factsList}</ul></div>` : ""}`;
     }
     bio.classList.add("show");
   }
 
-  // ?demo=reveal — auto-reveals (used for store screenshots)
-  // ?demo=correct — auto-wins on first try (used for store screenshots)
-  // ?demo=mid — fakes 2 wrong guesses (3 clues visible)
-  const demoMode = params.get("demo");
-  if (demoMode) {
-    // Disable CSS transitions in demo mode so screenshots capture final state
-    const demoCss = document.createElement("style");
-    demoCss.textContent = "*, *::before, *::after { animation-duration: 0ms !important; transition-duration: 0ms !important; }";
-    document.head.appendChild(demoCss);
+  // ---- Share ----
+  function buildShareText() {
+    const guesses = lastRevealCorrect ? `${lastRevealAttempt}/${MAX_GUESSES}` : `✕/${MAX_GUESSES}`;
+    const grid = lastRevealCorrect ? "❌".repeat(lastRevealAttempt - 1) + "⚽" : "❌".repeat(MAX_GUESSES);
+    return `⚽ It's good to hear the name — Day #${dayNumber}\n${guesses}  ${grid}\nbradshaw1992.github.io/good-to-hear-the-name`;
   }
-  if (demoMode === "reveal") setTimeout(() => revealAnswer(false), 100);
-  if (demoMode === "correct") setTimeout(() => submitGuess(player.name), 100);
-  if (demoMode === "mid") setTimeout(() => {
-    submitGuess("Wayne Rooney"); submitGuess("Steven Gerrard");
-  }, 100);
+
+  // ---- Archive calendar ----
+  let archiveMonth = new Date(today * 86400000).getMonth();
+  let archiveYear = new Date(today * 86400000).getFullYear();
+
+  function openArchive() {
+    archiveMonth = new Date(today * 86400000).getMonth();
+    archiveYear = new Date(today * 86400000).getFullYear();
+    renderArchive();
+    $("archiveOverlay").classList.add("open");
+  }
+  function closeArchive() { $("archiveOverlay").classList.remove("open"); }
+
+  function renderArchive() {
+    $("archiveMonthLabel").textContent = new Date(archiveYear, archiveMonth).toLocaleDateString(undefined, { month: "long", year: "numeric" });
+
+    // Disable next if we're at current month
+    const nowDate = new Date(today * 86400000);
+    $("archiveNext").disabled = (archiveYear === nowDate.getFullYear() && archiveMonth === nowDate.getMonth());
+
+    // Disable prev if we're at epoch month (May 2026)
+    $("archivePrev").disabled = (archiveYear === 2026 && archiveMonth <= 4);
+
+    const grid = $("archiveGrid");
+    let html = "";
+    const dows = ["S", "M", "T", "W", "T", "F", "S"];
+    dows.forEach(d => { html += `<div class="dow">${d}</div>`; });
+
+    const firstDay = new Date(archiveYear, archiveMonth, 1).getDay(); // 0=Sun
+    const daysInMonth = new Date(archiveYear, archiveMonth + 1, 0).getDate();
+
+    for (let i = 0; i < firstDay; i++) html += `<div class="empty-cell"></div>`;
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateObj = new Date(Date.UTC(archiveYear, archiveMonth, d));
+      const dayVal = Math.floor(dateObj.getTime() / 86400000);
+      const dayNum = dayVal - EPOCH_DAY + 1;
+      const isFuture = dayVal > today;
+      const isBeforeEpoch = dayVal < EPOCH_DAY;
+      const isToday = dayVal === today;
+      const result = getDayResult(dayVal);
+
+      let cls = "day-cell";
+      if (isFuture) cls += " future";
+      if (isBeforeEpoch) cls += " before-epoch";
+      if (isToday) cls += " is-today";
+
+      let ballCls = "ball";
+      if (isBeforeEpoch || isFuture) {
+        ballCls += " unplayed";
+      } else if (result) {
+        ballCls += result.won ? " won" : " lost";
+      } else {
+        ballCls += " unplayed";
+      }
+
+      html += `<div class="${cls}" data-day="${dayVal}">
+        <span class="${ballCls}">⚽</span>
+        <span class="day-num">${d}</span>
+      </div>`;
+    }
+    grid.innerHTML = html;
+  }
+
+  // ---- Event listeners ----
+  $("archiveBtn").addEventListener("click", openArchive);
+  $("archiveClose").addEventListener("click", closeArchive);
+  $("archiveOverlay").addEventListener("click", (e) => { if (e.target === $("archiveOverlay")) closeArchive(); });
+  $("archivePrev").addEventListener("click", () => {
+    archiveMonth--;
+    if (archiveMonth < 0) { archiveMonth = 11; archiveYear--; }
+    renderArchive();
+  });
+  $("archiveNext").addEventListener("click", () => {
+    archiveMonth++;
+    if (archiveMonth > 11) { archiveMonth = 0; archiveYear++; }
+    renderArchive();
+  });
+  $("archiveGrid").addEventListener("click", (e) => {
+    const cell = e.target.closest(".day-cell");
+    if (!cell || cell.classList.contains("future") || cell.classList.contains("before-epoch")) return;
+    const day = parseInt(cell.dataset.day);
+    closeArchive();
+    loadGame(day);
+  });
+
+  archiveBanner.addEventListener("click", () => loadGame(today));
+
+  document.addEventListener("click", async (e) => {
+    const shareBtn = e.target && e.target.closest && e.target.closest("#shareBtn");
+    if (shareBtn) {
+      const text = buildShareText();
+      try {
+        if (navigator.share) { await navigator.share({ text }); }
+        else {
+          await navigator.clipboard.writeText(text);
+          const original = shareBtn.innerHTML;
+          shareBtn.innerHTML = "✓ Copied! Paste it in the chat";
+          setTimeout(() => { shareBtn.innerHTML = original; }, 2200);
+        }
+      } catch {}
+    }
+    const backBtn = e.target && e.target.closest && e.target.closest("#backTodayBtn");
+    if (backBtn) loadGame(today);
+  });
 
   guessInput.addEventListener("input", debouncedRenderSuggestions);
   guessInput.addEventListener("keydown", e => {
     if (e.key === "Enter") {
       const first = suggestionsBox.querySelector(".suggestion");
       if (first) submitGuess(first.dataset.name);
-    } else if (e.key === "Escape") {
-      suggestionsBox.classList.remove("open");
-    }
+    } else if (e.key === "Escape") suggestionsBox.classList.remove("open");
   });
   suggestionsBox.addEventListener("click", e => {
     if (Date.now() < suggestionsReady) return;
@@ -893,10 +1194,24 @@
       currentClueIndex++;
       renderClues();
       updateSkipClueVisibility();
-      saveState();
+      persistCurrentState();
     }
   });
   revealLink.addEventListener("click", () => revealAnswer(false));
+
+  // ---- Demo mode ----
+  const demoMode = params.get("demo");
+  if (demoMode) {
+    const demoCss = document.createElement("style");
+    demoCss.textContent = "*, *::before, *::after { animation-duration: 0ms !important; transition-duration: 0ms !important; }";
+    document.head.appendChild(demoCss);
+  }
+
+  // ---- Boot ----
+  loadGame(today);
+  if (demoMode === "reveal") setTimeout(() => revealAnswer(false), 100);
+  if (demoMode === "correct") setTimeout(() => submitGuess(player.name), 100);
+  if (demoMode === "mid") setTimeout(() => { submitGuess("Wayne Rooney"); submitGuess("Steven Gerrard"); }, 100);
 })();
 </script>
 </body>

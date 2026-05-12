@@ -47,6 +47,11 @@ object ContentRepository {
 
     /** Today's player by date — same player worldwide on a given day. */
     fun forToday(context: Context, dayMillis: Long = System.currentTimeMillis()): Footballer {
+        return forDay(context, dayMillis)
+    }
+
+    /** Player for a specific day (millis). Used by archive to load any past day. */
+    fun forDay(context: Context, dayMillis: Long): Footballer {
         val players = all(context)
         PINNED_ID?.let { id -> players.firstOrNull { it.id == id }?.let { return it } }
         val day = dayMillis / 86_400_000L
