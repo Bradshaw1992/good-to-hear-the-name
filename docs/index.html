@@ -520,22 +520,17 @@
   .archive-grid .empty-cell { }
 
   .archive-btn {
-    background: var(--accent-soft);
+    background: none;
     border: none;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    padding: 6px 14px;
-    border-radius: 20px;
+    padding: 0;
     color: var(--accent);
-    transition: background 150ms, transform 100ms;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    letter-spacing: 0.02em;
-    margin: 8px auto 0;
+    transition: opacity 150ms;
+    letter-spacing: 0.5px;
   }
-  .archive-btn:hover { background: var(--bg); transform: scale(1.03); }
+  .archive-btn:hover { opacity: 0.7; }
 
   .archive-playing-banner {
     text-align: center;
@@ -565,8 +560,9 @@
       <div class="sub-row">
         <span class="day-badge" id="dayBadge">DAY #1</span>
         <span class="date" id="dateLabel"></span>
+        <span style="color:var(--muted);font-size:11px;margin:0 4px;">·</span>
+        <button class="archive-btn" id="archiveBtn" title="Play previous days">📅 Previous days</button>
       </div>
-      <button class="archive-btn" id="archiveBtn" title="Play previous days">📅 Previous days</button>
     </header>
 
     <div class="archive-overlay" id="archiveOverlay">

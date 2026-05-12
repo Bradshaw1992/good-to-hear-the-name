@@ -269,21 +269,18 @@ private fun Header(dayNumber: Int, onOpenArchive: () -> Unit = {}) {
                     .uppercase()
             }
             Text(today, color = AppColors.Muted, fontSize = 11.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.5.sp)
-        }
-        Spacer(Modifier.height(8.dp))
-        Box(
-            modifier = Modifier
-                .clip(RoundedCornerShape(20.dp))
-                .background(AppColors.AccentSoft)
-                .clickable { onOpenArchive() }
-                .padding(horizontal = 14.dp, vertical = 6.dp),
-        ) {
+            Text(
+                " · ",
+                color = AppColors.Muted,
+                fontSize = 11.sp,
+            )
             Text(
                 "📅 Previous days",
                 color = AppColors.Accent,
-                fontSize = 12.sp,
+                fontSize = 11.sp,
                 fontWeight = FontWeight.SemiBold,
-                letterSpacing = 0.3.sp,
+                letterSpacing = 0.5.sp,
+                modifier = Modifier.clickable { onOpenArchive() },
             )
         }
         Spacer(Modifier.height(10.dp))
