@@ -11,3 +11,8 @@ Player Pictures/
 silhouette_test/
 screenshots/
 store_assets/*.aab
+app/release/
+.kotlin/
+App Cover Pictures/
+tester_invites/
+ios/
