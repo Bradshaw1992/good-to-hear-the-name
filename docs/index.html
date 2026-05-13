@@ -160,6 +160,21 @@
   input[type="text"]:focus { border-color: var(--accent); }
   input[type="text"]::placeholder { color: var(--muted); }
   input[type="text"]:disabled { opacity: 0.5; }
+  .guess-row { display: flex; gap: 8px; align-items: stretch; }
+  .guess-row input { flex: 1; }
+  .guess-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 0 18px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 150ms;
+    flex-shrink: 0;
+  }
+  .guess-btn:hover { opacity: 0.85; }
 
   .suggestions {
     margin-bottom: 8px;
@@ -593,7 +608,10 @@
 
         <div class="input-wrap">
           <div id="suggestions" class="suggestions"></div>
-          <input id="guessInput" type="text" placeholder="Type a footballer's name…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+          <div class="guess-row">
+            <input id="guessInput" type="text" placeholder="Type a footballer's name…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+            <button id="guessBtn" class="guess-btn" style="display:none" title="Submit guess">→</button>
+          </div>
         </div>
 
         <div class="meta-row">
@@ -894,14 +912,14 @@
     ).join("");
     if (suggestionsBox.innerHTML !== newHtml) {
       suggestionsBox.innerHTML = newHtml;
-      suggestionsReady = Date.now() + 200;
+      suggestionsReady = Date.now() + 400;
     }
     suggestionsBox.classList.add("open");
   }
 
   function debouncedRenderSuggestions() {
     clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(renderSuggestions, 200);
+    debounceTimer = setTimeout(renderSuggestions, 350);
   }
 
   function renderGuesses() {
@@ -937,6 +955,7 @@
       wrongGuesses.push({ name, flag: entry.f || "", years: entry.y || "" });
       guessInput.value = "";
       suggestionsBox.classList.remove("open");
+      updateGuessBtn();
       renderGuesses();
       renderPips();
       if (currentClueIndex < player.clues.length - 1 && wrongGuesses.length < MAX_GUESSES) {
@@ -1175,17 +1194,34 @@
     if (backBtn) loadGame(today);
   });
 
-  guessInput.addEventListener("input", debouncedRenderSuggestions);
+  const guessBtn = $("guessBtn");
+  function updateGuessBtn() {
+    guessBtn.style.display = guessInput.value.trim() ? "block" : "none";
+  }
+  guessInput.addEventListener("input", () => {
+    updateGuessBtn();
+    debouncedRenderSuggestions();
+  });
   guessInput.addEventListener("keydown", e => {
     if (e.key === "Enter") {
-      const first = suggestionsBox.querySelector(".suggestion");
-      if (first) submitGuess(first.dataset.name);
+      const val = guessInput.value.trim();
+      if (val) submitGuess(val);
     } else if (e.key === "Escape") suggestionsBox.classList.remove("open");
+  });
+  guessBtn.addEventListener("click", () => {
+    const val = guessInput.value.trim();
+    if (val) submitGuess(val);
   });
   suggestionsBox.addEventListener("click", e => {
     if (Date.now() < suggestionsReady) return;
     const el = e.target.closest(".suggestion");
-    if (el) submitGuess(el.dataset.name);
+    if (el) {
+      guessInput.value = el.dataset.name;
+      suggestionsBox.classList.remove("open");
+      suggestionsBox.innerHTML = "";
+      updateGuessBtn();
+      guessInput.focus();
+    }
   });
   skipClueLink.addEventListener("click", () => {
     if (revealed) return;
