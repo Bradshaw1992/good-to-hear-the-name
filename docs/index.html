@@ -191,7 +191,7 @@
     transition: max-height 200ms ease, opacity 150ms ease, border-width 0ms 200ms;
   }
   .suggestions.open {
-    max-height: 320px;
+    max-height: 280px;
     opacity: 1;
     border-width: 1px;
     transition: max-height 200ms ease, opacity 150ms ease, border-width 0ms;
@@ -900,9 +900,9 @@
       const norm = normalize(e.n);
       if (norm.startsWith(q)) prefix.push(e);
       else if (norm.includes(q)) substring.push(e);
-      if (prefix.length >= 8) break;
+      if (prefix.length >= 15) break;
     }
-    const matches = [...prefix, ...substring].slice(0, 8);
+    const matches = [...prefix, ...substring].slice(0, 15);
     if (matches.length === 0) { suggestionsBox.classList.remove("open"); return; }
     const newHtml = matches.map(e =>
       `<div class="suggestion" data-name="${e.n.replace(/"/g, '&quot;')}">
