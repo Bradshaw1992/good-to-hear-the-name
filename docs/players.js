@@ -1,4 +1,4 @@
-// 43 players. All approved (in the daily rotation).
+// 52 players. All approved (in the daily rotation).
 // Clue 1 is always template (DOB + caps + goals). Clues 2-5 decrease in difficulty.
 
 window.PLAYERS = [
@@ -212,7 +212,7 @@ window.PLAYERS = [
     ],
     "clues": [
       "I was born on the 24th of May 1990. I have 4 goals from 30 appearances for my country — but not my country of birth.",
-      "I joined a north London club's academy as a teenager but never made a league appearance for their first team.",
+      "I joined a north London club's academy as a teenager but managed just two league appearances for their first team.",
       "A manager once said the only way he could get any weight off me was when I had tonsillitis.",
       "I won the Championship, finishing as the league's Player of the Season.",
       "I won the league title in Portugal with one of the country's biggest clubs."
@@ -238,6 +238,27 @@ window.PLAYERS = [
     ]
   },
   {
+    "id": "papiss_cisse",
+    "name": "Papiss Cissé",
+    "country": "Senegal",
+    "flag": "🇸🇳",
+    "years": "2005–2023",
+    "approved": true,
+    "aliases": [
+      "papiss cisse",
+      "papiss cissé",
+      "cisse",
+      "cissé"
+    ],
+    "clues": [
+      "I was born on the 3rd of June 1985. I scored 16 goals in approximately 30 appearances for my country.",
+      "I scored 13 goals in my first 12 Premier League appearances after joining in January.",
+      "I wore the number 9 shirt at my English club — previously worn by the club's all-time record scorer.",
+      "In the Bundesliga, I scored 22 goals in a single season — a record for an African player at the time.",
+      "I scored a goal from 37 yards with the outside of my foot against Chelsea that won BBC Goal of the Season."
+    ]
+  },
+  {
     "id": "fernandinho",
     "name": "Fernandinho",
     "country": "Brazil",
@@ -254,6 +275,104 @@ window.PLAYERS = [
       "I've played as a defensive midfielder, central midfielder, and centre-back at the highest level.",
       "I spent eight years in the Ukrainian Premier League before moving to England.",
       "I won five Premier League titles with the same club."
+    ]
+  },
+  {
+    "id": "brad_friedel",
+    "name": "Brad Friedel",
+    "country": "United States",
+    "flag": "🇺🇸",
+    "years": "1992–2015",
+    "approved": true,
+    "aliases": [
+      "brad friedel",
+      "friedel"
+    ],
+    "clues": [
+      "I was born on the 18th of May 1971. I played 82 times for my country, scoring 0 goals.",
+      "I signed for a club on Merseyside but struggled to break into the first team, making only a handful of appearances.",
+      "I once scored from a corner kick in the 90th minute — one of only a handful of goalkeepers to score in the Premier League.",
+      "A manager who first worked with me in Turkey later signed me for an English club, where I became first choice for nearly a decade.",
+      "I hold the all-time record for the most consecutive Premier League appearances — over 300 in a row."
+    ]
+  },
+  {
+    "id": "shevchenko",
+    "name": "Andriy Shevchenko",
+    "country": "Ukraine",
+    "flag": "🇺🇦",
+    "years": "1994–2012",
+    "approved": true,
+    "aliases": [
+      "andriy shevchenko",
+      "shevchenko",
+      "andriy sheva",
+      "sheva"
+    ],
+    "clues": [
+      "I was born on the 29th of September 1976. I played 111 times for my country, scoring 48 goals.",
+      "I won the Ballon d’Or after years of prolific goalscoring at the highest level.",
+      "I won five league titles and one Champions League during my career in Italian football.",
+      "I won the 2003 Champions League final, scoring the winning penalty in a shootout against Juventus at Old Trafford.",
+      "I moved to England for big money but the transfer proved unsuccessful — I never came close to matching my prolific form from Italy."
+    ]
+  },
+  {
+    "id": "luke_shaw",
+    "name": "Luke Shaw",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "2012–present",
+    "approved": true,
+    "aliases": [
+      "luke shaw",
+      "shaw"
+    ],
+    "clues": [
+      "I was born on the 12th of July 1995. I have over 30 caps for my country, scoring 1 goal.",
+      "I moved for a fee of around £30 million as a teenager, making me the most expensive teenager in world football at the time.",
+      "I had a well-documented difficult relationship with José Mourinho, who publicly criticised my fitness and commitment multiple times.",
+      "I came through the academy at Southampton before moving to one of the biggest clubs in England at the age of 18.",
+      "I started for England throughout Euro 2020 (played in 2021), including the final at Wembley where my country lost on penalties to Italy."
+    ]
+  },
+  {
+    "id": "antonio_cassano",
+    "name": "Antonio Cassano",
+    "country": "Italy",
+    "flag": "🇮🇹",
+    "years": "1999–2017",
+    "approved": true,
+    "aliases": [
+      "antonio cassano",
+      "cassano"
+    ],
+    "clues": [
+      "I was born on the 12th of July 1982. I played 39 times for my country, scoring 10 goals.",
+      "I’m one of very few players to have played for both Milan clubs — starting at one and crossing the city to the other.",
+      "I was as famous for my waistline as my talent — I once reportedly gained 14 kilos between seasons. Managers struggled to control me, and my fallouts with coaches became as legendary as my ability on the ball.",
+      "I won La Liga with Real Madrid and the Serie A title with AC Milan.",
+      "My former coach coined a word after me — “cassanata” — which Italian journalists still use today as a byword for any behaviour incompatible with team spirit."
+    ]
+  },
+  {
+    "id": "trezeguet",
+    "name": "David Trezeguet",
+    "country": "France",
+    "flag": "🇫🇷",
+    "years": "1993–2015",
+    "approved": true,
+    "aliases": [
+      "david trezeguet",
+      "trezeguet",
+      "trezegol"
+    ],
+    "clues": [
+      "I was born on the 15th of October 1977. I played 71 times for my country, scoring 34 goals.",
+      "I formed a striking partnership with Thierry Henry at my first European club, winning two league titles.",
+      "I won both a World Cup and a European Championship with my country within two years.",
+      "I scored the golden goal in extra time of a major international final — beating Italy with a volley into the roof of the net.",
+      "When my club was relegated after a match-fixing scandal, I was one of the few stars who stayed to help them return."
     ]
   },
   {
@@ -275,22 +394,100 @@ window.PLAYERS = [
     ]
   },
   {
-    "id": "brad_friedel",
-    "name": "Brad Friedel",
-    "country": "United States",
-    "flag": "🇺🇸",
-    "years": "1992–2015",
+    "id": "jan_koller",
+    "name": "Jan Koller",
+    "country": "Czech Republic",
+    "flag": "🇨🇿",
+    "years": "1993–2011",
     "approved": true,
     "aliases": [
-      "brad friedel",
-      "friedel"
+      "jan koller",
+      "koller",
+      "dino"
     ],
     "clues": [
-      "I was born on the 18th of May 1971. I played 82 times for my country, scoring 0 goals.",
-      "I signed for a club on Merseyside but struggled to break into the first team, making only a handful of appearances.",
-      "I once scored from a corner kick in the 90th minute — one of only a handful of goalkeepers to score in the Premier League.",
-      "A manager who first worked with me in Turkey later signed me for an English club, where I became first choice for nearly a decade.",
-      "I hold the all-time record for the most consecutive Premier League appearances — over 300 in a row."
+      "I was born on the 30th of March 1973. I played 91 times for my country, scoring 55 goals.",
+      "I started my career as a goalkeeper before being converted to a striker.",
+      "I won the Bundesliga in my first season at a German club.",
+      "At 2.02 metres tall, I was one of the tallest outfield players in top-level European football.",
+      "I scored in the 2002 UEFA Cup final for Borussia Dortmund, but we lost 3–2."
+    ]
+  },
+  {
+    "id": "emile_heskey",
+    "name": "Emile Heskey",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "1995–2014",
+    "approved": true,
+    "aliases": [
+      "emile heskey",
+      "heskey"
+    ],
+    "clues": [
+      "I was born on the 11th of January 1978. I played 62 times for my country, scoring 7 goals.",
+      "Scored on my England debut against Hungary in April 1999.",
+      "Moved to Liverpool for £11 million in 2000, winning a cup treble in my first season.",
+      "Had spells at Birmingham City, Wigan Athletic and Aston Villa after leaving Anfield.",
+      "Known for my physical strength and unselfish hold-up play, I was a favourite strike partner for Michael Owen."
+    ]
+  },
+  {
+    "id": "podolski",
+    "name": "Lukas Podolski",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "years": "2003–2020",
+    "approved": true,
+    "aliases": [
+      "lukas podolski",
+      "podolski",
+      "poldi"
+    ],
+    "clues": [
+      "I was born on the 4th of June 1985. I played 130 times for my country, scoring 49 goals — the third-highest tally in their history.",
+      "I won the Best Young Player award at the 2006 World Cup, hosted in my adopted home country.",
+      "I spent three years at Bayern Munich but was never a regular starter, often playing second fiddle to the likes of Ribéry and Robben.",
+      "I spent three seasons in the Premier League, known for my powerful left-footed shooting but less so for my work rate off the ball.",
+      "I scored a thunderbolt against Montpellier on my Arsenal home debut and later netted a famous winner against Bayern Munich in the Champions League at the Emirates."
+    ]
+  },
+  {
+    "id": "chris_sutton",
+    "name": "Chris Sutton",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "1991–2007",
+    "approved": true,
+    "aliases": [
+      "chris sutton",
+      "sutton"
+    ],
+    "clues": [
+      "I was born on the 10th of March 1973. I played once for my country, scoring 0 goals.",
+      "Signed for a club record £5 million fee, making me one of the most expensive British players at the time.",
+      "Scored in a famous 3–2 Champions League win over Juventus at Celtic Park in 2001.",
+      "Won the Premier League title in 1994–95 as part of the famous SAS strike partnership.",
+      "Now a well-known football pundit, regularly appearing on BBC Radio 5 Live and Match of the Day."
+    ]
+  },
+  {
+    "id": "nigel_winterburn",
+    "name": "Nigel Winterburn",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "1983–2003",
+    "approved": true,
+    "aliases": [
+      "nigel winterburn",
+      "winterburn"
+    ],
+    "clues": [
+      "I was born on the 11th of December 1963. I played 3 times for my country, scoring 0 goals.",
+      "Won three league titles and two FA Cups during a 13-year spell in English football.",
+      "Signed from Wimbledon in 1987 by George Graham — I went on to win both the old First Division and the Premier League with the same club.",
+      "I finished my career at West Ham United, playing until the age of 38 — one of the oldest outfield players in the Premier League at the time.",
+      "I was part of one of the most elite defences in Premier League history, alongside Adams, Bould and Dixon."
     ]
   },
   {
@@ -387,67 +584,6 @@ window.PLAYERS = [
       "I won four league titles and two Champions League medals with the same Spanish club.",
       "I could play both left-back and centre-back at the highest level.",
       "I later became sporting director at the club where I'd won the Champions League."
-    ]
-  },
-  {
-    "id": "jan_koller",
-    "name": "Jan Koller",
-    "country": "Czech Republic",
-    "flag": "🇨🇿",
-    "years": "1993–2011",
-    "approved": true,
-    "aliases": [
-      "jan koller",
-      "koller",
-      "dino"
-    ],
-    "clues": [
-      "I was born on the 30th of March 1973. I played 91 times for my country, scoring 55 goals.",
-      "I started my career as a goalkeeper before being converted to a striker.",
-      "I won the Bundesliga in my first season at a German club.",
-      "At 2.02 metres tall, I was one of the tallest outfield players in top-level European football.",
-      "I scored in the 2002 UEFA Cup final for Borussia Dortmund, but we lost 3–2."
-    ]
-  },
-  {
-    "id": "trezeguet",
-    "name": "David Trezeguet",
-    "country": "France",
-    "flag": "🇫🇷",
-    "years": "1993–2015",
-    "approved": true,
-    "aliases": [
-      "david trezeguet",
-      "trezeguet",
-      "trezegol"
-    ],
-    "clues": [
-      "I was born on the 15th of October 1977. I played 71 times for my country, scoring 34 goals.",
-      "I formed a striking partnership with Thierry Henry at my first European club, winning two league titles.",
-      "I won both a World Cup and a European Championship with my country within two years.",
-      "I scored the golden goal in extra time of a major international final — beating Italy with a volley into the roof of the net.",
-      "When my club was relegated after a match-fixing scandal, I was one of the few stars who stayed to help them return."
-    ]
-  },
-  {
-    "id": "papiss_cisse",
-    "name": "Papiss Cissé",
-    "country": "Senegal",
-    "flag": "🇸🇳",
-    "years": "2005–2023",
-    "approved": true,
-    "aliases": [
-      "papiss cisse",
-      "papiss cissé",
-      "cisse",
-      "cissé"
-    ],
-    "clues": [
-      "I was born on the 3rd of June 1985. I scored 16 goals in approximately 30 appearances for my country.",
-      "I scored 13 goals in my first 12 Premier League appearances after joining in January.",
-      "I wore the number 9 shirt at my English club — previously worn by the club's all-time record scorer.",
-      "In the Bundesliga, I scored 22 goals in a single season — a record for an African player at the time.",
-      "I scored a goal from 37 yards with the outside of my foot against Chelsea that won BBC Goal of the Season."
     ]
   },
   {
@@ -838,6 +974,46 @@ window.PLAYERS = [
       "I was named UEFA Club Defender of the Year in 2003–04.",
       "I've been managed by Jose Mourinho at three different clubs.",
       "I was stamped on by Wayne Rooney at the 2006 World Cup — he was sent off for it."
+    ]
+  },
+  {
+    "id": "cheick_tiote",
+    "name": "Cheick Tioté",
+    "country": "Ivory Coast",
+    "flag": "🇨🇮",
+    "years": "2005–2017",
+    "approved": true,
+    "aliases": [
+      "cheick tiote",
+      "tiote",
+      "cheick tioté",
+      "tioté"
+    ],
+    "clues": [
+      "I was born on the 21st of June 1986. I played 52 times for my country, scoring 1 goal.",
+      "I represented my country at the 2010 and 2014 World Cups, and the 2012 and 2013 Africa Cup of Nations.",
+      "I scored arguably the most famous goal in my club’s modern history — a stunning volley to make it 4–4 against Arsenal, completing a comeback from 4–0 down.",
+      "I played alongside Yohan Cabaye and Hatem Ben Arfa in a midfield that gave Newcastle their best Premier League finish in years.",
+      "I tragically collapsed and died during a training session in June 2017 at the age of 30."
+    ]
+  },
+  {
+    "id": "john_arne_riise",
+    "name": "John Arne Riise",
+    "country": "Norway",
+    "flag": "🇳🇴",
+    "years": "1995–2017",
+    "approved": true,
+    "aliases": [
+      "john arne riise",
+      "riise"
+    ],
+    "clues": [
+      "I was born on the 24th of September 1980. I played 110 times for my country, scoring 16 goals.",
+      "I left Ligue 1 as a relatively unknown 20-year-old, but within months of arriving in England I’d already announced myself with one of the most spectacular debut goals the Premier League had ever seen.",
+      "A teammate once attacked me with a golf club on a pre-season training camp in Portugal — the story became one of football’s most bizarre dressing-room incidents.",
+      "I was part of a squad that came back from 3–0 down to win the biggest trophy in European club football on a famous night in Turkey.",
+      "I was known for having one of the most powerful left foots in football history — one of my strikes was reportedly clocked at over 70 miles per hour."
     ]
   }
 ];

@@ -28,7 +28,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.Card
@@ -83,6 +85,7 @@ fun GameScreen(
     isArchiveDay: Boolean = false,
     onQueryChange: (TextFieldValue) -> Unit,
     onPickSuggestion: (NameEntry) -> Unit,
+    onSubmitGuess: () -> Unit,
     onReveal: () -> Unit,
     onSkipClue: () -> Unit,
     onShare: () -> Unit,
@@ -123,42 +126,8 @@ fun GameScreen(
             }
             item { Spacer(Modifier.height(12.dp)) }
             item { HeroCard(silhouette = silhouette, photo = photo, revealed = state.revealed) }
-            item { Spacer(Modifier.height(14.dp)) }
-            item { CluesCard(player = player, upToIndex = state.currentClueIndex) }
 
-            if (!state.revealed) {
-                item { Spacer(Modifier.height(14.dp)) }
-                if (suggestions.isNotEmpty() && state.query.text.length >= 2) {
-                    item {
-                        SuggestionList(suggestions = suggestions, onPick = onPickSuggestion)
-                    }
-                    item { Spacer(Modifier.height(8.dp)) }
-                }
-                item {
-                    GuessInput(
-                        value = state.query,
-                        onValueChange = onQueryChange,
-                    )
-                }
-                item { Spacer(Modifier.height(10.dp)) }
-                item {
-                    PipsRow(
-                        used = state.wrongGuesses.size,
-                        max = MAX_GUESSES,
-                        onReveal = onReveal,
-                        onSkipClue = onSkipClue,
-                        isLastClue = state.currentClueIndex >= player.clues.size - 1,
-                    )
-                }
-                if (state.wrongGuesses.isEmpty()) {
-                    item { Spacer(Modifier.height(10.dp)) }
-                    item { TipCard() }
-                }
-                if (state.wrongGuesses.isNotEmpty()) {
-                    item { Spacer(Modifier.height(12.dp)) }
-                    item { WrongGuessesCard(state.wrongGuesses) }
-                }
-            } else {
+            if (state.revealed) {
                 item { Spacer(Modifier.height(14.dp)) }
                 item {
                     RevealBanner(
@@ -167,57 +136,280 @@ fun GameScreen(
                         attempt = state.wrongGuesses.size + (if (state.wasCorrect) 1 else 0),
                     )
                 }
-                item { Spacer(Modifier.height(12.dp)) }
-                item { AllCluesCard(player = player, seenUpTo = state.currentClueIndex) }
-                if (stats != null) {
-                    item { Spacer(Modifier.height(12.dp)) }
-                    item { StatsCard(stats = stats) }
-                }
-                item { Spacer(Modifier.height(12.dp)) }
-                item { ShareButton(onShare = onShare) }
-                if (isArchiveDay) {
-                    item { Spacer(Modifier.height(10.dp)) }
-                    item {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clip(RoundedCornerShape(14.dp))
-                                .background(AppColors.Text)
-                                .clickable { onBackToToday() }
-                                .padding(vertical = 16.dp),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            Text(
-                                "↩  Back to today's player",
-                                color = Color.White,
-                                fontSize = 15.sp,
-                                fontWeight = FontWeight.Bold,
-                            )
-                        }
-                    }
-                }
-                if (player.story.isNotEmpty()) {
-                    item { Spacer(Modifier.height(12.dp)) }
-                    item { BioStorySection(player) }
-                }
-                if (player.clubs.isNotEmpty()) {
-                    item { Spacer(Modifier.height(10.dp)) }
-                    item { BioChipsCard("Notable clubs", player.clubs) }
-                }
-                if (player.honours.isNotEmpty()) {
-                    item { Spacer(Modifier.height(10.dp)) }
-                    item { BioListCard("Honours", player.honours) }
-                }
-                if (player.numbers.isNotEmpty()) {
-                    item { Spacer(Modifier.height(10.dp)) }
-                    item { BioStorySection(player, sectionTitle = "By the numbers", body = player.numbers) }
-                }
-                if (player.didYouKnow.isNotEmpty()) {
-                    item { Spacer(Modifier.height(10.dp)) }
-                    item { BioListCard("Did you know?", player.didYouKnow) }
-                }
+            }
+
+            item { Spacer(Modifier.height(14.dp)) }
+            item {
+                ContentTabs(
+                    player = player,
+                    state = state,
+                    stats = stats,
+                    suggestions = suggestions,
+                    isArchiveDay = isArchiveDay,
+                    onQueryChange = onQueryChange,
+                    onPickSuggestion = onPickSuggestion,
+                    onSubmitGuess = onSubmitGuess,
+                    onReveal = onReveal,
+                    onSkipClue = onSkipClue,
+                    onShare = onShare,
+                    onBackToToday = onBackToToday,
+                )
             }
             item { Spacer(Modifier.height(40.dp)) }
+        }
+    }
+}
+
+@Composable
+private fun ContentTabs(
+    player: Footballer,
+    state: GameUiState,
+    stats: Stats?,
+    suggestions: List<NameEntry>,
+    isArchiveDay: Boolean,
+    onQueryChange: (TextFieldValue) -> Unit,
+    onPickSuggestion: (NameEntry) -> Unit,
+    onSubmitGuess: () -> Unit,
+    onReveal: () -> Unit,
+    onSkipClue: () -> Unit,
+    onShare: () -> Unit,
+    onBackToToday: () -> Unit,
+) {
+    var selectedTab by remember { mutableStateOf(0) }
+    val hasAbout = player.story.isNotEmpty()
+    val hasHighlights = !player.youtube.isNullOrEmpty()
+
+    // Tab bar
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(12.dp))
+            .background(AppColors.Line)
+            .padding(3.dp),
+        horizontalArrangement = Arrangement.spacedBy(3.dp),
+    ) {
+        TabPill("Clues", selected = selectedTab == 0, locked = false, modifier = Modifier.weight(1f)) { selectedTab = 0 }
+        if (hasAbout) {
+            TabPill("About", selected = selectedTab == 1, locked = !state.revealed, modifier = Modifier.weight(1f)) {
+                if (state.revealed) selectedTab = 1
+            }
+        }
+        if (hasHighlights) {
+            TabPill("Highlights", selected = selectedTab == 2, locked = !state.revealed, modifier = Modifier.weight(1f)) {
+                if (state.revealed) selectedTab = 2
+            }
+        }
+    }
+
+    Spacer(Modifier.height(14.dp))
+
+    // Tab content
+    when (selectedTab) {
+        0 -> CluesTabContent(
+            player = player,
+            state = state,
+            stats = stats,
+            suggestions = suggestions,
+            isArchiveDay = isArchiveDay,
+            onQueryChange = onQueryChange,
+            onPickSuggestion = onPickSuggestion,
+            onSubmitGuess = onSubmitGuess,
+            onReveal = onReveal,
+            onSkipClue = onSkipClue,
+            onShare = onShare,
+            onBackToToday = onBackToToday,
+        )
+        1 -> if (state.revealed) AboutTabContent(player = player)
+        2 -> if (state.revealed && hasHighlights) HighlightsTabContent(youtubeUrl = player.youtube!!)
+    }
+}
+
+@Composable
+private fun TabPill(label: String, selected: Boolean, locked: Boolean, modifier: Modifier = Modifier, onClick: () -> Unit) {
+    Box(
+        modifier = modifier
+            .clip(RoundedCornerShape(10.dp))
+            .background(if (selected) AppColors.Card else Color.Transparent)
+            .clickable(enabled = !locked, onClick = onClick)
+            .padding(vertical = 10.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center,
+        ) {
+            if (locked) {
+                Text("🔒 ", fontSize = 11.sp)
+            }
+            Text(
+                label,
+                color = when {
+                    selected -> AppColors.Accent
+                    locked -> AppColors.Muted.copy(alpha = 0.5f)
+                    else -> AppColors.TextSoft
+                },
+                fontSize = 13.sp,
+                fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
+            )
+        }
+    }
+}
+
+@Composable
+private fun CluesTabContent(
+    player: Footballer,
+    state: GameUiState,
+    stats: Stats?,
+    suggestions: List<NameEntry>,
+    isArchiveDay: Boolean,
+    onQueryChange: (TextFieldValue) -> Unit,
+    onPickSuggestion: (NameEntry) -> Unit,
+    onSubmitGuess: () -> Unit,
+    onReveal: () -> Unit,
+    onSkipClue: () -> Unit,
+    onShare: () -> Unit,
+    onBackToToday: () -> Unit,
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        if (!state.revealed) {
+            CluesCard(player = player, upToIndex = state.currentClueIndex)
+            // Input row + suggestions overlay below
+            Box {
+                Column {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Box(modifier = Modifier.weight(1f)) {
+                            GuessInput(value = state.query, onValueChange = onQueryChange)
+                        }
+                        if (state.query.text.isNotBlank()) {
+                            Box(
+                                modifier = Modifier
+                                    .size(48.dp)
+                                    .clip(RoundedCornerShape(14.dp))
+                                    .background(AppColors.Accent)
+                                    .clickable { onSubmitGuess() },
+                                contentAlignment = Alignment.Center,
+                            ) {
+                                Text("→", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                            }
+                        }
+                    }
+                    if (suggestions.isNotEmpty() && state.query.text.length >= 2) {
+                        SuggestionList(suggestions = suggestions, onPick = onPickSuggestion)
+                    }
+                }
+            }
+            PipsRow(
+                used = state.wrongGuesses.size,
+                max = MAX_GUESSES,
+                onReveal = onReveal,
+                onSkipClue = onSkipClue,
+                isLastClue = state.currentClueIndex >= player.clues.size - 1,
+            )
+            if (state.wrongGuesses.isEmpty()) {
+                TipCard()
+            }
+            if (state.wrongGuesses.isNotEmpty()) {
+                WrongGuessesCard(state.wrongGuesses)
+            }
+        } else {
+            AllCluesCard(player = player, seenUpTo = state.currentClueIndex)
+            if (stats != null) {
+                StatsCard(stats = stats)
+            }
+            ShareButton(onShare = onShare)
+            if (isArchiveDay) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(14.dp))
+                        .background(AppColors.Text)
+                        .clickable { onBackToToday() }
+                        .padding(vertical = 16.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text("↩  Back to today's player", color = Color.White, fontSize = 15.sp, fontWeight = FontWeight.Bold)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun AboutTabContent(player: Footballer) {
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        BioStorySection(player)
+        if (player.clubs.isNotEmpty()) {
+            BioChipsCard("Notable clubs", player.clubs)
+        }
+        if (player.honours.isNotEmpty()) {
+            BioListCard("Honours", player.honours)
+        }
+        if (player.numbers.isNotEmpty()) {
+            BioStorySection(player, sectionTitle = "By the numbers", body = player.numbers)
+        }
+        if (player.didYouKnow.isNotEmpty()) {
+            BioListCard("Did you know?", player.didYouKnow)
+        }
+    }
+}
+
+@Composable
+private fun HighlightsTabContent(youtubeUrl: String) {
+    val videoId = youtubeUrl.substringAfter("v=").substringBefore("&")
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val thumbnailUrl = "https://img.youtube.com/vi/$videoId/hqdefault.jpg"
+    var thumbnail by remember { mutableStateOf<Bitmap?>(null) }
+
+    androidx.compose.runtime.LaunchedEffect(videoId) {
+        kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+            try {
+                val url = java.net.URL(thumbnailUrl)
+                thumbnail = android.graphics.BitmapFactory.decodeStream(url.openStream())
+            } catch (_: Exception) {}
+        }
+    }
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+                val intent = android.content.Intent(
+                    android.content.Intent.ACTION_VIEW,
+                    android.net.Uri.parse(youtubeUrl),
+                )
+                context.startActivity(intent)
+            },
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.Black),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(16f / 9f),
+            contentAlignment = Alignment.Center,
+        ) {
+            thumbnail?.let {
+                Image(
+                    bitmap = it.asImageBitmap(),
+                    contentDescription = "Video thumbnail",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.fillMaxSize(),
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .size(64.dp)
+                    .clip(CircleShape)
+                    .background(Color.Red),
+                contentAlignment = Alignment.Center,
+            ) {
+                Text("▶", color = Color.White, fontSize = 28.sp)
+            }
         }
     }
 }
@@ -346,9 +538,10 @@ private fun ShareButton(onShare: () -> Unit) {
 
 @Composable
 private fun HeroCard(silhouette: Bitmap?, photo: Bitmap?, revealed: Boolean) {
+    // Only animate the reveal transition; when photo is null (day switch) snap to 0
     val photoAlpha by animateFloatAsState(
-        targetValue = if (revealed) 1f else 0f,
-        animationSpec = tween(durationMillis = 700),
+        targetValue = if (revealed && photo != null) 1f else 0f,
+        animationSpec = if (photo == null) tween(durationMillis = 0) else tween(durationMillis = 700),
         label = "photo-fade",
     )
     // Dynamic aspect = match the silhouette's natural dimensions so cover
@@ -536,13 +729,13 @@ private fun GuessInput(value: TextFieldValue, onValueChange: (TextFieldValue) ->
 @Composable
 private fun SuggestionList(suggestions: List<NameEntry>, onPick: (NameEntry) -> Unit) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().heightIn(max = 280.dp),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = AppColors.Card),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         border = androidx.compose.foundation.BorderStroke(1.dp, AppColors.Line),
     ) {
-        Column {
+        Column(modifier = Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState())) {
             suggestions.forEachIndexed { idx, e ->
                 if (idx > 0) {
                     Box(modifier = Modifier.fillMaxWidth().height(1.dp).background(AppColors.Line))
@@ -920,3 +1113,4 @@ private fun BioListCard(title: String, items: List<String>) {
         }
     }
 }
+

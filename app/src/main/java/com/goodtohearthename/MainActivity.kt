@@ -138,7 +138,7 @@ class MainActivity : ComponentActivity() {
                         suggestions = emptyList()
                         return@LaunchedEffect
                     }
-                    delay(200)
+                    delay(350)
                     withContext(Dispatchers.Default) {
                         val prefix = mutableListOf<NameEntry>()
                         val substring = mutableListOf<NameEntry>()
@@ -148,13 +148,13 @@ class MainActivity : ComponentActivity() {
                                 norm.startsWith(q) -> prefix.add(e)
                                 norm.contains(q) -> substring.add(e)
                             }
-                            if (prefix.size >= 8) break
+                            if (prefix.size >= 15) break
                         }
-                        val matches = (prefix + substring).take(8)
+                        val matches = (prefix + substring).take(15)
                         matches
                     }.let {
                         suggestions = it
-                        if (it.isNotEmpty()) suggestionsReadyAt = System.currentTimeMillis() + 200
+                        if (it.isNotEmpty()) suggestionsReadyAt = System.currentTimeMillis() + 400
                     }
                 }
 
@@ -175,15 +175,20 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
-                fun pickSuggestion(e: NameEntry) {
-                    if (revealed || System.currentTimeMillis() < suggestionsReadyAt) return
-                    if (ContentRepository.isCorrect(player, e.n)) {
+                fun submitCurrentGuess() {
+                    if (revealed) return
+                    val name = query.text.trim()
+                    if (name.isEmpty()) return
+                    if (ContentRepository.isCorrect(player, name)) {
                         wasCorrect = true
                         revealed = true
                         query = TextFieldValue("")
                         suggestions = emptyList()
                     } else {
-                        wrongGuesses.add(GuessRecord(e.n, e.f, e.y))
+                        val entry = allNames.find {
+                            ContentRepository.normalize(it.n) == ContentRepository.normalize(name)
+                        }
+                        wrongGuesses.add(GuessRecord(name, entry?.f ?: "", entry?.y ?: ""))
                         query = TextFieldValue("")
                         suggestions = emptyList()
                         if (clueIndex < player.clues.size - 1 && wrongGuesses.size < 5) {
@@ -195,6 +200,13 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                     persistState()
+                }
+
+                fun pickSuggestion(e: NameEntry) {
+                    if (revealed || System.currentTimeMillis() < suggestionsReadyAt) return
+                    query = TextFieldValue(e.n)
+                    suggestions = emptyList()
+                    submitCurrentGuess()
                 }
 
                 fun skipClue() {
@@ -240,6 +252,7 @@ class MainActivity : ComponentActivity() {
                     isArchiveDay = isArchiveDay,
                     onQueryChange = { query = it },
                     onPickSuggestion = ::pickSuggestion,
+                    onSubmitGuess = ::submitCurrentGuess,
                     onReveal = ::reveal,
                     onSkipClue = ::skipClue,
                     onShare = ::shareResult,

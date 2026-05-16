@@ -203,11 +203,19 @@ fun ArchiveDialog(
                                     contentAlignment = Alignment.Center,
                                 ) {
                                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                        Text(
-                                            "⚽",
-                                            fontSize = 18.sp,
-                                            color = ballColor,
-                                        )
+                                        Box(contentAlignment = Alignment.Center) {
+                                            // Coloured circle behind the ball
+                                            Box(
+                                                modifier = Modifier
+                                                    .size(24.dp)
+                                                    .clip(CircleShape)
+                                                    .background(ballColor.copy(alpha = 0.2f))
+                                            )
+                                            Text(
+                                                "⚽",
+                                                fontSize = 16.sp,
+                                            )
+                                        }
                                         Text(
                                             dayOfMonth.toString(),
                                             fontSize = 10.sp,

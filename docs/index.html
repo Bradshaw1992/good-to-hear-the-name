@@ -177,7 +177,7 @@
   .guess-btn:hover { opacity: 0.85; }
 
   .suggestions {
-    margin-bottom: 8px;
+    margin-top: 8px;
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 12px;
@@ -329,6 +329,44 @@
   .bio .row .sub { font-size: 13px; color: var(--muted); }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; }
   .chip { background: var(--accent-soft); color: var(--accent); padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 500; }
+
+  .tab-bar {
+    display: flex;
+    gap: 3px;
+    background: var(--line);
+    border-radius: 12px;
+    padding: 3px;
+    margin-bottom: 14px;
+  }
+  .tab-pill {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--text-soft);
+    font-family: inherit;
+    transition: background 150ms, color 150ms;
+  }
+  .tab-pill.active {
+    background: var(--card);
+    color: var(--accent);
+    font-weight: 700;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .tab-pill.locked {
+    color: var(--muted);
+    opacity: 0.45;
+    cursor: default;
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .highlights-embed { border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 16/9; }
+  .highlights-embed iframe { width: 100%; height: 100%; border: none; }
 
   .footer {
     text-align: center;
@@ -607,11 +645,11 @@
         </div>
 
         <div class="input-wrap">
-          <div id="suggestions" class="suggestions"></div>
           <div class="guess-row">
             <input id="guessInput" type="text" placeholder="Type a footballer's name…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
             <button id="guessBtn" class="guess-btn" style="display:none" title="Submit guess">→</button>
           </div>
+          <div id="suggestions" class="suggestions"></div>
         </div>
 
         <div class="meta-row">
@@ -630,10 +668,18 @@
         </div>
 
         <div id="result" style="display:none"></div>
+
+        <div id="tabBar" class="tab-bar" style="display:none">
+          <button class="tab-pill active" data-tab="clues">Clues</button>
+          <button class="tab-pill locked" data-tab="about">🔒 About</button>
+          <button class="tab-pill locked" data-tab="highlights">🔒 Highlights</button>
+        </div>
+
+        <div id="tabClues" class="tab-content active"></div>
+        <div id="tabAbout" class="tab-content"></div>
+        <div id="tabHighlights" class="tab-content"></div>
       </div>
     </div>
-
-    <div id="bio" class="bio"></div>
 
     <div class="footer">
       <strong>It's good to hear the name</strong><span class="sep">·</span>Wordle for niche footballers<br>
@@ -754,8 +800,9 @@
   const guessInput = $("guessInput"), suggestionsBox = $("suggestions");
   const guessesPanel = $("guessesPanel"), guessesList = $("guessesList");
   const pipsEl = $("pips"), revealLink = $("revealLink"), skipClueLink = $("skipClueLink"), result = $("result");
-  const dateLabel = $("dateLabel"), bio = $("bio");
+  const dateLabel = $("dateLabel");
   const archiveBanner = $("archivePlayingBanner");
+  const tabBar = $("tabBar"), tabClues = $("tabClues"), tabAbout = $("tabAbout"), tabHighlights = $("tabHighlights");
 
   function playerForDay(day) {
     const off = day - EPOCH_DAY;
@@ -824,14 +871,19 @@
     suggestionsBox.innerHTML = "";
     result.style.display = "none";
     result.innerHTML = "";
-    bio.classList.remove("show");
-    bio.innerHTML = "";
+    tabClues.innerHTML = "";
+    tabAbout.innerHTML = "";
+    tabHighlights.innerHTML = "";
+    tabClues.classList.add("active");
+    tabAbout.classList.remove("active");
+    tabHighlights.classList.remove("active");
     const inputWrap = document.querySelector(".input-wrap");
     if (inputWrap) inputWrap.style.display = "";
     const metaRow = document.querySelector(".meta-row");
     if (metaRow) metaRow.style.display = "";
     guessesPanel.style.display = "none";
     guessesList.innerHTML = "";
+    renderTabBar(false);
 
     renderClues();
     renderPips();
@@ -1014,7 +1066,12 @@
         ${scoreLine}
         <div class="sparkles" id="sparkles"></div>
       </div>
-      <div class="question" style="margin-top:14px">
+    `;
+    result.style.display = "block";
+
+    // Populate Clues tab
+    tabClues.innerHTML = `
+      <div class="question">
         <div class="label">All 5 clues</div>
         ${annotatedClues}
       </div>
@@ -1023,8 +1080,17 @@
       ${backTodayBtn}
       <div style="text-align:center;margin-top:18px;padding:12px;color:var(--muted);font-size:13px">${playingDay === today ? "Back tomorrow for a new face." : `Day #${dayNumber} from the archive.`}</div>
     `;
-    result.style.display = "block";
-    renderBio();
+
+    // Populate About tab
+    renderAboutTab();
+
+    // Populate Highlights tab
+    renderHighlightsTab();
+
+    // Unlock tabs
+    renderTabBar(true);
+    switchTab("clues");
+
     if (lastRevealCorrect) addSparkles();
   }
 
@@ -1062,24 +1128,67 @@
     }
   }
 
-  function renderBio() {
+  function renderTabBar(unlocked) {
     const data = BIOS[player.id];
-    if (!data) {
-      bio.innerHTML = `<div class="row"><div class="name-line">${player.name}</div><div class="sub">${player.flag} ${player.country} · ${player.years || ""}</div></div>`;
-    } else {
-      const chips = (data.clubs || []).map(c => `<span class="chip">${c}</span>`).join("");
-      const honoursList = (data.honours || []).map(h => `<li>${h}</li>`).join("");
-      const factsList = (data.didYouKnow || []).map(f => `<li>${f}</li>`).join("");
-      bio.innerHTML = `
-        <div class="row"><div class="name-line">${player.name}</div>
-          <div class="sub">${player.flag} ${data.position || ""} · ${data.yearsActive || player.years || ""}</div></div>
-        ${data.story ? `<div class="row"><h3>The story</h3><p>${data.story}</p></div>` : ""}
-        ${chips ? `<div class="row"><h3>Notable clubs</h3><div class="chips">${chips}</div></div>` : ""}
-        ${honoursList ? `<div class="row"><h3>Honours</h3><ul>${honoursList}</ul></div>` : ""}
-        ${data.numbers ? `<div class="row"><h3>By the numbers</h3><p>${data.numbers}</p></div>` : ""}
-        ${factsList ? `<div class="row"><h3>Did you know?</h3><ul>${factsList}</ul></div>` : ""}`;
+    const hasAbout = data && data.story;
+    const hasHighlights = data && data.youtube;
+    const pills = tabBar.querySelectorAll(".tab-pill");
+    pills.forEach(p => {
+      const tab = p.dataset.tab;
+      if (tab === "clues") {
+        p.classList.remove("locked");
+        p.textContent = "Clues";
+      } else if (tab === "about") {
+        p.style.display = hasAbout ? "" : "none";
+        if (unlocked && hasAbout) { p.classList.remove("locked"); p.textContent = "About"; }
+        else { p.classList.add("locked"); p.textContent = "\u{1F512} About"; }
+      } else if (tab === "highlights") {
+        p.style.display = hasHighlights ? "" : "none";
+        if (unlocked && hasHighlights) { p.classList.remove("locked"); p.textContent = "Highlights"; }
+        else { p.classList.add("locked"); p.textContent = "\u{1F512} Highlights"; }
+      }
+    });
+    tabBar.style.display = "flex";
+  }
+
+  function switchTab(name) {
+    tabBar.querySelectorAll(".tab-pill").forEach(p => p.classList.toggle("active", p.dataset.tab === name));
+    tabClues.classList.toggle("active", name === "clues");
+    tabAbout.classList.toggle("active", name === "about");
+    tabHighlights.classList.toggle("active", name === "highlights");
+  }
+
+  function renderAboutTab() {
+    const data = BIOS[player.id];
+    if (!data || !data.story) {
+      tabAbout.innerHTML = "";
+      return;
     }
-    bio.classList.add("show");
+    const chips = (data.clubs || []).map(c => `<span class="chip">${c}</span>`).join("");
+    const honoursList = (data.honours || []).map(h => `<li>${h}</li>`).join("");
+    const factsList = (data.didYouKnow || []).map(f => `<li>${f}</li>`).join("");
+    tabAbout.innerHTML = `<div class="bio show">
+      <div class="row"><div class="name-line">${player.name}</div>
+        <div class="sub">${player.flag} ${data.position || ""} \u{00B7} ${data.yearsActive || player.years || ""}</div></div>
+      ${data.story ? `<div class="row"><h3>The story</h3><p>${data.story}</p></div>` : ""}
+      ${chips ? `<div class="row"><h3>Notable clubs</h3><div class="chips">${chips}</div></div>` : ""}
+      ${honoursList ? `<div class="row"><h3>Honours</h3><ul>${honoursList}</ul></div>` : ""}
+      ${data.numbers ? `<div class="row"><h3>By the numbers</h3><p>${data.numbers}</p></div>` : ""}
+      ${factsList ? `<div class="row"><h3>Did you know?</h3><ul>${factsList}</ul></div>` : ""}
+    </div>`;
+  }
+
+  function renderHighlightsTab() {
+    const data = BIOS[player.id];
+    if (!data || !data.youtube) {
+      tabHighlights.innerHTML = "";
+      return;
+    }
+    const videoId = data.youtube.split("v=")[1]?.split("&")[0] || "";
+    tabHighlights.innerHTML = `<div class="highlights-embed">
+      <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&playsinline=1"
+        allowfullscreen allow="autoplay;encrypted-media"></iframe>
+    </div>`;
   }
 
   // ---- Share ----
@@ -1176,6 +1285,12 @@
 
   archiveBanner.addEventListener("click", () => loadGame(today));
 
+  tabBar.addEventListener("click", (e) => {
+    const pill = e.target.closest(".tab-pill");
+    if (!pill || pill.classList.contains("locked")) return;
+    switchTab(pill.dataset.tab);
+  });
+
   document.addEventListener("click", async (e) => {
     const shareBtn = e.target && e.target.closest && e.target.closest("#shareBtn");
     if (shareBtn) {
@@ -1216,11 +1331,12 @@
     if (Date.now() < suggestionsReady) return;
     const el = e.target.closest(".suggestion");
     if (el) {
-      guessInput.value = el.dataset.name;
+      const name = el.dataset.name;
       suggestionsBox.classList.remove("open");
       suggestionsBox.innerHTML = "";
+      guessInput.value = "";
       updateGuessBtn();
-      guessInput.focus();
+      submitGuess(name);
     }
   });
   skipClueLink.addEventListener("click", () => {
