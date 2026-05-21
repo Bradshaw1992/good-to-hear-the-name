@@ -9,7 +9,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="GTHN">
-<title>It's good to hear the name — Wordle for niche footballers</title>
+<meta name="apple-itunes-app" content="app-id=6767861587">
+<title>Good to Hear the Name — Wordle for niche footballers</title>
 <style>
   :root {
     --bg: #f4efe6;
@@ -223,7 +224,7 @@
   }
   .meta-row a { text-decoration: none; cursor: pointer; font-weight: 500; }
   .meta-row a:hover { text-decoration: underline; }
-  .meta-row #skipClueLink { color: var(--accent); margin-right: 16px; }
+  .meta-row #skipLink { color: var(--accent); }
   .meta-row #revealLink { color: var(--text-soft); }
   .meta-row .pips { display: inline-flex; align-items: center; gap: 6px; }
   .meta-row .pip {
@@ -231,12 +232,10 @@
     width: 14px; height: 14px;
     border-radius: 50%;
     background: var(--line);
-    border: 2px solid transparent;
     transition: background 200ms ease, transform 200ms ease;
   }
   .meta-row .pip.used {
     background: var(--bad);
-    border-color: var(--bad);
     animation: pip-pop 280ms ease;
   }
   @keyframes pip-pop {
@@ -244,7 +243,6 @@
     60%  { transform: scale(1.2); }
     100% { transform: scale(1); }
   }
-  .meta-row .pips-count { color: var(--text-soft); font-weight: 600; font-size: 13px; margin-left: 4px; }
 
   .guesses {
     background: var(--card);
@@ -600,6 +598,24 @@
   }
   .archive-playing-banner:hover { opacity: 0.85; }
 
+  .app-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--accent-soft);
+    border: 1.5px solid var(--accent);
+    border-radius: 14px;
+    padding: 12px 18px;
+    margin-bottom: 18px;
+    text-decoration: none;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+  }
+  .app-banner:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15,122,62,0.15); }
+  .app-banner .app-banner-icon { font-size: 24px; }
+  .app-banner .app-banner-text { font-size: 14px; font-weight: 600; color: var(--accent); }
+  .app-banner .app-banner-sub { font-size: 12px; color: var(--text-soft); font-weight: 400; }
+
 </style>
 </head>
 <body>
@@ -607,7 +623,7 @@
     <header>
       <div class="brand">
         <span class="brand-icon">⚽</span>
-        <h1>It's good to hear the name</h1>
+        <h1>Good to Hear the Name</h1>
       </div>
       <div id="archivePlayingBanner" class="archive-playing-banner"></div>
       <div class="sub-row">
@@ -617,6 +633,11 @@
         <button class="archive-btn" id="archiveBtn" title="Play previous days">📅 Previous days</button>
       </div>
     </header>
+
+    <a class="app-banner" href="https://apps.apple.com/app/goodtohearthename/id6767861587" target="_blank" rel="noopener">
+      <span class="app-banner-icon">📱</span>
+      <span><span class="app-banner-text">Now available on iPhone</span><br><span class="app-banner-sub">Download the app — with home screen widget</span></span>
+    </a>
 
     <div class="archive-overlay" id="archiveOverlay">
       <div class="archive-modal">
@@ -654,12 +675,12 @@
 
         <div class="meta-row">
           <span class="pips" id="pips"></span>
-          <a id="skipClueLink" style="display:none">Next clue</a>
+          <a id="skipLink">Skip clue</a>
           <a id="revealLink">Bottle it</a>
         </div>
 
         <div id="tipCard" class="tip-card">
-          <span class="tip-label">HOW TO PLAY</span>Type a footballer's name above. You get 5 guesses and a new clue each time you're wrong. New player every day.
+          <span class="tip-label">HOW TO PLAY</span>One guess per clue — or skip to reveal the next clue. Either way, it costs a chance. 5 clues, 5 chances. New player every day.
         </div>
 
         <div id="guessesPanel" class="guesses" style="display:none">
@@ -682,8 +703,9 @@
     </div>
 
     <div class="footer">
-      <strong>It's good to hear the name</strong><span class="sep">·</span>Wordle for niche footballers<br>
-      <span style="color:var(--muted)">made by Bradshaw · share with mates</span>
+      <strong>Good to Hear the Name</strong><span class="sep">·</span>Wordle for niche footballers<br>
+      <a href="https://apps.apple.com/app/goodtohearthename/id6767861587" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:600">📲 Download on iPhone</a>
+      <span class="sep">·</span><span style="color:var(--muted)">made by Bradshaw</span>
     </div>
   </div>
 
@@ -694,7 +716,7 @@
   const ALL_PLAYERS = window.PLAYERS;
   const APPROVED = ALL_PLAYERS.filter(p => p.approved);
   const BIOS = window.BIOS || {};
-  const MAX_GUESSES = 5;
+  const CLUES_PER_PLAYER = 5;
   const $ = (id) => document.getElementById(id);
   const params = new URLSearchParams(location.search);
   const pinId = params.get("player");
@@ -725,17 +747,27 @@
     lastWonDay: -999, lastResultDay: -999, lastResult: null,
   });
   function loadStats() {
-    try { return Object.assign(defaultStats(), JSON.parse(localStorage.getItem(STATS_KEY)) || {}); }
-    catch { return defaultStats(); }
+    try {
+      const raw = Object.assign(defaultStats(), JSON.parse(localStorage.getItem(STATS_KEY)) || {});
+      if (raw.distribution.length === 7) {
+        raw.distribution = [raw.distribution[0], raw.distribution[1], raw.distribution[2],
+          raw.distribution[3], raw.distribution[4] + raw.distribution[5], raw.distribution[6]];
+        saveStats(raw);
+      }
+      if (raw.distribution.length !== 6) {
+        raw.distribution = [0, 0, 0, 0, 0, 0];
+      }
+      return raw;
+    } catch { return defaultStats(); }
   }
   function saveStats(s) { try { localStorage.setItem(STATS_KEY, JSON.stringify(s)); } catch {} }
-  function recordResult(day, won, attempt) {
+  function recordResult(day, won, attempt, clue) {
     const s = loadStats();
     if (s.lastResultDay === day) return s;
     s.played++;
     if (won) {
       s.won++;
-      s.distribution[Math.min(attempt, 5) - 1]++;
+      s.distribution[clue]++;
       s.currentStreak = (day - s.lastWonDay === 1) ? (s.currentStreak + 1) : 1;
       if (s.currentStreak > s.maxStreak) s.maxStreak = s.currentStreak;
       s.lastWonDay = day;
@@ -744,17 +776,17 @@
       s.currentStreak = 0;
     }
     s.lastResultDay = day;
-    s.lastResult = { won, attempt };
+    s.lastResult = { won, attempt, clue };
     saveStats(s);
     return s;
   }
   function renderStats(s, highlightDay) {
     const winPct = s.played ? Math.round((s.won / s.played) * 100) : 0;
     const max = Math.max(1, ...s.distribution);
-    const labels = ["1", "2", "3", "4", "5", "X"];
+    const labels = ["Clue 1", "Clue 2", "Clue 3", "Clue 4", "Clue 5", "X"];
     const dayWon = s.lastResultDay === highlightDay && s.lastResult && s.lastResult.won;
     const dayLost = s.lastResultDay === highlightDay && s.lastResult && !s.lastResult.won;
-    const todayBar = dayWon ? Math.min(s.lastResult.attempt, 5) - 1 : (dayLost ? 5 : -1);
+    const todayBar = dayWon ? (s.lastResult.clue ?? -1) : (dayLost ? 5 : -1);
     let dist = "";
     for (let i = 0; i < 6; i++) {
       const n = s.distribution[i];
@@ -769,7 +801,7 @@
         <div class="stat-cell"><div class="v">${s.currentStreak}</div><div class="l">Streak</div></div>
         <div class="stat-cell"><div class="v">${s.maxStreak}</div><div class="l">Best</div></div>
       </div>
-      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:700">Guess distribution</div>
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:700">Clue distribution</div>
       ${dist}</div>`;
   }
 
@@ -786,6 +818,7 @@
   let player = null;
   let dayNumber = 0;
   let wrongGuesses = [];
+  let skips = 0;
   let revealed = false;
   let wasCorrect = false;
   let currentClueIndex = 0;
@@ -799,7 +832,7 @@
   const clueList = $("clueList");
   const guessInput = $("guessInput"), suggestionsBox = $("suggestions");
   const guessesPanel = $("guessesPanel"), guessesList = $("guessesList");
-  const pipsEl = $("pips"), revealLink = $("revealLink"), skipClueLink = $("skipClueLink"), result = $("result");
+  const pipsEl = $("pips"), skipLink = $("skipLink"), revealLink = $("revealLink"), result = $("result");
   const dateLabel = $("dateLabel");
   const archiveBanner = $("archivePlayingBanner");
   const tabBar = $("tabBar"), tabClues = $("tabClues"), tabAbout = $("tabAbout"), tabHighlights = $("tabHighlights");
@@ -824,11 +857,13 @@
     const saved = loadDayState(day);
     if (saved && saved.playerId === player.id) {
       wrongGuesses = saved.wrongGuesses || [];
+      skips = saved.skips || 0;
       currentClueIndex = saved.clueIndex || 0;
       revealed = saved.revealed || false;
       wasCorrect = saved.wasCorrect || false;
     } else {
       wrongGuesses = [];
+      skips = 0;
       currentClueIndex = 0;
       revealed = false;
       wasCorrect = false;
@@ -887,7 +922,7 @@
 
     renderClues();
     renderPips();
-    updateSkipClueVisibility();
+
     renderGuesses();
 
     // If already revealed, show the result
@@ -900,6 +935,7 @@
     saveDayState(playingDay, {
       playerId: player.id,
       wrongGuesses,
+      skips,
       clueIndex: currentClueIndex,
       revealed,
       wasCorrect,
@@ -933,14 +969,16 @@
   }
 
   function renderPips() {
+    const total = player.clues.length;
+    const used = wrongGuesses.length + skips;
     let html = "";
-    for (let i = 0; i < MAX_GUESSES; i++) {
-      html += `<span class="pip ${i < wrongGuesses.length ? "used" : ""}"></span>`;
+    for (let i = 0; i < total; i++) {
+      html += `<span class="pip ${i < used ? "used" : ""}"></span>`;
     }
-    html += `<span class="pips-count">${MAX_GUESSES - wrongGuesses.length} left</span>`;
     pipsEl.innerHTML = html;
+    skipLink.style.display = (!revealed && currentClueIndex < total - 1) ? "" : "none";
     const tip = document.getElementById("tipCard");
-    if (tip) tip.style.display = wrongGuesses.length > 0 || revealed ? "none" : "";
+    if (tip) tip.style.display = used > 0 || revealed ? "none" : "";
   }
 
   function renderSuggestions() {
@@ -989,11 +1027,19 @@
     ).join("");
   }
 
-  function updateSkipClueVisibility() {
-    if (revealed || currentClueIndex >= player.clues.length - 1) {
-      skipClueLink.style.display = "none";
+
+  function skipClue() {
+    if (revealed) return;
+    if (currentClueIndex >= player.clues.length - 1) return;
+    skips++;
+    currentClueIndex = wrongGuesses.length + skips;
+    renderClues();
+    renderPips();
+    if (wrongGuesses.length + skips >= player.clues.length) {
+      currentClueIndex = player.clues.length - 1;
+      revealAnswer(false);
     } else {
-      skipClueLink.style.display = "";
+      persistCurrentState();
     }
   }
 
@@ -1010,13 +1056,14 @@
       updateGuessBtn();
       renderGuesses();
       renderPips();
-      if (currentClueIndex < player.clues.length - 1 && wrongGuesses.length < MAX_GUESSES) {
-        currentClueIndex++;
+      if (wrongGuesses.length + skips >= player.clues.length) {
+        currentClueIndex = player.clues.length - 1;
+        revealAnswer(false);
+      } else {
+        currentClueIndex = wrongGuesses.length + skips;
         renderClues();
-        updateSkipClueVisibility();
+        persistCurrentState();
       }
-      if (wrongGuesses.length >= MAX_GUESSES) { wasCorrect = false; revealAnswer(false); }
-      persistCurrentState();
     }
   }
 
@@ -1026,8 +1073,9 @@
     persistCurrentState();
 
     const attempt = wrongGuesses.length + (correct ? 1 : 0);
+    const clue = currentClueIndex;
     // Only record stats for today's game (not archive replays)
-    const stats = (playingDay === today) ? recordResult(playingDay, correct, attempt) : loadStats();
+    const stats = (playingDay === today) ? recordResult(playingDay, correct, attempt, clue) : loadStats();
 
     lastRevealAttempt = attempt;
     lastRevealCorrect = correct;
@@ -1041,7 +1089,6 @@
     guessInput.disabled = true;
     suggestionsBox.classList.remove("open");
     revealLink.style.display = "none";
-    skipClueLink.style.display = "none";
     const inputWrap = document.querySelector(".input-wrap");
     if (inputWrap) inputWrap.style.display = "none";
     const metaRow = document.querySelector(".meta-row");
@@ -1051,7 +1098,7 @@
 
     const scoreLine = buildScoreLine();
     const annotatedClues = buildAnnotatedClues();
-    const bannerClass = lastRevealCorrect && lastRevealAttempt === 1 ? "good first-try" : (lastRevealCorrect ? "good" : "bad");
+    const bannerClass = lastRevealCorrect && currentClueIndex === 0 ? "good first-try" : (lastRevealCorrect ? "good" : "bad");
     const bannerLine = lastRevealCorrect
       ? `<div>✓ <span class="name-line">${player.name}</span></div>`
       : `<div>✕ It was <span class="name-line">${player.name}</span></div>`;
@@ -1072,7 +1119,7 @@
     // Populate Clues tab
     tabClues.innerHTML = `
       <div class="question">
-        <div class="label">All 5 clues</div>
+        <div class="label">All clues</div>
         ${annotatedClues}
       </div>
       ${playingDay === today ? renderStats(stats, playingDay) : ""}
@@ -1095,10 +1142,10 @@
   }
 
   function buildScoreLine() {
-    const ord = (n) => n === 1 ? "1st" : n === 2 ? "2nd" : n === 3 ? "3rd" : `${n}th`;
     if (!lastRevealCorrect) return "";
-    if (lastRevealAttempt === 1) return `<div class="score-line">First try 🎯</div>`;
-    return `<div class="score-line">Nailed it on the ${ord(lastRevealAttempt)}</div>`;
+    const clue = currentClueIndex + 1;
+    if (clue === 1) return `<div class="score-line">First try 🎯</div>`;
+    return `<div class="score-line">${clue}/${player.clues.length}</div>`;
   }
 
   function buildAnnotatedClues() {
@@ -1193,9 +1240,15 @@
 
   // ---- Share ----
   function buildShareText() {
-    const guesses = lastRevealCorrect ? `${lastRevealAttempt}/${MAX_GUESSES}` : `✕/${MAX_GUESSES}`;
-    const grid = lastRevealCorrect ? "❌".repeat(lastRevealAttempt - 1) + "⚽" : "❌".repeat(MAX_GUESSES);
-    return `⚽ It's good to hear the name — Day #${dayNumber}\n${guesses}  ${grid}\nbradshaw1992.github.io/good-to-hear-the-name`;
+    const total = player.clues.length;
+    const s = loadStats();
+    if (lastRevealCorrect) {
+      const clue = currentClueIndex + 1;
+      const dots = Array.from({length: total}, (_, i) => i < currentClueIndex ? "\u{1F534}" : i === currentClueIndex ? "\u{1F7E2}" : "\u{26AA}").join("");
+      const streak = s.currentStreak > 0 ? ` \u{1F525}${s.currentStreak}` : "";
+      return `\u{26BD} Good to Hear the Name — Day #${dayNumber}\n${dots} ${clue}/${total}${streak}\n#GoodToHear bradshaw1992.github.io/good-to-hear-the-name`;
+    }
+    return `\u{26BD} Good to Hear the Name — Day #${dayNumber}\n${"\u{26AB}".repeat(total)} X/${total}\n#GoodToHear bradshaw1992.github.io/good-to-hear-the-name`;
   }
 
   // ---- Archive calendar ----
@@ -1339,15 +1392,7 @@
       submitGuess(name);
     }
   });
-  skipClueLink.addEventListener("click", () => {
-    if (revealed) return;
-    if (currentClueIndex < player.clues.length - 1) {
-      currentClueIndex++;
-      renderClues();
-      updateSkipClueVisibility();
-      persistCurrentState();
-    }
-  });
+  skipLink.addEventListener("click", skipClue);
   revealLink.addEventListener("click", () => revealAnswer(false));
 
   // ---- Demo mode ----
