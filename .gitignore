@@ -16,3 +16,5 @@ app/release/
 App Cover Pictures/
 tester_invites/
 ios/
+keystore.properties
+*.keystore

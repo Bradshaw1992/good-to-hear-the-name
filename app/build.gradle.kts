@@ -1,8 +1,15 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization")
+}
+
+val keystoreProperties = Properties().apply {
+    val file = rootProject.file("keystore.properties")
+    if (file.exists()) load(file.inputStream())
 }
 
 android {
@@ -13,8 +20,8 @@ android {
         applicationId = "com.goodtohearthename"
         minSdk = 26
         targetSdk = 35
-        versionCode = 27
-        versionName = "1.3.2"
+        versionCode = 30
+        versionName = "1.3.4"
     }
 
     signingConfigs {
@@ -25,10 +32,10 @@ android {
             keyPassword = "android"
         }
         create("release") {
-            storeFile = rootProject.file("release.keystore")
-            storePassword = "GTHN_release_2026"
-            keyAlias = "gthn-release"
-            keyPassword = "GTHN_release_2026"
+            storeFile = rootProject.file(keystoreProperties.getProperty("storeFile", "release.keystore"))
+            storePassword = keystoreProperties.getProperty("storePassword", "")
+            keyAlias = keystoreProperties.getProperty("keyAlias", "")
+            keyPassword = keystoreProperties.getProperty("keyPassword", "")
         }
     }
 
