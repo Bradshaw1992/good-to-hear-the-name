@@ -1,27 +1,27 @@
-# Store listing — copy and paste (Play Store + App Store)
+# Play Store listing — copy and paste
 
 ## App name (max 30 chars)
 ```
-Good to Hear the Name
+It's good to hear the name
 ```
-*(21 chars — fits)*
+*(26 chars — fits)*
 
 ## Short description (max 80 chars)
 ```
-Wordle for niche footballers — a daily silhouette guessing game.
+Wordle for niche footballers — a daily silhouette guessing game with 5 clues.
 ```
-*(64 chars)*
+*(78 chars)*
 
 ## Full description (max 4000 chars)
 ```
 A daily guessing game for football fans who remember the names you'd half-forgotten you knew.
 
-Each day a silhouette of a niche footballer appears. You get one guess per clue — or skip to reveal the next clue. Either way, it costs a chance. 5 clues, 5 chances. Get it right and the silhouette reveals.
+Each day a silhouette of a niche footballer from the 2000s and 2010s appears. You get five clues — one to start, then a new one for each wrong guess. Five guesses to work it out. Get it right and the silhouette reveals.
 
-Cult heroes only. The kind of names that make you go "oh yeah, him!" — players you'd half-forgotten you knew, from leagues and eras all over the world.
+Cult heroes only. Yakubu. Jay-Jay Okocha. Iván Campo. Wes Morgan. Diego Godín. Trezeguet. Ravanelli. Brad Friedel. The kind of names that get an "oh yeah, *him*" out of you.
 
 • A new player every day
-• 5 clues, one guess per clue — guess or skip, every choice costs a chance
+• 5 clues, 5 guesses
 • Autocomplete from a database of 63,000+ footballers — you can guess almost anyone
 • A widget showing today's silhouette right on your home screen
 • Tracks your stats: win streak, win %, guess distribution
@@ -31,7 +31,7 @@ Same player worldwide each day, like Wordle. Compare scores in your group chat.
 
 No accounts. No ads. No tracking. Plays offline once installed.
 
-Made by a fan, for fans of the beautiful game.
+Made by a fan, for fans of the unsung heroes.
 ```
 
 ## Category
@@ -85,20 +85,12 @@ https://goodtohearthename.co.uk/
 |---|---|
 | `icon_512.png` | App icon (Play Console > App content > App icon) |
 | `feature_graphic.png` | Feature graphic (Store presence > Main store listing) |
+| `screenshot_1_silhouette.png` | Phone screenshot 1 — initial silhouette |
+| `screenshot_2_midgame.png` | Phone screenshot 2 — mid-game with stacked clues + previous guesses |
+| `screenshot_3_correct.png` | Phone screenshot 3 — winning reveal with photo + stats |
+| `screenshot_4_reveal.png` | Phone screenshot 4 — gave-up reveal with all clues + MISSED tags |
 
-### Screenshots
-
-**iOS (App Store Connect):** Use cropped files from `Screenshots/ios/`:
-
-| File | Shows |
-|---|---|
-| `IMG_0135_cropped.PNG` | Silhouette + Clue 1 + input field + pips |
-| `IMG_0136_cropped.PNG` | Silhouette + Clue 1 & 2 (mid-game) |
-| `IMG_0137_cropped.PNG` | All 5 clues + Share button (no player photo/name) |
-
-**Android (Play Store):** Use top-level `screenshot_1_silhouette.png` and `screenshot_2_midgame.png`.
-
-**IMPORTANT:** Never upload screenshots showing the reveal screen (player photo + name). Apple rejects under Guideline 4.1(a) for third-party likeness in metadata. `screenshot_3_correct.png` and `screenshot_4_reveal.png` are NOT safe to upload.
+Upload all 4 — Play Store wants min 2, more is better.
 
 ## The AAB
 Download from the latest GitHub Actions run on the repo:

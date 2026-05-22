@@ -86,6 +86,11 @@ class MainActivity : ComponentActivity() {
                         ?.takeIf { it.playerId == player.id }
                     mutableStateOf(saved?.wasCorrect ?: false)
                 }
+                var skips by remember(playingDayIndex) {
+                    val saved = GameStatePersistence.load(app, playingDayIndex)
+                        ?.takeIf { it.playerId == player.id }
+                    mutableStateOf(saved?.skips ?: 0)
+                }
 
                 var silhouette by remember(playingDayIndex) { mutableStateOf<Bitmap?>(null) }
                 var photo by remember(playingDayIndex) { mutableStateOf<Bitmap?>(null) }
@@ -96,9 +101,8 @@ class MainActivity : ComponentActivity() {
                 LaunchedEffect(revealed, playingDayIndex) {
                     if (revealed && stats == null) {
                         val attempt = wrongGuesses.size + (if (wasCorrect) 1 else 0)
-                        // Only record stats for today's game
                         stats = if (playingDayIndex == todayDayIndex) {
-                            StatsPersistence.recordResult(ctx, playingDayIndex, wasCorrect, attempt)
+                            StatsPersistence.recordResult(ctx, playingDayIndex, wasCorrect, attempt, clueIndex)
                         } else {
                             StatsPersistence.load(ctx)
                         }
@@ -106,10 +110,23 @@ class MainActivity : ComponentActivity() {
                 }
 
                 fun shareResult() {
-                    val attempt = wrongGuesses.size + (if (wasCorrect) 1 else 0)
-                    val score = if (wasCorrect) "$attempt/5" else "✕/5"
-                    val grid = if (wasCorrect) "❌".repeat(attempt - 1) + "⚽" else "❌".repeat(5)
-                    val text = "⚽ It's good to hear the name — Day #$dayNumber\n$score  $grid\nbradshaw1992.github.io/good-to-hear-the-name"
+                    val total = player.clues.size
+                    val streak = stats?.currentStreak ?: 0
+                    val streakStr = if (streak > 0) " 🔥$streak" else ""
+                    val line = if (wasCorrect) {
+                        val clue = clueIndex + 1
+                        val dots = (1..total).joinToString("") { i ->
+                            when {
+                                i < clue -> "🔴"
+                                i == clue -> "🟢"
+                                else -> "⚪"
+                            }
+                        }
+                        "$dots $clue/$total$streakStr"
+                    } else {
+                        "⚫".repeat(total) + " X/$total"
+                    }
+                    val text = "⚽ Good to Hear the Name — Day #$dayNumber\n$line\n#GoodToHear goodtohearthename.co.uk"
                     val intent = Intent(Intent.ACTION_SEND).apply {
                         type = "text/plain"
                         putExtra(Intent.EXTRA_TEXT, text)
@@ -164,6 +181,7 @@ class MainActivity : ComponentActivity() {
                         GameState(
                             playerId = player.id,
                             wrongGuesses = wrongGuesses.toList(),
+                            skips = skips,
                             currentClueIndex = clueIndex,
                             revealed = revealed,
                             wasCorrect = wasCorrect,
@@ -189,15 +207,13 @@ class MainActivity : ComponentActivity() {
                             ContentRepository.normalize(it.n) == ContentRepository.normalize(name)
                         }
                         wrongGuesses.add(GuessRecord(name, entry?.f ?: "", entry?.y ?: ""))
-                        query = TextFieldValue("")
-                        suggestions = emptyList()
-                        if (clueIndex < player.clues.size - 1 && wrongGuesses.size < 5) {
-                            clueIndex++
-                        }
-                        if (wrongGuesses.size >= 5) {
+                        clueIndex = (wrongGuesses.size + skips).coerceAtMost(player.clues.size - 1)
+                        if (wrongGuesses.size + skips >= player.clues.size) {
                             wasCorrect = false
                             revealed = true
                         }
+                        query = TextFieldValue("")
+                        suggestions = emptyList()
                     }
                     persistState()
                 }
@@ -209,12 +225,17 @@ class MainActivity : ComponentActivity() {
                     submitCurrentGuess()
                 }
 
+
                 fun skipClue() {
                     if (revealed) return
-                    if (clueIndex < player.clues.size - 1) {
-                        clueIndex++
-                        persistState()
+                    if (clueIndex >= player.clues.size - 1) return
+                    skips++
+                    clueIndex = (wrongGuesses.size + skips).coerceAtMost(player.clues.size - 1)
+                    if (wrongGuesses.size + skips >= player.clues.size) {
+                        wasCorrect = false
+                        revealed = true
                     }
+                    persistState()
                 }
 
                 fun reveal() {
@@ -240,6 +261,7 @@ class MainActivity : ComponentActivity() {
                     state = GameUiState(
                         query = query,
                         wrongGuesses = wrongGuesses.toList(),
+                        skips = skips,
                         currentClueIndex = clueIndex,
                         revealed = revealed,
                         wasCorrect = wasCorrect,
@@ -253,8 +275,8 @@ class MainActivity : ComponentActivity() {
                     onQueryChange = { query = it },
                     onPickSuggestion = ::pickSuggestion,
                     onSubmitGuess = ::submitCurrentGuess,
+                    onSkip = ::skipClue,
                     onReveal = ::reveal,
-                    onSkipClue = ::skipClue,
                     onShare = ::shareResult,
                     onOpenArchive = { showArchive = true },
                     onBackToToday = { playingDayIndex = todayDayIndex },
