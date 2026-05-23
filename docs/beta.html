@@ -1236,6 +1236,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   var savedCommentaryQuote = null;
 
   function showCelebration(stats) {
+    imageCard.classList.add("revealed");
     const clue = currentClueIndex + 1;
     const quote = getCommentaryQuote(clue);
     savedCommentaryQuote = quote;
