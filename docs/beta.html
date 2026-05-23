@@ -440,7 +440,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
     animation: card-in 400ms cubic-bezier(0.2, 0.9, 0.3, 1.2) 100ms both;
   }
   .celebration-card .celebration-header {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
     color: var(--good);
     text-transform: uppercase;
@@ -454,6 +454,9 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
     color: var(--text);
     line-height: 1.4;
     letter-spacing: -0.01em;
+  }
+  .celebration-card .celebration-quote.long {
+    font-size: 18px;
   }
   .celebration-card .celebration-score {
     font-size: 14px;
@@ -1234,12 +1237,19 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   }
 
   var savedCommentaryQuote = null;
+  function saveCommentaryQuote(quote) {
+    savedCommentaryQuote = quote;
+    try { localStorage.setItem('gthn_quote_' + playingDay, quote); } catch {}
+  }
+  function loadCommentaryQuote() {
+    try { return localStorage.getItem('gthn_quote_' + playingDay); } catch { return null; }
+  }
 
   function showCelebration(stats) {
     imageCard.classList.add("revealed");
     const clue = currentClueIndex + 1;
     const quote = getCommentaryQuote(clue);
-    savedCommentaryQuote = quote;
+    saveCommentaryQuote(quote);
     const scoreTxt = clue === 1 ? "First try" : clue + "/" + player.clues.length;
 
     const overlay = document.createElement("div");
@@ -1247,7 +1257,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
     overlay.innerHTML = `
       <div class="celebration-card">
         <div class="celebration-header">✓ Correct!</div>
-        <div class="celebration-quote">"${quote}"</div>
+        <div class="celebration-quote${quote.length > 60 ? ' long' : ''}">"${quote}"</div>
         <div class="celebration-score">${scoreTxt}</div>
         <button class="celebration-share">📤 Share with mates</button>
       </div>
@@ -1283,7 +1293,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
       if (!e.target.closest(".celebration-card")) dismiss();
     });
 
-    setTimeout(dismiss, 5000);
+    setTimeout(dismiss, Math.max(5000, quote.length * 60));
   }
 
   function showRevealedState(stats) {
@@ -1344,8 +1354,8 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
   function buildScoreLine() {
     if (!lastRevealCorrect) return "";
     const clue = currentClueIndex + 1;
-    const quote = savedCommentaryQuote || getCommentaryQuote(clue);
-    return `<div class="commentary-quote">"${quote}"</div><div class="score-line">${clue === 1 ? "First try" : clue + "/" + player.clues.length}</div>`;
+    const quote = savedCommentaryQuote || loadCommentaryQuote() || getCommentaryQuote(clue);
+    return `<div class="commentary-quote${quote.length > 60 ? ' long' : ''}">"${quote}"</div><div class="score-line">${clue === 1 ? "First try" : clue + "/" + player.clues.length}</div>`;
   }
 
   function buildAnnotatedClues() {
@@ -1447,9 +1457,9 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
       const dots = Array.from({length: total}, (_, i) => i < currentClueIndex ? "\u{1F534}" : i === currentClueIndex ? "\u{1F7E2}" : "\u{26AA}").join("");
       const streak = s.currentStreak > 0 ? ` \u{1F525}${s.currentStreak}` : "";
       const quoteLine = savedCommentaryQuote ? `"${savedCommentaryQuote}"\n` : "";
-      return `\u{26BD} Good to Hear the Name — Day #${dayNumber}\n${dots} ${clue}/${total}${streak}\n${quoteLine}#GoodToHear goodtohearthename.co.uk`;
+      return `\u{26BD} Good to Hear the Name — Day #${dayNumber}\n${dots} ${clue}/${total}${streak}\n${quoteLine}#GoodToHear goodtohearthename.co.uk — daily footballer quiz`;
     }
-    return `\u{26BD} Good to Hear the Name — Day #${dayNumber}\n${"\u{26AB}".repeat(total)} X/${total}\n#GoodToHear goodtohearthename.co.uk`;
+    return `\u{26BD} Good to Hear the Name — Day #${dayNumber}\n${"\u{26AB}".repeat(total)} X/${total}\n#GoodToHear goodtohearthename.co.uk — daily footballer quiz`;
   }
 
   // ---- Archive calendar ----
