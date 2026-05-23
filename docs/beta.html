@@ -412,17 +412,75 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
     letter-spacing: -0.01em;
   }
 
-  .green-flash {
+  .celebration-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(15, 122, 62, 0.12);
-    pointer-events: none;
-    z-index: 9999;
-    animation: flash-out 600ms ease forwards;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 122, 62, 0.95);
+    animation: celebration-in 400ms ease;
+    padding: 32px;
   }
-  @keyframes flash-out {
+  .celebration-overlay.fading {
+    animation: celebration-out 500ms ease forwards;
+  }
+  .celebration-overlay .celebration-quote {
+    font-size: 24px;
+    font-weight: 800;
+    font-style: italic;
+    color: #fff;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 500px;
+    animation: quote-in 500ms cubic-bezier(0.2, 0.9, 0.3, 1.2) 200ms both;
+  }
+  .celebration-overlay .celebration-score {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.8);
+    margin-top: 12px;
+    animation: quote-in 500ms ease 400ms both;
+  }
+  .celebration-overlay .celebration-share {
+    margin-top: 24px;
+    padding: 12px 28px;
+    background: #fff;
+    color: var(--good);
+    font-size: 15px;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    animation: quote-in 500ms ease 600ms both;
+  }
+  .celebration-overlay .celebration-share:active {
+    transform: scale(0.96);
+  }
+  .celebration-overlay .celebration-dismiss {
+    margin-top: 16px;
+    padding: 8px 20px;
+    background: transparent;
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    animation: quote-in 400ms ease 800ms both;
+  }
+  @keyframes celebration-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes celebration-out {
     0% { opacity: 1; }
     100% { opacity: 0; }
+  }
+  @keyframes quote-in {
+    0% { opacity: 0; transform: translateY(16px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
   }
 
   /* Image skeleton (while loading) */
@@ -1162,7 +1220,54 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
     lastRevealAttempt = attempt;
     lastRevealCorrect = correct;
 
-    showRevealedState(stats);
+    if (correct) {
+      showCelebration(stats);
+    } else {
+      showRevealedState(stats);
+    }
+  }
+
+  var savedCommentaryQuote = null;
+
+  function showCelebration(stats) {
+    const clue = currentClueIndex + 1;
+    const quote = getCommentaryQuote(clue);
+    savedCommentaryQuote = quote;
+    const scoreTxt = clue === 1 ? "First try" : clue + "/" + player.clues.length;
+
+    const overlay = document.createElement("div");
+    overlay.className = "celebration-overlay";
+    overlay.innerHTML = `
+      <div class="celebration-quote">"${quote}"</div>
+      <div class="celebration-score">${scoreTxt}</div>
+      <button class="celebration-share">📤 Share with mates</button>
+      <button class="celebration-dismiss">Continue</button>
+    `;
+    document.body.appendChild(overlay);
+
+    overlay.querySelector(".celebration-share").addEventListener("click", async (e) => {
+      e.stopPropagation();
+      const text = buildShareText();
+      try {
+        if (navigator.share) { await navigator.share({ text }); }
+        else {
+          await navigator.clipboard.writeText(text);
+          const btn = overlay.querySelector(".celebration-share");
+          btn.textContent = "✓ Copied!";
+          setTimeout(() => { btn.innerHTML = "📤 Share with mates"; }, 2200);
+        }
+      } catch {}
+    });
+
+    function dismiss() {
+      overlay.classList.add("fading");
+      setTimeout(() => {
+        overlay.remove();
+        showRevealedState(stats);
+      }, 500);
+    }
+
+    overlay.querySelector(".celebration-dismiss").addEventListener("click", dismiss);
   }
 
   function showRevealedState(stats) {
@@ -1193,17 +1298,9 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
       <div class="reveal-banner ${bannerClass}" style="position:relative">
         ${bannerLine}
         ${scoreLine}
-        <div class="sparkles" id="sparkles"></div>
       </div>
     `;
     result.style.display = "block";
-
-    if (lastRevealCorrect) {
-      const flash = document.createElement("div");
-      flash.className = "green-flash";
-      document.body.appendChild(flash);
-      setTimeout(() => flash.remove(), 700);
-    }
 
     // Populate Clues tab
     tabClues.innerHTML = `
@@ -1226,15 +1323,12 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);
     // Unlock tabs
     renderTabBar(true);
     switchTab("clues");
-
-    // Sparkles disabled for classic/restrained feel
-    // if (lastRevealCorrect) addSparkles();
   }
 
   function buildScoreLine() {
     if (!lastRevealCorrect) return "";
     const clue = currentClueIndex + 1;
-    const quote = getCommentaryQuote(clue);
+    const quote = savedCommentaryQuote || getCommentaryQuote(clue);
     return `<div class="commentary-quote">"${quote}"</div><div class="score-line">${clue === 1 ? "First try" : clue + "/" + player.clues.length}</div>`;
   }
 
