@@ -14,7 +14,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.input.TextFieldValue
+import android.view.HapticFeedbackConstants
 import com.goodtohearthename.data.ContentRepository
 import com.goodtohearthename.data.GameState
 import com.goodtohearthename.data.GameStatePersistence
@@ -29,6 +31,7 @@ import com.goodtohearthename.ui.AppTheme
 import com.goodtohearthename.ui.ArchiveDialog
 import com.goodtohearthename.ui.GameScreen
 import com.goodtohearthename.ui.GameUiState
+import com.goodtohearthename.ui.getCommentaryQuote
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -47,6 +50,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppTheme {
                 val ctx = LocalContext.current
+                val view = LocalView.current
                 val scope = rememberCoroutineScope()
 
                 // Which day we're playing — can differ from today when using archive
@@ -92,6 +96,13 @@ class MainActivity : ComponentActivity() {
                     mutableStateOf(saved?.skips ?: 0)
                 }
 
+                var commentaryQuote by remember(playingDayIndex) {
+                    val saved = GameStatePersistence.load(app, playingDayIndex)
+                        ?.takeIf { it.playerId == player.id }
+                    mutableStateOf(saved?.commentaryQuote)
+                }
+                var showCelebration by remember(playingDayIndex) { mutableStateOf(false) }
+
                 var silhouette by remember(playingDayIndex) { mutableStateOf<Bitmap?>(null) }
                 var photo by remember(playingDayIndex) { mutableStateOf<Bitmap?>(null) }
                 var suggestions by remember { mutableStateOf<List<NameEntry>>(emptyList()) }
@@ -108,6 +119,7 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 }
+
 
                 fun shareResult() {
                     val total = player.clues.size
@@ -126,7 +138,8 @@ class MainActivity : ComponentActivity() {
                     } else {
                         "⚫".repeat(total) + " X/$total"
                     }
-                    val text = "⚽ Good to Hear the Name — Day #$dayNumber\n$line\n#GoodToHear goodtohearthename.co.uk"
+                    val quoteLine = commentaryQuote?.let { "\"$it\"\n" } ?: ""
+                    val text = "⚽ Good to Hear the Name — Day #$dayNumber\n$line\n${quoteLine}#GoodToHear goodtohearthename.co.uk — daily footballer quiz"
                     val intent = Intent(Intent.ACTION_SEND).apply {
                         type = "text/plain"
                         putExtra(Intent.EXTRA_TEXT, text)
@@ -185,6 +198,7 @@ class MainActivity : ComponentActivity() {
                             currentClueIndex = clueIndex,
                             revealed = revealed,
                             wasCorrect = wasCorrect,
+                            commentaryQuote = commentaryQuote,
                         )
                     )
                     // Refresh widget so it can swap silhouette → photo on correct
@@ -198,8 +212,11 @@ class MainActivity : ComponentActivity() {
                     val name = query.text.trim()
                     if (name.isEmpty()) return
                     if (ContentRepository.isCorrect(player, name)) {
+                        view.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                         wasCorrect = true
                         revealed = true
+                        commentaryQuote = getCommentaryQuote(clueIndex + 1)
+                        showCelebration = true
                         query = TextFieldValue("")
                         suggestions = emptyList()
                     } else {
@@ -265,6 +282,7 @@ class MainActivity : ComponentActivity() {
                         currentClueIndex = clueIndex,
                         revealed = revealed,
                         wasCorrect = wasCorrect,
+                        commentaryQuote = commentaryQuote,
                     ),
                     silhouette = silhouette,
                     photo = photo,
@@ -280,6 +298,8 @@ class MainActivity : ComponentActivity() {
                     onShare = ::shareResult,
                     onOpenArchive = { showArchive = true },
                     onBackToToday = { playingDayIndex = todayDayIndex },
+                    showCelebration = showCelebration,
+                    onDismissCelebration = { showCelebration = false },
                 )
             }
         }
