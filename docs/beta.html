@@ -1,0 +1,1504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- GA redirect disabled for beta -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EGGR0KCPT4"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EGGR0KCPT4');
+// Redirect disabled for beta page
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f7a3e">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="GTHN">
+<meta name="apple-itunes-app" content="app-id=6767861587">
+<title>Good to Hear the Name — Wordle for niche footballers</title>
+<style>
+  :root {
+    --bg: #f4efe6;
+    --card: #ffffff;
+    --card-hover: #f8f5ee;
+    --line: #e6dfd0;
+    --text: #14202e;
+    --text-soft: #3a4858;
+    --muted: #8a8676;
+    --accent: #0f7a3e;
+    --accent-soft: #d6ede0;
+    --bad: #b03434;
+    --bad-soft: #f5e1de;
+    --good: #0f7a3e;
+    --good-soft: #d6ede0;
+    --shadow: 0 1px 2px rgba(20,32,46,0.04), 0 4px 14px rgba(20,32,46,0.06);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { min-height: 100vh; min-height: 100dvh; }
+
+  .app {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 18px 16px 32px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  header .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+  }
+  header .brand-icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(15, 122, 62, 0.3);
+  }
+  header h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  header .sub-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+  }
+  header .day-badge {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  header .date {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 820px) {
+    .layout { grid-template-columns: 1.05fr 1fr; align-items: start; }
+  }
+
+  .image-card {
+    background: var(--card);
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow);
+    max-height: 60vh;
+    /* aspect-ratio set dynamically via JS based on the silhouette's natural dimensions */
+  }
+  .image-card img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+    display: block;
+    transition: opacity 700ms ease;
+  }
+  .image-card .photo { position: absolute; inset: 0; opacity: 0; }
+  .image-card.revealed .photo { opacity: 1; }
+
+  .game {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .question {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    border-left: 3px solid var(--accent);
+  }
+  .question .label {
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .question .text {
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .input-wrap { position: relative; }
+  input[type="text"] {
+    width: 100%;
+    background: var(--card);
+    color: var(--text);
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-size: 16px;
+    font-family: inherit;
+    outline: none;
+    box-shadow: var(--shadow);
+    transition: border-color 150ms ease;
+  }
+  input[type="text"]:focus { border-color: var(--accent); }
+  input[type="text"]::placeholder { color: var(--muted); }
+  input[type="text"]:disabled { opacity: 0.5; }
+  .guess-row { display: flex; gap: 8px; align-items: stretch; }
+  .guess-row input { flex: 1; }
+  .guess-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 0 18px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 150ms;
+    flex-shrink: 0;
+  }
+  .guess-btn:hover { opacity: 0.85; }
+
+  .suggestions {
+    margin-top: 8px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    overflow-y: auto;
+    box-shadow: var(--shadow);
+    /* Smooth in/out: fade + collapse instead of abrupt display:none */
+    max-height: 0;
+    opacity: 0;
+    border-width: 0;
+    transition: max-height 200ms ease, opacity 150ms ease, border-width 0ms 200ms;
+  }
+  .suggestions.open {
+    max-height: 280px;
+    opacity: 1;
+    border-width: 1px;
+    transition: max-height 200ms ease, opacity 150ms ease, border-width 0ms;
+  }
+  .suggestion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    cursor: pointer;
+    user-select: none;
+    transition: background 100ms ease;
+  }
+  .suggestion:last-child { border-bottom: none; }
+  .suggestion:hover, .suggestion:focus { background: var(--card-hover); }
+  .suggestion .name { font-size: 15px; font-weight: 500; color: var(--text); }
+  .suggestion .meta { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .suggestion .years { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .suggestion .flag { font-size: 18px; }
+
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 0 4px;
+  }
+  .meta-row a { text-decoration: none; cursor: pointer; font-weight: 500; }
+  .meta-row a:hover { text-decoration: underline; }
+  .meta-row #skipLink { color: var(--accent); }
+  .meta-row #revealLink { color: var(--text-soft); }
+  .meta-row .pips { display: inline-flex; align-items: center; gap: 6px; }
+  .meta-row .pip {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--line);
+    transition: background 200ms ease, transform 200ms ease;
+  }
+  .meta-row .pip.used {
+    background: var(--bad);
+    animation: pip-pop 280ms ease;
+  }
+  @keyframes pip-pop {
+    0%   { transform: scale(0.6); }
+    60%  { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  .guesses {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 14px 18px;
+    box-shadow: var(--shadow);
+  }
+  .guesses .heading {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .guess-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .guess-row:last-child { border-bottom: none; }
+  .guess-row .x {
+    color: var(--bad);
+    background: var(--bad-soft);
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  .guess-row .name { color: var(--text-soft); }
+
+  .reveal-banner {
+    border-radius: 14px;
+    padding: 18px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    animation: banner-in 480ms cubic-bezier(0.2, 0.9, 0.3, 1.4);
+  }
+  .reveal-banner.good { background: var(--good-soft); color: var(--good); border: 2px solid var(--good); }
+  .reveal-banner.bad { background: var(--bad-soft); color: var(--bad); border: 2px solid var(--bad); }
+  .reveal-banner .name-line { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; }
+  .reveal-banner .score-line { font-size: 13px; font-weight: 500; opacity: 0.85; margin-top: 6px; }
+  .reveal-banner.first-try { animation: banner-in 480ms cubic-bezier(0.2, 0.9, 0.3, 1.4), banner-pulse 1400ms ease 480ms 2; }
+  @keyframes banner-in {
+    0%   { opacity: 0; transform: translateY(12px) scale(0.96); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes banner-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(15, 122, 62, 0.0); }
+    50%      { box-shadow: 0 0 0 10px rgba(15, 122, 62, 0.18); }
+  }
+  /* Confetti-ish sparkles around win banner */
+  .sparkles { position: absolute; pointer-events: none; inset: -20px; overflow: hidden; }
+  .sparkle {
+    position: absolute;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkle 1100ms ease forwards;
+  }
+  @keyframes sparkle {
+    0%   { opacity: 0; transform: translate(0,0) scale(0); }
+    20%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1.2); }
+  }
+
+  .bio { display: none; margin-top: 22px; }
+  .bio.show { display: block; }
+  .bio .row { background: var(--card); border-radius: 16px; padding: 18px 20px; margin-bottom: 12px; box-shadow: var(--shadow); }
+  .bio .row h3 { margin: 0 0 10px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  .bio .row p, .bio .row li { font-size: 15px; line-height: 1.5; margin: 4px 0; color: var(--text-soft); }
+  .bio .row ul { margin: 0; padding-left: 18px; }
+  .bio .row .name-line { font-size: 30px; font-weight: 700; line-height: 1.1; margin-bottom: 4px; color: var(--text); letter-spacing: -0.01em; }
+  .bio .row .sub { font-size: 13px; color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { background: var(--accent-soft); color: var(--accent); padding: 4px 12px; border-radius: 999px; font-size: 13px; font-weight: 500; }
+
+  .tab-bar {
+    display: flex;
+    gap: 3px;
+    background: var(--line);
+    border-radius: 12px;
+    padding: 3px;
+    margin-bottom: 14px;
+  }
+  .tab-pill {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--text-soft);
+    font-family: inherit;
+    transition: background 150ms, color 150ms;
+  }
+  .tab-pill.active {
+    background: var(--card);
+    color: var(--accent);
+    font-weight: 700;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .tab-pill.locked {
+    color: var(--muted);
+    opacity: 0.45;
+    cursor: default;
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .highlights-embed { border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 16/9; }
+  .highlights-embed iframe { width: 100%; height: 100%; border: none; }
+
+  .footer {
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 12px;
+    padding: 32px 0 12px;
+    border-top: 1px solid var(--line);
+    margin-top: 24px;
+  }
+  .footer strong { color: var(--text); }
+  .footer .sep { color: var(--line); margin: 0 6px; }
+
+  /* Empty-state tip card (shown before any guess) */
+  .tip-card {
+    background: var(--card);
+    border: 1px dashed var(--line);
+    border-radius: 14px;
+    padding: 14px 18px;
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+  .tip-card .tip-label {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    margin-right: 8px;
+  }
+
+  .commentary-quote {
+    font-size: 17px;
+    font-weight: 700;
+    font-style: italic;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .green-flash {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 122, 62, 0.12);
+    pointer-events: none;
+    z-index: 9999;
+    animation: flash-out 600ms ease forwards;
+  }
+  @keyframes flash-out {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  /* Image skeleton (while loading) */
+  .image-card.loading::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(110deg, var(--card) 0%, var(--card-hover) 50%, var(--card) 100%);
+    background-size: 200% 100%;
+    animation: skeleton 1400ms linear infinite;
+  }
+  .image-card.loading img { opacity: 0; transition: none; }
+  @keyframes skeleton { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+
+  /* Slide-in for newly added clue */
+  .clue-enter { animation: clue-in 380ms ease; }
+  @keyframes clue-in {
+    0%   { opacity: 0; transform: translateY(-6px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Share button — bigger, with icon */
+  .share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    box-shadow: 0 4px 12px rgba(15, 122, 62, 0.25);
+    transition: transform 120ms ease, box-shadow 120ms ease;
+    margin-top: 14px;
+  }
+  .share-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(15, 122, 62, 0.32); }
+  .share-btn:active { transform: translateY(0); }
+  .stats-card { background: var(--card); border-radius: 16px; padding: 18px 20px; box-shadow: var(--shadow); margin-top: 14px; }
+  .stats-card .heading { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; font-weight: 700; }
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 18px; }
+  .stat-cell { text-align: center; }
+  .stat-cell .v { font-size: 26px; font-weight: 700; color: var(--text); line-height: 1; }
+  .stat-cell .l { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; font-weight: 600; }
+  .dist-row { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 13px; color: var(--text-soft); }
+  .dist-row .label { width: 16px; text-align: right; color: var(--muted); }
+  .dist-row .bar { flex: 0 0 auto; min-width: 20px; height: 22px; border-radius: 4px; background: var(--line); display: flex; align-items: center; justify-content: flex-end; padding: 0 6px; color: var(--text); font-size: 12px; font-weight: 600; }
+  .dist-row .bar.filled { background: var(--accent); color: #fff; }
+  .dist-row .bar.today { background: var(--accent); color: #fff; box-shadow: 0 0 0 2px var(--accent-soft); }
+  .dist-row .empty { color: var(--muted); font-size: 12px; }
+
+  /* Archive overlay */
+  .archive-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20,32,46,0.55);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    animation: overlay-in 200ms ease;
+  }
+  .archive-overlay.open { display: flex; }
+  @keyframes overlay-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+  .archive-modal {
+    background: var(--card);
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(20,32,46,0.18);
+    width: 92%;
+    max-width: 400px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 24px 20px;
+    animation: modal-in 280ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
+  }
+  @keyframes modal-in { 0% { opacity: 0; transform: translateY(16px) scale(0.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+
+  .archive-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .archive-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .archive-close {
+    width: 32px; height: 32px;
+    border: none;
+    background: var(--bg);
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-soft);
+    transition: background 150ms;
+  }
+  .archive-close:hover { background: var(--line); }
+
+  .archive-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .archive-nav button {
+    width: 36px; height: 36px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--text-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 150ms;
+  }
+  .archive-nav button:hover { background: var(--bg); }
+  .archive-nav button:disabled { opacity: 0.3; cursor: default; }
+  .archive-nav .month-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .archive-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  .archive-grid .dow {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    padding: 4px 0 8px;
+  }
+  .archive-grid .day-cell {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 120ms;
+    gap: 2px;
+    position: relative;
+  }
+  .archive-grid .day-cell:hover { background: var(--bg); }
+  .archive-grid .day-cell.future { opacity: 0.25; cursor: default; pointer-events: none; }
+  .archive-grid .day-cell.before-epoch { opacity: 0.15; cursor: default; pointer-events: none; }
+  .archive-grid .day-cell.is-today { background: var(--accent-soft); border-radius: 10px; }
+  .archive-grid .day-cell .ball { font-size: 18px; line-height: 1; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+  .archive-grid .day-cell .ball.won { background: rgba(15, 122, 62, 0.2); }
+  .archive-grid .day-cell .ball.lost { background: rgba(176, 52, 52, 0.2); }
+  .archive-grid .day-cell .ball.unplayed { filter: grayscale(1); opacity: 0.4; }
+  .archive-grid .day-cell .day-num {
+    font-size: 10px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .archive-grid .empty-cell { }
+
+  .archive-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 0;
+    color: var(--accent);
+    transition: opacity 150ms;
+    letter-spacing: 0.5px;
+  }
+  .archive-btn:hover { opacity: 0.7; }
+
+  .archive-playing-banner {
+    text-align: center;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 6px 12px;
+    background: var(--accent-soft);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: none;
+    cursor: pointer;
+  }
+  .archive-playing-banner:hover { opacity: 0.85; }
+
+  .app-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--accent-soft);
+    border: 1.5px solid var(--accent);
+    border-radius: 14px;
+    padding: 12px 18px;
+    margin-bottom: 18px;
+    text-decoration: none;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+  }
+  .app-banner:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15,122,62,0.15); }
+  .app-banner .app-banner-icon { font-size: 24px; }
+  .app-banner .app-banner-text { font-size: 14px; font-weight: 600; color: var(--accent); }
+  .app-banner .app-banner-sub { font-size: 12px; color: var(--text-soft); font-weight: 400; }
+
+</style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <span class="brand-icon">⚽</span>
+        <h1>Good to Hear the Name</h1>
+      </div>
+      <div id="archivePlayingBanner" class="archive-playing-banner"></div>
+      <div class="sub-row">
+        <span class="day-badge" id="dayBadge">DAY #1</span>
+        <span class="date" id="dateLabel"></span>
+        <span style="color:var(--muted);font-size:11px;margin:0 4px;">·</span>
+        <button class="archive-btn" id="archiveBtn" title="Play previous days">📅 Previous days</button>
+      </div>
+    </header>
+
+    <a class="app-banner" href="https://apps.apple.com/app/goodtohearthename/id6767861587" target="_blank" rel="noopener">
+      <span class="app-banner-icon">📱</span>
+      <span><span class="app-banner-text">Now available on iPhone</span><br><span class="app-banner-sub">Download the app — with home screen widget</span></span>
+    </a>
+
+    <div class="archive-overlay" id="archiveOverlay">
+      <div class="archive-modal">
+        <div class="archive-header">
+          <h2>📅 Previous days</h2>
+          <button class="archive-close" id="archiveClose">✕</button>
+        </div>
+        <div class="archive-nav">
+          <button id="archivePrev">‹</button>
+          <span class="month-label" id="archiveMonthLabel"></span>
+          <button id="archiveNext">›</button>
+        </div>
+        <div class="archive-grid" id="archiveGrid"></div>
+      </div>
+    </div>
+
+    <div class="layout">
+      <div id="image" class="image-card loading">
+        <img id="silhouette" src="" alt="silhouette">
+        <img id="photo" class="photo" src="" alt="photo">
+      </div>
+
+      <div class="game">
+        <div id="question" class="question">
+          <div id="clueList"></div>
+        </div>
+
+        <div class="input-wrap">
+          <div class="guess-row">
+            <input id="guessInput" type="text" placeholder="Type a footballer's name…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+            <button id="guessBtn" class="guess-btn" style="display:none" title="Submit guess">→</button>
+          </div>
+          <div id="suggestions" class="suggestions"></div>
+        </div>
+
+        <div class="meta-row">
+          <span class="pips" id="pips"></span>
+          <a id="skipLink">Skip clue</a>
+          <a id="revealLink">Bottle it</a>
+        </div>
+
+        <div id="tipCard" class="tip-card">
+          <span class="tip-label">HOW TO PLAY</span>One guess per clue — or skip to reveal the next clue. Either way, it costs a chance. 5 clues, 5 chances. New player every day.
+        </div>
+
+        <div id="guessesPanel" class="guesses" style="display:none">
+          <div class="heading">Previous guesses</div>
+          <div id="guessesList"></div>
+        </div>
+
+        <div id="result" style="display:none"></div>
+
+        <div id="tabBar" class="tab-bar" style="display:none">
+          <button class="tab-pill active" data-tab="clues">Clues</button>
+          <button class="tab-pill locked" data-tab="about">🔒 About</button>
+          <button class="tab-pill locked" data-tab="highlights">🔒 Highlights</button>
+        </div>
+
+        <div id="tabClues" class="tab-content active"></div>
+        <div id="tabAbout" class="tab-content"></div>
+        <div id="tabHighlights" class="tab-content"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <strong>Good to Hear the Name</strong><span class="sep">·</span>Wordle for niche footballers<br>
+      <a href="https://apps.apple.com/app/goodtohearthename/id6767861587" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:600">📲 Download on iPhone</a>
+      <span class="sep">·</span><span style="color:var(--muted)">made by Bradshaw</span>
+    </div>
+  </div>
+
+<script src="players.js?v=28"></script>
+<script src="bios.js?v=26"></script>
+<script>
+(() => {
+  const COMMENTARY_QUOTES = {
+    1: [
+      "He's got no right to score from there!",
+      "I cannot believe what I've just seen!",
+      "Absolutely world class!",
+      "What a hit, son! What a hit!",
+      "Would you BELIEVE IT?! That sums it all up!"
+    ],
+    2: [
+      "Magisterial!",
+      "That... is sensational!",
+      "Take a bow, son!",
+      "You beauty!",
+      "Unbelievable, Jeff!",
+      "That was liquid football!",
+      "Dennis Bergkamp! Dennis Bergkamp! Dennis Bergkamp!"
+    ],
+    3: [
+      "Cool as you like!",
+      "A lovely, lovely goal!",
+      "Football. Bloody hell!",
+      "He's done it!",
+      "They think it's all over! It is now!",
+      "Corner taken quickly, ORIGI!",
+      "Lovely cushioned header for GerrAAAAAARRRDD!",
+      "It's two against four but one of them is Messi"
+    ],
+    4: [
+      "It's been coming!",
+      "Persistence pays off!",
+      "They've broken the deadlock!",
+      "He's ground that one out!",
+      "Thomas... it's up for grabs now!",
+      "Beckham could raise the roof here... AND HE HAS!",
+      "Shabalala!!!",
+      "ROMA HAVE RISEN FROM THEIR RUINS!",
+      "Arshavin! Fooouuurrr!! Just Astonishing!!"
+    ],
+    5: [
+      "And Solskjaer has won it!",
+      "Right at the death!",
+      "The great escape!",
+      "AGUEEERROOO! I swear you'll never see anything like this ever again! So watch it. Drink it in.",
+      "Here's Dele Alli... here's Lucas Moura-- OHH THEY'VE DONE IT! LUCAS MOURA WITH THE LAST KICK OF THE GAME!",
+      "Here's Hogg... DEENEY!!!!!"
+    ]
+  };
+
+  function getCommentaryQuote(clueNumber) {
+    const quotes = COMMENTARY_QUOTES[clueNumber] || COMMENTARY_QUOTES[3];
+    return quotes[Math.floor(Math.random() * quotes.length)];
+  }
+
+  const ALL_PLAYERS = window.PLAYERS;
+  const APPROVED = ALL_PLAYERS.filter(p => p.approved);
+  const BIOS = window.BIOS || {};
+  const CLUES_PER_PLAYER = 5;
+  const $ = (id) => document.getElementById(id);
+  const params = new URLSearchParams(location.search);
+  const pinId = params.get("player");
+  const pool = APPROVED.length > 0 ? APPROVED : ALL_PLAYERS;
+  const EPOCH_DAY = Math.floor(Date.UTC(2026, 4, 5) / 86400000);
+  const today = Math.floor(Date.now() / 86400000);
+
+  // ---- Per-day state persistence (localStorage) ----
+  const STATE_PREFIX = "gthn_day_";
+  function loadDayState(day) {
+    try { return JSON.parse(localStorage.getItem(STATE_PREFIX + day)); } catch { return null; }
+  }
+  function saveDayState(day, state) {
+    try { localStorage.setItem(STATE_PREFIX + day, JSON.stringify(state)); } catch {}
+  }
+  // Get result for archive calendar: returns {won,attempt} or null
+  function getDayResult(day) {
+    const s = loadDayState(day);
+    if (!s || !s.revealed) return null;
+    return { won: s.wasCorrect, attempt: s.wrongGuesses.length + (s.wasCorrect ? 1 : 0) };
+  }
+
+  // ---- Stats (localStorage) ----
+  const STATS_KEY = "gthn_stats_v1";
+  const defaultStats = () => ({
+    played: 0, won: 0, currentStreak: 0, maxStreak: 0,
+    distribution: [0, 0, 0, 0, 0, 0],
+    lastWonDay: -999, lastResultDay: -999, lastResult: null,
+  });
+  function loadStats() {
+    try {
+      const raw = Object.assign(defaultStats(), JSON.parse(localStorage.getItem(STATS_KEY)) || {});
+      if (raw.distribution.length === 7) {
+        raw.distribution = [raw.distribution[0], raw.distribution[1], raw.distribution[2],
+          raw.distribution[3], raw.distribution[4] + raw.distribution[5], raw.distribution[6]];
+        saveStats(raw);
+      }
+      if (raw.distribution.length !== 6) {
+        raw.distribution = [0, 0, 0, 0, 0, 0];
+      }
+      return raw;
+    } catch { return defaultStats(); }
+  }
+  function saveStats(s) { try { localStorage.setItem(STATS_KEY, JSON.stringify(s)); } catch {} }
+  function recordResult(day, won, attempt, clue) {
+    const s = loadStats();
+    if (s.lastResultDay === day) return s;
+    s.played++;
+    if (won) {
+      s.won++;
+      s.distribution[clue]++;
+      s.currentStreak = (day - s.lastWonDay === 1) ? (s.currentStreak + 1) : 1;
+      if (s.currentStreak > s.maxStreak) s.maxStreak = s.currentStreak;
+      s.lastWonDay = day;
+    } else {
+      s.distribution[5]++;
+      s.currentStreak = 0;
+    }
+    s.lastResultDay = day;
+    s.lastResult = { won, attempt, clue };
+    saveStats(s);
+    return s;
+  }
+  function renderStats(s, highlightDay) {
+    const winPct = s.played ? Math.round((s.won / s.played) * 100) : 0;
+    const max = Math.max(1, ...s.distribution);
+    const labels = ["Clue 1", "Clue 2", "Clue 3", "Clue 4", "Clue 5", "X"];
+    const dayWon = s.lastResultDay === highlightDay && s.lastResult && s.lastResult.won;
+    const dayLost = s.lastResultDay === highlightDay && s.lastResult && !s.lastResult.won;
+    const todayBar = dayWon ? (s.lastResult.clue ?? -1) : (dayLost ? 5 : -1);
+    let dist = "";
+    for (let i = 0; i < 6; i++) {
+      const n = s.distribution[i];
+      const w = n === 0 ? 20 : Math.round(20 + (n / max) * 240);
+      const cls = i === todayBar ? "bar today" : (n > 0 ? "bar filled" : "bar");
+      dist += `<div class="dist-row"><span class="label">${labels[i]}</span><div class="${cls}" style="width:${w}px">${n > 0 ? n : ""}</div></div>`;
+    }
+    return `<div class="stats-card"><div class="heading">Your stats</div>
+      <div class="stat-grid">
+        <div class="stat-cell"><div class="v">${s.played}</div><div class="l">Played</div></div>
+        <div class="stat-cell"><div class="v">${winPct}%</div><div class="l">Win</div></div>
+        <div class="stat-cell"><div class="v">${s.currentStreak}</div><div class="l">Streak</div></div>
+        <div class="stat-cell"><div class="v">${s.maxStreak}</div><div class="l">Best</div></div>
+      </div>
+      <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:700">Clue distribution</div>
+      ${dist}</div>`;
+  }
+
+  // ---- Autocomplete names (lazy-loaded) ----
+  let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
+  fetch("names.json?v=29").then(r => r.json()).then(big => {
+    const seen = new Set(allNames.map(e => e.n.toLowerCase()));
+    for (const e of big) { const k = e.n.toLowerCase(); if (!seen.has(k)) { seen.add(k); allNames.push(e); } }
+    allNames.sort((a, b) => a.n.toLowerCase().localeCompare(b.n.toLowerCase()));
+  }).catch(() => {});
+
+  // ---- Game state (mutable — reset when switching days) ----
+  let playingDay = today;
+  let player = null;
+  let dayNumber = 0;
+  let wrongGuesses = [];
+  let skips = 0;
+  let revealed = false;
+  let wasCorrect = false;
+  let currentClueIndex = 0;
+  let lastRevealAttempt = 0;
+  let lastRevealCorrect = false;
+  let debounceTimer = null;
+  let suggestionsReady = 0;
+
+  // DOM refs
+  const silhouette = $("silhouette"), photo = $("photo"), imageCard = $("image");
+  const clueList = $("clueList");
+  const guessInput = $("guessInput"), suggestionsBox = $("suggestions");
+  const guessesPanel = $("guessesPanel"), guessesList = $("guessesList");
+  const pipsEl = $("pips"), skipLink = $("skipLink"), revealLink = $("revealLink"), result = $("result");
+  const dateLabel = $("dateLabel");
+  const archiveBanner = $("archivePlayingBanner");
+  const tabBar = $("tabBar"), tabClues = $("tabClues"), tabAbout = $("tabAbout"), tabHighlights = $("tabHighlights");
+
+  function playerForDay(day) {
+    const off = day - EPOCH_DAY;
+    const idx = ((off % pool.length) + pool.length) % pool.length;
+    return pool[idx];
+  }
+
+  function dateFromDay(day) {
+    return new Date(day * 86400000);
+  }
+
+  // ---- Load a specific day's game ----
+  function loadGame(day) {
+    playingDay = day;
+    player = (pinId && ALL_PLAYERS.find(p => p.id === pinId)) || playerForDay(day);
+    dayNumber = (day - EPOCH_DAY) + 1;
+
+    // Restore saved state for this day
+    const saved = loadDayState(day);
+    if (saved && saved.playerId === player.id) {
+      wrongGuesses = saved.wrongGuesses || [];
+      skips = saved.skips || 0;
+      currentClueIndex = saved.clueIndex || 0;
+      revealed = saved.revealed || false;
+      wasCorrect = saved.wasCorrect || false;
+    } else {
+      wrongGuesses = [];
+      skips = 0;
+      currentClueIndex = 0;
+      revealed = false;
+      wasCorrect = false;
+    }
+
+    lastRevealAttempt = wrongGuesses.length + (wasCorrect ? 1 : 0);
+    lastRevealCorrect = wasCorrect;
+
+    // Update images
+    imageCard.classList.add("loading");
+    imageCard.classList.remove("revealed");
+    silhouette.src = `silhouettes/${player.id}.jpg`;
+    photo.src = `images/${player.id}.jpg`;
+    function onSilLoaded() {
+      if (silhouette.naturalWidth && silhouette.naturalHeight) {
+        imageCard.style.aspectRatio = `${silhouette.naturalWidth} / ${silhouette.naturalHeight}`;
+      }
+      imageCard.classList.remove("loading");
+    }
+    if (silhouette.complete && silhouette.naturalWidth > 0) onSilLoaded();
+    else silhouette.addEventListener("load", onSilLoaded, { once: true });
+
+    // Update header
+    $("dayBadge").textContent = `DAY #${dayNumber}`;
+    const d = dateFromDay(day);
+    dateLabel.textContent = d.toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long" });
+
+    // Archive banner
+    if (day !== today) {
+      archiveBanner.textContent = `PLAYING DAY #${dayNumber} — tap to return to today`;
+      archiveBanner.style.display = "block";
+    } else {
+      archiveBanner.style.display = "none";
+    }
+
+    // Reset UI
+    guessInput.value = "";
+    guessInput.disabled = false;
+    suggestionsBox.classList.remove("open");
+    suggestionsBox.innerHTML = "";
+    result.style.display = "none";
+    result.innerHTML = "";
+    tabClues.innerHTML = "";
+    tabAbout.innerHTML = "";
+    tabHighlights.innerHTML = "";
+    tabClues.classList.add("active");
+    tabAbout.classList.remove("active");
+    tabHighlights.classList.remove("active");
+    const inputWrap = document.querySelector(".input-wrap");
+    if (inputWrap) inputWrap.style.display = "";
+    const metaRow = document.querySelector(".meta-row");
+    if (metaRow) metaRow.style.display = "";
+    guessesPanel.style.display = "none";
+    guessesList.innerHTML = "";
+    renderTabBar(false);
+
+    renderClues();
+    renderPips();
+
+    renderGuesses();
+
+    // If already revealed, show the result
+    if (revealed) {
+      showRevealedState();
+    }
+  }
+
+  function persistCurrentState() {
+    saveDayState(playingDay, {
+      playerId: player.id,
+      wrongGuesses,
+      skips,
+      clueIndex: currentClueIndex,
+      revealed,
+      wasCorrect,
+    });
+  }
+
+  // ---- Rendering functions ----
+  function renderClues() {
+    const upTo = currentClueIndex;
+    let html = "";
+    for (let i = 0; i <= upTo && i < player.clues.length; i++) {
+      const isLatest = i === upTo;
+      const cls = isLatest && upTo > 0 ? "clue-enter" : "";
+      html += `<div class="${cls}" style="padding:10px 0${i > 0 ? ';border-top:1px solid var(--line)' : ''}">
+        <div style="text-transform:uppercase;font-size:11px;letter-spacing:0.12em;color:var(--accent);margin-bottom:6px;font-weight:700">Clue ${i + 1}</div>
+        <div style="font-size:${isLatest ? '17' : '15'}px;line-height:1.5;color:${isLatest ? 'var(--text)' : 'var(--text-soft)'}">${player.clues[i]}</div>
+      </div>`;
+    }
+    clueList.innerHTML = html;
+  }
+
+  function normalize(s) {
+    return (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9 ]/g, "").trim();
+  }
+
+  function isCorrect(guessName) {
+    const g = normalize(guessName);
+    if (!g) return false;
+    if (g === normalize(player.name)) return true;
+    return (player.aliases || []).some(a => normalize(a) === g);
+  }
+
+  function renderPips() {
+    const total = player.clues.length;
+    const used = wrongGuesses.length + skips;
+    let html = "";
+    for (let i = 0; i < total; i++) {
+      html += `<span class="pip ${i < used ? "used" : ""}"></span>`;
+    }
+    pipsEl.innerHTML = html;
+    skipLink.style.display = (!revealed && currentClueIndex < total - 1) ? "" : "none";
+    const tip = document.getElementById("tipCard");
+    if (tip) tip.style.display = used > 0 || revealed ? "none" : "";
+  }
+
+  function renderSuggestions() {
+    if (revealed) { suggestionsBox.classList.remove("open"); return; }
+    const q = normalize(guessInput.value);
+    if (q.length < 3) { suggestionsBox.classList.remove("open"); return; }
+    const prefix = [], substring = [];
+    for (const e of allNames) {
+      const norm = normalize(e.n);
+      if (norm.startsWith(q)) prefix.push(e);
+      else if (norm.includes(q)) substring.push(e);
+      if (prefix.length >= 15) break;
+    }
+    const matches = [...prefix, ...substring].slice(0, 15);
+    if (matches.length === 0) { suggestionsBox.classList.remove("open"); return; }
+    const newHtml = matches.map(e =>
+      `<div class="suggestion" data-name="${e.n.replace(/"/g, '&quot;')}">
+        <span class="name">${e.n}</span>
+        <span class="meta">${e.y ? `<span class="years">${e.y}</span>` : ""}<span class="flag">${e.f || ""}</span></span>
+      </div>`
+    ).join("");
+    if (suggestionsBox.innerHTML !== newHtml) {
+      suggestionsBox.innerHTML = newHtml;
+      suggestionsReady = Date.now() + 400;
+    }
+    suggestionsBox.classList.add("open");
+  }
+
+  function debouncedRenderSuggestions() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(renderSuggestions, 350);
+  }
+
+  function renderGuesses() {
+    if (!wrongGuesses.length) { guessesPanel.style.display = "none"; return; }
+    guessesPanel.style.display = "block";
+    guessesList.innerHTML = wrongGuesses.map(g =>
+      `<div class="guess-row">
+        <span class="x">✕</span>
+        <span class="name">${g.name}</span>
+        <span style="margin-left:auto;display:flex;align-items:center;gap:8px">
+          ${g.years ? `<span style="font-size:12px;color:var(--muted)">${g.years}</span>` : ""}
+          <span>${g.flag || ""}</span>
+        </span>
+      </div>`
+    ).join("");
+  }
+
+
+  function skipClue() {
+    if (revealed) return;
+    if (currentClueIndex >= player.clues.length - 1) return;
+    skips++;
+    currentClueIndex = wrongGuesses.length + skips;
+    renderClues();
+    renderPips();
+    if (wrongGuesses.length + skips >= player.clues.length) {
+      currentClueIndex = player.clues.length - 1;
+      revealAnswer(false);
+    } else {
+      persistCurrentState();
+    }
+  }
+
+  function submitGuess(name) {
+    if (revealed) return;
+    if (isCorrect(name)) {
+      wasCorrect = true;
+      revealAnswer(true);
+    } else {
+      const entry = allNames.find(e => normalize(e.n) === normalize(name)) || {};
+      wrongGuesses.push({ name, flag: entry.f || "", years: entry.y || "" });
+      guessInput.value = "";
+      suggestionsBox.classList.remove("open");
+      updateGuessBtn();
+      renderGuesses();
+      renderPips();
+      if (wrongGuesses.length + skips >= player.clues.length) {
+        currentClueIndex = player.clues.length - 1;
+        revealAnswer(false);
+      } else {
+        currentClueIndex = wrongGuesses.length + skips;
+        renderClues();
+        persistCurrentState();
+      }
+    }
+  }
+
+  function revealAnswer(correct) {
+    revealed = true;
+    wasCorrect = correct;
+    persistCurrentState();
+
+    const attempt = wrongGuesses.length + (correct ? 1 : 0);
+    const clue = currentClueIndex;
+    // Only record stats for today's game (not archive replays)
+    const stats = (playingDay === today) ? recordResult(playingDay, correct, attempt, clue) : loadStats();
+
+    lastRevealAttempt = attempt;
+    lastRevealCorrect = correct;
+
+    showRevealedState(stats);
+  }
+
+  function showRevealedState(stats) {
+    if (!stats) stats = loadStats();
+    imageCard.classList.add("revealed");
+    guessInput.disabled = true;
+    suggestionsBox.classList.remove("open");
+    revealLink.style.display = "none";
+    const inputWrap = document.querySelector(".input-wrap");
+    if (inputWrap) inputWrap.style.display = "none";
+    const metaRow = document.querySelector(".meta-row");
+    if (metaRow) metaRow.style.display = "none";
+    const tip = document.getElementById("tipCard");
+    if (tip) tip.style.display = "none";
+
+    const scoreLine = buildScoreLine();
+    const annotatedClues = buildAnnotatedClues();
+    const bannerClass = lastRevealCorrect && currentClueIndex === 0 ? "good first-try" : (lastRevealCorrect ? "good" : "bad");
+    const bannerLine = lastRevealCorrect
+      ? `<div>✓ <span class="name-line">${player.name}</span></div>`
+      : `<div>✕ It was <span class="name-line">${player.name}</span></div>`;
+
+    const backTodayBtn = playingDay !== today
+      ? `<button class="share-btn" id="backTodayBtn" style="background:var(--text);margin-top:10px">↩ Back to today's player</button>`
+      : "";
+
+    result.innerHTML = `
+      <div class="reveal-banner ${bannerClass}" style="position:relative">
+        ${bannerLine}
+        ${scoreLine}
+        <div class="sparkles" id="sparkles"></div>
+      </div>
+    `;
+    result.style.display = "block";
+
+    if (lastRevealCorrect) {
+      const flash = document.createElement("div");
+      flash.className = "green-flash";
+      document.body.appendChild(flash);
+      setTimeout(() => flash.remove(), 700);
+    }
+
+    // Populate Clues tab
+    tabClues.innerHTML = `
+      <div class="question">
+        <div class="label">All clues</div>
+        ${annotatedClues}
+      </div>
+      ${playingDay === today ? renderStats(stats, playingDay) : ""}
+      <button class="share-btn" id="shareBtn">📤 Share with mates</button>
+      ${backTodayBtn}
+      <div style="text-align:center;margin-top:18px;padding:12px;color:var(--muted);font-size:13px">${playingDay === today ? "Back tomorrow for a new face." : `Day #${dayNumber} from the archive.`}</div>
+    `;
+
+    // Populate About tab
+    renderAboutTab();
+
+    // Populate Highlights tab
+    renderHighlightsTab();
+
+    // Unlock tabs
+    renderTabBar(true);
+    switchTab("clues");
+
+    // Sparkles disabled for classic/restrained feel
+    // if (lastRevealCorrect) addSparkles();
+  }
+
+  function buildScoreLine() {
+    if (!lastRevealCorrect) return "";
+    const clue = currentClueIndex + 1;
+    const quote = getCommentaryQuote(clue);
+    return `<div class="commentary-quote">"${quote}"</div><div class="score-line">${clue === 1 ? "First try" : clue + "/" + player.clues.length}</div>`;
+  }
+
+  function buildAnnotatedClues() {
+    const seen = currentClueIndex + 1;
+    return player.clues.map((c, i) => {
+      const tag = i < seen ? "" : `<span style="font-size:10px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:2px 6px;border-radius:6px;margin-left:6px;letter-spacing:0.05em">MISSED</span>`;
+      return `<div style="padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--text-soft);line-height:1.5"><span style="color:var(--accent);font-weight:700;margin-right:6px">${i + 1}.</span>${c}${tag}</div>`;
+    }).join("");
+  }
+
+  function addSparkles() {
+    const host = document.getElementById("sparkles");
+    if (!host) return;
+    const colors = ["#0f7a3e", "#e8b13a", "#5fbf85", "#0a5e30", "#e89c3a"];
+    for (let i = 0; i < 12; i++) {
+      const s = document.createElement("span");
+      s.className = "sparkle";
+      s.style.background = colors[i % colors.length];
+      s.style.left = "50%";
+      s.style.top = "50%";
+      const angle = (i / 12) * Math.PI * 2;
+      const dist = 60 + Math.random() * 40;
+      s.style.setProperty("--dx", `${Math.cos(angle) * dist}px`);
+      s.style.setProperty("--dy", `${Math.sin(angle) * dist}px`);
+      s.style.animationDelay = `${i * 30}ms`;
+      host.appendChild(s);
+    }
+  }
+
+  function renderTabBar(unlocked) {
+    const data = BIOS[player.id];
+    const hasAbout = data && data.story;
+    const hasHighlights = data && data.youtube;
+    const pills = tabBar.querySelectorAll(".tab-pill");
+    pills.forEach(p => {
+      const tab = p.dataset.tab;
+      if (tab === "clues") {
+        p.classList.remove("locked");
+        p.textContent = "Clues";
+      } else if (tab === "about") {
+        p.style.display = hasAbout ? "" : "none";
+        if (unlocked && hasAbout) { p.classList.remove("locked"); p.textContent = "About"; }
+        else { p.classList.add("locked"); p.textContent = "\u{1F512} About"; }
+      } else if (tab === "highlights") {
+        p.style.display = hasHighlights ? "" : "none";
+        if (unlocked && hasHighlights) { p.classList.remove("locked"); p.textContent = "Highlights"; }
+        else { p.classList.add("locked"); p.textContent = "\u{1F512} Highlights"; }
+      }
+    });
+    tabBar.style.display = "flex";
+  }
+
+  function switchTab(name) {
+    tabBar.querySelectorAll(".tab-pill").forEach(p => p.classList.toggle("active", p.dataset.tab === name));
+    tabClues.classList.toggle("active", name === "clues");
+    tabAbout.classList.toggle("active", name === "about");
+    tabHighlights.classList.toggle("active", name === "highlights");
+  }
+
+  function renderAboutTab() {
+    const data = BIOS[player.id];
+    if (!data || !data.story) {
+      tabAbout.innerHTML = "";
+      return;
+    }
+    const chips = (data.clubs || []).map(c => `<span class="chip">${c}</span>`).join("");
+    const honoursList = (data.honours || []).map(h => `<li>${h}</li>`).join("");
+    const factsList = (data.didYouKnow || []).map(f => `<li>${f}</li>`).join("");
+    tabAbout.innerHTML = `<div class="bio show">
+      <div class="row"><div class="name-line">${player.name}</div>
+        <div class="sub">${player.flag} ${data.position || ""} \u{00B7} ${data.yearsActive || player.years || ""}</div></div>
+      ${data.story ? `<div class="row"><h3>The story</h3><p>${data.story}</p></div>` : ""}
+      ${chips ? `<div class="row"><h3>Notable clubs</h3><div class="chips">${chips}</div></div>` : ""}
+      ${honoursList ? `<div class="row"><h3>Honours</h3><ul>${honoursList}</ul></div>` : ""}
+      ${data.numbers ? `<div class="row"><h3>By the numbers</h3><p>${data.numbers}</p></div>` : ""}
+      ${factsList ? `<div class="row"><h3>Did you know?</h3><ul>${factsList}</ul></div>` : ""}
+    </div>`;
+  }
+
+  function renderHighlightsTab() {
+    const data = BIOS[player.id];
+    if (!data || !data.youtube) {
+      tabHighlights.innerHTML = "";
+      return;
+    }
+    const videoId = data.youtube.split("v=")[1]?.split("&")[0] || "";
+    tabHighlights.innerHTML = `<div class="highlights-embed">
+      <iframe src="https://www.youtube.com/embed/${videoId}?rel=0&playsinline=1"
+        allowfullscreen allow="autoplay;encrypted-media"></iframe>
+    </div>`;
+  }
+
+  // ---- Share ----
+  function buildShareText() {
+    const total = player.clues.length;
+    const s = loadStats();
+    if (lastRevealCorrect) {
+      const clue = currentClueIndex + 1;
+      const dots = Array.from({length: total}, (_, i) => i < currentClueIndex ? "\u{1F534}" : i === currentClueIndex ? "\u{1F7E2}" : "\u{26AA}").join("");
+      const streak = s.currentStreak > 0 ? ` \u{1F525}${s.currentStreak}` : "";
+      return `\u{26BD} Good to Hear the Name — Day #${dayNumber}\n${dots} ${clue}/${total}${streak}\n#GoodToHear goodtohearthename.co.uk`;
+    }
+    return `\u{26BD} Good to Hear the Name — Day #${dayNumber}\n${"\u{26AB}".repeat(total)} X/${total}\n#GoodToHear goodtohearthename.co.uk`;
+  }
+
+  // ---- Archive calendar ----
+  let archiveMonth = new Date(today * 86400000).getMonth();
+  let archiveYear = new Date(today * 86400000).getFullYear();
+
+  function openArchive() {
+    archiveMonth = new Date(today * 86400000).getMonth();
+    archiveYear = new Date(today * 86400000).getFullYear();
+    renderArchive();
+    $("archiveOverlay").classList.add("open");
+  }
+  function closeArchive() { $("archiveOverlay").classList.remove("open"); }
+
+  function renderArchive() {
+    $("archiveMonthLabel").textContent = new Date(archiveYear, archiveMonth).toLocaleDateString(undefined, { month: "long", year: "numeric" });
+
+    // Disable next if we're at current month
+    const nowDate = new Date(today * 86400000);
+    $("archiveNext").disabled = (archiveYear === nowDate.getFullYear() && archiveMonth === nowDate.getMonth());
+
+    // Disable prev if we're at epoch month (May 2026)
+    $("archivePrev").disabled = (archiveYear === 2026 && archiveMonth <= 4);
+
+    const grid = $("archiveGrid");
+    let html = "";
+    const dows = ["S", "M", "T", "W", "T", "F", "S"];
+    dows.forEach(d => { html += `<div class="dow">${d}</div>`; });
+
+    const firstDay = new Date(archiveYear, archiveMonth, 1).getDay(); // 0=Sun
+    const daysInMonth = new Date(archiveYear, archiveMonth + 1, 0).getDate();
+
+    for (let i = 0; i < firstDay; i++) html += `<div class="empty-cell"></div>`;
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateObj = new Date(Date.UTC(archiveYear, archiveMonth, d));
+      const dayVal = Math.floor(dateObj.getTime() / 86400000);
+      const dayNum = dayVal - EPOCH_DAY + 1;
+      const isFuture = dayVal > today;
+      const isBeforeEpoch = dayVal < EPOCH_DAY;
+      const isToday = dayVal === today;
+      const result = getDayResult(dayVal);
+
+      let cls = "day-cell";
+      if (isFuture) cls += " future";
+      if (isBeforeEpoch) cls += " before-epoch";
+      if (isToday) cls += " is-today";
+
+      let ballCls = "ball";
+      if (isBeforeEpoch || isFuture) {
+        ballCls += " unplayed";
+      } else if (result) {
+        ballCls += result.won ? " won" : " lost";
+      } else {
+        ballCls += " unplayed";
+      }
+
+      html += `<div class="${cls}" data-day="${dayVal}">
+        <span class="${ballCls}">⚽</span>
+        <span class="day-num">${d}</span>
+      </div>`;
+    }
+    grid.innerHTML = html;
+  }
+
+  // ---- Event listeners ----
+  $("archiveBtn").addEventListener("click", openArchive);
+  $("archiveClose").addEventListener("click", closeArchive);
+  $("archiveOverlay").addEventListener("click", (e) => { if (e.target === $("archiveOverlay")) closeArchive(); });
+  $("archivePrev").addEventListener("click", () => {
+    archiveMonth--;
+    if (archiveMonth < 0) { archiveMonth = 11; archiveYear--; }
+    renderArchive();
+  });
+  $("archiveNext").addEventListener("click", () => {
+    archiveMonth++;
+    if (archiveMonth > 11) { archiveMonth = 0; archiveYear++; }
+    renderArchive();
+  });
+  $("archiveGrid").addEventListener("click", (e) => {
+    const cell = e.target.closest(".day-cell");
+    if (!cell || cell.classList.contains("future") || cell.classList.contains("before-epoch")) return;
+    const day = parseInt(cell.dataset.day);
+    closeArchive();
+    loadGame(day);
+  });
+
+  archiveBanner.addEventListener("click", () => loadGame(today));
+
+  tabBar.addEventListener("click", (e) => {
+    const pill = e.target.closest(".tab-pill");
+    if (!pill || pill.classList.contains("locked")) return;
+    switchTab(pill.dataset.tab);
+  });
+
+  document.addEventListener("click", async (e) => {
+    const shareBtn = e.target && e.target.closest && e.target.closest("#shareBtn");
+    if (shareBtn) {
+      const text = buildShareText();
+      try {
+        if (navigator.share) { await navigator.share({ text }); }
+        else {
+          await navigator.clipboard.writeText(text);
+          const original = shareBtn.innerHTML;
+          shareBtn.innerHTML = "✓ Copied! Paste it in the chat";
+          setTimeout(() => { shareBtn.innerHTML = original; }, 2200);
+        }
+      } catch {}
+    }
+    const backBtn = e.target && e.target.closest && e.target.closest("#backTodayBtn");
+    if (backBtn) loadGame(today);
+  });
+
+  const guessBtn = $("guessBtn");
+  function updateGuessBtn() {
+    guessBtn.style.display = guessInput.value.trim() ? "block" : "none";
+  }
+  guessInput.addEventListener("input", () => {
+    updateGuessBtn();
+    debouncedRenderSuggestions();
+  });
+  guessInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      const val = guessInput.value.trim();
+      if (val) submitGuess(val);
+    } else if (e.key === "Escape") suggestionsBox.classList.remove("open");
+  });
+  guessBtn.addEventListener("click", () => {
+    const val = guessInput.value.trim();
+    if (val) submitGuess(val);
+  });
+  suggestionsBox.addEventListener("click", e => {
+    if (Date.now() < suggestionsReady) return;
+    const el = e.target.closest(".suggestion");
+    if (el) {
+      const name = el.dataset.name;
+      suggestionsBox.classList.remove("open");
+      suggestionsBox.innerHTML = "";
+      guessInput.value = "";
+      updateGuessBtn();
+      submitGuess(name);
+    }
+  });
+  skipLink.addEventListener("click", skipClue);
+  revealLink.addEventListener("click", () => revealAnswer(false));
+
+  // ---- Demo mode ----
+  const demoMode = params.get("demo");
+  if (demoMode) {
+    const demoCss = document.createElement("style");
+    demoCss.textContent = "*, *::before, *::after { animation-duration: 0ms !important; transition-duration: 0ms !important; }";
+    document.head.appendChild(demoCss);
+  }
+
+  // ---- Boot ----
+  loadGame(today);
+  if (demoMode === "reveal") setTimeout(() => revealAnswer(false), 100);
+  if (demoMode === "correct") setTimeout(() => submitGuess(player.name), 100);
+  if (demoMode === "mid") setTimeout(() => { submitGuess("Wayne Rooney"); submitGuess("Steven Gerrard"); }, 100);
+})();
+</script>
+</body>
+</html>
