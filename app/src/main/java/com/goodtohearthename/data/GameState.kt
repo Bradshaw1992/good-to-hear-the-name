@@ -7,9 +7,11 @@ data class GuessRecord(val name: String, val flag: String, val years: String)
 data class GameState(
     val playerId: String,
     val wrongGuesses: List<GuessRecord> = emptyList(),
+    val skips: Int = 0,
     val currentClueIndex: Int = 0,
     val revealed: Boolean = false,
     val wasCorrect: Boolean = false,
+    val commentaryQuote: String? = null,
 )
 
 /** Result for a completed day — used by the archive calendar. */
@@ -23,6 +25,8 @@ object GameStatePersistence {
     private const val K_CLUE = "clue_index"
     private const val K_REVEALED = "revealed"
     private const val K_CORRECT = "was_correct"
+    private const val K_SKIPS = "skips"
+    private const val K_QUOTE = "commentary_quote"
 
     // Per-day prefs
     private const val PREFS_PREFIX = "gthn_day_"
@@ -54,12 +58,15 @@ object GameStatePersistence {
             val parts = it.split(SEP)
             GuessRecord(parts.getOrNull(0) ?: "", parts.getOrNull(1) ?: "", parts.getOrNull(2) ?: "")
         }
+        val commentaryQuote = prefs.getString(K_QUOTE, null)
         return GameState(
             playerId = playerId,
             wrongGuesses = guesses,
+            skips = prefs.getInt(K_SKIPS, 0),
             currentClueIndex = prefs.getInt(K_CLUE, 0),
             revealed = prefs.getBoolean(K_REVEALED, false),
             wasCorrect = prefs.getBoolean(K_CORRECT, false),
+            commentaryQuote = commentaryQuote,
         )
     }
 
@@ -72,18 +79,22 @@ object GameStatePersistence {
         context.getSharedPreferences(PREFS_PREFIX + dayIndex, Context.MODE_PRIVATE).edit()
             .putString(K_PLAYER, state.playerId)
             .putString(K_GUESSES, guessesRaw)
+            .putInt(K_SKIPS, state.skips)
             .putInt(K_CLUE, state.currentClueIndex)
             .putBoolean(K_REVEALED, state.revealed)
             .putBoolean(K_CORRECT, state.wasCorrect)
+            .putString(K_QUOTE, state.commentaryQuote)
             .apply()
         // Also write to legacy store so the widget still works
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit()
             .putLong(K_DAY, dayIndex)
             .putString(K_PLAYER, state.playerId)
             .putString(K_GUESSES, guessesRaw)
+            .putInt(K_SKIPS, state.skips)
             .putInt(K_CLUE, state.currentClueIndex)
             .putBoolean(K_REVEALED, state.revealed)
             .putBoolean(K_CORRECT, state.wasCorrect)
+            .putString(K_QUOTE, state.commentaryQuote)
             .apply()
     }
 

@@ -6,6 +6,9 @@
 package com.goodtohearthename.ui
 
 import android.graphics.Bitmap
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -33,6 +36,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.LocalTextStyle
@@ -53,7 +58,9 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -63,14 +70,69 @@ import com.goodtohearthename.data.GuessRecord
 import com.goodtohearthename.data.NameEntry
 import com.goodtohearthename.data.Stats
 
-private const val MAX_GUESSES = 5
+private const val TOTAL_CLUES = 5
+
+internal val COMMENTARY_QUOTES = mapOf(
+    1 to listOf(
+        "He's got no right to score from there!",
+        "I cannot believe what I've just seen!",
+        "Absolutely world class!",
+        "What a hit, son! What a hit!",
+        "Would you BELIEVE IT?! That sums it all up!"
+    ),
+    2 to listOf(
+        "Magisterial!",
+        "That... is sensational!",
+        "Take a bow, son!",
+        "You beauty!",
+        "Unbelievable, Jeff!",
+        "That was liquid football!",
+        "Dennis Bergkamp! Dennis Bergkamp! Dennis Bergkamp!"
+    ),
+    3 to listOf(
+        "Cool as you like!",
+        "A lovely, lovely goal!",
+        "Football. Bloody hell!",
+        "He's done it!",
+        "They think it's all over! It is now!",
+        "Corner taken quickly, ORIGI!",
+        "Lovely cushioned header for GerrAAAAAARRRDD!",
+        "It's two against four but one of them is Messi"
+    ),
+    4 to listOf(
+        "It's been coming!",
+        "Persistence pays off!",
+        "They've broken the deadlock!",
+        "He's ground that one out!",
+        "Thomas... it's up for grabs now!",
+        "Beckham could raise the roof here... AND HE HAS!",
+        "Shabalala!!!",
+        "ROMA HAVE RISEN FROM THEIR RUINS!",
+        "Arshavin! Fooouuurrr!! Just Astonishing!!"
+    ),
+    5 to listOf(
+        "And Solskjaer has won it!",
+        "Right at the death!",
+        "The great escape!",
+        "AGUEEERROOO! I swear you'll never see anything like this ever again! So watch it. Drink it in.",
+        "Here's Dele Alli... here's Lucas Moura-- OHH THEY'VE DONE IT! LUCAS MOURA WITH THE LAST KICK OF THE GAME!",
+        "Here's Hogg... DEENEY!!!!!"
+    )
+)
+
+fun getCommentaryQuote(clueNumber: Int): String {
+    val quotes = COMMENTARY_QUOTES[clueNumber] ?: COMMENTARY_QUOTES[3]!!
+    return quotes.random()
+}
 
 data class GameUiState(
     val query: TextFieldValue = TextFieldValue(""),
     val wrongGuesses: List<GuessRecord> = emptyList(),
+    val skips: Int = 0,
     val currentClueIndex: Int = 0,
     val revealed: Boolean = false,
     val wasCorrect: Boolean = false,
+    val commentaryQuote: String? = null,
 )
 
 @Composable
@@ -86,76 +148,169 @@ fun GameScreen(
     onQueryChange: (TextFieldValue) -> Unit,
     onPickSuggestion: (NameEntry) -> Unit,
     onSubmitGuess: () -> Unit,
+    onSkip: () -> Unit,
     onReveal: () -> Unit,
-    onSkipClue: () -> Unit,
+
     onShare: () -> Unit,
     onOpenArchive: () -> Unit = {},
     onBackToToday: () -> Unit = {},
+    showCelebration: Boolean = false,
+    onDismissCelebration: () -> Unit = {},
 ) {
-    Scaffold(
-        containerColor = AppColors.Bg,
-    ) { padding ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .imePadding(),
-            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
-        ) {
-            item { Header(dayNumber = dayNumber, onOpenArchive = onOpenArchive) }
-            if (isArchiveDay) {
-                item {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(8.dp))
-                            .background(AppColors.AccentSoft)
-                            .clickable { onBackToToday() }
-                            .padding(vertical = 6.dp),
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        Text(
-                            "PLAYING DAY #$dayNumber — tap to return to today",
-                            color = AppColors.Accent,
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Bold,
-                            letterSpacing = 0.08.sp,
+    Box(modifier = Modifier.fillMaxSize()) {
+        Scaffold(
+            containerColor = AppColors.Bg,
+        ) { padding ->
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+                    .imePadding(),
+                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
+            ) {
+                item { Header(dayNumber = dayNumber, onOpenArchive = onOpenArchive) }
+                if (isArchiveDay) {
+                    item {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(AppColors.AccentSoft)
+                                .clickable { onBackToToday() }
+                                .padding(vertical = 6.dp),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Text(
+                                "PLAYING DAY #$dayNumber — tap to return to today",
+                                color = AppColors.Accent,
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Bold,
+                                letterSpacing = 0.08.sp,
+                            )
+                        }
+                    }
+                }
+                item { Spacer(Modifier.height(12.dp)) }
+                item { HeroCard(silhouette = silhouette, photo = photo, revealed = state.revealed) }
+
+                if (state.revealed) {
+                    item { Spacer(Modifier.height(14.dp)) }
+                    item {
+                        RevealBanner(
+                            correct = state.wasCorrect,
+                            playerName = player.name,
+                            attempt = state.wrongGuesses.size + (if (state.wasCorrect) 1 else 0),
+                            clue = state.currentClueIndex + 1,
+                            totalClues = player.clues.size,
+                            commentaryQuote = state.commentaryQuote,
                         )
                     }
                 }
-            }
-            item { Spacer(Modifier.height(12.dp)) }
-            item { HeroCard(silhouette = silhouette, photo = photo, revealed = state.revealed) }
 
-            if (state.revealed) {
                 item { Spacer(Modifier.height(14.dp)) }
                 item {
-                    RevealBanner(
-                        correct = state.wasCorrect,
-                        playerName = player.name,
-                        attempt = state.wrongGuesses.size + (if (state.wasCorrect) 1 else 0),
+                    ContentTabs(
+                        player = player,
+                        state = state,
+                        stats = stats,
+                        suggestions = suggestions,
+                        isArchiveDay = isArchiveDay,
+                        onQueryChange = onQueryChange,
+                        onPickSuggestion = onPickSuggestion,
+                        onSubmitGuess = onSubmitGuess,
+                        onSkip = onSkip,
+                        onReveal = onReveal,
+
+                        onShare = onShare,
+                        onBackToToday = onBackToToday,
                     )
                 }
+                item { Spacer(Modifier.height(40.dp)) }
             }
+        }
 
-            item { Spacer(Modifier.height(14.dp)) }
-            item {
-                ContentTabs(
-                    player = player,
-                    state = state,
-                    stats = stats,
-                    suggestions = suggestions,
-                    isArchiveDay = isArchiveDay,
-                    onQueryChange = onQueryChange,
-                    onPickSuggestion = onPickSuggestion,
-                    onSubmitGuess = onSubmitGuess,
-                    onReveal = onReveal,
-                    onSkipClue = onSkipClue,
-                    onShare = onShare,
-                    onBackToToday = onBackToToday,
-                )
+        AnimatedVisibility(
+            visible = showCelebration && state.wasCorrect && state.commentaryQuote != null,
+            enter = fadeIn(),
+            exit = fadeOut(),
+        ) {
+            // Dimmed backdrop
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.4f))
+                    .clickable(
+                        interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() },
+                        indication = null
+                    ) { onDismissCelebration() },
+                contentAlignment = Alignment.Center,
+            ) {
+                // Card
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp)
+                        .clickable(enabled = false) {},
+                    shape = RoundedCornerShape(20.dp),
+                    colors = CardDefaults.cardColors(containerColor = Color.White),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+                ) {
+                    // Green top accent
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(4.dp)
+                            .background(AppColors.Accent)
+                    )
+                    Column(
+                        modifier = Modifier.fillMaxWidth().padding(28.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        Text(
+                            "✓ CORRECT!",
+                            color = AppColors.Accent,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = 1.5.sp,
+                        )
+                        Spacer(Modifier.height(12.dp))
+                        Text(
+                            "\"${state.commentaryQuote}\"",
+                            color = AppColors.Text,
+                            fontSize = if ((state.commentaryQuote?.length ?: 0) > 60) 18.sp else 22.sp,
+                            fontWeight = FontWeight.ExtraBold,
+                            textAlign = TextAlign.Center,
+                            lineHeight = if ((state.commentaryQuote?.length ?: 0) > 60) 26.sp else 30.sp,
+                            fontStyle = FontStyle.Italic,
+                        )
+                        Spacer(Modifier.height(10.dp))
+                        val clue = state.currentClueIndex + 1
+                        Text(
+                            if (clue == 1) "First try" else "$clue/${player.clues.size}",
+                            color = AppColors.Muted,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.SemiBold,
+                        )
+                        Spacer(Modifier.height(20.dp))
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(12.dp))
+                                .background(AppColors.Accent)
+                                .clickable { onShare() }
+                                .padding(vertical = 14.dp),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Text(
+                                "📤  Share with mates",
+                                color = Color.White,
+                                fontSize = 15.sp,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        }
+                    }
+                }
             }
-            item { Spacer(Modifier.height(40.dp)) }
         }
     }
 }
@@ -170,8 +325,9 @@ private fun ContentTabs(
     onQueryChange: (TextFieldValue) -> Unit,
     onPickSuggestion: (NameEntry) -> Unit,
     onSubmitGuess: () -> Unit,
+    onSkip: () -> Unit,
     onReveal: () -> Unit,
-    onSkipClue: () -> Unit,
+
     onShare: () -> Unit,
     onBackToToday: () -> Unit,
 ) {
@@ -214,8 +370,8 @@ private fun ContentTabs(
             onQueryChange = onQueryChange,
             onPickSuggestion = onPickSuggestion,
             onSubmitGuess = onSubmitGuess,
+            onSkip = onSkip,
             onReveal = onReveal,
-            onSkipClue = onSkipClue,
             onShare = onShare,
             onBackToToday = onBackToToday,
         )
@@ -265,8 +421,9 @@ private fun CluesTabContent(
     onQueryChange: (TextFieldValue) -> Unit,
     onPickSuggestion: (NameEntry) -> Unit,
     onSubmitGuess: () -> Unit,
+    onSkip: () -> Unit,
     onReveal: () -> Unit,
-    onSkipClue: () -> Unit,
+
     onShare: () -> Unit,
     onBackToToday: () -> Unit,
 ) {
@@ -282,7 +439,7 @@ private fun CluesTabContent(
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Box(modifier = Modifier.weight(1f)) {
-                            GuessInput(value = state.query, onValueChange = onQueryChange)
+                            GuessInput(value = state.query, onValueChange = onQueryChange, onSubmitGuess = onSubmitGuess)
                         }
                         if (state.query.text.isNotBlank()) {
                             Box(
@@ -303,13 +460,13 @@ private fun CluesTabContent(
                 }
             }
             PipsRow(
-                used = state.wrongGuesses.size,
-                max = MAX_GUESSES,
+                usedCount = state.wrongGuesses.size + state.skips,
+                total = player.clues.size,
+                canSkip = state.currentClueIndex < player.clues.size - 1,
+                onSkip = onSkip,
                 onReveal = onReveal,
-                onSkipClue = onSkipClue,
-                isLastClue = state.currentClueIndex >= player.clues.size - 1,
             )
-            if (state.wrongGuesses.isEmpty()) {
+            if (state.wrongGuesses.isEmpty() && state.skips == 0) {
                 TipCard()
             }
             if (state.wrongGuesses.isNotEmpty()) {
@@ -318,7 +475,7 @@ private fun CluesTabContent(
         } else {
             AllCluesCard(player = player, seenUpTo = state.currentClueIndex)
             if (stats != null) {
-                StatsCard(stats = stats)
+                StatsCard(stats = stats, isArchiveDay = isArchiveDay)
             }
             ShareButton(onShare = onShare)
             if (isArchiveDay) {
@@ -432,7 +589,7 @@ private fun Header(dayNumber: Int, onOpenArchive: () -> Unit = {}) {
             }
             Spacer(Modifier.width(10.dp))
             Text(
-                "It's good to hear the name",
+                "Good to Hear the Name",
                 color = AppColors.Text,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
@@ -455,12 +612,14 @@ private fun Header(dayNumber: Int, onOpenArchive: () -> Unit = {}) {
                 )
             }
             Spacer(Modifier.width(10.dp))
-            val today = remember {
+            val epochDay = java.time.LocalDate.of(2026, 5, 5).toEpochDay()
+            val playingDate = remember(dayNumber) {
+                val dayEpoch = epochDay + (dayNumber - 1)
                 java.text.SimpleDateFormat("EEEE d MMMM", java.util.Locale.getDefault())
-                    .format(java.util.Date())
+                    .format(java.util.Date(dayEpoch * 86_400_000L))
                     .uppercase()
             }
-            Text(today, color = AppColors.Muted, fontSize = 11.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.5.sp)
+            Text(playingDate, color = AppColors.Muted, fontSize = 11.sp, fontWeight = FontWeight.SemiBold, letterSpacing = 0.5.sp)
             Text(
                 " · ",
                 color = AppColors.Muted,
@@ -505,7 +664,7 @@ private fun TipCard() {
                 modifier = Modifier.padding(end = 12.dp, top = 1.dp),
             )
             Text(
-                "Type a footballer's name above. You get 5 guesses and a new clue each time you're wrong. New player every day.",
+                "One guess per clue — or skip to reveal the next clue. Either way, it costs a chance. 5 clues, 5 chances. New player every day.",
                 color = AppColors.TextSoft,
                 fontSize = 13.sp,
                 lineHeight = 19.sp,
@@ -639,7 +798,7 @@ private fun AllCluesCard(player: Footballer, seenUpTo: Int) {
     ) {
         Column(modifier = Modifier.padding(18.dp)) {
             Text(
-                "ALL 5 CLUES",
+                "ALL CLUES",
                 color = AppColors.Muted,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
@@ -692,7 +851,7 @@ private fun AllCluesCard(player: Footballer, seenUpTo: Int) {
 }
 
 @Composable
-private fun GuessInput(value: TextFieldValue, onValueChange: (TextFieldValue) -> Unit) {
+private fun GuessInput(value: TextFieldValue, onValueChange: (TextFieldValue) -> Unit, onSubmitGuess: () -> Unit = {}) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(14.dp),
@@ -712,6 +871,8 @@ private fun GuessInput(value: TextFieldValue, onValueChange: (TextFieldValue) ->
             ),
             cursorBrush = SolidColor(AppColors.Accent),
             singleLine = true,
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Go),
+            keyboardActions = KeyboardActions(onGo = { onSubmitGuess() }),
             decorationBox = { inner ->
                 if (value.text.isEmpty()) {
                     Text(
@@ -772,35 +933,29 @@ private fun SuggestionList(suggestions: List<NameEntry>, onPick: (NameEntry) -> 
 }
 
 @Composable
-private fun PipsRow(used: Int, max: Int, onReveal: () -> Unit, onSkipClue: () -> Unit, isLastClue: Boolean) {
+private fun PipsRow(usedCount: Int, total: Int, canSkip: Boolean, onSkip: () -> Unit, onReveal: () -> Unit) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        repeat(max) { i ->
-            Box(
-                modifier = Modifier
-                    .padding(end = 6.dp)
-                    .size(14.dp)
-                    .clip(CircleShape)
-                    .background(if (i < used) AppColors.Bad else AppColors.Line)
-            )
+        Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            for (i in 0 until total) {
+                val color = if (i < usedCount) AppColors.Bad else AppColors.Line
+                Box(
+                    modifier = Modifier
+                        .size(10.dp)
+                        .background(color, shape = CircleShape),
+                )
+            }
         }
-        Spacer(Modifier.width(6.dp))
-        Text(
-            "${max - used} left",
-            color = AppColors.TextSoft,
-            fontSize = 13.sp,
-            fontWeight = FontWeight.SemiBold,
-        )
         Spacer(Modifier.weight(1f))
-        if (!isLastClue) {
+        if (canSkip) {
             Text(
-                "Next clue",
+                "Skip clue",
                 color = AppColors.Accent,
                 fontSize = 13.sp,
                 fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.clickable { onSkipClue() }.padding(end = 16.dp),
+                modifier = Modifier.clickable { onSkip() }.padding(end = 14.dp),
             )
         }
         Text(
@@ -861,14 +1016,11 @@ private fun WrongGuessesCard(guesses: List<GuessRecord>) {
 }
 
 @Composable
-private fun RevealBanner(correct: Boolean, playerName: String, attempt: Int) {
+private fun RevealBanner(correct: Boolean, playerName: String, attempt: Int, clue: Int = 1, totalClues: Int = 5, commentaryQuote: String? = null) {
     val color = if (correct) AppColors.Good else AppColors.Bad
     val bgColor = if (correct) AppColors.GoodSoft else AppColors.BadSoft
-    val ordinal = when (attempt) {
-        1 -> "1st"; 2 -> "2nd"; 3 -> "3rd"; else -> "${attempt}th"
-    }
     val scoreLine = if (correct) {
-        if (attempt == 1) "First try 🎯" else "Nailed it on the $ordinal"
+        if (clue == 1) "First try" else "$clue/$totalClues"
     } else null
     // Subtle entrance animation: fade + slight rise
     val animProgress by animateFloatAsState(
@@ -907,6 +1059,19 @@ private fun RevealBanner(correct: Boolean, playerName: String, attempt: Int) {
                 textAlign = TextAlign.Center,
                 letterSpacing = (-0.2).sp,
             )
+            commentaryQuote?.let { quote ->
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    "\"$quote\"",
+                    color = color,
+                    fontSize = if (quote.length > 60) 14.sp else 17.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    textAlign = TextAlign.Center,
+                    lineHeight = if (quote.length > 60) 20.sp else 24.sp,
+                    modifier = Modifier.padding(horizontal = 8.dp),
+                )
+            }
             scoreLine?.let {
                 Spacer(Modifier.height(6.dp))
                 Text(
@@ -921,7 +1086,7 @@ private fun RevealBanner(correct: Boolean, playerName: String, attempt: Int) {
 }
 
 @Composable
-private fun StatsCard(stats: Stats) {
+private fun StatsCard(stats: Stats, isArchiveDay: Boolean = false) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
@@ -945,22 +1110,26 @@ private fun StatsCard(stats: Stats) {
             }
             Spacer(Modifier.height(18.dp))
             Text(
-                "GUESS DISTRIBUTION",
+                "CLUE DISTRIBUTION",
                 color = AppColors.Muted,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold,
                 letterSpacing = 1.4.sp,
             )
             Spacer(Modifier.height(8.dp))
-            val labels = listOf("1", "2", "3", "4", "5", "X")
+            val labels = listOf("Clue 1", "Clue 2", "Clue 3", "Clue 4", "Clue 5", "X")
             val maxN = (stats.distribution.maxOrNull() ?: 1).coerceAtLeast(1)
-            val todayBar = if (stats.lastResultWon) (stats.lastResultAttempt - 1) else 5
+            val currentDay = System.currentTimeMillis() / 86_400_000L
+            val playedToday = !isArchiveDay && stats.lastResultDay == currentDay
+            val todayBar = if (playedToday && stats.lastResultWon && stats.lastResultClue >= 0) stats.lastResultClue
+                else if (playedToday && !stats.lastResultWon) 5
+                else -1
             for (i in 0..5) {
                 val n = stats.distribution[i]
                 val widthFrac = if (n == 0) 0.06f else 0.06f + (n.toFloat() / maxN) * 0.74f
                 val isToday = i == todayBar
                 Row(modifier = Modifier.fillMaxWidth().padding(vertical = 3.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Text(labels[i], color = AppColors.Muted, fontSize = 13.sp, modifier = Modifier.width(20.dp))
+                    Text(labels[i], color = AppColors.Muted, fontSize = 12.sp, modifier = Modifier.width(46.dp))
                     Spacer(Modifier.width(8.dp))
                     Box(
                         modifier = Modifier

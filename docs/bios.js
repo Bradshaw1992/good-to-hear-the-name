@@ -278,7 +278,7 @@ window.BIOS = {
       "Scored all four in Blackburn's 4–2 win over Swansea in December 2011 — his first four-goal haul since the Pompey days.",
       "Played barefoot on the streets of Benin City until his brother bought him his first pair of boots aged 12."
     ],
-    "youtube": ""
+    "youtube": "https://www.youtube.com/watch?v=efwML9GSzuA"
   },
   "michu": {
     "position": "Forward / attacking midfielder",
@@ -436,7 +436,7 @@ window.BIOS = {
       "Was approached to represent Guadeloupe at the 2011 CONCACAF Gold Cup but turned it down to focus on Everton's preseason.",
       "Assisted Tim Howard's freak 100-yard goal in 2011–12 — only the fourth keeper-from-open-play goal in Premier League history."
     ],
-    "youtube": ""
+    "youtube": "https://www.youtube.com/watch?v=gdS90J_Sq-A"
   },
   "niko_kranjcar": {
     "position": "Attacking midfielder",
@@ -530,7 +530,7 @@ window.BIOS = {
       "Was at the centre of one of the Premier League's odder scuffles when Mikel Arteta poked him in the cheek and then the eye after a tackle in 2010.",
       "Has Sami heritage and fronted a Norwegian footballer boyband called \"The Players\" — released a single for an anti-crime charity campaign."
     ],
-    "youtube": ""
+    "youtube": "https://www.youtube.com/watch?v=jxubzPahcxQ"
   },
   "geovanni": {
     "position": "Attacking midfielder",
@@ -621,13 +621,13 @@ window.BIOS = {
       "PFA Team of the Year — 2003–04, 2004–05",
       "Premier League Player of the Month — Oct 2004 & Sep 2006"
     ],
-    "numbers": "114 club goals · 8 in 8 for England",
+    "numbers": "114 club goals · 8 caps for England",
     "didYouKnow": [
       "Was eligible for Poland through his grandfather — Sven-Göran Eriksson handed him an England debut almost immediately to prevent it.",
       "Mourinho publicly branded him \"untrustworthy\" in 2006; the PGMOL later defended him as unfairly tarred with the diving brush.",
-      "Voted into Crystal Palace's Centenary XI in 2005 — the only active player in the team."
+      "Voted into Crystal Palace's Centenary XI in 2005 — the only player still at the club."
     ],
-    "youtube": ""
+    "youtube": "https://www.youtube.com/watch?v=fAMhZLm9jlY"
   },
   "rui_costa": {
     "position": "Attacking midfielder",
@@ -766,5 +766,72 @@ window.BIOS = {
       "Was given a seven-month suspended prison sentence in Spain in 2017 for tax fraud during his Real Madrid years — a fate that befell several Spain-based stars of his era."
     ],
     "youtube": ""
+  },
+  "roberto_soldado": {
+    "position": "Striker",
+    "yearsActive": "2000–2019",
+    "story": "One of the most clinical finishers in La Liga history during his Valencia years. Soldado scored over 80 league goals for Los Che, peaking with 30 in all competitions in 2012–13 — earning a £26 million move to Tottenham as part of the spending spree that followed Gareth Bale's departure. In England, the goals dried up spectacularly: just 7 in two Premier League seasons. A return to Villarreal revived his career in Spain, and he later had spells at Fenerbahçe and Granada before retiring — respected in La Liga, but remembered in England as one of the most expensive flops of the decade.",
+    "youtube": "https://www.youtube.com/watch?v=Q8p4QQ3nOrE"
+  },
+  "emile_heskey": {
+    "yearsActive": "1995–2014",
+    "story": "A powerful, unselfish striker whose contribution was always greater than his goal tally suggested. Heskey burst onto the scene at Leicester City before an £11 million move to Liverpool in 2000, where he won a treble of cups in his first season. His hold-up play and physical presence made him the ideal foil for Michael Owen at club level and later Wayne Rooney for England. Often mocked by a generation of internet fans, those who played alongside him consistently rated him as one of the best strike partners in English football. Later spells at Birmingham, Wigan and Aston Villa brought diminishing returns, but his place in Premier League history is secure.",
+    "youtube": "https://www.youtube.com/watch?v=2zlH1mAersA"
+  },
+  "podolski": {
+    "yearsActive": "2003–2020",
+    "story": "Lukas Podolski burst onto the world stage as an 18-year-old at Euro 2004 and never looked back. A left foot that could crack concrete, the German-born Pole became one of the Nationalmannschaft's most beloved figures across nearly two decades of international service. At club level he shone brightest at his hometown Köln, though spells at Bayern Munich, Arsenal, and Inter Milan showed his quality across Europe's biggest stages. His infectious smile and thunderous strikes made him a fan favourite everywhere he played, and his 130 caps placed him among Germany's most-capped players of all time.",
+    "youtube": "https://www.youtube.com/watch?v=uHMQUX96RCk"
+  },
+  "mario_gotze": {
+    "position": "Attacking Midfielder",
+    "yearsActive": "2009–2024",
+    "story": "The boy who won the World Cup. At 22, Götze controlled André Schürrle's cross on his chest and volleyed past the Argentine goalkeeper in extra time of the 2014 final at the Maracanã — a goal that defined a generation. He had already been one of Europe's most exciting teenagers at Borussia Dortmund before a controversial move to Bayern Munich in 2013. But a metabolic disorder disrupted his career, robbing him of his explosive pace and threatening his future in the game. He returned to Dortmund but was never quite the same, eventually finding a late renaissance at Eintracht Frankfurt before retiring in 2024.",
+    "youtube": "https://www.youtube.com/watch?v=N4iFzyvm4WQ"
+  },
+  "abidal": {
+    "yearsActive": "2000–2014",
+    "story": "Eric Abidal's football story is one of extraordinary courage both on and off the pitch. The French left-back built his reputation at Lyon during their dominant run of seven consecutive Ligue 1 titles before earning a move to Barcelona in 2007. At Camp Nou he became a key figure in Pep Guardiola's all-conquering side, winning the Champions League in 2009. Then came his greatest battle — diagnosed with a liver tumour in 2011, he underwent surgery, returned to football, and lifted the Champions League trophy again in 2011 as captain, in one of sport's most emotional moments.",
+    "youtube": "https://www.youtube.com/watch?v=Br11rkpj6xs"
+  },
+  "salomon_rondon": {
+    "position": "Striker",
+    "yearsActive": "2005–present",
+    "story": "Venezuela's greatest ever footballer and a throwback to the classic number nine. Rondón is his country's all-time leading goalscorer despite never playing at a World Cup — a consequence of Venezuela's struggles to qualify rather than any lack of ability. He made his name in European football with West Brom, where three seasons of hard-running, aerial dominance and spectacular goals made him a firm fan favourite. A loan season at Newcastle under Rafa Benítez was equally successful, before spells in China and a brief stint at Everton. He remains a national hero in a country where football has always lived in baseball's shadow.",
+    "youtube": "https://www.youtube.com/watch?v=d1XYDKHo3ZA"
+  },
+  "victor_moses": {
+    "position": "Winger / Wing-Back",
+    "yearsActive": "2007–2022",
+    "story": "A remarkable story of resilience and reinvention. Moses lost both parents in religious violence in Nigeria aged 11 and arrived in England as an asylum seeker. He worked his way through Crystal Palace and Wigan Athletic before Chelsea signed him in 2012 — but years of loans to Liverpool, Stoke and West Ham followed, and his career seemed destined for mid-table obscurity. Then Antonio Conte arrived and transformed Moses into a right wing-back in his title-winning 3-4-3 system. Moses played virtually every game as Chelsea won the 2016–17 Premier League — one of the most unlikely reinventions in the league's history.",
+    "youtube": "https://www.youtube.com/watch?v=veULIWnIaBY"
+  },
+  "chris_sutton": {
+    "yearsActive": "1991–2007",
+    "story": "Half of the most famous strike partnership of the 1990s. Sutton formed the SAS — Sutton and Shearer — at Blackburn Rovers, firing them to the 1994–95 Premier League title with 15 goals. A big-money move to Chelsea promised more glory, but he was played out of position and never settled. It was at Celtic where Sutton truly flourished again, scoring 86 goals in five seasons and forming another prolific partnership with Henrik Larsson. His headed goal in the famous 3–2 Champions League win against Juventus at Celtic Park in 2001 remains one of the great European nights. Now better known as a forthright pundit on BBC Radio 5 Live.",
+    "youtube": "https://www.youtube.com/watch?v=1RL5xJ-6138"
+  },
+  "hatem_ben_arfa": {
+    "position": "Attacking Midfielder / Winger",
+    "yearsActive": "2004–2022",
+    "story": "The most talented footballer to never fulfil his potential — or so the story goes. Ben Arfa emerged from Lyon's academy alongside Benzema and was considered by many to be the more gifted of the two. Spells at Lyon, Marseille and Newcastle showcased dribbling ability that could embarrass any defender, including a solo goal against Bolton that is regularly voted one of the Premier League's greatest. But fallings-out with coaches limited him at every turn. A brief renaissance at Nice — 18 goals in 2015–16 — earned a PSG contract, but he barely played a game. The talent was never in question; the temperament always was.",
+    "youtube": "https://www.youtube.com/watch?v=pR_HYsD2CTs"
+  },
+  "gervinho": {
+    "position": "Winger",
+    "yearsActive": "2004–2021",
+    "story": "A career of two wildly different halves. At Lille, Gervinho was electric — his pace and direct running helped deliver a shock Ligue 1 title in 2011, beating PSG and Marseille to the championship. Arsenal came calling, but from a red card on his Premier League debut for a headbutt against Newcastle, his time in England was defined by missed chances and frustration. The open goals he failed to convert became internet folklore. Then came Roma, and a complete reinvention — in Serie A, his speed and finishing suddenly clicked, and he became one of Italy's most exciting forwards for two prolific seasons before moving to Chinese football.",
+    "youtube": "https://www.youtube.com/watch?v=7DjOAzMea9o"
+  },
+  "falcao": {
+    "position": "Striker",
+    "yearsActive": "1999–2022",
+    "story": "El Tigre — one of the most devastating strikers of his generation. Falcao was almost unstoppable at his peak, scoring 17 goals in a single Europa League campaign for Porto before terrorising La Liga with Atlético Madrid. His hat-trick in the 2012 Copa del Rey final against Real Madrid at the Bernabéu was the performance that defined him. A €60 million move to Monaco followed, but a catastrophic knee injury before the 2014 World Cup changed everything. Loan spells at Manchester United and Chelsea were disasters, yielding just five league goals combined. Colombia's all-time record scorer deserved a better ending to his European adventure.",
+    "youtube": "https://www.youtube.com/watch?v=qp1ENsjk92M"
+  },
+  "nigel_winterburn": {
+    "yearsActive": "1983–2003",
+    "story": "A cornerstone of one of English football's greatest ever defences. Winterburn spent 13 years at Arsenal, forming a back four alongside Adams, Bould and Dixon that became the gold standard of the early Premier League era. Signed from Wimbledon by George Graham in 1987, he won three league titles — including the dramatic 1988–89 Championship decider at Anfield — two FA Cups and a European Cup Winners' Cup. Reliable rather than flashy, his positioning and tackling made him one of the most consistent left-backs of his generation. He finished his career at West Ham, playing until the age of 38.",
+    "youtube": "https://www.youtube.com/watch?v=VJtei8kwvRU"
   }
 };

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">It\'s good to hear the name</string>
+    <string name="app_name">Good to Hear</string>
     <string name="widget_label">Today\'s footballer</string>
     <string name="widget_description">Wordle for niche footballers — a daily silhouette guessing game.</string>
 </resources>
