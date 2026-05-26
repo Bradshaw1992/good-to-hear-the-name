@@ -20,8 +20,8 @@ android {
         applicationId = "com.goodtohearthename"
         minSdk = 26
         targetSdk = 35
-        versionCode = 34
-        versionName = "1.4.0"
+        versionCode = 36
+        versionName = "1.4.2"
     }
 
     signingConfigs {
