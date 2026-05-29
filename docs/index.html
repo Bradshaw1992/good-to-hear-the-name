@@ -580,17 +580,22 @@ if(location.hostname==="bradshaw1992.github.io"){
   .archive-grid .empty-cell { }
 
   .archive-btn {
-    background: none;
-    border: none;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
     cursor: pointer;
     font-size: 11px;
-    font-weight: 600;
-    padding: 0;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
     color: var(--accent);
     transition: opacity 150ms;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
   }
-  .archive-btn:hover { opacity: 0.7; }
+  .archive-btn:hover { opacity: 0.75; }
+
+  .play-more-cta { text-align: center; margin-top: 18px; }
+  .play-more-hook { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+  .play-more-sub { color: var(--muted); font-size: 13px; margin-bottom: 10px; }
 
   .archive-playing-banner {
     text-align: center;
@@ -1138,15 +1143,23 @@ if(location.hostname==="bradshaw1992.github.io"){
     result.style.display = "block";
 
     // Populate Clues tab
+    const morePrevious = dayNumber - 1;
+    const playMoreCta = `
+      <div class="play-more-cta">
+        <div class="play-more-hook">Don't wait for tomorrow.</div>
+        <div class="play-more-sub">${morePrevious > 0 ? `${morePrevious} more ${morePrevious === 1 ? "player" : "players"} to crack right now.` : "Pick any day and keep playing."}</div>
+        <button class="share-btn" id="playMoreBtn">📅 Play another day</button>
+      </div>`;
     tabClues.innerHTML = `
       <div class="question">
         <div class="label">All clues</div>
         ${annotatedClues}
       </div>
       ${playingDay === today ? renderStats(stats, playingDay) : ""}
-      <button class="share-btn" id="shareBtn">📤 Share with mates</button>
+      ${playMoreCta}
+      <button class="share-btn" id="shareBtn" style="background:#fff;color:var(--accent);border:2px solid var(--accent);box-shadow:none">📤 Share with mates</button>
       ${backTodayBtn}
-      <div style="text-align:center;margin-top:18px;padding:12px;color:var(--muted);font-size:13px">${playingDay === today ? "Back tomorrow for a new face." : `Day #${dayNumber} from the archive.`}</div>
+      <div style="text-align:center;margin-top:18px;padding:12px;color:var(--muted);font-size:13px">${playingDay === today ? "Or come back tomorrow for a new face." : `Day #${dayNumber} from the archive.`}</div>
     `;
 
     // Populate About tab
@@ -1381,6 +1394,8 @@ if(location.hostname==="bradshaw1992.github.io"){
     }
     const backBtn = e.target && e.target.closest && e.target.closest("#backTodayBtn");
     if (backBtn) loadGame(today);
+    const playMoreBtn = e.target && e.target.closest && e.target.closest("#playMoreBtn");
+    if (playMoreBtn) openArchive();
   });
 
   const guessBtn = $("guessBtn");
