@@ -18,3 +18,7 @@ tester_invites/
 ios/
 keystore.properties
 *.keystore
+
+# Keep private working files out of the public repo
+.claude/
+MARKETING_PLAN.md

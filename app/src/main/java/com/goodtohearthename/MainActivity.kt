@@ -26,7 +26,9 @@ import com.goodtohearthename.data.NameEntry
 import com.goodtohearthename.data.Stats
 import com.goodtohearthename.data.StatsPersistence
 import com.goodtohearthename.widget.DailyWidget
+import com.goodtohearthename.widget.WidgetRefreshScheduler
 import androidx.glance.appwidget.updateAll
+import androidx.lifecycle.lifecycleScope
 import com.goodtohearthename.ui.AppTheme
 import com.goodtohearthename.ui.ArchiveDialog
 import com.goodtohearthename.ui.GameScreen
@@ -303,5 +305,14 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Re-render the widget on every app open so a day rollover that happened while the
+        // app was backgrounded is reflected immediately, and re-arm the midnight alarm.
+        val app = applicationContext
+        WidgetRefreshScheduler.scheduleNextRefresh(app)
+        lifecycleScope.launch { DailyWidget().updateAll(app) }
     }
 }
