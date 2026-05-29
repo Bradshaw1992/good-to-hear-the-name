@@ -22,3 +22,9 @@ keystore.properties
 # Keep private working files out of the public repo
 .claude/
 MARKETING_PLAN.md
+
+# python venv for local tooling
+scripts/.venv/
+
+# generated marketing print artefacts (rebuild with scripts/make_print_assets.py)
+marketing_print/
