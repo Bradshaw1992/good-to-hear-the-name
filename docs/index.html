@@ -620,10 +620,13 @@ if(location.hostname==="bradshaw1992.github.io"){
     text-decoration: none;
     transition: transform 120ms ease, box-shadow 120ms ease;
   }
-  .app-banner:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15,122,62,0.15); }
   .app-banner .app-banner-icon { font-size: 24px; }
+  .app-banner .app-banner-body { display: flex; flex-direction: column; gap: 8px; text-align: left; }
   .app-banner .app-banner-text { font-size: 14px; font-weight: 600; color: var(--accent); }
   .app-banner .app-banner-sub { font-size: 12px; color: var(--text-soft); font-weight: 400; }
+  .store-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
+  .store-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; padding: 7px 14px; border-radius: 10px; font-size: 13px; font-weight: 600; text-decoration: none; transition: transform 120ms ease, filter 120ms ease; }
+  .store-btn:hover { transform: translateY(-1px); filter: brightness(1.08); }
 
 </style>
 </head>
@@ -643,10 +646,17 @@ if(location.hostname==="bradshaw1992.github.io"){
       </div>
     </header>
 
-    <a class="app-banner" href="https://apps.apple.com/app/goodtohearthename/id6767861587" target="_blank" rel="noopener">
+    <div class="app-banner">
       <span class="app-banner-icon">📱</span>
-      <span><span class="app-banner-text">Now available on iPhone</span><br><span class="app-banner-sub">Download the app — with home screen widget</span></span>
-    </a>
+      <div class="app-banner-body">
+        <span class="app-banner-text">Now available on iPhone &amp; Android</span>
+        <span class="app-banner-sub">Get the app, with a home screen widget</span>
+        <div class="store-buttons">
+          <a class="store-btn" href="https://apps.apple.com/app/goodtohearthename/id6767861587" target="_blank" rel="noopener">🍎 App Store</a>
+          <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.goodtohearthename" target="_blank" rel="noopener">🤖 Google Play</a>
+        </div>
+      </div>
+    </div>
 
     <div class="archive-overlay" id="archiveOverlay">
       <div class="archive-modal">
@@ -713,7 +723,9 @@ if(location.hostname==="bradshaw1992.github.io"){
 
     <div class="footer">
       <strong>Good to Hear the Name</strong><span class="sep">·</span>Wordle for niche footballers<br>
-      <a href="https://apps.apple.com/app/goodtohearthename/id6767861587" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:600">📲 Download on iPhone</a>
+      <a href="https://apps.apple.com/app/goodtohearthename/id6767861587" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:600">🍎 iPhone</a>
+      <span class="sep">·</span>
+      <a href="https://play.google.com/store/apps/details?id=com.goodtohearthename" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:600">🤖 Android</a>
       <span class="sep">·</span><span style="color:var(--muted)">made by Bradshaw</span>
     </div>
   </div>
