@@ -666,26 +666,21 @@ if(location.hostname==="bradshaw1992.github.io"){
   }
   .archive-playing-banner:hover { opacity: 0.85; }
 
-  .app-banner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: var(--accent-soft);
-    border: 1.5px solid var(--accent);
-    border-radius: 14px;
-    padding: 12px 18px;
-    margin-bottom: 18px;
-    text-decoration: none;
-    transition: transform 120ms ease, box-shadow 120ms ease;
-  }
-  .app-banner .app-banner-icon { font-size: 24px; }
-  .app-banner .app-banner-body { display: flex; flex-direction: column; gap: 8px; text-align: left; }
-  .app-banner .app-banner-text { font-size: 14px; font-weight: 600; color: var(--accent); }
-  .app-banner .app-banner-sub { font-size: 12px; color: var(--text-soft); font-weight: 400; }
-  .store-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
   .store-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; padding: 7px 14px; border-radius: 10px; font-size: 13px; font-weight: 600; text-decoration: none; transition: transform 120ms ease, filter 120ms ease; }
   .store-btn:hover { transform: translateY(-1px); filter: brightness(1.08); }
+
+  .celebration-card .celebration-app {
+    margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line);
+  }
+  .celebration-card .celebration-app-label {
+    font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 8px;
+  }
+  .celebration-card .celebration-app-buttons {
+    display: flex; gap: 8px; justify-content: center;
+  }
+  .celebration-card .celebration-app-buttons .store-btn {
+    flex: 1; justify-content: center; padding: 8px 10px; font-size: 12px;
+  }
 
 </style>
 </head>
@@ -704,18 +699,6 @@ if(location.hostname==="bradshaw1992.github.io"){
         <button class="archive-btn" id="archiveBtn" title="Play previous days">📅 Previous days</button>
       </div>
     </header>
-
-    <div class="app-banner">
-      <span class="app-banner-icon">📱</span>
-      <div class="app-banner-body">
-        <span class="app-banner-text">Now available on iPhone &amp; Android</span>
-        <span class="app-banner-sub">Get the app, with a home screen widget</span>
-        <div class="store-buttons">
-          <a class="store-btn" href="https://apps.apple.com/app/goodtohearthename/id6767861587" target="_blank" rel="noopener">🍎 App Store</a>
-          <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.goodtohearthename" target="_blank" rel="noopener">🤖 Google Play</a>
-        </div>
-      </div>
-    </div>
 
     <div class="archive-overlay" id="archiveOverlay">
       <div class="archive-modal">
@@ -1304,6 +1287,13 @@ if(location.hostname==="bradshaw1992.github.io"){
         <div class="celebration-sub">${subLine}</div>
         <button class="celebration-btn primary" data-act="play-more">📅 Play another day</button>
         <button class="celebration-btn secondary" data-act="share">📤 Share with mates</button>
+        <div class="celebration-app">
+          <div class="celebration-app-label">📱 Get the widget. Never miss a day.</div>
+          <div class="celebration-app-buttons">
+            <a class="store-btn" href="https://apps.apple.com/app/goodtohearthename/id6767861587" target="_blank" rel="noopener">🍎 App Store</a>
+            <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.goodtohearthename" target="_blank" rel="noopener">🤖 Google Play</a>
+          </div>
+        </div>
       </div>
     `;
     document.body.appendChild(overlay);
