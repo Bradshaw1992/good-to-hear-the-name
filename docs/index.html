@@ -853,6 +853,17 @@ if(location.hostname==="bradshaw1992.github.io"){
     if (!s || !s.revealed) return null;
     return { won: s.wasCorrect, attempt: s.wrongGuesses.length + (s.wasCorrect ? 1 : 0) };
   }
+  // Previous days (epoch to yesterday) with no recorded result.
+  function countUnplayedPreviousDays() {
+    let n = 0;
+    for (let d = EPOCH_DAY; d < today; d++) if (!getDayResult(d)) n++;
+    return n;
+  }
+  function playMoreSubLine() {
+    const n = countUnplayedPreviousDays();
+    if (n <= 0) return "Pick any day and keep playing.";
+    return `${n} ${n === 1 ? "day" : "days"} you haven't played yet.`;
+  }
 
   // ---- Stats (localStorage) ----
   const STATS_KEY = "gthn_stats_v1";
@@ -1232,11 +1243,10 @@ if(location.hostname==="bradshaw1992.github.io"){
     result.style.display = "block";
 
     // Populate Clues tab
-    const morePrevious = dayNumber - 1;
     const playMoreCta = `
       <div class="play-more-cta">
         <div class="play-more-hook">Don't wait for tomorrow.</div>
-        <div class="play-more-sub">${morePrevious > 0 ? `${morePrevious} more ${morePrevious === 1 ? "player" : "players"} to crack right now.` : "Pick any day and keep playing."}</div>
+        <div class="play-more-sub">${playMoreSubLine()}</div>
         <button class="share-btn" id="playMoreBtn">📅 Play another day</button>
       </div>`;
     tabClues.innerHTML = `
@@ -1271,10 +1281,7 @@ if(location.hostname==="bradshaw1992.github.io"){
     const clue = currentClueIndex + 1;
     const quote = getCommentaryQuote(clue);
     const scoreTxt = clue === 1 ? "First try" : clue + "/" + player.clues.length;
-    const morePrevious = dayNumber - 1;
-    const subLine = morePrevious > 0
-      ? `${morePrevious} more ${morePrevious === 1 ? "player" : "players"} to crack right now.`
-      : "Pick any day and keep playing.";
+    const subLine = playMoreSubLine();
 
     const overlay = document.createElement("div");
     overlay.className = "celebration-overlay";
