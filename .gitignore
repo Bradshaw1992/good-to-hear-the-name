@@ -28,3 +28,8 @@ scripts/.venv/
 
 # generated marketing print artefacts (rebuild with scripts/make_print_assets.py)
 marketing_print/
+
+# Local working folders (silhouette tuning, preview server config)
+silhouette_previews/
+.claude/
+

@@ -168,7 +168,7 @@ fun GameScreen(
                     .imePadding(),
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
             ) {
-                item { Header(dayNumber = dayNumber, onOpenArchive = onOpenArchive) }
+                item { Header(dayNumber = dayNumber, onOpenArchive = onOpenArchive, todayMatch = player.todayMatch) }
                 if (isArchiveDay) {
                     item {
                         Box(
@@ -203,6 +203,7 @@ fun GameScreen(
                             clue = state.currentClueIndex + 1,
                             totalClues = player.clues.size,
                             commentaryQuote = state.commentaryQuote,
+                            todayMatch = player.todayMatch,
                         )
                     }
                 }
@@ -572,7 +573,7 @@ private fun HighlightsTabContent(youtubeUrl: String) {
 }
 
 @Composable
-private fun Header(dayNumber: Int, onOpenArchive: () -> Unit = {}) {
+private fun Header(dayNumber: Int, onOpenArchive: () -> Unit = {}, todayMatch: String? = null) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -633,6 +634,23 @@ private fun Header(dayNumber: Int, onOpenArchive: () -> Unit = {}) {
                 letterSpacing = 0.5.sp,
                 modifier = Modifier.clickable { onOpenArchive() },
             )
+        }
+        if (!todayMatch.isNullOrBlank()) {
+            Spacer(Modifier.height(6.dp))
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(50))
+                    .background(AppColors.AccentSoft)
+                    .padding(horizontal = 9.dp, vertical = 3.dp),
+            ) {
+                Text(
+                    "🏆 WORLD CUP 2026",
+                    color = AppColors.Accent,
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.Bold,
+                    letterSpacing = 0.8.sp,
+                )
+            }
         }
         Spacer(Modifier.height(10.dp))
         Box(
@@ -1016,7 +1034,7 @@ private fun WrongGuessesCard(guesses: List<GuessRecord>) {
 }
 
 @Composable
-private fun RevealBanner(correct: Boolean, playerName: String, attempt: Int, clue: Int = 1, totalClues: Int = 5, commentaryQuote: String? = null) {
+private fun RevealBanner(correct: Boolean, playerName: String, attempt: Int, clue: Int = 1, totalClues: Int = 5, commentaryQuote: String? = null, todayMatch: String? = null) {
     val color = if (correct) AppColors.Good else AppColors.Bad
     val bgColor = if (correct) AppColors.GoodSoft else AppColors.BadSoft
     val scoreLine = if (correct) {
@@ -1059,6 +1077,16 @@ private fun RevealBanner(correct: Boolean, playerName: String, attempt: Int, clu
                 textAlign = TextAlign.Center,
                 letterSpacing = (-0.2).sp,
             )
+            if (!todayMatch.isNullOrBlank()) {
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    "🏆 Today's match: $todayMatch",
+                    color = color.copy(alpha = 0.80f),
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    textAlign = TextAlign.Center,
+                )
+            }
             commentaryQuote?.let { quote ->
                 Spacer(Modifier.height(8.dp))
                 Text(

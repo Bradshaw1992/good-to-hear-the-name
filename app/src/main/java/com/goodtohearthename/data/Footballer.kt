@@ -21,6 +21,7 @@ data class Footballer(
     val numbers: String = "",
     val didYouKnow: List<String> = emptyList(),
     val youtube: String? = null,
+    val todayMatch: String? = null,
 )
 
 @Serializable

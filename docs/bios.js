@@ -581,30 +581,6 @@ window.BIOS = {
     ],
     "youtube": "https://www.youtube.com/watch?v=vSmFxRF23nU"
   },
-  "charlie_adam": {
-    "position": "Midfielder",
-    "yearsActive": "2003–2022",
-    "story": "The Scottish set-piece merchant who carried Blackpool through their fairytale Premier League season, parlayed it into a Liverpool move, and ended up as Stoke's resident hammer-of-a-left-foot. Capable of moments of genius — and a sixty-five yarder against Chelsea.",
-    "clubs": [
-      "Rangers",
-      "Blackpool",
-      "Liverpool",
-      "Stoke City",
-      "Dundee"
-    ],
-    "honours": [
-      "League Cup — Liverpool, 2011–12",
-      "Championship play-off — Blackpool, 2010",
-      "Scottish Premiership play-off — Dundee, 2020–21"
-    ],
-    "numbers": "80 club goals · 26 caps for Scotland",
-    "didYouKnow": [
-      "Scored a 65-yard goal against Chelsea in 2015 from inside his own half — called it a \"once in a lifetime\" strike.",
-      "His Stoke teammates secretly nicknamed him \"Parched\" — a long-running joke he didn't find out about for years until Peter Crouch revealed it on his podcast.",
-      "Captained Dundee to promotion in 2021 and called it the highlight of his career — above his Rangers Champions League nights."
-    ],
-    "youtube": "https://www.youtube.com/watch?v=8Qyu5KGYt5E"
-  },
   "andy_johnson": {
     "position": "Striker",
     "yearsActive": "1998–2015",
@@ -653,28 +629,6 @@ window.BIOS = {
     ],
     "youtube": "https://www.youtube.com/watch?v=xOqyv85zpC0"
   },
-  "ivan_campo": {
-    "position": "Centre-Back / Defensive Midfielder",
-    "yearsActive": "1994–2010",
-    "story": "The wild-haired Spaniard who walked out of Real Madrid's Champions League winners' photo and into a Sam Allardyce midfield at Bolton — and looked, somehow, completely at home. A two-time European champion playing route one football in the rain at the Reebok.",
-    "clubs": [
-      "Real Madrid",
-      "Bolton Wanderers",
-      "Ipswich Town"
-    ],
-    "honours": [
-      "Champions League × 2 — Real Madrid, 1999–2000 & 2001–02",
-      "La Liga — Real Madrid, 2000–01",
-      "Intercontinental Cup — Real Madrid, 1998"
-    ],
-    "numbers": "21 goals in 384 club appearances",
-    "didYouKnow": [
-      "Sam Allardyce reckoned Campo's long-range strike against Spurs in August 2006 had won Goal of the Season before the season had really started.",
-      "Battled an anxiety disorder during his Madrid years, undergoing therapy that he later credited with rescuing his career.",
-      "Loaned to Bolton in 2003 expecting to return to Madrid — instead signed permanently because he simply preferred living in Bolton."
-    ],
-    "youtube": "https://www.youtube.com/watch?v=lLLDva_VrJ4"
-  },
   "koumas": {
     "position": "Attacking Midfielder",
     "yearsActive": "1998–2014",
@@ -720,29 +674,6 @@ window.BIOS = {
       "Resigned as Ajax's director of football in 2022 after admitting to sending inappropriate messages to female colleagues; signed with Antwerp weeks later amid sponsor backlash."
     ],
     "youtube": "https://www.youtube.com/watch?v=uji66qGK21A"
-  },
-  "okocha": {
-    "position": "Attacking Midfielder",
-    "yearsActive": "1990–2008",
-    "story": "So good they named him twice. The Nigerian magician who turned the Reebok Stadium into a circus tent — flicks, rabonas, no-look passes — and somehow kept Bolton in the Premier League while doing it. The patron saint of unnecessary skill.",
-    "clubs": [
-      "Eintracht Frankfurt",
-      "Fenerbahçe",
-      "Paris Saint-Germain",
-      "Bolton Wanderers"
-    ],
-    "honours": [
-      "Africa Cup of Nations — Nigeria, 1994",
-      "Olympic gold — Atlanta, 1996",
-      "UEFA Intertoto Cup — PSG, 2001"
-    ],
-    "numbers": "89 club goals · 14 in 73 for Nigeria",
-    "didYouKnow": [
-      "Took Turkish citizenship at Fenerbahçe and adopted the playing name \"Muhammed Yavuz\" in tribute to a club staff member.",
-      "Mentored a young Ronaldinho at PSG, who later credited him as a stylistic influence.",
-      "The \"so good they named him twice\" line wasn't a slogan — Bolton printed it on the back of replica shirts."
-    ],
-    "youtube": "https://www.youtube.com/watch?v=2HFso_FLPV4"
   },
   "ricardo_carvalho": {
     "position": "Centre-Back",
@@ -1101,27 +1032,6 @@ window.BIOS = {
     "position": "Left-Back",
     "numbers": "0 goals in 2 caps for England"
   },
-  "arshavin": {
-    "position": "Attacking Midfielder",
-    "yearsActive": "2000–2015",
-    "story": "The little Russian who lit up Anfield with four goals in a single game — and then slowly faded into Arsenal's background. Arshavin was the star of Euro 2008, dazzling for Russia as they reached the semi-finals, and his January 2009 move to Arsenal felt like a genuine coup. That night at Liverpool — a breathless 4–4 draw in April 2009 — remains one of the Premier League's greatest individual performances. But the hunger seemed to drain away quickly. By his final season he looked disinterested, famously shrugging at Arsenal fans after a defeat. A brilliant talent whose peak in England was devastatingly brief.",
-    "clubs": [
-      "Zenit St Petersburg",
-      "Arsenal"
-    ],
-    "honours": [
-      "UEFA Cup (Zenit St Petersburg, 2008)",
-      "UEFA Super Cup (Zenit St Petersburg, 2008)",
-      "Russian Premier League x4 (Zenit)"
-    ],
-    "numbers": "17 goals in 75 caps for Russia",
-    "didYouKnow": [
-      "He scored all four Arsenal goals in a 4–4 draw at Anfield in 2009 — widely considered one of the greatest individual Premier League performances ever",
-      "He was named in the Team of the Tournament at Euro 2008 after starring in Russia's run to the semi-finals",
-      "He famously shrugged at Arsenal fans after a defeat at QPR in 2012, an image that came to define his declining commitment"
-    ],
-    "youtube": "https://www.youtube.com/watch?v=9aJrU5-iJyg"
-  },
   "coloccini": {
     "position": "Centre-Back",
     "yearsActive": "1998–2022",
@@ -1165,98 +1075,6 @@ window.BIOS = {
     ],
     "youtube": "https://www.youtube.com/watch?v=WMz-b_dX2W8"
   },
-  "john_arne_riise": {
-    "position": "Left-Back",
-    "yearsActive": "1995–2017",
-    "story": "Owner of perhaps the most fearsome left foot in Premier League history. Riise arrived at Liverpool from Monaco in 2001 as a virtual unknown and immediately announced himself with a thunderbolt free-kick against Manchester United that nearly burst the net. For seven seasons at Anfield he was a marauding, relentless presence at left-back — bombing forward, delivering crosses, and unleashing shots that goalkeepers genuinely feared. He was part of the squad that pulled off the Miracle of Istanbul in 2005, winning the Champions League after being 3–0 down at half-time against AC Milan. Norway's most-capped player with 110 appearances, he later spent three solid seasons at Roma before winding down his career in Cyprus and India. Brave, powerful, and utterly committed — Anfield loved him.",
-    "clubs": [
-      "Aalesund",
-      "Monaco",
-      "Liverpool",
-      "Roma",
-      "Fulham"
-    ],
-    "honours": [
-      "Champions League (Liverpool, 2005)",
-      "FA Cup (Liverpool, 2006)",
-      "League Cup (Liverpool, 2003)",
-      "UEFA Super Cup (Liverpool, 2005)"
-    ],
-    "numbers": "16 goals in 110 caps for Norway",
-    "didYouKnow": [
-      "His free-kick against Manchester United on his Anfield debut in 2001 was clocked at over 70 mph and remains one of the most iconic debut goals in Premier League history",
-      "He is Norway's most-capped player of all time with 110 international appearances",
-      "Craig Bellamy infamously attacked him with a golf club during a pre-season trip to Portugal in 2007 — both started the next match and Bellamy celebrated his goal with a golf-swing celebration"
-    ],
-    "youtube": "https://www.youtube.com/watch?v=q4BSQVGwupY"
-  },
-  "arda_turan": {
-    "position": "Attacking Midfielder",
-    "yearsActive": "2003–2022",
-    "story": "Turkey's most gifted footballer of his generation — and one who never quite fulfilled the enormous promise. Turan rose through Galatasaray's academy and quickly became the darling of Turkish football, earning a move to Atlético Madrid in 2011 where he flourished under Diego Simeone. He was magnificent in the 2013–14 La Liga title win, a campaign in which Atlético stunned both Barcelona and Real Madrid. A €34 million transfer to Barcelona followed in 2015, but he arrived during a transfer ban, barely played, and was eventually loaned to Istanbul Basaksehir. Off-pitch controversies — including throwing a boot at a linesman during a national team match — saw him banned from international duty. He won 100 caps for Turkey but the final chapter of his career was more tabloid drama than football glory.",
-    "clubs": [
-      "Galatasaray",
-      "Atlético Madrid",
-      "Barcelona",
-      "Istanbul Basaksehir",
-      "Galatasaray"
-    ],
-    "honours": [
-      "La Liga (Atlético Madrid, 2014)",
-      "Turkish Super League x3 (Galatasaray x2, Basaksehir)",
-      "Copa del Rey (Atlético Madrid, 2013)"
-    ],
-    "numbers": "17 goals in 100 caps for Turkey",
-    "didYouKnow": [
-      "He was a key part of the Atlético Madrid side that stunned Spain by winning La Liga in 2013–14, breaking the Barcelona-Real Madrid duopoly",
-      "He threw his boot at a linesman during a 2016 international match and was banned from the Turkish national team for over two years",
-      "Despite costing Barcelona €34 million, he made fewer than 20 La Liga starts across two seasons before being shipped out on loan"
-    ],
-    "youtube": "https://www.youtube.com/watch?v=2_Cq75o1XGE"
-  },
-  "moussa_dembele": {
-    "position": "Central Midfielder",
-    "yearsActive": "2004–2019",
-    "story": "The footballer's footballer — a player so silky on the ball that teammates and opponents alike marvelled at him, even if his stats never told the full story. Dembélé started as a striker at Willem II and reinvented himself as a central midfielder at AZ Alkmaar before moving to Fulham in 2010. It was at Tottenham, though, that he truly became one of the Premier League's most mesmerising players. Virtually impossible to dispossess, his ability to glide past opponents in tight spaces was unlike anything else in English football. Mauricio Pochettino reportedly called him the best player he had ever coached. Chronic hip and ankle injuries robbed him of his peak years, and he left for Guangzhou R&F in 2019 with just 10 Premier League goals to his name — but anyone who watched him knew the numbers were irrelevant.",
-    "clubs": [
-      "Willem II",
-      "AZ Alkmaar",
-      "Fulham",
-      "Tottenham Hotspur",
-      "Guangzhou R&F"
-    ],
-    "honours": [
-      "World Cup third place (Belgium, 2018)"
-    ],
-    "numbers": "5 goals in 82 caps for Belgium",
-    "didYouKnow": [
-      "Mauricio Pochettino reportedly said Dembélé was the best player he had ever trained — higher praise than he gave to any of the other Spurs stars",
-      "He scored just 10 Premier League goals in over 240 appearances — yet was widely regarded as one of the most talented midfielders in the league",
-      "He was virtually impossible to dispossess — his dribble success rate at Tottenham was among the highest of any midfielder in Premier League history"
-    ],
-    "youtube": "https://www.youtube.com/watch?v=olnIp0EiZ5s"
-  },
-  "adnan_januzaj": {
-    "position": "Winger",
-    "yearsActive": "2012–2023",
-    "story": "The boy who burst onto the scene and then spent the rest of his career trying to recapture that magic. Januzaj scored twice on his Premier League debut for Manchester United against Sunderland in October 2013, and for a few breathless weeks he looked like the saviour David Moyes desperately needed. He was handed the iconic number 11 shirt at just 18 — the kind of gesture that screams expectation. But United's post-Ferguson chaos swallowed him whole. Loans at Borussia Dortmund and Sunderland went nowhere. He eventually found stability at Real Sociedad, spending five seasons in San Sebastian and scoring the goal that sent Belgium through in the 2018 World Cup. A footballer with genuine ability who simply had the misfortune of debuting at the worst possible moment in Manchester United's modern history.",
-    "clubs": [
-      "Manchester United",
-      "Borussia Dortmund",
-      "Sunderland",
-      "Real Sociedad"
-    ],
-    "honours": [
-      "World Cup third place (Belgium, 2018)"
-    ],
-    "numbers": "1 goal in 15 caps for Belgium",
-    "didYouKnow": [
-      "He was eligible to represent Belgium, Albania, Kosovo, Turkey, or Serbia at international level — he chose Belgium and scored the winner against England at the 2018 World Cup",
-      "He was given the Manchester United number 11 shirt at just 18, previously worn by Ryan Giggs — the weight of expectation was enormous",
-      "His brace against Sunderland on his Premier League debut in 2013 briefly made him the most talked-about teenager in world football"
-    ],
-    "youtube": "https://www.youtube.com/watch?v=OWGu092ChWk"
-  },
   "mauro_icardi": {
     "position": "Striker",
     "yearsActive": "2011–present",
@@ -1278,102 +1096,6 @@ window.BIOS = {
       "Despite scoring over 120 goals for Inter, he won just 8 caps for Argentina — one of the most prolific strikers ever to be virtually ignored by his national team"
     ],
     "youtube": "https://www.youtube.com/watch?v=9h2WL56fClc"
-  },
-  "xherdan_shaqiri": {
-    "position": "Winger",
-    "yearsActive": "2009–2024",
-    "story": "A pocket rocket who collected Champions League medals and wondergoals wherever he went — even if he could never quite hold down a starting spot at the biggest clubs. Shaqiri won the treble with Bayern Munich in 2013 as a squad player, then baffled everyone by signing for Stoke City from Inter Milan in 2015. At the Britannia Stadium he was the most outrageously talented player Stoke had ever had, scoring an overhead kick against Everton that still gets replayed a decade later. A move to Liverpool followed in 2018, and he scored twice against Manchester United before picking up a second Champions League winners' medal in 2019. Switzerland's second-most-capped player with 125 appearances and 32 goals, Shaqiri was the ultimate big-game player on the international stage — always delivering when it mattered most for the national team.",
-    "clubs": [
-      "FC Basel",
-      "Bayern Munich",
-      "Inter Milan",
-      "Stoke City",
-      "Liverpool",
-      "Lyon",
-      "Chicago Fire",
-      "FC Basel"
-    ],
-    "honours": [
-      "Champions League x2 (Bayern Munich 2013, Liverpool 2019)",
-      "Bundesliga x2 (Bayern Munich)",
-      "Swiss Super League x3 (FC Basel)",
-      "Club World Cup (Bayern Munich, 2013)"
-    ],
-    "numbers": "32 goals in 125 caps for Switzerland",
-    "didYouKnow": [
-      "He won the Champions League with two different clubs eight years apart — Bayern Munich in 2013 and Liverpool in 2019",
-      "His overhead kick for Stoke City against Everton in 2016 is widely regarded as one of the greatest goals ever scored in the Premier League",
-      "He signed for Stoke City directly from Inter Milan — a move that baffled observers given the gulf in stature between the two clubs"
-    ],
-    "youtube": "https://www.youtube.com/watch?v=PUC4IUfLnVk"
-  },
-  "erik_lamela": {
-    "position": "Winger",
-    "yearsActive": "2009–present",
-    "story": "The rabona king — a player who will forever be remembered for two outrageous goals scored years apart with the same audacious technique. Lamela arrived at Tottenham in 2013 as part of the £100 million spending spree that followed Gareth Bale's departure to Real Madrid. His first season was wrecked by injury, and for a while it looked like another expensive misfire. But he gradually became one of Spurs' most important players — a tireless worker and combative presence who could produce moments of jaw-dropping skill. His rabona in a Europa League match against Asteras Tripolis in 2014 was extraordinary; his second, against Arsenal in the North London derby in 2021, won the FIFA Puskas Award. He left for Sevilla later that year and won the Europa League in 2023, proving his quality in Spanish football too.",
-    "clubs": [
-      "River Plate",
-      "Roma",
-      "Tottenham Hotspur",
-      "Sevilla"
-    ],
-    "honours": [
-      "Europa League (Sevilla, 2023)"
-    ],
-    "numbers": "3 goals in 25 caps for Argentina",
-    "didYouKnow": [
-      "He scored two rabona goals years apart — one against Asteras Tripolis in 2014 and one against Arsenal in 2021 — the second won the FIFA Puskas Award for goal of the year",
-      "He was signed as part of the £100 million spending spree after Gareth Bale's sale to Real Madrid — costing around £30 million from Roma",
-      "He won the Europa League with Sevilla in 2023, beating Roma in the final on penalties"
-    ],
-    "youtube": "https://www.youtube.com/watch?v=Nr90vS-joC4"
-  },
-  "gabriel_agbonlahor": {
-    "position": "Striker",
-    "yearsActive": "2005–2018",
-    "story": "The ultimate one-club man of the Premier League era. Agbonlahor grew up in the shadow of Villa Park, was scouted at eight, and never played for another club in his professional career — 391 appearances and 87 goals, all in claret and blue. Blessed with blistering pace and a knack for the spectacular, he scored on his debut and became the heartbeat of Villa’s attack during the Martin O’Neill years, when a top-six finish felt like the norm. As Villa declined, so did Gabby’s output, and his final seasons were marred by fitness issues and a suspension for a breach of club discipline. Now better known as a pundit who is never short of an opinion — and occasionally on the receiving end of one.",
-    "clubs": [
-      "Aston Villa"
-    ],
-    "honours": [
-      "Aston Villa Player of the Year (2008)"
-    ],
-    "numbers": "0 goals in 3 caps for England",
-    "didYouKnow": [
-      "He spent his entire 13-year professional career at Aston Villa, making 391 appearances and scoring 87 goals without ever wearing another club's shirt",
-      "He was eligible to play for England, Ireland, and Nigeria through his family heritage — he chose England but won only three caps",
-      "He scored on his Premier League debut against Everton in March 2006 and never looked back"
-    ],
-    "youtube": "https://www.youtube.com/watch?v=K_kcBhSMGYY"
-  },
-  "santi_cazorla": {
-    "position": "Midfielder",
-    "yearsActive": "2003–2024",
-    "story": "The little magician who could do everything with both feet — and whose comeback story is one of football’s most remarkable. Cazorla was the heartbeat of Arsenal’s midfield from 2012, winning Player of the Season in his debut year and dazzling with his two-footed wizardry. Then came the horror: a chronic Achilles injury that required ten operations and nearly cost him his foot. Doctors told him he might never walk properly again, let alone play. He proved them all wrong, returning to Villarreal in 2018 and playing so well he earned a recall to the Spain squad at 34. He ended his career with a fairytale homecoming at Real Oviedo, the tiny Asturian club where it all began — a fitting final chapter for one of the most universally loved players of his generation.",
-    "clubs": [
-      "Real Oviedo",
-      "Villarreal",
-      "Recreativo",
-      "Malaga",
-      "Arsenal",
-      "Villarreal",
-      "Al Sadd",
-      "Real Oviedo"
-    ],
-    "honours": [
-      "Euro 2008 (Spain)",
-      "World Cup 2010 (Spain)",
-      "Euro 2012 (Spain)",
-      "FA Cup (Arsenal, 2014)",
-      "Arsenal Player of the Season (2013)"
-    ],
-    "numbers": "15 goals in 81 caps for Spain",
-    "didYouKnow": [
-      "A childhood ankle injury forced him to practise relentlessly with his weaker foot — Arsene Wenger later admitted he genuinely did not know which was Cazorla's stronger foot",
-      "He underwent ten operations on his Achilles tendon and was told he might never walk normally again, but returned to top-level football at Villarreal",
-      "He ended his career at Real Oviedo, the club where he started as a youth player in Asturias"
-    ],
-    "youtube": "https://www.youtube.com/watch?v=CwkUdktkUj0"
   },
   "michael_essien": {
     "position": "Midfielder",
@@ -1427,30 +1149,6 @@ window.BIOS = {
     ],
     "youtube": "https://www.youtube.com/watch?v=fD-CNM--ruM"
   },
-  "jesus_navas": {
-    "position": "Right-Back",
-    "yearsActive": "2003–2024",
-    "story": "A Sevilla boy through and through — born in the nearby town of Los Palacios, Navas made over 700 appearances for his hometown club across two spells, more than anyone in their history. Lightning quick and capable of beating any full-back alive, he was the classic winger who reinvented himself as a right-back in his thirties and somehow got even better. A four-year spell at Manchester City brought a Premier League title and a League Cup, but Sevilla was always home. He won three Europa League trophies with them and was famously so homesick early in his career that he suffered severe anxiety when travelling, once leaving the Spain squad in tears. He conquered it all, captaining his country at Euro 2024 at the age of 38 — becoming the oldest Spaniard ever to appear at a major tournament — and lifting the trophy.",
-    "clubs": [
-      "Sevilla",
-      "Manchester City",
-      "Sevilla"
-    ],
-    "honours": [
-      "World Cup 2010 (Spain)",
-      "Euro 2024 (Spain)",
-      "Europa League x3 (Sevilla)",
-      "Premier League (Manchester City, 2014)",
-      "League Cup (Manchester City, 2014)"
-    ],
-    "numbers": "5 goals in 56 caps for Spain",
-    "didYouKnow": [
-      "He made over 700 appearances for Sevilla across two spells, more than any other player in the club's history",
-      "He suffered from severe homesickness and anxiety early in his career, once leaving the Spain squad in tears because he could not cope with being away from home",
-      "At Euro 2024 he became the oldest Spaniard ever to appear at a major tournament, captaining the side at 38 and winning the whole competition"
-    ],
-    "youtube": "https://www.youtube.com/watch?v=gngMiQ2tztc"
-  },
   "jimmy_bullard": {
     "position": "Midfielder",
     "yearsActive": "1998–2012",
@@ -1474,31 +1172,6 @@ window.BIOS = {
       "He was called up to the England squad three times but never won a cap, with injuries always intervening at the worst moments"
     ],
     "youtube": "https://www.youtube.com/watch?v=D9GF0z_5T1o"
-  },
-  "frederic_kanoute": {
-    "position": "Striker",
-    "yearsActive": "1997–2013",
-    "story": "A tall, elegant striker who found his true home in Seville after an understated spell in English football. Born in France to a Malian father, Kanoute chose to represent Mali internationally and became the first player born outside Africa to win the African Footballer of the Year award. He started at Lyon before crossing the Channel to West Ham, where he showed flashes of class without ever fully convincing, then moved north to Tottenham. But it was at Sevilla where he became a legend — scoring over 130 goals, winning back-to-back UEFA Cups in 2006 and 2007, and becoming the club's all-time highest-scoring foreign player. Off the pitch, he was known for his charitable work and deep Islamic faith, once buying a mosque in Seville for the local community.",
-    "clubs": [
-      "Lyon",
-      "West Ham United",
-      "Tottenham Hotspur",
-      "Sevilla",
-      "Beijing Guoan"
-    ],
-    "honours": [
-      "UEFA Cup x2 (Sevilla, 2006, 2007)",
-      "Copa del Rey (Sevilla, 2007)",
-      "Spanish Super Cup (Sevilla, 2007)",
-      "African Footballer of the Year (2007)"
-    ],
-    "numbers": "23 goals in 38 caps for Mali",
-    "didYouKnow": [
-      "He was the first player born outside Africa to win the African Footballer of the Year award, winning it in 2007 while representing Mali",
-      "He became Sevilla's all-time highest-scoring foreign player with over 130 goals across all competitions",
-      "He purchased a mosque in Seville for the local Muslim community, reflecting his deep commitment to his faith and charitable causes"
-    ],
-    "youtube": "https://www.youtube.com/watch?v=KlmdO3VNRLg"
   },
   "kevin_phillips": {
     "position": "Striker",
@@ -1527,87 +1200,6 @@ window.BIOS = {
       "He scored the winning penalty in the 2011 League Cup final for Birmingham City against Arsenal, one of the biggest cup upsets of the decade"
     ],
     "youtube": "https://www.youtube.com/watch?v=o9O-RpBCpUI"
-  },
-  "mario_mandzukic": {
-    "position": "Striker",
-    "yearsActive": "2004–2021",
-    "story": "A warrior in every sense — Mandzukic was the striker managers loved and opponents hated. He scored the opening goal in the 2013 Champions League final as Bayern Munich completed the treble, then moved to Atletico Madrid where Diego Simeone's intensity suited him perfectly. At Juventus he found his greatest stage: his bicycle kick against Real Madrid in the 2017 Champions League final is widely considered one of the finest goals ever scored in the competition, even though Juve lost 4-1 on the night. For Croatia, he was equally decisive — his extra-time winner against England in the 2018 World Cup semi-final sent his nation to their first-ever final. He was never the most graceful, but he was relentless, brave, and delivered on the biggest nights of all.",
-    "clubs": [
-      "NK Marsonia",
-      "Dinamo Zagreb",
-      "VfL Wolfsburg",
-      "Bayern Munich",
-      "Atletico Madrid",
-      "Juventus",
-      "Al-Duhail",
-      "AC Milan"
-    ],
-    "honours": [
-      "Champions League (Bayern Munich, 2013)",
-      "Bundesliga x2 (Bayern Munich)",
-      "Serie A x3 (Juventus)",
-      "La Liga (Atletico Madrid, 2014)",
-      "DFB-Pokal (Bayern Munich, 2013)"
-    ],
-    "numbers": "33 goals in 89 caps for Croatia",
-    "didYouKnow": [
-      "His bicycle kick against Real Madrid in the 2017 Champions League final won the UEFA Goal of the Season — widely considered one of the greatest goals in Champions League final history",
-      "He scored in the 2018 World Cup semi-final against England in extra time to send Croatia to their first-ever World Cup final",
-      "He scored the opening goal in the 2013 Champions League final as Bayern Munich completed an historic treble under Jupp Heynckes"
-    ],
-    "youtube": "https://www.youtube.com/watch?v=TMitgZPoumg"
-  },
-  "juan_mata": {
-    "position": "Attacking Midfielder",
-    "yearsActive": "2006–2024",
-    "story": "One of the most intelligent and likeable footballers of his generation, Mata won virtually everything the game has to offer — World Cup, European Championship, Champions League, Europa League, Premier League, FA Cup — yet always seemed slightly underappreciated. At Chelsea he was sensational, winning back-to-back Player of the Year awards and providing the corner that led to Drogba’s equaliser in the 2012 Champions League final. Jose Mourinho’s arrival saw him frozen out, and a £37.1 million move to Manchester United followed in January 2014. At Old Trafford he was a model professional for eight years but never quite recaptured his Chelsea heights as United lurched from one manager to the next. Off the pitch, he launched Common Goal, pledging 1% of his salary to charity and inspiring dozens of players to follow suit. A true gentleman of the game.",
-    "clubs": [
-      "Real Madrid Castilla",
-      "Valencia",
-      "Chelsea",
-      "Manchester United",
-      "Galatasaray",
-      "Vissel Kobe"
-    ],
-    "honours": [
-      "World Cup 2010 (Spain)",
-      "Euro 2012 (Spain)",
-      "Champions League (Chelsea, 2012)",
-      "Europa League x2 (Chelsea 2013, Man Utd 2017)",
-      "FA Cup (Chelsea, 2012)",
-      "Premier League (Chelsea, 2010)"
-    ],
-    "numbers": "10 goals in 41 caps for Spain",
-    "didYouKnow": [
-      "He won back-to-back Chelsea Player of the Year awards in 2012 and 2013, but was sold by Jose Mourinho just months after winning the second",
-      "He founded Common Goal, a charitable movement where players pledge 1% of their salary — dozens of top professionals have since joined",
-      "He provided the corner that led to Didier Drogba's dramatic equaliser in the 2012 Champions League final against Bayern Munich"
-    ],
-    "youtube": "https://www.youtube.com/watch?v=1iLfJZCRUik"
-  },
-  "matt_taylor": {
-    "position": "Left Midfielder",
-    "yearsActive": "1999–2019",
-    "story": "The owner of one of the most devastating left feet in English football history. Taylor started at Luton Town before earning a move to Portsmouth, where he became a key figure in Harry Redknapp's side and helped win the Division One title in 2003. His thunderous long-range strikes became his calling card — he could hit a dead ball from 40 yards with the power of a howitzer and the dip of a diving swallow. His goals against Everton and Sunderland are still shared online as examples of pure left-footed perfection. After Portsmouth he moved to Bolton, then Burnley, West Ham, and a handful of lower-league clubs, never quite reaching the heights his talent deserved but always capable of producing something spectacular from distance. A cult hero wherever he played.",
-    "clubs": [
-      "Luton Town",
-      "Portsmouth",
-      "Bolton Wanderers",
-      "West Ham United",
-      "Burnley",
-      "Cheltenham Town",
-      "Swindon Town"
-    ],
-    "honours": [
-      "Division One title (Portsmouth, 2003)"
-    ],
-    "numbers": "0 goals in 0 senior caps for England",
-    "didYouKnow": [
-      "His thunderous left-footed strikes from distance became his trademark — his goals against Everton and Sunderland for Portsmouth are still widely shared as some of the finest long-range efforts in Premier League history",
-      "He started his career at Luton Town before earning a move to Portsmouth, where he helped win the Division One title under Harry Redknapp in 2003",
-      "He never won a senior England cap despite earning three Under-21 caps and possessing one of the most feared left feet in the country"
-    ],
-    "youtube": "https://www.youtube.com/watch?v=IFBGHq4Br8k"
   },
   "ramires": {
     "position": "Midfielder",
@@ -1893,5 +1485,523 @@ window.BIOS = {
       "He suffered so badly from ankle injuries in later life that he once asked doctors to amputate his feet to end the chronic pain"
     ],
     "youtube": "https://www.youtube.com/watch?v=GYGxua-HUGM"
+  },
+  "rafael_marquez": {
+    "position": "Centre-Back",
+    "yearsActive": "1996–2018",
+    "story": "Rafael Márquez was the calm at the heart of Barcelona's tiki-taka generation, alongside Xavi, Iniesta and Puyol. They called him 'El Káiser' at the Camp Nou, where he won four La Liga titles and two Champions Leagues in seven seasons under Rijkaard and Guardiola. He had been a Monaco Ligue 1 winner before that, and started at Atlas in Guadalajara at sixteen. The international shirt is what defined him: five World Cups for Mexico from 2002 to 2018, captain at every one, the only footballer in history to do that. He returns to this World Cup on the bench as Aguirre's assistant and confirmed successor.",
+    "clubs": [
+      "Atlas",
+      "AS Monaco",
+      "FC Barcelona",
+      "New York Red Bulls",
+      "León",
+      "Hellas Verona",
+      "Atlas"
+    ],
+    "honours": [
+      "La Liga x4 (Barcelona, 2004–05, 2005–06, 2008–09, 2009–10)",
+      "Champions League x2 (Barcelona, 2006, 2009)",
+      "Copa del Rey x2 (Barcelona, 2009, 2012)",
+      "CONCACAF Gold Cup x2 (Mexico, 2003, 2011)",
+      "FIFA Confederations Cup (Mexico, 1999)"
+    ],
+    "numbers": "3 goals in 19 World Cup matches across five tournaments",
+    "didYouKnow": [
+      "He is the only footballer in history to captain his country at five different World Cup finals (Guinness World Record).",
+      "He scored the equaliser against hosts South Africa in the opening match of the 2010 World Cup, denying Bafana Bafana the perfect start.",
+      "He is one of only four players to appear at five World Cup tournaments, alongside Antonio Carbajal, Lothar Matthäus and Gianluigi Buffon."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=WKQEUQ3kM6k"
+  },
+  "edin_dzeko": {
+    "position": "Striker",
+    "yearsActive": "2003–present",
+    "story": "Edin Džeko's family flat was shelled during the Siege of Sarajevo. Bosnia's youth academies rejected him for being too skinny. He left for Teplice in the Czech Republic at nineteen for about €25,000, and quietly became one of Europe's most reliable strikers. Bundesliga top scorer at Wolfsburg, two Premier League titles at Manchester City, Serie A top scorer at Roma at thirty-one, still scoring goals at forty for Schalke. Bosnia & Herzegovina's all-time leading goalscorer and the captain who took them to their first ever World Cup in 2014 and who carries the armband again at the 2026 tournament.",
+    "clubs": [
+      "Željezničar",
+      "Teplice",
+      "Ústí nad Labem (loan)",
+      "VfL Wolfsburg",
+      "Manchester City",
+      "Roma",
+      "Inter Milan",
+      "Fenerbahçe",
+      "Fiorentina",
+      "Schalke 04"
+    ],
+    "honours": [
+      "Premier League x2 (Man City, 2011–12, 2013–14)",
+      "FA Cup (Man City, 2010–11)",
+      "Bundesliga (Wolfsburg, 2008–09); Bundesliga top scorer 2009–10",
+      "Coppa Italia x2 (Inter, 2021–22, 2022–23)",
+      "Serie A capocannoniere 2016–17 (Roma)",
+      "Bosnia all-time top scorer"
+    ],
+    "numbers": "1 goal in 3 World Cup matches at the 2014 tournament",
+    "didYouKnow": [
+      "He scored Bosnia & Herzegovina's only ever World Cup victory, the winner in their 3-1 defeat of Iran at the 2014 tournament.",
+      "He came on as a substitute against QPR on the final day of the 2011–12 Premier League season and scored the 92nd-minute equaliser that set up Sergio Agüero's title-winning goal.",
+      "He is Bosnia & Herzegovina's all-time leading goalscorer and most-capped player."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=vk8FvYutNwU"
+  },
+  "oscar_brazil": {
+    "position": "Attacking Midfielder",
+    "yearsActive": "2008–2026",
+    "story": "Oscar was Brazil's golden boy. The São Paulo academy graduate who came through Internacional, lit up the FIFA U-20 World Cup in 2011 with a hat-trick in the final, and was sold to Chelsea at twenty for around £25 million. He won two Premier League titles and the Europa League at Stamford Bridge before, in January 2017 aged twenty-five, taking a £60 million Asian-record move to Shanghai SIPG on £400,000-a-week wages and effectively vanishing from elite European football. The 2014 World Cup at home was bookended by his clipped toe-poke against Croatia in the opener and his lone goal in the 7-1 humiliation by Germany. Retired April 2026, aged thirty-four, after a health problem was detected in pre-season screening.",
+    "clubs": [
+      "São Paulo",
+      "Internacional",
+      "Chelsea",
+      "Shanghai SIPG / Shanghai Port",
+      "São Paulo"
+    ],
+    "honours": [
+      "Premier League x2 (Chelsea, 2014–15, 2016–17)",
+      "UEFA Europa League (Chelsea, 2012–13)",
+      "EFL Cup (Chelsea, 2014–15)",
+      "Chinese Super League x3 (Shanghai Port, 2018, 2023, 2024)",
+      "FIFA U-20 World Cup Silver Ball (Brazil, 2011)",
+      "Confederations Cup (Brazil, 2013)",
+      "Olympic silver medal (Brazil, 2012)"
+    ],
+    "numbers": "2 goals in 7 World Cup matches at the 2014 tournament",
+    "didYouKnow": [
+      "He scored Brazil's only goal in their 7-1 semi-final defeat to Germany at the 2014 World Cup, the country's worst ever competitive result.",
+      "He left Chelsea for Shanghai SIPG in January 2017 for £60 million, the largest fee ever paid for a player in the Chinese Super League at the time.",
+      "He retired in April 2026 aged 34 after a heart condition was detected in pre-season screening at São Paulo."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=0CB6nuxhQMw"
+  },
+  "arjen_robben": {
+    "position": "Right Winger",
+    "yearsActive": "2000–2021",
+    "story": "For fifteen years it was always the same: pick the ball up on the right, cut inside onto the left foot, rifle it into the far corner. Everyone knew it. Nobody stopped it. Arjen Robben won two Premier League titles at Chelsea before he was twenty-three, a La Liga at Real Madrid, then eight Bundesligas at Bayern Munich and the 89th-minute winner in the 2013 Champions League final against Borussia Dortmund. For the Netherlands he played at three World Cups. He came within an Iker Casillas leg of winning the 2010 final in normal time. Iniesta won it in extra time.",
+    "clubs": [
+      "FC Groningen",
+      "PSV Eindhoven",
+      "Chelsea",
+      "Real Madrid",
+      "Bayern Munich",
+      "FC Groningen"
+    ],
+    "honours": [
+      "FIFA World Cup runner-up (Netherlands, 2010)",
+      "UEFA Champions League (Bayern, 2012–13)",
+      "Bundesliga x8 (Bayern Munich)",
+      "DFB-Pokal x5 (Bayern)",
+      "Premier League x2 (Chelsea, 2004–05, 2005–06)",
+      "La Liga (Real Madrid, 2007–08)",
+      "FA Cup (Chelsea, 2006–07)",
+      "Eredivisie (PSV, 2002–03)"
+    ],
+    "numbers": "6 goals in 15 World Cup matches across three tournaments",
+    "didYouKnow": [
+      "Iker Casillas saved his one-on-one in the 2010 World Cup final. Andrés Iniesta scored the winner for Spain in extra time.",
+      "He scored the only goal of the 2013 Champions League final, in the 89th minute against Borussia Dortmund.",
+      "He has been fouled more times at the World Cup than any other player since 2006."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=q-9q38qZD9I"
+  },
+  "diego_forlan": {
+    "position": "Forward",
+    "yearsActive": "1996–2019",
+    "story": "Diego Forlán took nine months and thirteen Premier League games to score his first Premier League goal at Manchester United, and was widely written off as a Sir Alex misfire. Then he went to Spain. He won the European Golden Shoe at Villarreal in 2004-05, won it again at Atlético Madrid in 2008-09, scored both goals in the 2010 Europa League final, and at the 2010 World Cup he turned thirty-one and was suddenly the best player on Earth. Five goals, the Golden Boot, the Golden Ball, a 30-yard dipping volley against Germany in the third-place playoff voted goal of the tournament. Inter Milan signed him next: two Serie A goals all season. His father played for Uruguay at the 1966 and 1974 World Cups.",
+    "clubs": [
+      "Independiente",
+      "Manchester United",
+      "Villarreal",
+      "Atlético Madrid",
+      "Inter Milan",
+      "Internacional",
+      "Cerezo Osaka",
+      "Peñarol",
+      "Mumbai City",
+      "Kitchee"
+    ],
+    "honours": [
+      "World Cup Golden Ball (Uruguay, 2010)",
+      "Copa América (Uruguay, 2011)",
+      "European Golden Shoe x2 (Villarreal 2004–05, Atlético 2008–09)",
+      "UEFA Europa League (Atlético, 2009–10)",
+      "UEFA Super Cup (Atlético, 2010)",
+      "Premier League (Man United, 2002–03)",
+      "FA Cup (Man United, 2003–04)"
+    ],
+    "numbers": "6 goals in 10 World Cup matches across three tournaments (5 of them at South Africa 2010)",
+    "didYouKnow": [
+      "He won the Golden Ball as best player at the 2010 World Cup, finishing as joint top scorer on 5 goals with Thomas Müller, David Villa and Wesley Sneijder.",
+      "His 30-yard dipping volley against Germany in the third-place playoff was voted the 2010 World Cup's goal of the tournament.",
+      "His father Pablo Forlán played for Uruguay at the 1966 and 1974 World Cups."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=zj79yzTPhwk"
+  },
+  "el_hadji_diouf": {
+    "position": "Winger / Forward",
+    "yearsActive": "1998–2015",
+    "story": "The most notorious player on Pelé's FIFA 100 list. El Hadji Diouf was a £10 million Liverpool flop who scored three Premier League goals in two seasons. He was banned for spitting at a Celtic fan from the bench, accused of spitting at a Portsmouth defender and a Middlesbrough ball boy, and was called a 'disgrace' by Sir Alex Ferguson. He was also African Footballer of the Year in both 2001 and 2002. At the 2002 World Cup he tormented Frank Leboeuf on the byline and set up the goal that beat reigning champions France 1-0 in the most iconic upset of the tournament. The drift through Bolton, Sunderland, Blackburn, Rangers, Doncaster and Leeds took him into his forties.",
+    "clubs": [
+      "Sochaux",
+      "Rennes",
+      "Lens",
+      "Liverpool",
+      "Bolton Wanderers",
+      "Sunderland",
+      "Blackburn Rovers",
+      "Rangers (loan)",
+      "Doncaster Rovers",
+      "Leeds United",
+      "Sabah FA"
+    ],
+    "honours": [
+      "Football League Cup (Liverpool, 2002–03)",
+      "Scottish Premier League (Rangers, 2010–11)",
+      "Scottish League Cup (Rangers, 2010–11)",
+      "African Footballer of the Year x2 (2001, 2002)",
+      "2002 World Cup All-Star Team",
+      "FIFA 100 (Pelé's list, 2004)"
+    ],
+    "numbers": "0 goals in 5 World Cup matches at the 2002 tournament",
+    "didYouKnow": [
+      "He set up Papa Bouba Diop's goal as Senegal beat reigning champions France 1-0 in the 2002 World Cup opener, the tournament's most iconic upset.",
+      "He was African Footballer of the Year in both 2001 and 2002, back to back.",
+      "He was named on Pelé's FIFA 100 list of greatest living footballers in 2004."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=UC-12ZNs2xg"
+  },
+  "james_rodriguez": {
+    "position": "Attacking Midfielder",
+    "yearsActive": "2006–present",
+    "story": "Real Madrid paid roughly €80 million to bring James Rodríguez to Spain in the summer of 2014, days after his World Cup explosion. He was twenty-three. It was the fourth-most-expensive transfer in football history at the time. He scored seventeen across all competitions in his first season under Carlo Ancelotti. Then Zidane arrived, the bench beckoned, the Bayern loan was offered, Bayern declined the buy option. The drift: Everton, Al-Rayyan, Olympiacos, São Paulo, Rayo Vallecano, León. He never recaptured the Brazilian summer he won the Golden Boot in. But here he is, thirty-four years old, captaining Colombia at his third World Cup.",
+    "clubs": [
+      "Envigado",
+      "Banfield",
+      "Porto",
+      "Monaco",
+      "Real Madrid",
+      "Bayern Munich (loan)",
+      "Everton",
+      "Al-Rayyan",
+      "Olympiacos",
+      "São Paulo",
+      "Rayo Vallecano",
+      "León"
+    ],
+    "honours": [
+      "FIFA World Cup Golden Boot (Colombia, 2014)",
+      "FIFA Goal of the Tournament (2014)",
+      "UEFA Champions League x2 (Real Madrid, 2015–16, 2016–17)",
+      "La Liga (Real Madrid, 2016–17)",
+      "Bundesliga x2 (Bayern, 2017–18, 2018–19)",
+      "FIFA Club World Cup x2 (Real Madrid)",
+      "UEFA Europa League (Porto, 2010–11)"
+    ],
+    "numbers": "6 goals in 8 World Cup matches across two tournaments (all 6 at Brazil 2014)",
+    "didYouKnow": [
+      "His swerving left-footed volley against Uruguay in the 2014 round of 16 was voted FIFA Goal of the Tournament.",
+      "He won the 2014 World Cup Golden Boot with 6 goals, scoring in every match Colombia played.",
+      "Real Madrid signed him for around €80 million days after the 2014 World Cup, the fourth most expensive transfer in history at the time."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=zI02ogMpjHU"
+  },
+  "pavel_nedved": {
+    "position": "Midfielder",
+    "yearsActive": "1991–2009",
+    "story": "The Czech Fury. Pavel Nedvěd ran for ninety minutes every game for ninety years. Lazio bought him from Sparta after his stunning Euro 96 (where the Czechs lost the final to Germany on a golden goal), and he won Serie A there in 2000, two Coppa Italias and the Cup Winners' Cup. He moved across to Juventus and won the Ballon d'Or in 2003 by 62 points over Thierry Henry. He stayed at Juve through their forced relegation to Serie B in the 2006 Calciopoli scandal, playing in the second tier with them. Two further Juve Serie A titles were stripped retrospectively. He was later Juventus vice-chairman until he resigned in 2022.",
+    "clubs": [
+      "Škoda Plzeň",
+      "Dukla Prague (loan)",
+      "Sparta Prague",
+      "Lazio",
+      "Juventus"
+    ],
+    "honours": [
+      "Ballon d'Or 2003",
+      "Serie A x3 (Lazio 1999–2000; Juventus 2001–02, 2002–03)",
+      "UEFA Cup Winners' Cup (Lazio, 1998–99)",
+      "UEFA Super Cup (Lazio, 1999)",
+      "Coppa Italia x2 (Lazio, 1997–98, 1999–2000)",
+      "UEFA Euro 1996 runner-up (Czech Republic)",
+      "Czech Footballer of the Year x7",
+      "FIFA 100 (Pelé's list, 2004)"
+    ],
+    "numbers": "0 goals in 3 World Cup matches at the 2006 tournament",
+    "didYouKnow": [
+      "He won the 2003 Ballon d'Or by 62 points over Thierry Henry.",
+      "He stayed at Juventus when they were forcibly relegated to Serie B in the 2006 Calciopoli scandal and played in the second tier with them.",
+      "He lost the Euro 1996 final to Germany on a golden goal at Wembley."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=DHKx20X4_HM"
+  },
+  "tim_howard": {
+    "position": "Goalkeeper",
+    "yearsActive": "1997–2020",
+    "story": "Tim Howard spent a decade at Everton, more than 350 Premier League games as the Toffees' goalkeeper from 2006 to 2016. Before that, Sir Alex Ferguson had signed him from the New York MetroStars in 2003 to replace Fabien Barthez at Manchester United, where he won the FA Cup in his first season before losing his place. The defining game came at the 2014 World Cup in Salvador, where he made sixteen saves over 120 minutes against Belgium, the most by any goalkeeper in any World Cup match since records began in 1966. The United States still lost 2-1 in extra time. He is his country's most-capped goalkeeper ever.",
+    "clubs": [
+      "North Jersey Imperials",
+      "MetroStars / New York Red Bulls",
+      "Manchester United",
+      "Everton (loan, then permanent)",
+      "Colorado Rapids",
+      "Memphis 901 FC"
+    ],
+    "honours": [
+      "FA Cup (Manchester United, 2003–04)",
+      "FA Community Shield (Manchester United, 2003)",
+      "CONCACAF Gold Cup x2 (USA, 2007, 2017)",
+      "FIFA Confederations Cup runner-up (USA, 2009)",
+      "US Soccer National Hall of Fame (2024)",
+      "Most-capped USMNT goalkeeper"
+    ],
+    "numbers": "16 saves in a single World Cup match vs Belgium 2014, most by any goalkeeper since records began in 1966",
+    "didYouKnow": [
+      "His 16 saves against Belgium in the 2014 round of 16 are the most by any goalkeeper in a single World Cup match since records began in 1966.",
+      "After that game, somebody edited the Wikipedia entry for the US Secretary of Defense to read 'Tim Howard'.",
+      "He scored a 100-yard wind-aided goal for Everton against Bolton in January 2012."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=BgXhlxRMOBA"
+  },
+  "wout_weghorst": {
+    "position": "Striker",
+    "yearsActive": "2010–present",
+    "story": "A 6'6\" striker who started in the Dutch second tier with FC Emmen and didn't make his Eredivisie debut until twenty-one. Wout Weghorst then became one. Fifty-nine Bundesliga goals at Wolfsburg, second only to Robert Lewandowski during his stint. A £12 million transfer to Burnley in January 2022 produced two Premier League goals in twenty appearances as the Clarets were relegated. An emergency loan to Manchester United under fellow Dutchman Erik ten Hag the next season won him his first trophy at thirty, the EFL Cup. At the 2022 World Cup he came off the bench in the quarter-final against Argentina and scored twice in the last twelve minutes to force extra time, a back-post header and then an audacious low free-kick finish in stoppage time. The Netherlands lost on penalties.",
+    "clubs": [
+      "Willem II (youth)",
+      "FC Emmen",
+      "Heracles Almelo",
+      "AZ Alkmaar",
+      "VfL Wolfsburg",
+      "Burnley",
+      "Beşiktaş (loan)",
+      "Manchester United (loan)",
+      "TSG Hoffenheim (loan)",
+      "Ajax"
+    ],
+    "honours": [
+      "EFL Cup (Manchester United, 2022–23)",
+      "2022 FIFA World Cup quarter-finalist (Netherlands)",
+      "UEFA Nations League runner-up (Netherlands, 2023)",
+      "UEFA Euro 2024 semi-finalist (Netherlands)"
+    ],
+    "numbers": "2 goals in 4 World Cup matches at the 2022 tournament (both in the QF vs Argentina)",
+    "didYouKnow": [
+      "He came off the bench in the 2022 World Cup quarter-final and scored twice in twelve minutes to force extra time against Argentina, including a header off a low free-kick routine.",
+      "Argentina won on penalties, and Messi's 'Andá pa' allá, bobo' to Weghorst in the post-match interview became one of the iconic images of the tournament.",
+      "He had scored zero goals in 20 Premier League games for Burnley before that World Cup."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=qIOLKjT9JBQ"
+  },
+  "keisuke_honda": {
+    "position": "Attacking Midfielder",
+    "yearsActive": "2005–present",
+    "story": "Keisuke Honda was Japan's player of the early 2010s. He won the AFC Asian Cup in 2011 as tournament MVP, won the Russian Premier League and two Russian Cups at CSKA Moscow, then signed for AC Milan in 2014 and wore the No. 10 shirt previously worn by Seedorf, Boban and Rui Costa. Three consecutive World Cups, four goals across them, the only Japanese player to score at three different tournaments and the only Asian player with four. His 2010 free-kick against Denmark from thirty yards dipped into the top corner past Thomas Sørensen. His 2018 goal against Senegal made him the first professional footballer to score competitive goals on all six continents. The club career drifted through ten countries and he was briefly general manager of Cambodia while still playing for Botafogo.",
+    "clubs": [
+      "Nagoya Grampus Eight",
+      "VVV-Venlo",
+      "CSKA Moscow",
+      "AC Milan",
+      "Pachuca",
+      "Melbourne Victory",
+      "Vitesse",
+      "Botafogo",
+      "Portimonense",
+      "Neftçi Baku",
+      "Sūduva"
+    ],
+    "honours": [
+      "AFC Asian Cup (Japan, 2011), Tournament MVP",
+      "Russian Premier League (CSKA Moscow, 2012–13)",
+      "Russian Cup x2 (CSKA, 2010–11, 2012–13)",
+      "J1 League (Nagoya Grampus, 2008)"
+    ],
+    "numbers": "4 goals in 10 World Cup matches across three tournaments",
+    "didYouKnow": [
+      "He is the only Japanese player to score at three different World Cups, and the only Asian player with 4 World Cup goals.",
+      "His 2018 goal against Senegal made him the first professional footballer to score a competitive goal on all six continents.",
+      "He was briefly head coach of Cambodia's national team while still playing club football for Botafogo."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=7kJ54U_rcmM"
+  },
+  "maxi_rodriguez": {
+    "position": "Winger / Attacking Midfielder",
+    "yearsActive": "1999–2021",
+    "story": "La Fiera, the Beast. Maxi Rodríguez made his name in eight seasons in La Liga with Espanyol and Atlético Madrid (he didn't feature in Atlético's 2009-10 Europa League win), then signed for Liverpool in 2010 on a free transfer. He scored hat-tricks against Birmingham and Fulham in the same Premier League season. He played in three World Cups for Argentina, scored Goal of the Tournament with an extra-time volley at the 2006 round of 16 against Mexico, and slotted home the decisive penalty in the 2014 semi-final shootout against the Netherlands. He started and ended his career at Newell's Old Boys in Rosario, twenty-two years apart.",
+    "clubs": [
+      "Newell's Old Boys",
+      "RCD Espanyol",
+      "Atlético Madrid",
+      "Liverpool",
+      "Newell's Old Boys",
+      "Peñarol",
+      "Newell's Old Boys"
+    ],
+    "honours": [
+      "2014 FIFA World Cup runner-up (Argentina)",
+      "2005 FIFA Confederations Cup runner-up",
+      "2001 FIFA U-20 World Cup (Argentina)",
+      "League Cup (Liverpool, 2011–12)",
+      "Argentine Primera División (Newell's, 2013 Torneo Final)",
+      "Uruguayan Primera División x2 (Peñarol, 2017, 2018)"
+    ],
+    "numbers": "3 goals in 12 World Cup matches across three tournaments",
+    "didYouKnow": [
+      "His extra-time volley against Mexico in the 2006 round of 16 was voted FIFA Goal of the Tournament.",
+      "He scored the decisive penalty in the 2014 World Cup semi-final shootout against the Netherlands to put Argentina in the final for the first time since 1990.",
+      "He started and ended his career at boyhood club Newell's Old Boys in Rosario, twenty-two years apart."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=aiY9Mz8N5SQ"
+  },
+  "joe_cole": {
+    "position": "Attacking Midfielder",
+    "yearsActive": "1998–2018",
+    "story": "Sven-Göran Eriksson and the British press once tipped him as the 'English Zidane'. Joe Cole was West Ham's captain at twenty-one, was earning £10,000 a week as a teenager. Then seven years at Chelsea under Mourinho and Ancelotti: three Premier League titles, two FA Cups, a League Cup, and the volley against Sweden at the 2006 World Cup that is still cited as one of England's best ever. He left Chelsea on a free in 2010 for Liverpool on reported wages of £90,000 a week and scored five goals in forty-one games before being released. The drift took him back to West Ham, then Aston Villa, Coventry, Tampa Bay.",
+    "clubs": [
+      "West Ham United",
+      "Chelsea",
+      "Liverpool",
+      "Lille (loan)",
+      "West Ham United",
+      "Aston Villa",
+      "Coventry City (loan, then permanent)",
+      "Tampa Bay Rowdies"
+    ],
+    "honours": [
+      "Premier League x3 (Chelsea, 2004–05, 2005–06, 2009–10)",
+      "FA Cup x2 (Chelsea, 2006–07, 2009–10)",
+      "League Cup (Chelsea, 2004–05)",
+      "UEFA Intertoto Cup (West Ham, 1999)"
+    ],
+    "numbers": "1 goal in 8 World Cup matches across three tournaments (vs Sweden, 2006)",
+    "didYouKnow": [
+      "His 35-yard dipping volley against Sweden at the 2006 World Cup is widely cited as one of England's best ever World Cup goals.",
+      "He left Chelsea on a free in 2010 and signed for Liverpool on reported wages of £90,000 a week, scoring 5 in 41 games before being released.",
+      "Sven-Göran Eriksson once tipped him as the 'English Zidane'."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=OJ29PgBD130"
+  },
+  "maicon": {
+    "position": "Right-Back",
+    "yearsActive": "2000–2023",
+    "story": "For two seasons Maicon was the best right-back on Earth. The 2009-10 Inter Milan treble was built on his runs down the right: four consecutive Serie A titles, the Champions League final win over Bayern, UEFA Defender of the Year. Then in October 2010, Gareth Bale hat-tricked him at the San Siro, and the unravelling was televised. Manchester City signed him in 2012 to compete at right-back. One season later he was gone, never having dislodged Pablo Zabaleta. The drift went through Roma, Brazilian lower divisions, and ended at San Marino's Tre Penne in his thirty-ninth year. At the 2010 World Cup he scored against North Korea from an impossibly tight angle on the right flank. He insisted it was a deliberate shot.",
+    "clubs": [
+      "Cruzeiro",
+      "Monaco",
+      "Inter Milan",
+      "Manchester City",
+      "Roma",
+      "Avaí",
+      "Criciúma",
+      "Villa Nova",
+      "Sona",
+      "Tre Penne"
+    ],
+    "honours": [
+      "UEFA Champions League (Inter, 2009–10)",
+      "Serie A x4 (Inter, 2006–07, 2007–08, 2008–09, 2009–10)",
+      "FIFA Club World Cup (Inter, 2010)",
+      "Copa América x2 (Brazil, 2004, 2007)",
+      "FIFA Confederations Cup x2 (Brazil, 2005, 2009)",
+      "2010 World Cup All-Star Team",
+      "UEFA Defender of the Year 2009–10"
+    ],
+    "numbers": "1 goal in 8 World Cup matches across two tournaments",
+    "didYouKnow": [
+      "His goal against North Korea at the 2010 World Cup was scored from an absurdly tight angle on the right flank. He insisted it was a shot; many still call it a mishit cross.",
+      "He started the 2010 UEFA Champions League final against Bayern Munich as part of Inter Milan's famous treble-winning side.",
+      "Gareth Bale's hat-trick against him at the San Siro in October 2010 is widely cited as the public turning point in his career."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=0SjvhrLP93A"
+  },
+  "serge_aurier": {
+    "position": "Right-Back",
+    "yearsActive": "2010–present",
+    "story": "Serge Aurier broke through at Toulouse in 2013-14 and was moved to PSG within a year. Three seasons of Ligue 1 success and domestic cups followed, but he never quite locked down the starting spot. Tottenham came next in 2017, four years on the right of the Spurs defence after an initial UK visa block. Then Villarreal, Nottingham Forest, Galatasaray (where he won the Süper Lig in 2023-24) and Persepolis in Iran. For Ivory Coast he made his name at the 2014 World Cup in Recife with two assists for Bony and Gervinho and a Man of the Match in the opening win against Japan, and he later captained his country to the 2023 Africa Cup of Nations title on home soil.",
+    "clubs": [
+      "RC Lens",
+      "Toulouse",
+      "Paris Saint-Germain",
+      "Tottenham Hotspur",
+      "Villarreal",
+      "Nottingham Forest",
+      "Galatasaray",
+      "Persepolis"
+    ],
+    "honours": [
+      "Africa Cup of Nations x2 (Ivory Coast, 2015, 2023)",
+      "Ligue 1 x2 (PSG, 2014–15, 2015–16)",
+      "Coupe de France x3 (PSG)",
+      "Coupe de la Ligue x3 (PSG)",
+      "Trophée des Champions x3 (PSG)",
+      "Süper Lig (Galatasaray, 2023–24)"
+    ],
+    "numbers": "0 goals in 3 World Cup matches at the 2014 tournament; Man of the Match in the opening win over Japan",
+    "didYouKnow": [
+      "He provided two crosses for Wilfried Bony and Gervinho headers in Ivory Coast's 2014 World Cup opener against Japan, was named Man of the Match, and was sold to PSG within months.",
+      "He captained Ivory Coast to the 2023 Africa Cup of Nations title on home soil despite his country sacking their head coach mid-tournament.",
+      "He was an unused substitute for Tottenham in their 2019 Champions League final defeat to Liverpool."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=KpG_korY2ds"
+  },
+  "youri_djorkaeff": {
+    "position": "Attacking Midfielder",
+    "yearsActive": "1984–2006",
+    "story": "They called him 'The Snake' for the dribbling and the bending shots. Youri Djorkaeff came up at Monaco, won the Cup Winners' Cup with PSG in 1996, then went to Inter Milan and won the UEFA Cup in 1998 alongside Ronaldo. He was France's World Cup winner that summer. He took the corner that Zidane headed in for the second goal of the final, telling the playmaker: 'Stay here, you're good with the head.' Euro 2000 winner. Then the late drift to Kaiserslautern, Bolton, Blackburn, and New York Red Bulls in MLS. Polish-Kalmyk and Armenian heritage. His father Jean played for France at the 1966 World Cup. He is now CEO of the FIFA Foundation.",
+    "clubs": [
+      "Grenoble",
+      "Strasbourg",
+      "Monaco",
+      "Paris Saint-Germain",
+      "Inter Milan",
+      "Kaiserslautern",
+      "Bolton Wanderers",
+      "Blackburn Rovers",
+      "New York Red Bulls (MetroStars)"
+    ],
+    "honours": [
+      "FIFA World Cup (France, 1998)",
+      "UEFA Euro 2000 (France)",
+      "FIFA Confederations Cup (France, 2001)",
+      "UEFA Cup (Inter, 1997–98)",
+      "UEFA Cup Winners' Cup (PSG, 1995–96)",
+      "Coupe de France (Monaco, 1990–91)"
+    ],
+    "numbers": "1 goal in 9 World Cup matches across two tournaments (1998 group stage)",
+    "didYouKnow": [
+      "He took the corner in the 1998 World Cup final that Zinedine Zidane headed in for France's second goal. He had told Zidane to 'stay here, you're good with the head'.",
+      "He scored an overhead-kick winner against Germany at Euro 96 and a scissor-kick goal against Spain at Euro 2000.",
+      "His father Jean Djorkaeff played for France at the 1966 World Cup."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=tmjFa9LB7Pg"
+  },
+  "davor_suker": {
+    "position": "Striker",
+    "yearsActive": "1984–2003",
+    "story": "Davor Šuker had won the Champions League with Real Madrid weeks before the 1998 World Cup. Then he carried debutant Croatia to France, scored six goals across seven games including the opening goal of the semi-final against the eventual winners France, and left with the Golden Boot, the Silver Ball and a bronze medal around his neck. The chip over Peter Schmeichel at Euro 96 had announced him. The post-1998 fall was swift. He signed for Arsenal for around £3.5 million, started fifteen league games, dropped to West Ham for one season, finished at 1860 Munich. Croatia's all-time leading international goalscorer with 45 goals, and Pelé's only Croatian addition to the FIFA 100 list.",
+    "clubs": [
+      "NK Osijek",
+      "Dinamo Zagreb",
+      "Sevilla",
+      "Real Madrid",
+      "Arsenal",
+      "West Ham United",
+      "1860 Munich"
+    ],
+    "honours": [
+      "1998 World Cup Golden Boot (6 goals)",
+      "1998 World Cup Silver Ball",
+      "1998 World Cup bronze medal (Croatia)",
+      "UEFA Champions League (Real Madrid, 1997–98)",
+      "La Liga (Real Madrid, 1996–97)",
+      "FIFA 100 (Pelé's list, 2004)",
+      "Croatia all-time top scorer (45 international goals)"
+    ],
+    "numbers": "6 goals in 7 World Cup matches at the 1998 tournament: Golden Boot, Silver Ball, bronze medal",
+    "didYouKnow": [
+      "He won both the Golden Boot (6 goals) and the Silver Ball at the 1998 World Cup, behind Ronaldo, taking debutant Croatia to a bronze medal.",
+      "Weeks before the 1998 World Cup he won the Champions League with Real Madrid.",
+      "He is Croatia's all-time leading international goalscorer with 45 international goals, a record that still stands."
+    ],
+    "youtube": "https://www.youtube.com/watch?v=L2oiDIlwbuU"
   }
 };

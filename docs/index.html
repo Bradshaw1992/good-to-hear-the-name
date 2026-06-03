@@ -99,6 +99,23 @@ if(location.hostname==="bradshaw1992.github.io"){
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
+  header .wc-chip {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin-top: 6px;
+  }
+  .reveal-banner .today-match {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
 
   .layout {
     display: grid;
@@ -698,6 +715,9 @@ if(location.hostname==="bradshaw1992.github.io"){
         <span style="color:var(--muted);font-size:11px;margin:0 4px;">·</span>
         <button class="archive-btn" id="archiveBtn" title="Play previous days">📅 Previous days</button>
       </div>
+      <div class="sub-row">
+        <span class="wc-chip" id="wcChip" style="display:none">🏆 WORLD CUP 2026</span>
+      </div>
     </header>
 
     <div class="archive-overlay" id="archiveOverlay">
@@ -1016,6 +1036,8 @@ if(location.hostname==="bradshaw1992.github.io"){
     $("dayBadge").textContent = `DAY #${dayNumber}`;
     const d = dateFromDay(day);
     dateLabel.textContent = d.toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "long" });
+    const wcChip = $("wcChip");
+    if (wcChip) wcChip.style.display = player.todayMatch ? "inline-block" : "none";
 
     // Archive banner
     if (day !== today) {
@@ -1233,9 +1255,13 @@ if(location.hostname==="bradshaw1992.github.io"){
       ? `<button class="share-btn" id="backTodayBtn" style="background:var(--text);margin-top:10px">↩ Back to today's player</button>`
       : "";
 
+    const todayMatchLine = player.todayMatch
+      ? `<div class="today-match">🏆 Today's match: ${player.todayMatch}</div>`
+      : "";
     result.innerHTML = `
       <div class="reveal-banner ${bannerClass}" style="position:relative">
         ${bannerLine}
+        ${todayMatchLine}
         ${scoreLine}
         <div class="sparkles" id="sparkles"></div>
       </div>

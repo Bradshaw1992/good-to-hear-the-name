@@ -64,49 +64,53 @@ def write(name, html):
 
 
 # ----------------------------------------------------------------------------
-# 1. STICKERS  (player-specific: real silhouette + clue + pinned QR.
-#    6 per A4 (~89 x 86mm). QR pins the exact player so the scan matches.)
+# 1. LABELS  (Avery L7165 layout: 99.1 x 67.7mm, 8 per A4 sheet.
+#    Margins: 13mm top, 4.65mm sides, 2.5mm column gap, no row gap.
+#    No border lines - labels are pre-cut.)
 # ----------------------------------------------------------------------------
-def build_stickers(player, silhouette_filename, out_name, day_label, teaser_override=None):
+def build_labels(player, silhouette_filename, out_name, day_label, teaser_override=None):
     sil = img_data_uri(os.path.join(DOCS, "silhouettes", silhouette_filename))
     qr = qr_data_uri(HOME_URL + "?player=" + player["id"])
     teaser = teaser_override or (
         player["clues"][1] if len(player["clues"]) > 1 else player["clues"][0])
-    sticker = f"""
-      <div class="sticker">
-        <div class="top">
+    label = f"""
+      <div class="label">
+        <div class="left">
           <div class="brand">GOOD TO HEAR THE NAME</div>
           <div class="prompt">Name this player</div>
+          <img class="sil" src="{sil}" alt="mystery silhouette"/>
+          <div class="teaser">&ldquo;{teaser}&rdquo;</div>
         </div>
-        <img class="sil" src="{sil}" alt="mystery silhouette"/>
-        <div class="teaser">&ldquo;{teaser}&rdquo;</div>
-        <div class="foot">
+        <div class="right">
           <img class="qr" src="{qr}" alt="scan to play"/>
-          <div class="cta"><span class="scan">Scan to play</span>
-            <span class="meta">5 clues &middot; 5 guesses<br>new player every day</span></div>
+          <div class="scan">Scan to play</div>
+          <div class="meta">5 clues &middot; 5 guesses<br>new player every day</div>
         </div>
       </div>"""
-    grid = sticker * 6
+    grid = label * 8
     html = f"""<!doctype html><html><head><meta charset="utf-8">
-<title>Stickers &ndash; {player['name']} ({day_label})</title><style>
+<title>Labels &ndash; {player['name']} ({day_label})</title><style>
 {BASE_CSS}
-@page {{ size: A4 portrait; margin: 8mm; }}
-.sheet {{ width: 210mm; height: 281mm; padding: 6mm; display: grid;
-  grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); gap: 4mm; }}
-.sticker {{ border: 1px dashed #ccc; border-radius: 4mm; background: {CREAM};
-  padding: 5mm 6mm; display: flex; flex-direction: column; overflow: hidden; }}
-.top {{ flex: 0 0 auto; }}
-.brand {{ font-size: 7pt; font-weight: 800; letter-spacing: .6px; color: {GREEN}; }}
-.prompt {{ font-size: 17pt; font-weight: 900; margin-top: 1mm; }}
+@page {{ size: A4 portrait; margin: 0; }}
+.sheet {{ width: 210mm; height: 297mm; background: #fff;
+  padding: 13mm 4.65mm 13.2mm 4.65mm; display: grid;
+  grid-template-columns: 99.1mm 99.1mm;
+  grid-template-rows: repeat(4, 67.7mm);
+  column-gap: 2.5mm; row-gap: 0; }}
+.label {{ width: 99.1mm; height: 67.7mm; background: {CREAM};
+  padding: 4mm 5mm; display: flex; gap: 4mm; overflow: hidden; }}
+.left {{ flex: 1.45; display: flex; flex-direction: column; min-width: 0; }}
+.brand {{ flex: 0 0 auto; font-size: 7pt; font-weight: 800; letter-spacing: .6px; color: {GREEN}; }}
+.prompt {{ flex: 0 0 auto; font-size: 15pt; font-weight: 900; margin: 1mm 0 2mm; }}
 .sil {{ flex: 1 1 auto; min-height: 0; width: 100%; object-fit: contain;
-  object-position: center; margin: 3mm 0; }}
-.teaser {{ flex: 0 0 auto; font-size: 9pt; font-style: italic; line-height: 1.3;
-  color: #2c3a30; margin-bottom: 4mm; }}
-.foot {{ flex: 0 0 auto; display: flex; align-items: center; gap: 4mm; }}
-.qr {{ width: 24mm; height: 24mm; padding: 1.5mm; }}
-.cta {{ display: flex; flex-direction: column; }}
-.scan {{ font-size: 13pt; font-weight: 900; color: {GREEN}; }}
-.meta {{ font-size: 8pt; font-weight: 600; color: #2c3a30; margin-top: 1mm; line-height: 1.3; }}
+  object-position: left center; }}
+.teaser {{ flex: 0 0 auto; font-size: 8pt; font-style: italic; line-height: 1.3;
+  color: #2c3a30; margin-top: 2mm; }}
+.right {{ flex: 1; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center; gap: 1.5mm; }}
+.qr {{ width: 32mm; height: 32mm; padding: 1.5mm; }}
+.scan {{ font-size: 11pt; font-weight: 900; color: {GREEN}; }}
+.meta {{ font-size: 7.5pt; font-weight: 600; color: #2c3a30; line-height: 1.3; }}
 </style></head><body>
 <div class="sheet">{grid}</div>
 </body></html>"""
@@ -159,10 +163,10 @@ RONDON_CLUE = ("I am my country's all-time leading goalscorer, but I have never 
 
 if __name__ == "__main__":
     players = load_players()
-    build_stickers(players["abidal"], "abidal.jpg",
-                   "stickers_saturday_abidal.html", "Sat 30 May", ABIDAL_CLUE)
-    build_stickers(players["salomon_rondon"], "salomon_rondon.jpg",
-                   "stickers_sunday_rondon.html", "Sun 31 May", RONDON_CLUE)
+    build_labels(players["abidal"], "abidal.jpg",
+                 "labels_saturday_abidal.html", "Sat 30 May", ABIDAL_CLUE)
+    build_labels(players["salomon_rondon"], "salomon_rondon.jpg",
+                 "labels_sunday_rondon.html", "Sun 31 May", RONDON_CLUE)
     build_poster(players["abidal"], "abidal.jpg",
                  "poster_saturday_abidal.html", "Sat 30 May", ABIDAL_CLUE)
     build_poster(players["salomon_rondon"], "salomon_rondon.jpg",
