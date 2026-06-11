@@ -1626,7 +1626,14 @@ if(location.hostname==="bradshaw1992.github.io"){
   }
 
   // ---- Boot ----
-  loadGame(today);
+  // ?day=N pins a specific past day without revealing which player it is.
+  // (Unlike ?player=<id> which exposes the player id in the URL.)
+  const pinDayParam = parseInt(params.get("day"), 10);
+  const pinDayAbs = (Number.isInteger(pinDayParam) && pinDayParam >= 1)
+    ? EPOCH_DAY + pinDayParam - 1
+    : null;
+  const bootDay = (pinDayAbs && pinDayAbs <= today) ? pinDayAbs : today;
+  loadGame(bootDay);
   if (demoMode === "reveal") setTimeout(() => revealAnswer(false), 100);
   if (demoMode === "correct") setTimeout(() => submitGuess(player.name), 100);
   if (demoMode === "mid") setTimeout(() => { submitGuess("Wayne Rooney"); submitGuess("Steven Gerrard"); }, 100);
