@@ -2433,768 +2433,826 @@
       "todayMatch": "Norway v France"
     },
     {
-      "id": "davor_suker",
-      "name": "Davor Šuker",
-      "country": "Croatia",
-      "countryFlag": "🇭🇷",
-      "years": "1984–2003",
+      "id": "chris_wood",
+      "name": "Chris Wood",
+      "country": "New Zealand",
+      "countryFlag": "🇳🇿",
+      "years": "2008–",
       "aliases": [
-        "davor suker",
-        "davor šuker",
-        "suker",
-        "šuker"
+        "chris wood",
+        "wood"
       ],
       "clues": [
-        "I played at the 1998 World Cup, scoring 6 goals in 7 games for my country.",
-        "I famously chipped Peter Schmeichel from outside the box at Euro 96 with a sublime left-foot lob.",
-        "I'm the only Croatian on Pelé's FIFA 100 list of greatest living players.",
-        "I won the Champions League with Real Madrid in 1997–98, weeks before that World Cup.",
-        "I'm Croatian. I'm my country's all-time leading international goalscorer with 45 goals."
+        "I played at the 2010 World Cup, playing 3 games and scoring 0 goals for my country. I'm here again at the 2026 World Cup.",
+        "It was at Leeds and later Burnley that I became a more prolific goalscorer.",
+        "I have never lost a World Cup game (as of the 18th of June 2026).",
+        "I was the Championship's Golden Boot winner in 2017, scoring 27 goals for a club that hadn't been in the Premier League since 2004.",
+        "I scored a Premier League hat-trick on Boxing Day 2023 for Nottingham Forest against my old club Newcastle, aged 31, helping save Forest from relegation that season."
       ],
-      "image": "davor_suker.jpg",
-      "silhouette": "davor_suker.jpg",
+      "image": "chris_wood.jpg",
+      "silhouette": "chris_wood.jpg",
       "position": "Striker",
-      "yearsActive": "1984–2003",
-      "story": "Davor Šuker had won the Champions League with Real Madrid weeks before the 1998 World Cup. Then he carried debutant Croatia to France, scored six goals across seven games including the opening goal of the semi-final against the eventual winners France, and left with the Golden Boot, the Silver Ball and a bronze medal around his neck. The chip over Peter Schmeichel at Euro 96 had announced him. The post-1998 fall was swift. He signed for Arsenal for around £3.5 million, started fifteen league games, dropped to West Ham for one season, finished at 1860 Munich. Croatia's all-time leading international goalscorer with 45 goals, and Pelé's only Croatian addition to the FIFA 100 list.",
-      "youtube": "https://www.youtube.com/watch?v=L2oiDIlwbuU",
+      "yearsActive": "2008–",
+      "story": "New Zealand's all-time top goalscorer and the rare All Whites hero who built a decade-long Premier League career out of nothing flashy: relentless work-rate, a neat first touch, and a knack for the deflected goal. His World Cup highlight was being part of the 2010 team that drew all three games and went home undefeated. After loan-merry-go-round years at West Brom and stops at Leicester (Championship promotion), Burnley, Newcastle and Forest, he's one of the longest-running PL strikers from outside the Big Five nations.",
+      "youtube": "https://www.youtube.com/watch?v=gghp-RkSiRg",
       "clubs": [
-        "NK Osijek",
-        "Dinamo Zagreb",
-        "Sevilla",
-        "Real Madrid",
-        "Arsenal",
-        "West Ham United",
-        "1860 Munich"
+        "West Brom (youth)",
+        "Barnsley",
+        "Brighton",
+        "Birmingham",
+        "Bristol City",
+        "Millwall",
+        "Leicester",
+        "Ipswich",
+        "Leeds",
+        "Burnley",
+        "Newcastle",
+        "Nottingham Forest"
       ],
       "honours": [
-        "1998 World Cup Golden Boot (6 goals)",
-        "1998 World Cup Silver Ball",
-        "1998 World Cup bronze medal (Croatia)",
-        "UEFA Champions League (Real Madrid, 1997–98)",
-        "La Liga (Real Madrid, 1996–97)",
-        "FIFA 100 (Pelé's list, 2004)",
-        "Croatia all-time top scorer (45 international goals)"
+        "Championship Golden Boot (2017, Leeds)",
+        "Football League Cup (2013, with West Brom on loan)",
+        "All-time New Zealand top scorer"
       ],
-      "numbers": "6 goals in 7 World Cup matches at the 1998 tournament: Golden Boot, Silver Ball, bronze medal",
+      "numbers": "41 goals in 75+ caps for New Zealand",
       "didYouKnow": [
-        "He won both the Golden Boot (6 goals) and the Silver Ball at the 1998 World Cup, behind Ronaldo, taking debutant Croatia to a bronze medal.",
-        "Weeks before the 1998 World Cup he won the Champions League with Real Madrid.",
-        "He is Croatia's all-time leading international goalscorer with 45 international goals, a record that still stands."
-      ],
-      "todayMatch": "Croatia v Ghana"
+        "He had seven loan spells before he turned 24, more than almost any modern PL striker.",
+        "His Boxing Day 2023 Forest hat-trick vs Newcastle was against the club that sold him to Forest months earlier.",
+        "Still actively scoring at 33, currently leading the line for Nottingham Forest."
+      ]
     },
     {
-      "id": "jan_koller",
-      "name": "Jan Koller",
-      "country": "Czech Republic",
-      "countryFlag": "🇨🇿",
-      "years": "1993–2011",
-      "aliases": [
-        "jan koller",
-        "koller",
-        "dino"
-      ],
-      "clues": [
-        "I was born on the 30th of March 1973. I played 91 times for my country, scoring 55 goals.",
-        "I started my career as a goalkeeper before being converted to a striker.",
-        "I won the Bundesliga in my first season at a German club.",
-        "At 2.02 metres tall, I was one of the tallest outfield players in top-level European football.",
-        "I scored in the 2002 UEFA Cup final for Borussia Dortmund, but we lost 3–2."
-      ],
-      "image": "jan_koller.jpg",
-      "silhouette": "jan_koller.jpg",
-      "position": "Striker",
-      "yearsActive": "1993–2011",
-      "story": "Two metres and two centimetres of Czech striker. \"Dino.\" Borussia Dortmund's aerial nightmare, the Czech Republic's all-time top scorer, and — somehow — a former goalkeeper who once kept a clean sheet between the sticks for Dortmund mid-match.",
-      "clubs": [
-        "Sparta Prague",
-        "Lokeren",
-        "Anderlecht",
-        "Borussia Dortmund",
-        "Monaco"
-      ],
-      "honours": [
-        "Bundesliga — Borussia Dortmund, 2001–02",
-        "Belgian First Division × 2 — Anderlecht",
-        "Belgian Golden Shoe — 2000",
-        "Czech First League — Sparta, 1994–95"
-      ],
-      "numbers": "199 club goals · 55 in 91 for the Czech Republic (still the record)",
-      "didYouKnow": [
-        "Went in goal for Dortmund in 2002 after their keeper was sent off and all subs were used — kept a clean sheet for the remaining 23 minutes and was named the Bundesliga's goalkeeper of the week.",
-        "Started his career as a goalkeeper before being converted to striker — explains the in-game cameo.",
-        "Stood 2.02m / 6'8\" — universally nicknamed \"Dino\" because he was taller than the dressing room."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=yQ2Lh-iLoIE"
-    },
-    {
-      "id": "michu",
-      "name": "Michu",
-      "country": "Spain",
-      "countryFlag": "🇪🇸",
-      "years": "2003–2017",
-      "aliases": [
-        "michu",
-        "miguel pérez cuesta"
-      ],
-      "clues": [
-        "I was born on the 21st of March 1986. I played once for my country, scoring 0 goals.",
-        "I scored 22 goals in all competitions in my debut season in English football.",
-        "I won the 2013 Football League Cup, scoring in the final.",
-        "The following season I managed just two Premier League goals — and within three years, a chronic ankle injury forced me to retire at 31.",
-        "My club was Swansea City."
-      ],
-      "image": "michu.jpg",
-      "silhouette": "michu.jpg",
-      "position": "Attacking Midfielder",
-      "yearsActive": "2003–2017",
-      "story": "One season of pure magic. 22 goals for newly-promoted Swansea, the best £2m signing in Premier League history, the player every Sunday-league team wanted to compare themselves to. Then his ankle gave out and he was gone — football's most beautiful and brief shooting star.",
-      "clubs": [
-        "Rayo Vallecano",
-        "Swansea City"
-      ],
-      "honours": [
-        "League Cup — Swansea, 2012–13",
-        "Swansea Player of the Year — 2012–13"
-      ],
-      "numbers": "22 goals in his Premier League debut season · 83 club goals total",
-      "didYouKnow": [
-        "Bought by Swansea for around £2m from Rayo Vallecano — widely considered one of the best-value Premier League signings ever.",
-        "Bought shares in his boyhood club Real Oviedo in 2012 alongside Cazorla and Mata to help them avoid financial collapse.",
-        "Forced into early retirement at 31 by chronic ankle problems — said in 2022 that he has \"the ankle of a 90-year-old\" despite multiple operations."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=4Qe4Q27TmOw"
-    },
-    {
-      "id": "vieri",
-      "name": "Christian Vieri",
-      "country": "Italy",
-      "countryFlag": "🇮🇹",
-      "years": "1991–2008",
-      "aliases": [
-        "bobo vieri",
-        "christian vieri"
-      ],
-      "clues": [
-        "I was born on the 12th of July 1973. I played 49 times for my country, scoring 23 goals.",
-        "In 1999 I became the world's most expensive player.",
-        "I played for seven different clubs in Serie A — more than almost any other top striker of my generation.",
-        "I grew up in Sydney and idolised the Australian cricketer Allan Border — I'd have preferred to be a professional cricketer.",
-        "I scored nine goals across two World Cups — and spent six years at Inter Milan."
-      ],
-      "image": "vieri.jpg",
-      "silhouette": "vieri.jpg",
-      "position": "Striker",
-      "yearsActive": "1991–2008",
-      "story": "A nomadic Italian striker raised in Sydney who became the world's most expensive player when Inter signed him for €49m in 1999. Bullish, two-footed, devastating in the air — defined the Inter attack of the early 2000s alongside Ronaldo. Played for seven Serie A clubs, never quite settling, but scored everywhere he went.",
-      "clubs": [
-        "Juventus",
-        "Atlético Madrid",
-        "Lazio",
-        "Inter",
-        "AC Milan"
-      ],
-      "honours": [
-        "Serie A — Juventus, 1996–97",
-        "Cup Winners' Cup — Lazio, 1998–99",
-        "Coppa Italia — Inter, 2004–05",
-        "Pichichi top scorer — Atlético, 1997–98"
-      ],
-      "numbers": "194 club goals · 23 in 49 for Italy · 4 goals at the 2002 World Cup",
-      "didYouKnow": [
-        "Grew up in Sydney and wanted to be a cricketer. Idolised Allan Border.",
-        "Won a Ferrari off Atlético president Jesús Gil for a hat-trick against PAOK — never collected it because he felt guilty about leaving the club a year later.",
-        "Successfully sued Inter and Telecom Italia in 2012 after discovering owner Massimo Moratti had him under phone surveillance."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=Minos1yqkdE"
-    },
-    {
-      "id": "coloccini",
-      "name": "Fabricio Coloccini",
+      "id": "mascherano",
+      "name": "Javier Mascherano",
       "country": "Argentina",
       "countryFlag": "🇦🇷",
-      "years": "1998–2022",
+      "years": "2003–2020",
       "aliases": [
-        "fabricio coloccini",
-        "coloccini"
+        "mascherano",
+        "javier mascherano",
+        "el jefecito"
       ],
       "clues": [
-        "I was born on the 22nd of January 1982. I played 39 times for my country, scoring 1 goal.",
-        "I made my professional debut at one of Argentina's most famous clubs — but played just one league match before being sold to Italy.",
-        "I made over 275 appearances across eight seasons at my English club — my longest stint anywhere.",
-        "I experienced relegation with my English club in my first season — but stayed and helped them win promotion as champions.",
-        "I was named in the PFA Team of the Year in 2012 as a centre-back at a north-east English club."
+        "I played in four World Cups (2006, 2010, 2014 and 2018), playing 19 games and scoring 0 goals.",
+        "I won the Champions League twice for a Spanish club.",
+        "I joined the Premier League in 2006, moving controversially to London, but played most of my PL football in the North West.",
+        "I lost the 2014 World Cup Final to Germany in extra time.",
+        "I was converted by Pep into a centre-back later on in my career."
       ],
-      "image": "coloccini.jpg",
-      "silhouette": "coloccini.jpg",
-      "position": "Centre-Back",
-      "yearsActive": "1998–2022",
-      "story": "The elegant Argentine who became Newcastle United's most reliable defender for nearly a decade. Coloccini arrived on Tyneside in 2008 after a nomadic career across Spain and Italy — Deportivo La Coruña, Villarreal, San Lorenzo, and AC Milan had all featured on his CV. His first season ended in relegation, but he stayed, captained the club back to the Premier League, and was named in the PFA Team of the Year in 2012 as Newcastle finished fifth. Long-haired, composed, and cultured on the ball, he was the kind of centre-back who looked like he belonged at a Champions League club. Homesickness nearly pulled him back to Argentina several times, but he eventually left in 2016 with over 275 appearances and genuine legend status at St James' Park.",
+      "image": "mascherano.jpg",
+      "silhouette": "mascherano.jpg",
+      "position": "Defensive Midfielder / Centre-Back",
+      "yearsActive": "2003–2020",
+      "story": "Argentina's iron-lung defensive midfielder turned centre-back, Mascherano was the spine of a generation that never quite delivered the World Cup, runners-up in 2014, then knocked out by France in 2018. Started at River Plate, made his Argentina debut before his club debut, moved through Corinthians and West Ham (the Tevez-and-Mascherano summer at Upton Park is still unexplained), Liverpool under Benítez, then eight years at Barcelona where Guardiola converted him into a defender. Messi adored him, and his last-man tackle on Robben in the 2014 semi-final is still studied in coaching clinics.",
+      "youtube": "https://www.youtube.com/watch?v=FSvtwgeB4XM",
       "clubs": [
-        "Boca Juniors",
-        "AC Milan",
-        "San Lorenzo",
-        "Deportivo La Coruña",
-        "Villarreal",
-        "Newcastle United"
-      ],
-      "honours": [
-        "Championship (Newcastle United, 2010)"
-      ],
-      "numbers": "1 goal in 39 caps for Argentina",
-      "didYouKnow": [
-        "He survived Newcastle's relegation in 2009, stayed to captain them back up as Championship winners, then led them to a fifth-place Premier League finish just two years later",
-        "He played for AC Milan on loan aged 17 but never made a Serie A appearance — it took a decade-long detour through Spain and Argentina before he found his home in England",
-        "He was named Newcastle United captain in 2011 and held the armband for four seasons despite persistent rumours of wanting to return to Argentina"
-      ],
-      "youtube": "https://www.youtube.com/watch?v=dxizAajAOBk"
-    },
-    {
-      "id": "wes_brown",
-      "name": "Wes Brown",
-      "country": "England",
-      "countryFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-      "years": "1996–2017",
-      "aliases": [
-        "wes brown",
-        "brown"
-      ],
-      "clues": [
-        "I was born on the 13th of October 1979. I played 23 times for my country, scoring 1 goal.",
-        "I was sent off in 2015 for a foul that John O'Shea had actually committed — the red card was rescinded on appeal but the moment became one of the strangest dismissals in Premier League history.",
-        "I won the Jimmy Murphy Young Player of the Year award twice as a Manchester United youth — only Ryan Giggs had done it before me.",
-        "Sir Alex Ferguson once called me 'without question the best natural defender this club has had for years'.",
-        "I spent fifteen years at Manchester United — five Premier League titles, two Champions Leagues."
-      ],
-      "image": "wes_brown.jpg",
-      "silhouette": "wes_brown.jpg",
-      "position": "Centre-Back / Right-Back",
-      "yearsActive": "1996–2017",
-      "story": "Manchester United's quiet, two-footed Mancunian — Sir Alex's go-to fill-in defender for over a decade. Five league titles, two Champions Leagues, never the headline act, always there when needed. The kind of squad player every great team is built on.",
-      "clubs": [
-        "Manchester United",
-        "Sunderland"
-      ],
-      "honours": [
-        "Premier League × 5 — Manchester United",
-        "Champions League × 2 — Manchester United, 2007–08 & (squad) 1998–99",
-        "FA Cup × 2 · League Cup × 2",
-        "13 trophies in total at Old Trafford"
-      ],
-      "numbers": "6 career goals · 23 caps for England",
-      "didYouKnow": [
-        "Sir Alex Ferguson once said Brown was \"without question the best natural defender this club has had for years\" — high praise for a player whose career was largely about quiet reliability.",
-        "Won the Jimmy Murphy Young Player of the Year award twice as a Manchester United youth — only Ryan Giggs had previously done it.",
-        "Was sent off in 2015 for a foul his Sunderland teammate John O'Shea had actually committed — the red card was rescinded on appeal but the moment became one of the strangest dismissals in Premier League history."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=EMhbdQGa4xI"
-    },
-    {
-      "id": "ray_parlour",
-      "name": "Ray Parlour",
-      "country": "England",
-      "countryFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-      "years": "1992–2007",
-      "aliases": [
-        "ray parlour",
-        "parlour",
-        "the romford pele"
-      ],
-      "clues": [
-        "I was born on the 7th of March 1973. I played 10 times for my country, never scoring a goal.",
-        "My nickname 'The Romford Pelé' was an ironic joke first cracked by Marc Overmars when he joined Arsenal — and it stuck for the rest of my career.",
-        "I scored a 30-yarder against Finland in 2000 that clearly crossed the line — wrongly disallowed by a linesman in one of the era's most notorious refereeing errors.",
-        "I opened the 2002 FA Cup final with a 30-yard screamer — prompting Tim Lovejoy's now-legendary commentary line: 'Oh, it's all right, it's only Ray Parlour.'",
-        "I won three Premier League titles and four FA Cups across twelve years at Arsenal."
-      ],
-      "image": "ray_parlour.jpg",
-      "silhouette": "ray_parlour.jpg",
-      "position": "Midfielder",
-      "yearsActive": "1992–2007",
-      "story": "The Romford Pelé. Twelve years at Arsenal, three Premier League titles, four FA Cups — Parlour was the engine room of the Wenger years that nobody outside the squad ever quite gave proper credit to. Ran further than anyone, never complained, scored a 30-yarder in an FA Cup final.",
-      "clubs": [
-        "Arsenal",
-        "Middlesbrough"
-      ],
-      "honours": [
-        "Premier League × 3 — Arsenal, 1997–98, 2001–02, 2003–04",
-        "FA Cup × 4 — Arsenal, 1992–93, 1997–98, 2001–02, 2002–03",
-        "Cup Winners' Cup — Arsenal, 1993–94"
-      ],
-      "numbers": "32 club goals · 10 caps for England",
-      "didYouKnow": [
-        "Opened the 2002 FA Cup final with a 30-yard screamer — prompting Tim Lovejoy's now-legendary commentary line: \"Oh, it's all right, it's only Ray Parlour.\"",
-        "Scored a 30-yard strike against Finland in 2000 that clearly crossed the line — wrongly disallowed by a linesman in one of the era's most notorious refereeing errors.",
-        "His nickname \"the Romford Pelé\" was self-deprecating, originally coined as a joke by Marc Overmars — and stuck for the rest of his career."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=r8gacY5K6XQ"
-    },
-    {
-      "id": "llorente",
-      "name": "Fernando Llorente",
-      "country": "Spain",
-      "countryFlag": "🇪🇸",
-      "years": "2005–2021",
-      "aliases": [
-        "fernando llorente",
-        "llorente",
-        "el rey leon"
-      ],
-      "clues": [
-        "I was born on the 26th of February 1985. I played 24 times for my country, scoring 7 goals.",
-        "I scored the winner against Manchester City in the 2019 Champions League quarter-final — but only got 8 minutes of the final against Liverpool.",
-        "After a defeat to Real Sociedad in 2012 I had a furious argument with manager Marcelo Bielsa and walked out of training — it ended my Athletic Bilbao career.",
-        "I won Euro 2012 with Spain as an unused squad member — and the World Cup in 2010 as a fringe player.",
-        "I was Athletic Bilbao's towering number 9 — and ended my career as Tottenham and Napoli's most physically improbable super-sub."
-      ],
-      "image": "llorente.jpg",
-      "silhouette": "llorente.jpg",
-      "position": "Striker",
-      "yearsActive": "2005–2021",
-      "story": "El Rey León. Athletic Bilbao's towering Basque number 9 in the Marcelo Bielsa era — all elbows, headers and physical authority. Won everything with Spain's golden generation, won Serie A at Juventus, and ended his career as Tottenham's most physically improbable super-sub.",
-      "clubs": [
-        "Athletic Bilbao",
-        "Juventus",
-        "Sevilla",
-        "Tottenham Hotspur"
-      ],
-      "honours": [
-        "World Cup — Spain, 2010",
-        "Euro 2012 — Spain",
-        "Serie A × 2 — Juventus, 2013–14 & 2014–15",
-        "Europa League — Sevilla, 2015–16",
-        "Champions League runner-up — Spurs, 2018–19"
-      ],
-      "numbers": "151 club goals · 7 in 24 for Spain",
-      "didYouKnow": [
-        "Born in Pamplona but qualified for Athletic Bilbao through his Navarrese roots — stayed at the club until he was 28 before finally leaving for Juventus.",
-        "Got just 8 minutes of the 2019 Champions League final against Liverpool — his second European final cameo (also lost the 2015 final with Juventus).",
-        "Reinvented himself as a late-career super-sub at Spurs and Napoli — defenders simply couldn't deal with his aerial presence in the last 20 minutes."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=e40_njTZY4E"
-    },
-    {
-      "id": "paul_konchesky",
-      "name": "Paul Konchesky",
-      "country": "England",
-      "countryFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-      "years": "1997–2017",
-      "aliases": [
-        "paul konchesky",
-        "konchesky"
-      ],
-      "clues": [
-        "I was born on the 15th of May 1981. I played 2 times for my country, never scoring a goal.",
-        "I became Charlton's youngest first-team player at 16 years and 93 days, against Oxford United in 1997.",
-        "My disastrous Liverpool spell is remembered for an error against Spurs that gifted Aaron Lennon the winning goal — and an unprintable Facebook reaction from my mum.",
-        "I scored in West Ham's 2006 FA Cup final against Liverpool — they won on penalties.",
-        "I now run a pie and mash café in Brentwood called Konch's Kafe — with my mum on the staff."
-      ],
-      "image": "paul_konchesky.jpg",
-      "silhouette": "paul_konchesky.jpg",
-      "position": "Left-Back",
-      "yearsActive": "1997–2017",
-      "story": "The East End left-back of the early 2000s — a Charlton academy product who somehow ended up at Liverpool in the absolute worst-managed transfer window of the Roy Hodgson era. Two England caps. One pie shop. No nonsense.",
-      "clubs": [
-        "Charlton Athletic",
-        "West Ham United",
-        "Fulham",
+        "River Plate",
+        "Corinthians",
+        "West Ham",
         "Liverpool",
-        "Leicester City"
-      ],
-      "honours": [
-        "Championship — Leicester, 2013–14",
-        "FA Cup runner-up — West Ham, 2005–06",
-        "Europa League runner-up — Fulham, 2009–10"
-      ],
-      "numbers": "14 club goals · 2 England caps",
-      "didYouKnow": [
-        "Was Charlton's youngest ever first-team player at 16 years and 93 days — a record later broken by Jonjo Shelvey.",
-        "His brief Liverpool spell is remembered for an error against Spurs that gifted Aaron Lennon the winner — and a famously unhappy public reaction from his mother on Facebook.",
-        "Opened a pie and mash café in Brentwood in 2015, with his mum on the staff — the most East End post-football career imaginable."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=zkahfsETMjc"
-    },
-    {
-      "id": "niko_kranjcar",
-      "name": "Niko Kranjčar",
-      "country": "Croatia",
-      "countryFlag": "🇭🇷",
-      "years": "2001–2018",
-      "aliases": [
-        "niko kranjcar",
-        "kranjcar",
-        "kranjčar"
-      ],
-      "clues": [
-        "I was born on the 13th of August 1984. I played 81 times for my country, scoring 15 goals.",
-        "My move from Dinamo Zagreb to bitter rivals Hajduk Split in 2005 was so divisive that 200 candles were lit in mourning outside my home — and 10,000 fans showed up at my Hajduk unveiling.",
-        "I am the son of Zlatko, who also managed our country — football runs in the family.",
-        "I won the FA Cup with Portsmouth in 2007–08.",
-        "I followed Harry Redknapp to three different clubs — Portsmouth, Tottenham and QPR."
-      ],
-      "image": "niko_kranjcar.jpg",
-      "silhouette": "niko_kranjcar.jpg",
-      "position": "Attacking Midfielder",
-      "yearsActive": "2001–2018",
-      "story": "The silky Croatian playmaker who followed Harry Redknapp around for a decade — Portsmouth, Tottenham, QPR, three different clubs, three different reunions. Hailed at home as \"the next Prosinečki\". Never quite delivered in the Premier League, but moments of class were never in doubt.",
-      "clubs": [
-        "Dinamo Zagreb",
-        "Hajduk Split",
-        "Portsmouth",
-        "Tottenham Hotspur",
-        "Rangers"
-      ],
-      "honours": [
-        "Croatian league × 2 — Dinamo (2002–03), Hajduk (2004–05)",
-        "FA Cup — Portsmouth, 2007–08",
-        "Championship play-off — QPR, 2014"
-      ],
-      "numbers": "61 club goals · 81 caps for Croatia",
-      "didYouKnow": [
-        "His move from Dinamo Zagreb to bitter rivals Hajduk Split in 2005 was so divisive that 200 candles were lit in mourning outside his home — and 10,000 fans showed up for his Hajduk unveiling.",
-        "Joined up with Harry Redknapp at three different clubs (Portsmouth, Tottenham, QPR) — one of the great manager-player Premier League marriages.",
-        "Comes from football royalty — his father Zlatko coached Croatia to the 1998 World Cup semi-final."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=zfeyN3Hl3M8"
-    },
-    {
-      "id": "benni_mccarthy",
-      "name": "Benni McCarthy",
-      "country": "South Africa",
-      "countryFlag": "🇿🇦",
-      "years": "1995–2013",
-      "aliases": [
-        "benni mccarthy",
-        "benni",
-        "mccarthy"
-      ],
-      "clues": [
-        "I was born on the 12th of November 1977. I played 80 times for my country, scoring 31 goals.",
-        "Manchester United hired me as their first-team striker's coach from 2022 to 2024.",
-        "I scored four goals in 13 minutes against Namibia at AFCON 1998 — became joint top scorer of the tournament and Player of the Tournament.",
-        "I spent four seasons at Blackburn Rovers — finished second in the 2006–07 Premier League Golden Boot race with 18 goals.",
-        "I'm the only South African ever to win the Champions League — did it with Mourinho's Porto in 2003–04."
-      ],
-      "image": "benni_mccarthy.jpg",
-      "silhouette": "benni_mccarthy.jpg",
-      "position": "Striker",
-      "yearsActive": "1995–2013",
-      "story": "South Africa's all-time top scorer, a Champions League winner with Mourinho's Porto, and the man who gave Blackburn Rovers a centre-forward of genuine pedigree for four seasons. Spiky, confident, deadly when he was on it.",
-      "clubs": [
-        "Ajax",
-        "Porto",
-        "Blackburn Rovers",
-        "Orlando Pirates"
-      ],
-      "honours": [
-        "Champions League — Porto, 2003–04",
-        "Primeira Liga × 2 — Porto, 2003–04 & 2005–06",
-        "South African Premiership — Orlando Pirates, 2011–12",
-        "AFCON runner-up — South Africa, 1998"
-      ],
-      "numbers": "32 international goals (South Africa's all-time top scorer)",
-      "didYouKnow": [
-        "The only South African ever to win the Champions League — scored crucial goals against Manchester United in Porto's run.",
-        "Scored four goals in 13 minutes against Namibia at AFCON 1998, en route to sharing the tournament's Golden Boot and winning Player of the Tournament.",
-        "Won league titles in three different countries on two continents (Netherlands, Portugal, South Africa) — a first for a South African footballer."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=FwMKgjPYLVA"
-    },
-    {
-      "id": "schwarzer",
-      "name": "Mark Schwarzer",
-      "country": "Australia",
-      "countryFlag": "🇦🇺",
-      "years": "1990–2016",
-      "aliases": [
-        "mark schwarzer",
-        "schwarzer"
-      ],
-      "clues": [
-        "I was born on the 6th of October 1972. I played 109 times for my country, never scoring a goal.",
-        "I won the Premier League with Leicester in 2015–16 as a squad keeper — the first player since Eric Cantona to win it with two clubs in successive seasons.",
-        "At 41 years and 65 days I became the oldest player ever to debut in the Champions League — keeping a clean sheet for Chelsea against Steaua București.",
-        "I won the League Cup with Middlesbrough in 2004 — though I made what was generously described as a 'howler' in the final.",
-        "I was the first non-Briton ever to make 500 Premier League appearances."
-      ],
-      "image": "schwarzer.jpg",
-      "silhouette": "schwarzer.jpg",
-      "position": "Goalkeeper",
-      "yearsActive": "1990–2016",
-      "story": "Middlesbrough's Australian wall for over a decade, then Fulham's, then a quiet medal-collecting spell at Chelsea in his forties. The most appearance-clocking non-British keeper the Premier League has ever seen — and a man who somehow kept playing top-flight football until he was 43.",
-      "clubs": [
-        "Middlesbrough",
-        "Fulham",
-        "Chelsea",
-        "Leicester City"
-      ],
-      "honours": [
-        "League Cup — Middlesbrough, 2003–04",
-        "Premier League — Leicester, 2015–16 (squad)",
-        "AFC Asian Cup runner-up — Australia, 2011",
-        "109 caps for Australia"
-      ],
-      "numbers": "150+ Premier League clean sheets · first non-Briton to 500 PL appearances",
-      "didYouKnow": [
-        "At 41, he became the oldest player ever to debut in the Champions League when Chelsea played Steaua București in December 2013 — kept a clean sheet too.",
-        "His 514 Premier League appearances make him the highest-appearing non-British player in the league's history.",
-        "His son Julian is also a goalkeeper and is eligible to represent the Philippines through his Filipino mother."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=D7lckOrQRRY"
-    },
-    {
-      "id": "geovanni",
-      "name": "Geovanni",
-      "country": "Brazil",
-      "countryFlag": "🇧🇷",
-      "years": "1997–2010",
-      "aliases": [
-        "geovanni",
-        "geovanni gomez"
-      ],
-      "clues": [
-        "I was born on the 11th of January 1980. I played just once for my country, never scoring a goal.",
-        "I won the FIFA U-17 World Championship with Brazil in 1997 — also topped the scoring charts at the South American U-17.",
-        "I was San Jose Earthquakes' first ever MLS Designated Player.",
-        "I was twice my Portuguese club's Player of the Year, in 2004 and 2005.",
-        "I scored the first ever Premier League goal for my Yorkshire club on debut against Fulham in August 2008."
-      ],
-      "image": "geovanni.jpg",
-      "silhouette": "geovanni.jpg",
-      "position": "Attacking Midfielder",
-      "yearsActive": "1997–2010",
-      "story": "The Brazilian who scored Hull City's first ever Premier League goal — and looked, for one season, like the most exotic thing the KC Stadium had ever seen. Free-kick specialist, hip-swivelling dribbler, briefly a Barcelona player. Hull's all-time most unlikely cult hero.",
-      "clubs": [
-        "Cruzeiro",
         "Barcelona",
-        "Benfica",
-        "Manchester City",
-        "Hull City"
+        "Hebei China Fortune",
+        "Estudiantes"
       ],
       "honours": [
-        "Primeira Liga — Benfica, 2004–05",
-        "Taça de Portugal — Benfica, 2003–04",
-        "Copa do Brasil — Cruzeiro, 2000",
-        "U-17 World Championship — Brazil, 1997"
+        "Olympic Gold (2004, 2008)",
+        "5x La Liga",
+        "2x Champions League",
+        "Copa America runner-up (2007, 2015, 2016)"
       ],
-      "numbers": "52 club goals in 341 appearances",
+      "numbers": "147 caps for Argentina, no goals",
       "didYouKnow": [
-        "Scored Hull City's first ever Premier League goal on his debut against Fulham in August 2008 — also took Man of the Match.",
-        "Was twice Benfica's Player of the Year and curled in a famous late free-kick in the Lisbon derby that sealed Champions League qualification.",
-        "Signed by San Jose Earthquakes in 2010 as their first ever Designated Player — a brief but historically notable MLS stint."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=872a79d_sAA"
+        "First Argentine to win two Olympic gold medals.",
+        "Made his Argentina debut at 19 before his first senior club appearance.",
+        "Tore his anus making a last-man tackle on Robben in the 2014 WC semi-final and continued playing."
+      ]
     },
     {
-      "id": "ravanelli",
-      "name": "Fabrizio Ravanelli",
-      "country": "Italy",
-      "countryFlag": "🇮🇹",
-      "years": "1986–2005",
-      "aliases": [
-        "fabrizio ravanelli",
-        "ravanelli",
-        "the white feather"
-      ],
-      "clues": [
-        "I was born on the 11th of December 1968. I played 22 times for my country, scoring 8 goals.",
-        "My signature shirt-over-the-head celebration was so iconic that FIFA later rewrote the rules to make it a yellow-card offence.",
-        "I inherited my nickname 'The White Feather' from Juventus legend Roberto Bettega — both because of my prematurely white hair.",
-        "I scored a Premier League hat-trick on my debut for Middlesbrough against Liverpool, opening day of the 1996–97 season.",
-        "I won the Champions League with Juventus in 1996 — scored their goal in the final against Ajax in Rome."
-      ],
-      "image": "ravanelli.jpg",
-      "silhouette": "ravanelli.jpg",
-      "position": "Striker",
-      "yearsActive": "1986–2005",
-      "story": "The White Feather. Juventus's snarling Champions League winner who, in a piece of mid-90s football madness, turned up at Middlesbrough and scored a hat-trick on his Premier League debut. The shirt-over-the-head celebration belonged to him before it belonged to anyone else.",
-      "clubs": [
-        "Perugia",
-        "Juventus",
-        "Middlesbrough",
-        "Marseille",
-        "Lazio"
-      ],
-      "honours": [
-        "Champions League — Juventus, 1995–96",
-        "Serie A — Juventus, 1994–95 / Lazio, 1999–2000",
-        "Coppa Italia × 2"
-      ],
-      "numbers": "190 club goals · 8 in 22 for Italy",
-      "didYouKnow": [
-        "Nicknamed \"the White Feather\" because of his prematurely white hair — inherited the moniker from Juve legend Roberto Bettega.",
-        "Scored all five in Juve's 5–1 demolition of CSKA Sofia in September 1994.",
-        "His shirt-over-the-head celebration was so iconic that FIFA later changed the rules to make it a yellow-card offence."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=vSmFxRF23nU"
-    },
-    {
-      "id": "andy_johnson",
-      "name": "Andrew Johnson",
-      "country": "England",
-      "countryFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-      "years": "1998–2015",
-      "aliases": [
-        "andy johnson",
-        "andrew johnson",
-        "aj"
-      ],
-      "clues": [
-        "I was born on the 10th of February 1981. I played 8 times for my country, never scoring a goal.",
-        "I revealed I could represent Poland through my grandfather mid-2004–05 — Sven-Göran Eriksson hurried up and gave me my England debut against the Netherlands shortly after.",
-        "Mourinho publicly branded me 'untrustworthy' after a Chelsea-Everton game in 2006 — Everton threatened legal action and he apologised two days later.",
-        "I scored 21 Premier League goals in my debut top-flight season — second only to Thierry Henry.",
-        "I was voted into Crystal Palace's Centenary XI in 2005 — the only player still at the club."
-      ],
-      "image": "andy_johnson.jpg",
-      "silhouette": "andy_johnson.jpg",
-      "position": "Striker",
-      "yearsActive": "1998–2015",
-      "story": "The relentless Palace striker who outran Premier League defences for two seasons and very nearly carried Selhurst Park on his back. Quick, brave, fond of going down — depending on who you asked. Twenty-one league goals in his debut Premier League season at a relegated club.",
-      "clubs": [
-        "Birmingham City",
-        "Crystal Palace",
-        "Everton",
-        "Fulham",
-        "Queens Park Rangers"
-      ],
-      "honours": [
-        "First Division Play-off — Birmingham, 2002 / Palace, 2004",
-        "PFA Team of the Year — 2003–04, 2004–05",
-        "Premier League Player of the Month — Oct 2004 & Sep 2006"
-      ],
-      "numbers": "114 club goals · 8 caps for England",
-      "didYouKnow": [
-        "Was eligible for Poland through his grandfather — Sven-Göran Eriksson handed him an England debut almost immediately to prevent it.",
-        "Mourinho publicly branded him \"untrustworthy\" in 2006; the PGMOL later defended him as unfairly tarred with the diving brush.",
-        "Voted into Crystal Palace's Centenary XI in 2005 — the only player still at the club."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=fAMhZLm9jlY"
-    },
-    {
-      "id": "rui_costa",
-      "name": "Rui Costa",
-      "country": "Portugal",
-      "countryFlag": "🇵🇹",
-      "years": "1990–2008",
-      "aliases": [
-        "rui costa",
-        "manuel rui costa"
-      ],
-      "clues": [
-        "I was born on the 29th of March 1972. I played 94 times for my country, scoring 26 goals.",
-        "The only red card of my career came in 1997 — for walking off the pitch too slowly while being substituted in a World Cup qualifier against Germany. They equalised moments later.",
-        "I starred in Nike's 1996 'Good vs Evil' commercial alongside Ronaldo, Maldini and Cantona.",
-        "I won the Champions League with AC Milan at Old Trafford in 2003 — beating Juventus on penalties.",
-        "I've been the president of Benfica since 2021 — elected with 84% of the vote."
-      ],
-      "image": "rui_costa.jpg",
-      "silhouette": "rui_costa.jpg",
-      "position": "Attacking Midfielder",
-      "yearsActive": "1990–2008",
-      "story": "The understated Portuguese conductor of Fiorentina's late-90s side and Milan's Champions League winners. All grace, weight of pass, and quiet authority — the kind of number 10 who made everyone around him better and never quite got the credit for it.",
-      "clubs": [
-        "Benfica",
-        "Fiorentina",
-        "AC Milan"
-      ],
-      "honours": [
-        "Champions League — AC Milan, 2002–03",
-        "Serie A — AC Milan, 2003–04",
-        "Coppa Italia × 3",
-        "Primeira Liga — Benfica, 1993–94",
-        "Named in the FIFA 100 (2004)"
-      ],
-      "numbers": "66 club goals · 26 in 94 for Portugal · Euro 2004 finalist",
-      "didYouKnow": [
-        "The only red card of his entire career came in 1997 — for walking off the pitch too slowly during a World Cup qualifier, which cost Portugal qualification.",
-        "Starred in Nike's iconic 1996 \"Good vs Evil\" commercial alongside Ronaldo and Cantona — the Roman amphitheatre one.",
-        "Has been President of Benfica since October 2021, elected with 84% of the vote."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=xOqyv85zpC0"
-    },
-    {
-      "id": "koumas",
-      "name": "Jason Koumas",
-      "country": "Wales",
-      "countryFlag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
-      "years": "1998–2014",
-      "aliases": [
-        "jason koumas",
-        "koumas"
-      ],
-      "clues": [
-        "I was born on the 25th of September 1979. I played 34 times for my country, scoring 10 goals.",
-        "My son Lewis came through the same academy I did and made his senior debut for the club in 2024.",
-        "I was the Championship Player of the Year in 2006–07 at West Brom.",
-        "I came through the Liverpool academy alongside Steven Gerrard and Michael Owen — I left because they wouldn't play me centrally.",
-        "The Guardian once argued my talent was no less than Gerrard's — and put my career down to being undisciplined."
-      ],
-      "image": "koumas.jpg",
-      "silhouette": "koumas.jpg",
-      "position": "Attacking Midfielder",
-      "yearsActive": "1998–2014",
-      "story": "The Welsh playmaker whose feet were fluent in a language his career never quite spoke. Mercurial, brilliant on his day, infuriatingly anonymous on others. The Championship's outstanding talent of the mid-2000s — he should have done more, and everyone knew it.",
-      "clubs": [
-        "Tranmere Rovers",
-        "West Bromwich Albion",
-        "Cardiff City",
-        "Wigan Athletic"
-      ],
-      "honours": [
-        "Championship Player of the Year — 2006–07",
-        "PFA Team of the Year × 4 (between 2001–02 and 2006–07)",
-        "Cardiff City Player of the Year — 2005–06"
-      ],
-      "numbers": "68 goals in 422 club appearances · 10 in 34 for Wales",
-      "didYouKnow": [
-        "Came through the Liverpool academy alongside Steven Gerrard and Michael Owen — left because they wouldn't play him centrally.",
-        "The Guardian once argued his raw talent was \"no less than Gerrard's\" and blamed his career on being \"undisciplined\".",
-        "His son Lewis came through the Liverpool academy and made his senior debut for the club in February 2024."
-      ],
-      "youtube": "https://www.youtube.com/watch?v=sc4BwpEdDlA"
-    },
-    {
-      "id": "overmars",
-      "name": "Marc Overmars",
+      "id": "sneijder",
+      "name": "Wesley Sneijder",
       "country": "Netherlands",
       "countryFlag": "🇳🇱",
-      "years": "1990–2009",
+      "years": "2002–2019",
       "aliases": [
-        "marc overmars",
-        "overmars"
+        "sneijder",
+        "wesley sneijder"
       ],
       "clues": [
-        "I was born on the 29th of March 1973. I played 86 times for my country, scoring 17 goals.",
-        "I announced my £25m transfer on my own personal website before telling the media — it generated 250,000 hits in a single day.",
-        "I resigned as Ajax's director of football in 2022 after admitting to sending inappropriate messages to female colleagues.",
-        "I completely tore my cruciate ligament in 1995 and came back to anchor a Premier League and FA Cup Double-winning Arsenal side.",
-        "I was a flying Dutch winger for Ajax, Arsenal and Barcelona — and a Champions League winner with Ajax in 1995."
+        "I played in three World Cups (2006, 2010 and 2014), scoring 6 goals across 15 games.",
+        "I came second in the Ballon d'Or vote to Messi in the same year that I lost a World Cup final.",
+        "I am my country's most capped player with 134 caps and 31 goals.",
+        "I was sold by one of the big clubs to make way for the incoming Ronaldo.",
+        "I won the treble in Italy under Mourinho."
       ],
-      "image": "overmars.jpg",
-      "silhouette": "overmars.jpg",
-      "position": "Winger",
-      "yearsActive": "1990–2009",
-      "story": "Lightning-quick Dutch winger who tore up three leagues in three countries. Ajax's Champions League hero, Arsenal's double-winning game-changer, and one of Barcelona's first marquee Premier League imports. Blew his ACL clean off the bone in 1995 and somehow came back faster.",
+      "image": "sneijder.jpg",
+      "silhouette": "sneijder.jpg",
+      "position": "Attacking Midfielder",
+      "yearsActive": "2002–2019",
+      "story": "The Netherlands' most-capped player and 2010 World Cup tragic hero. Sneijder was the brain of the Inter treble side under Mourinho and dragged the Oranje to the 2010 World Cup final almost single-handedly: five goals, joint top scorer, lost the final 1-0 to Spain. Started at Ajax, big-money move to Real Madrid, sold cheap to Inter (one of the worst transfer windows in Madrid history), then Galatasaray, Nice and Al-Gharafa. Famously pipped to the 2010 Ballon d'Or by Messi by a whisker. Retired 2019 with a flair-meets-grit legacy.",
+      "youtube": "https://www.youtube.com/watch?v=brkLQIu14lM",
       "clubs": [
         "Ajax",
-        "Arsenal",
-        "Barcelona"
+        "Real Madrid",
+        "Inter Milan",
+        "Galatasaray",
+        "Nice",
+        "Al-Gharafa",
+        "Utrecht"
       ],
       "honours": [
-        "Champions League — Ajax, 1994–95",
-        "Premier League — Arsenal, 1997–98",
-        "FA Cup — Arsenal, 1997–98",
-        "Eredivisie × 3 — Ajax, 1993–96"
+        "Eredivisie",
+        "La Liga",
+        "Serie A (3x)",
+        "Champions League (2010)",
+        "Coppa Italia (3x)",
+        "Süper Lig"
       ],
-      "numbers": "78 club goals · 17 in 86 for the Netherlands",
+      "numbers": "134 caps and 31 goals for the Netherlands",
       "didYouKnow": [
-        "Suffered a completely severed cruciate ligament in 1995 and recovered to anchor Arsenal's 1997–98 Double-winning side.",
-        "Announced his £25m move to Barcelona on his personal website before telling the press — got 250,000 hits in a day, an internet-era footballing first.",
-        "Resigned as Ajax's director of football in 2022 after admitting to sending inappropriate messages to female colleagues; signed with Antwerp weeks later amid sponsor backlash."
+        "His Inter treble-winning side was the last Italian club to win the Champions League.",
+        "Married a Dutch TV host who's still on screen every week.",
+        "Sold by Real Madrid to fund the marquee signings of Ronaldo and Kaká."
+      ]
+    },
+    {
+      "id": "griezmann",
+      "name": "Antoine Griezmann",
+      "country": "France",
+      "countryFlag": "🇫🇷",
+      "years": "2009–",
+      "aliases": [
+        "griezmann",
+        "antoine griezmann",
+        "grizou"
       ],
-      "youtube": "https://www.youtube.com/watch?v=uji66qGK21A"
+      "clues": [
+        "I played in three World Cups (2014, 2018 and 2022), scoring 6 goals across 17 games.",
+        "I am a World Cup winner, even though I was rejected by every academy from my country for being too small as a teenager.",
+        "I was signed for a huge fee by a club playing in the same league.",
+        "I'm one of only three players to score in a World Cup final, a European Championship final and a Champions League final.",
+        "I'm one of my country's all-time top scorers, behind only Giroud, Henry and Mbappé."
+      ],
+      "image": "griezmann.jpg",
+      "silhouette": "griezmann.jpg",
+      "position": "Forward",
+      "yearsActive": "2009–",
+      "story": "France's relentless forward who slipped through every French academy as a teenager (rejected by Lyon, Auxerre, Saint-Étienne) and moved at 14 to Real Sociedad, where he became their best player. Atlético Madrid signed him, where he scored 100+ goals, won the Europa League, lost two Champions League finals and earned a brief disastrous spell at Barcelona. Returned to Atlético. Internationally: golden generation 2014–22, won WC 2018, lost 2022 final to Argentina, lost Euro 2016 final at home to Portugal. The most decorated player of his era who never quite got the Ballon d'Or.",
+      "youtube": "https://www.youtube.com/watch?v=1DD-QNbnTMI",
+      "clubs": [
+        "Real Sociedad",
+        "Atlético Madrid",
+        "Barcelona",
+        "Atlético Madrid"
+      ],
+      "honours": [
+        "World Cup (2018)",
+        "Europa League (2018)",
+        "La Liga",
+        "Copa America runner-up",
+        "Euro 2016 Golden Boot"
+      ],
+      "numbers": "44 goals in 137+ caps for France",
+      "didYouKnow": [
+        "Lived with the José family in San Sebastián from age 14 because his parents couldn't move with him.",
+        "Almost signed for Manchester United in 2017 — Atlético's transfer ban saved the move.",
+        "Has a tattoo of his daughter's birth chart on his back."
+      ]
+    },
+    {
+      "id": "ashley_young",
+      "name": "Ashley Young",
+      "country": "England",
+      "countryFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "years": "2003–",
+      "aliases": [
+        "ashley young",
+        "young"
+      ],
+      "clues": [
+        "I played at the 2018 World Cup, playing 3 games and scoring 0 goals for my country.",
+        "I was PFA Young Player of the Year at Aston Villa before being signed by a Premier League giant.",
+        "I have won the Premier League and Serie A.",
+        "I lost the 2018 World Cup semi-final to Croatia in extra time.",
+        "I was signed by Manchester United for £17 million in 2011."
+      ],
+      "image": "ashley_young.jpg",
+      "silhouette": "ashley_young.jpg",
+      "position": "Winger / Wing-back",
+      "yearsActive": "2003–",
+      "story": "A career that refused to die. Young burst out at Watford under Aidy Boothroyd, broke through at Aston Villa with PFA Young Player of the Year honours, then Manchester United (£17m signing, on-and-off career, frequently mocked for diving), then Inter Milan in his mid-30s where he won Serie A under Conte, before returning to England for Aston Villa swansong years and now Everton. World Cup 2018 with Gareth Southgate's semi-final England side. Renaissance career as a wing-back is one of football's quieter modern miracles.",
+      "youtube": "https://www.youtube.com/watch?v=qAhrhOuI7Z4",
+      "clubs": [
+        "Watford",
+        "Aston Villa",
+        "Manchester United",
+        "Inter Milan",
+        "Aston Villa",
+        "Everton"
+      ],
+      "honours": [
+        "Premier League (2013)",
+        "Europa League (2017)",
+        "Serie A (2021)",
+        "England 2018 WC semi-final squad"
+      ],
+      "numbers": "39 caps and 7 goals for England",
+      "didYouKnow": [
+        "PFA Young Player of the Year at Villa, then never quite Young Player again.",
+        "Won Serie A in his first season at Inter after leaving Manchester United on a free.",
+        "Holds the unofficial record for most diving accusations in a single PL season, depending on who you ask."
+      ]
+    },
+    {
+      "id": "morientes",
+      "name": "Fernando Morientes",
+      "country": "Spain",
+      "countryFlag": "🇪🇸",
+      "years": "1993–2010",
+      "aliases": [
+        "morientes",
+        "fernando morientes",
+        "nando"
+      ],
+      "clues": [
+        "I played at the 2002 World Cup, scoring 3 goals in 5 games for my country.",
+        "I was a Premier League failure after a £6.3 million signing in 2005.",
+        "I won the Champions League with the club that has won it most times.",
+        "I played upfront for my international team with Raúl.",
+        "I was replaced as first-choice striker at club level by the Brazilian Ronaldo."
+      ],
+      "image": "morientes.jpg",
+      "silhouette": "morientes.jpg",
+      "position": "Striker",
+      "yearsActive": "1993–2010",
+      "story": "The cult Spanish striker whose strike rate vs the Galácticos was actually better than Raúl's, but Raúl had the captain's armband. Morientes won three Champions Leagues in five years with Madrid (1998, 2000, 2002), was loaned to Monaco in 2003-04 where he scored the goal that knocked Real Madrid out of the Champions League en route to the final, then back to Real before a £6.3m move to Liverpool in 2005 (8 PL goals total, Premier League flop). Recovered at Valencia, retired in 2010. Spain hero of the 2002 World Cup with three goals.",
+      "youtube": "https://www.youtube.com/watch?v=HpByhEoQ9k8",
+      "clubs": [
+        "Albacete",
+        "Zaragoza",
+        "Real Madrid",
+        "Monaco (loan)",
+        "Liverpool",
+        "Valencia",
+        "Marseille"
+      ],
+      "honours": [
+        "3x Champions League",
+        "2x La Liga",
+        "Intercontinental Cup",
+        "Spanish Super Cup"
+      ],
+      "numbers": "27 goals in 47 Spain caps",
+      "didYouKnow": [
+        "Scored for Real Madrid against Manchester United in the 2003 Champions League quarter-final.",
+        "The next year, scored for Monaco against Real Madrid to knock his parent club out of the Champions League.",
+        "His Liverpool teammates nicknamed him 'Nando' and he hated it."
+      ]
+    },
+    {
+      "id": "giroud",
+      "name": "Olivier Giroud",
+      "country": "France",
+      "countryFlag": "🇫🇷",
+      "years": "2005–",
+      "aliases": [
+        "giroud",
+        "olivier giroud"
+      ],
+      "clues": [
+        "I played in three World Cups (2014, 2018 and 2022), scoring 4 goals across 17 games.",
+        "I won Ligue 1 with Montpellier in 2012, one of the most unexpected title wins in French football history.",
+        "I won Serie A with AC Milan in 2022, in my first season at the club after eight years in London.",
+        "My scorpion kick against Crystal Palace on New Year's Day 2017 won the FIFA Puskás Award for goal of the year.",
+        "I was my country's all-time leading scorer when I retired from international football. Mbappé has just overtaken me."
+      ],
+      "image": "giroud.jpg",
+      "silhouette": "giroud.jpg",
+      "position": "Striker",
+      "yearsActive": "2005–",
+      "story": "France's record international goalscorer at the time of his retirement, Giroud is the slow-burn striker who built a career out of being underrated. Late bloomer through Tours, Istres, then Montpellier (Ligue 1 title 2012). Arsenal years (Europa League 2020), Chelsea years (Champions League 2021), AC Milan (Serie A 2022), now LAFC in MLS. Internationally: won WC 2018 without scoring a single goal in the tournament (unique among winning strikers), then runner-up in 2022 where he finally scored crucial goals on the run to the final. The everyman finisher.",
+      "youtube": "https://www.youtube.com/watch?v=IACFxcghqQ8",
+      "clubs": [
+        "Grenoble",
+        "Istres",
+        "Tours",
+        "Montpellier",
+        "Arsenal",
+        "Chelsea",
+        "AC Milan",
+        "LAFC"
+      ],
+      "honours": [
+        "World Cup (2018)",
+        "Ligue 1 (2012)",
+        "Serie A (2022)",
+        "Champions League (2021)",
+        "Europa League (2020)",
+        "3x FA Cup"
+      ],
+      "numbers": "57 international goals in 137 caps",
+      "didYouKnow": [
+        "His scorpion kick vs Crystal Palace won the FIFA Puskás Award 2017.",
+        "Played in Ligue 2 for Tours at age 23, the same age Henry was at Barcelona.",
+        "Won the 2018 World Cup without scoring a single goal in the tournament."
+      ]
+    },
+    {
+      "id": "asamoah_gyan",
+      "name": "Asamoah Gyan",
+      "country": "Ghana",
+      "countryFlag": "🇬🇭",
+      "years": "2003–2022",
+      "aliases": [
+        "asamoah gyan",
+        "gyan",
+        "baby jet"
+      ],
+      "clues": [
+        "I played in three World Cups (2006, 2010 and 2014), scoring 6 goals across 11 games.",
+        "I'm my country's all-time leading scorer with 51 international goals.",
+        "I played for Sunderland in the Premier League, scoring 10 league goals in my first season.",
+        "I missed a penalty in the last minute of a World Cup quarter-final after the opposition had been reduced to ten men for a handball on the line.",
+        "I featured on a song called 'African Girls' with Castro while still playing, and it went viral in Ghana."
+      ],
+      "image": "asamoah_gyan.jpg",
+      "silhouette": "asamoah_gyan.jpg",
+      "position": "Striker",
+      "yearsActive": "2003–2022",
+      "story": "Africa's all-time World Cup top scorer (6 goals across three tournaments) and the man at the heart of football's cruellest moment: the Uruguay quarter-final 2010, when his last-minute penalty hit the bar after the handball on the line. Career took him through Udinese, Rennes, Sunderland (Premier League cult years), then a controversial massive move to Al Ain in the UAE in 2011 where he became one of the highest-paid footballers in world football, Shanghai SIPG, Kayserispor and back to Ghana. Captain of the Black Stars for a decade.",
+      "youtube": "https://www.youtube.com/watch?v=tDpx9GGH79I",
+      "clubs": [
+        "Liberty Professionals",
+        "Udinese",
+        "Modena (loan)",
+        "Rennes",
+        "Sunderland",
+        "Al Ain",
+        "Shanghai SIPG",
+        "Kayserispor",
+        "NorthEast United",
+        "Legon Cities"
+      ],
+      "honours": [
+        "Africa Cup of Nations runner-up (2010, 2015)",
+        "African Player of the Year nominee"
+      ],
+      "numbers": "51 goals in 109 caps for Ghana",
+      "didYouKnow": [
+        "Made his Ghana debut at 17 and was captain by 24.",
+        "Became one of the world's highest-paid footballers at Al Ain on a reported $300k/week.",
+        "Africa's all-time World Cup top scorer with six goals across three tournaments."
+      ]
+    },
+    {
+      "id": "nigel_de_jong",
+      "name": "Nigel De Jong",
+      "country": "Netherlands",
+      "countryFlag": "🇳🇱",
+      "years": "2002–2019",
+      "aliases": [
+        "nigel de jong",
+        "de jong"
+      ],
+      "clues": [
+        "I played in two World Cups (2010 and 2014), playing 11 games and scoring 0 goals.",
+        "I won the Eredivisie and KNVB Cup at Ajax before moving to Hamburg in 2006.",
+        "I played for Manchester City for a number of years before winning Serie A with AC Milan.",
+        "I lost the 2010 World Cup final.",
+        "In that final, I was somehow not sent off for a kung-fu kick on the chest of Xabi Alonso."
+      ],
+      "image": "nigel_de_jong.jpg",
+      "silhouette": "nigel_de_jong.jpg",
+      "position": "Defensive Midfielder",
+      "yearsActive": "2002–2019",
+      "story": "The Netherlands' most controversial midfielder. The man who kung-fu kicked Xabi Alonso in the chest during the 2010 World Cup final and somehow only saw a yellow card. Career: Ajax youth, Hamburg, Manchester City (signed by Mark Hughes, kept under Mancini), AC Milan (Serie A 2011), LA Galaxy, Mainz, Galatasaray, Al-Shahania. Always a destroyer, never a finisher. 2014 World Cup semi-final at 31, 81 caps. The dark prince of Dutch football, beloved by City fans for his uncompromising tackles in the Tevez/Mancini era.",
+      "youtube": "https://www.youtube.com/watch?v=uwqLn0F8jXk",
+      "clubs": [
+        "Ajax",
+        "Hamburg",
+        "Manchester City",
+        "AC Milan",
+        "LA Galaxy",
+        "Mainz",
+        "Galatasaray",
+        "Al-Shahania"
+      ],
+      "honours": [
+        "Premier League (2012, with City after he'd left)",
+        "Eredivisie",
+        "KNVB Cup",
+        "MLS Western Conference"
+      ],
+      "numbers": "81 caps for the Netherlands, 1 goal",
+      "didYouKnow": [
+        "Of Dutch, Surinamese and Indonesian heritage.",
+        "Famously broke Stuart Holden's leg in a USA-Netherlands friendly with a two-footed tackle.",
+        "Came through the Ajax academy alongside Sneijder, van der Vaart and Babel."
+      ]
+    },
+    {
+      "id": "lucio",
+      "name": "Lúcio",
+      "country": "Brazil",
+      "countryFlag": "🇧🇷",
+      "years": "1997–2020",
+      "aliases": [
+        "lucio",
+        "lúcio"
+      ],
+      "clues": [
+        "I played in three World Cups (2002, 2006 and 2010), playing 17 games and scoring 0 goals.",
+        "I have won a World Cup and a Champions League.",
+        "I have also lost a Champions League final, in which Zidane famously scored a spinning volley from outside the box.",
+        "Both the manager of my World Cup win and the manager of my Champions League win were managers at Chelsea, but I never played for them.",
+        "I won the treble in 2010."
+      ],
+      "image": "lucio.jpg",
+      "silhouette": "lucio.jpg",
+      "position": "Centre-Back",
+      "yearsActive": "1997–2020",
+      "story": "Brazil's no-nonsense centre-back from the 2002 World Cup-winning team. Lúcio formed a defensive partnership with Roque Júnior that stood firm in Japan/Korea under Big Phil Scolari. Career: Internacional, Bayer Leverkusen (famously losing the Bundesliga, Champions League and DFB-Pokal finals in 2002, the 'Neverkusen' team), Bayern Munich (multiple Bundesliga titles), Inter Milan under Mourinho (treble 2010), Juventus, São Paulo, Palmeiras, FC Goa, Brasiliense. 105 Brazil caps, two Copa Americas, three World Cups. Underrated outside Germany and Italy.",
+      "youtube": "https://www.youtube.com/watch?v=ENWua9XRNyI",
+      "clubs": [
+        "Internacional",
+        "Bayer Leverkusen",
+        "Bayern Munich",
+        "Inter Milan",
+        "Juventus",
+        "São Paulo",
+        "Palmeiras",
+        "FC Goa",
+        "Brasiliense"
+      ],
+      "honours": [
+        "World Cup (2002)",
+        "Champions League (2010)",
+        "Serie A (2010)",
+        "3x Bundesliga",
+        "2x Copa America"
+      ],
+      "numbers": "105 caps for Brazil, 4 goals",
+      "didYouKnow": [
+        "Lost three finals in 2002: Bundesliga, Champions League and DFB-Pokal, the 'Neverkusen' curse.",
+        "Eight years later, won the Champions League final for Inter against his old club Bayern Munich.",
+        "Scored a long-range free-kick in the 2010 Champions League quarter-final against CSKA Moscow."
+      ]
+    },
+    {
+      "id": "tim_krul",
+      "name": "Tim Krul",
+      "country": "Netherlands",
+      "countryFlag": "🇳🇱",
+      "years": "2005–",
+      "aliases": [
+        "tim krul",
+        "krul"
+      ],
+      "clues": [
+        "I played at the 2014 World Cup, playing 1 game and conceding 0 goals.",
+        "I won the Championship with Norwich City in 2019, after a season-long loan that became permanent.",
+        "I joined Newcastle United at 17 from ADO Den Haag, and made over 150 Premier League appearances for them.",
+        "I was substituted on in the 120th minute of a World Cup quarter-final, and saved two penalties.",
+        "I'm a Dutch goalkeeper with 15 international caps, mostly playing back-up to Cillessen."
+      ],
+      "image": "tim_krul.jpg",
+      "silhouette": "tim_krul.jpg",
+      "position": "Goalkeeper",
+      "yearsActive": "2005–",
+      "story": "Football's most famous one-minute World Cup hero. Van Gaal substituted starting keeper Cillessen ON for Krul in the 120th minute of extra time of the 2014 quarter-final vs Costa Rica, purely for the penalty shootout. Krul saved two. Career: Newcastle United (10+ years, including their best Premier League season as 5th in 2012), Norwich (Premier League and Championship years), AZ Alkmaar, Luton Town. Quietly excellent shot-stopper, never a giant, but a top-half-of-the-Premier-League career.",
+      "youtube": "https://www.youtube.com/watch?v=XMF6uu_HpZk",
+      "clubs": [
+        "ADO Den Haag (youth)",
+        "Newcastle",
+        "Falkirk (loan)",
+        "Carlisle (loan)",
+        "AZ (loan)",
+        "Brighton (loan)",
+        "Ajax (loan)",
+        "Norwich City",
+        "AZ Alkmaar",
+        "Luton Town"
+      ],
+      "honours": [
+        "Championship (2019, Norwich)",
+        "Eredivisie cup (2024)"
+      ],
+      "numbers": "15 caps for the Netherlands",
+      "didYouKnow": [
+        "Van Gaal's WC 2014 sub-on for penalties was a masterstroke. Krul had been training for it.",
+        "Had loans at Carlisle United and Falkirk before he ever played for Newcastle.",
+        "Played for 10 different clubs across his career, including five loan spells before age 22."
+      ]
+    },
+    {
+      "id": "anelka",
+      "name": "Nicolas Anelka",
+      "country": "France",
+      "countryFlag": "🇫🇷",
+      "years": "1995–2014",
+      "aliases": [
+        "anelka",
+        "nicolas anelka",
+        "le sulk"
+      ],
+      "clues": [
+        "I played at the 2010 World Cup, playing 1 game and scoring 0 goals for my country.",
+        "I won a Champions League but also lost a Champions League final.",
+        "I was sent home from a World Cup after a row with my coach.",
+        "I have won the Premier League with two different clubs.",
+        "I took the deciding penalty in the 2008 Champions League final for Chelsea against Manchester United, and missed."
+      ],
+      "image": "anelka.jpg",
+      "silhouette": "anelka.jpg",
+      "position": "Striker",
+      "yearsActive": "1995–2014",
+      "story": "Football's 'Le Sulk', the gifted French striker whose career took him through every elite club without ever feeling at home. Arsenal (£500k from PSG, sold for £22m to Real Madrid 18 months later, funding the new training ground), Real Madrid (CL 2000), back to PSG, Liverpool, Manchester City, Fenerbahçe, Bolton (genuinely loved his Bolton spell), Chelsea (Premier League 2010), Shanghai Shenhua, Juventus, West Brom, Mumbai City. The famous 2010 World Cup row with Domenech, sent home, French team went on strike, Anelka banned 18 games. Fast, sullen, talented, never satisfied.",
+      "youtube": "https://www.youtube.com/watch?v=fdlRY1GXRhs",
+      "clubs": [
+        "PSG",
+        "Arsenal",
+        "Real Madrid",
+        "PSG",
+        "Liverpool (loan)",
+        "Manchester City",
+        "Fenerbahçe",
+        "Bolton",
+        "Chelsea",
+        "Shanghai Shenhua",
+        "Juventus",
+        "West Brom",
+        "Mumbai City"
+      ],
+      "honours": [
+        "2x Premier League (Arsenal 2002, Chelsea 2010)",
+        "Champions League (2000)",
+        "Euro 2000 with France",
+        "3x FA Cup"
+      ],
+      "numbers": "14 goals in 69 France caps",
+      "didYouKnow": [
+        "The Arsenal sale to Real Madrid (£500k to £22m) bankrolled Arsenal's training ground at London Colney.",
+        "Sentenced to a 5-game ban for an antisemitic 'quenelle' celebration at West Brom in 2014.",
+        "Played for 13 clubs in 19 years, including four in his last three seasons."
+      ]
+    },
+    {
+      "id": "sofyan_amrabat",
+      "name": "Sofyan Amrabat",
+      "country": "Morocco",
+      "countryFlag": "🇲🇦",
+      "years": "2014–",
+      "aliases": [
+        "sofyan amrabat",
+        "amrabat"
+      ],
+      "clues": [
+        "I played in two World Cups (2018 and 2022), playing 9 games and scoring 0 goals.",
+        "I was born in the Netherlands and represented Dutch youth teams before switching to my parents' country at senior level.",
+        "I was named Player of the Match against Spain in the 2022 World Cup Round of 16, when my country won on penalties.",
+        "I later moved on loan to Manchester United.",
+        "I was the heartbeat of the Moroccan side that became the first African team ever to reach a World Cup semi-final."
+      ],
+      "image": "sofyan_amrabat.jpg",
+      "silhouette": "sofyan_amrabat.jpg",
+      "position": "Defensive Midfielder",
+      "yearsActive": "2014–",
+      "story": "The Dutch-born Moroccan destroyer who emerged as one of the tournament's breakout stars at Qatar 2022. Career: Utrecht, Feyenoord, Club Brugge, Hellas Verona, Fiorentina (Conference League runners-up 2023), Manchester United (loan, didn't quite work), Fenerbahçe. The semi-final WC run with Morocco (beating Spain and Portugal en route) cemented his cult status, he ran 80km over the seven games. The reluctant heir to N'Golo Kanté's 'everywhere all at once' archetype.",
+      "youtube": "https://www.youtube.com/watch?v=pQ48mznaySw",
+      "clubs": [
+        "Utrecht",
+        "Feyenoord",
+        "Club Brugge",
+        "Hellas Verona",
+        "Fiorentina",
+        "Manchester United (loan)",
+        "Fenerbahçe"
+      ],
+      "honours": [
+        "Africa Cup of Nations runner-up (2023)",
+        "Conference League runner-up (2023)"
+      ],
+      "numbers": "65+ caps for Morocco",
+      "didYouKnow": [
+        "Born in Huizen, Netherlands; represented Dutch youth teams before switching to Morocco.",
+        "Older brother Nordin is also a footballer with Watford, Feyenoord and Anderlecht spells.",
+        "Was on Liverpool's transfer shortlist before the Manchester United loan deal."
+      ]
+    },
+    {
+      "id": "chiellini",
+      "name": "Giorgio Chiellini",
+      "country": "Italy",
+      "countryFlag": "🇮🇹",
+      "years": "2000–2023",
+      "aliases": [
+        "chiellini",
+        "giorgio chiellini"
+      ],
+      "clues": [
+        "I played in two World Cups (2010 and 2014), playing 6 games and scoring 0 goals.",
+        "I lost two Champions League finals with Juventus.",
+        "I was famously bitten in a World Cup.",
+        "I controversially fouled a player in a European Championship final.",
+        "I was awarded an Italian state honour, knighted by President Mattarella, for winning Euro 2020."
+      ],
+      "image": "chiellini.jpg",
+      "silhouette": "chiellini.jpg",
+      "position": "Centre-Back",
+      "yearsActive": "2000–2023",
+      "story": "Italy's iron centre-back captain who won nine consecutive Serie A titles with Juventus (2012-2020) and lifted Euro 2020 in his late thirties. Career: Livorno (youth), Fiorentina (loan), Juventus (16 years), then LA Galaxy MLS retirement years. Famously the bite-victim of Luis Suárez at WC 2014, and the shirt-puller of Bukayo Saka at the Euro 2020 final. Italy: missed Euro 2016 through injury, won Euro 2020, missed WC 2018 and 2022. One of the best defenders of his generation, beloved at Juve. Now Juventus board member.",
+      "youtube": "https://www.youtube.com/watch?v=P2cZ8s87wAw",
+      "clubs": [
+        "Livorno",
+        "Fiorentina (loan)",
+        "Juventus",
+        "LA Galaxy"
+      ],
+      "honours": [
+        "9x Serie A",
+        "Euro 2020",
+        "5x Coppa Italia"
+      ],
+      "numbers": "117 caps for Italy, 8 goals",
+      "didYouKnow": [
+        "Has a Masters degree in Business Administration which he completed while playing.",
+        "Lost two Champions League finals with Juventus (2015, 2017).",
+        "Pulled Bukayo Saka's shirt in the 65th minute of the Euro 2020 final, conceding a yellow card."
+      ]
+    },
+    {
+      "id": "pepe_portugal",
+      "name": "Pepe",
+      "country": "Portugal",
+      "countryFlag": "🇵🇹",
+      "years": "2001–2024",
+      "aliases": [
+        "pepe",
+        "kepler"
+      ],
+      "clues": [
+        "I played in four World Cups (2010, 2014, 2018 and 2022), playing 13 games and scoring 1 goal.",
+        "I scored in my last World Cup against Switzerland at age 39, becoming the oldest player ever to score in a World Cup knockout match.",
+        "I won three Champions Leagues.",
+        "I was banned for 10 games for an attack on a player in La Liga, including a stamp while he lay on the ground.",
+        "I was known as one of the most physical and dirty players in European football, and Mourinho loved me."
+      ],
+      "image": "pepe_portugal.jpg",
+      "silhouette": "pepe_portugal.jpg",
+      "position": "Centre-Back",
+      "yearsActive": "2001–2024",
+      "story": "Brazil-born, Portugal-adopted, four-World-Cup centre-back. Marítimo, Porto (2 league titles), Real Madrid 2007-2017 (3 Champions Leagues), Beşiktaş, Porto again. Euro 2016 winner, 141 Portugal caps. Controversial in his Real Madrid years (red cards, on-pitch incidents), redeemed later as the experienced anchor of multiple Portugal generations. Played until age 41 at Porto. Often a Sergio Ramos counterpoint: the dirty cop.",
+      "youtube": "https://www.youtube.com/watch?v=iAQRQv3-3iY",
+      "clubs": [
+        "Marítimo",
+        "Porto",
+        "Real Madrid",
+        "Beşiktaş",
+        "Porto"
+      ],
+      "honours": [
+        "Euro 2016",
+        "3x Champions League",
+        "2x La Liga",
+        "5x Primeira Liga",
+        "Nations League (2019)"
+      ],
+      "numbers": "141 caps for Portugal, 8 goals",
+      "didYouKnow": [
+        "Held the record for oldest goalscorer in a WC knockout match at 39 years, 283 days.",
+        "Suspended for 10 games for stamping on Casquero in 2009.",
+        "Born in Maceió, Brazil; moved to Portugal at 18 to play for Marítimo."
+      ]
+    },
+    {
+      "id": "mustafi",
+      "name": "Shkodran Mustafi",
+      "country": "Germany",
+      "countryFlag": "🇩🇪",
+      "years": "2009–2024",
+      "aliases": [
+        "mustafi",
+        "shkodran mustafi"
+      ],
+      "clues": [
+        "I played at the 2014 World Cup, playing 1 game and scoring 0 goals.",
+        "I ended my career in Italy, where I'd also started it.",
+        "I was signed for £35 million by a Premier League club. It was not a success.",
+        "I won the 2014 World Cup, but hardly played.",
+        "I won the FA Cup twice, under both Wenger and Arteta."
+      ],
+      "image": "mustafi.jpg",
+      "silhouette": "mustafi.jpg",
+      "position": "Centre-Back",
+      "yearsActive": "2009–2024",
+      "story": "The German centre-back who won the 2014 World Cup as a back-up, then earned the dubious honour of being the symbol of Arsenal's transfer-window decline. Career: Hamburg/Everton youth (released without a first-team game), Sampdoria, Valencia (Europa League final 2014), Arsenal (£35m, controversial buy, FA Cup wins, became a meme), Schalke, Levante, Como. Germany: WC 2014 winner (1 game), WC 2018 (group stage out). Always more competent than internet meme culture suggests, but never quite vindicated.",
+      "youtube": "https://www.youtube.com/watch?v=JVL_jZ1Xk5M",
+      "clubs": [
+        "Hamburger SV",
+        "Everton",
+        "Sampdoria",
+        "Valencia",
+        "Arsenal",
+        "Schalke",
+        "Levante",
+        "Como"
+      ],
+      "honours": [
+        "World Cup (2014)",
+        "FA Cup (2017, 2020)"
+      ],
+      "numbers": "20 caps for Germany",
+      "didYouKnow": [
+        "Released by Everton at 19, rebuilt his career from Serie B with Sampdoria.",
+        "Was Wenger's last £30m+ signing and one of his most-criticised.",
+        "Has Albanian heritage; born in Bad Hersfeld, Germany."
+      ]
+    },
+    {
+      "id": "koulibaly",
+      "name": "Kalidou Koulibaly",
+      "country": "Senegal",
+      "countryFlag": "🇸🇳",
+      "years": "2010–",
+      "aliases": [
+        "koulibaly",
+        "kalidou koulibaly"
+      ],
+      "clues": [
+        "I played in two World Cups (2018 and 2022), playing 6 games and scoring 1 goal. I'm here again at the 2026 World Cup.",
+        "I spent eight years at Napoli before a £33 million move to a Premier League club in 2022.",
+        "I scored in the 2022 AFCON final penalty shootout against Egypt, which we went on to win for our first ever AFCON title.",
+        "I was born in France but represent the country my parents emigrated from at international level.",
+        "I scored the goal that put my country into the Round of 16 at the 2022 World Cup, against Ecuador."
+      ],
+      "image": "koulibaly.jpg",
+      "silhouette": "koulibaly.jpg",
+      "position": "Centre-Back",
+      "yearsActive": "2010–",
+      "story": "Senegal's commanding centre-back captain. Born in Saint-Dié, France, raised in the Vosges region, chose to represent his parents' Senegal. Career: Metz youth, Genk (Belgian title), Napoli (8 years, two Serie A runners-up, near-misses against Juventus), Chelsea (one underwhelming season), Al-Hilal Saudi. Senegal: AFCON winner 2022 (captain), WC 2018 group stage exit, WC 2022 Round of 16 (scored vs Ecuador). One of the most respected defenders of the modern era.",
+      "youtube": "https://www.youtube.com/watch?v=Wj3NBjXB3AE",
+      "clubs": [
+        "Metz",
+        "Genk",
+        "Napoli",
+        "Chelsea",
+        "Al-Hilal"
+      ],
+      "honours": [
+        "AFCON (2022, captain)",
+        "Belgian First Division (2011)",
+        "Serie A runner-up (multiple)"
+      ],
+      "numbers": "70+ caps for Senegal",
+      "didYouKnow": [
+        "First Senegalese captain to lift the AFCON.",
+        "Has a degree in Sports Science from a French university.",
+        "The Genk team he won the Belgian title with also included Thibaut Courtois and Kevin De Bruyne."
+      ]
+    },
+    {
+      "id": "gattuso",
+      "name": "Gennaro Gattuso",
+      "country": "Italy",
+      "countryFlag": "🇮🇹",
+      "years": "1995–2013",
+      "aliases": [
+        "gattuso",
+        "rino gattuso",
+        "gennaro gattuso"
+      ],
+      "clues": [
+        "I played in two World Cups (2002 and 2006), playing 11 games and scoring 0 goals.",
+        "I won the Champions League twice, but famously lost one in Istanbul.",
+        "I met my wife while playing football in Scotland.",
+        "I headbutted the Tottenham Assistant Manager in 2011, and was known for my physical style of play.",
+        "I won the 2006 World Cup, playing with Pirlo in the midfield."
+      ],
+      "image": "gattuso.jpg",
+      "silhouette": "gattuso.jpg",
+      "position": "Defensive Midfielder",
+      "yearsActive": "1995–2013",
+      "story": "Italy's snarling defensive midfielder. Gattuso was the destroyer in Cannavaro's WC 2006-winning team and Pirlo's protector at AC Milan for over a decade. Perugia, Rangers (Scottish football cult years), AC Milan (12 years, 2x Champions League 2003 + 2007, Serie A 2004 + 2011), Sion. 73 Italy caps. Later coached at Milan, Napoli, Valencia, Marseille (sacked for results), Hajduk Split. The original '100% commitment, 70% talent' archetype. Famously head-butted Joe Jordan on the touchline in 2011.",
+      "youtube": "https://www.youtube.com/watch?v=HKUnGoEwlUw",
+      "clubs": [
+        "Perugia",
+        "Rangers",
+        "Salernitana",
+        "AC Milan",
+        "Sion"
+      ],
+      "honours": [
+        "World Cup (2006)",
+        "2x Champions League (2003, 2007)",
+        "2x Serie A",
+        "Coppa Italia",
+        "Scottish League Cup"
+      ],
+      "numbers": "73 caps for Italy, 1 goal",
+      "didYouKnow": [
+        "Played for Rangers as a teenager and never lost his Glaswegian accent.",
+        "Head-butted Tottenham assistant Joe Jordan during a Champions League match in 2011.",
+        "His wife is Scottish; they met during his Rangers spell."
+      ]
     },
     {
       "id": "ricardo_carvalho",
