@@ -741,8 +741,7 @@ window.PLAYERS = [
       "I'm the only player in history to captain my country at five different World Cup finals. Guinness gave me the record for it.",
       "I won four league titles and two Champions Leagues in seven seasons at one of the biggest clubs in Spain.",
       "I'm Mexican. They called me 'El Káiser' at the Camp Nou."
-    ],
-    "todayMatch": "Mexico v South Africa"
+    ]
   },
   {
     "id": "edin_dzeko",
@@ -762,8 +761,7 @@ window.PLAYERS = [
       "I had a goal controversially disallowed for offside against Nigeria at the 2014 World Cup, my country's first ever appearance at the tournament.",
       "I was Serie A's top scorer in 2016–17 with 29 goals for a club in Rome.",
       "I won the Bundesliga top-scorer trophy in 2009–10, then crossed Europe and won the Premier League twice in three years."
-    ],
-    "todayMatch": "Canada v Bosnia & Herzegovina"
+    ]
   },
   {
     "id": "oscar_brazil",
@@ -783,8 +781,7 @@ window.PLAYERS = [
       "I won the Premier League twice in three seasons in London.",
       "I scored my country's only goal in their greatest humiliation against Germany.",
       "I left a London club for an Asian record fee of £60 million in January 2017. The new contract was reported as £400,000 a week."
-    ],
-    "todayMatch": "Brazil v Morocco"
+    ]
   },
   {
     "id": "arjen_robben",
@@ -803,8 +800,7 @@ window.PLAYERS = [
       "I scored the only goal of the 2013 Champions League final in the 89th minute against Borussia Dortmund.",
       "Iker Casillas stuck out a leg to save my one-on-one in the 2010 World Cup final. Andrés Iniesta won it for Spain in extra time.",
       "I'm Dutch. They knew the cut-inside was coming, and they still couldn't stop it."
-    ],
-    "todayMatch": "Netherlands v Japan"
+    ]
   },
   {
     "id": "diego_forlan",
@@ -825,8 +821,7 @@ window.PLAYERS = [
       "It took me nine months and thirteen Premier League games to score my first goal.",
       "I won the European Golden Shoe twice, with two different Spanish clubs.",
       "I won the Golden Ball as best player at the 2010 World Cup, finishing as joint top scorer on five goals with Müller, Villa and Sneijder."
-    ],
-    "todayMatch": "Saudi Arabia v Uruguay"
+    ]
   },
   {
     "id": "el_hadji_diouf",
@@ -846,8 +841,7 @@ window.PLAYERS = [
       "I was named African Footballer of the Year in both 2001 and 2002, back-to-back, with my World Cup in between.",
       "I tormented France's defence in the opening match of the 2002 World Cup, skinning Frank Leboeuf on the byline to set up the goal that beat the reigning world champions 1-0.",
       "I joined Liverpool on the back of my country's heroics for around £10 million. I scored three Premier League goals in two seasons."
-    ],
-    "todayMatch": "France v Senegal"
+    ]
   },
   {
     "id": "james_rodriguez",
@@ -867,8 +861,7 @@ window.PLAYERS = [
       "I won the Golden Boot at one of the World Cups I played at.",
       "I wore the No. 10 at Real Madrid.",
       "After an incredible volley against Uruguay, I became the fourth most expensive transfer in history at the time."
-    ],
-    "todayMatch": "Uzbekistan v Colombia (kicks off at 3am Thursday UK)"
+    ]
   },
   {
     "id": "pavel_nedved",
@@ -889,8 +882,7 @@ window.PLAYERS = [
       "I have won Serie A with two clubs. I would have won a few more, depending on who you ask.",
       "I have won the Ballon d'Or.",
       "I stayed at Juventus when they were forcibly relegated to Serie B in the 2006 Calciopoli scandal. I played in the second tier with them."
-    ],
-    "todayMatch": "Czechia v South Africa"
+    ]
   },
   {
     "id": "tim_howard",
@@ -909,8 +901,7 @@ window.PLAYERS = [
       "I have played for a Premier League club in both Manchester and Liverpool.",
       "I made 16 saves in a single World Cup match against Belgium in 2014, the most by any goalkeeper in any World Cup match since records began in 1966.",
       "Sir Alex Ferguson signed me from the New York MetroStars in 2003 to replace Fabien Barthez."
-    ],
-    "todayMatch": "USA v Australia"
+    ]
   },
   {
     "id": "wout_weghorst",
@@ -929,8 +920,7 @@ window.PLAYERS = [
       "In the same game, I scored deep in added time from a clever free-kick routine.",
       "I had a disastrous spell at a Premier League club after a £12 million transfer, in which I only scored 2 goals and we got relegated.",
       "I was signed as an emergency loan for one of the Premier League's biggest clubs under a manager of my own nationality."
-    ],
-    "todayMatch": "Netherlands v Sweden"
+    ]
   },
   {
     "id": "keisuke_honda",
@@ -949,8 +939,7 @@ window.PLAYERS = [
       "I'm the only Asian player with 4 World Cup goals.",
       "I joined AC Milan in 2014 and wore the No. 10 shirt previously worn by Seedorf, Boban and Rui Costa.",
       "I'm Japanese. I won the AFC Asian Cup in 2011 and was named tournament MVP."
-    ],
-    "todayMatch": "Tunisia v Japan"
+    ]
   },
   {
     "id": "maxi_rodriguez",
@@ -970,8 +959,7 @@ window.PLAYERS = [
       "I scored the goal of the tournament at the 2006 World Cup.",
       "I won the League Cup with Liverpool.",
       "I started and ended my career at Newell's Old Boys in Argentina."
-    ],
-    "todayMatch": "Argentina v Austria"
+    ]
   },
   {
     "id": "joe_cole",
@@ -990,8 +978,7 @@ window.PLAYERS = [
       "I became captain of my boyhood club at twenty-one, but I would reach my greatest success at another club in the same city.",
       "I won three Premier League titles, two FA Cups and a League Cup at one West London club under Mourinho and Ancelotti.",
       "I scored a 35-yard dipping volley against Sweden at the 2006 World Cup, still cited as one of England's best ever World Cup goals."
-    ],
-    "todayMatch": "England v Ghana"
+    ]
   },
   {
     "id": "maicon",
@@ -1010,8 +997,7 @@ window.PLAYERS = [
       "I won four consecutive Serie A titles between 2006 and 2010.",
       "I played for Manchester City for one season.",
       "I won the Champions League while playing at right-back."
-    ],
-    "todayMatch": "Scotland v Brazil"
+    ]
   },
   {
     "id": "serge_aurier",
@@ -1030,8 +1016,7 @@ window.PLAYERS = [
       "When I was signed by a Premier League club, my UK visa was initially blocked over a conviction in France.",
       "I was an unused substitute in the 2019 Champions League Final.",
       "In the 2014 World Cup, I delivered two assists to Bony and Gervinho and was named Man of the Match."
-    ],
-    "todayMatch": "Curaçao v Côte d'Ivoire"
+    ]
   },
   {
     "id": "youri_djorkaeff",
@@ -1051,359 +1036,354 @@ window.PLAYERS = [
       "I played for two clubs in northern England later in my career.",
       "I have shared a pitch with Ronaldo in a UEFA Cup final and a World Cup final. Not necessarily on the same side.",
       "In the 1998 World Cup final, I insisted on taking the corner that Zinedine Zidane headed home for our second goal. I told him to 'stay here, you're good with the head'."
-    ],
-    "todayMatch": "Norway v France"
-  },
-  {
-    "id": "davor_suker",
-    "name": "Davor Šuker",
-    "country": "Croatia",
-    "flag": "🇭🇷",
-    "years": "1984–2003",
-    "approved": true,
-    "aliases": [
-      "davor suker",
-      "davor šuker",
-      "suker",
-      "šuker"
-    ],
-    "clues": [
-      "I played at the 1998 World Cup, scoring 6 goals in 7 games for my country.",
-      "I famously chipped Peter Schmeichel from outside the box at Euro 96 with a sublime left-foot lob.",
-      "I'm the only Croatian on Pelé's FIFA 100 list of greatest living players.",
-      "I won the Champions League with Real Madrid in 1997–98, weeks before that World Cup.",
-      "I'm Croatian. I'm my country's all-time leading international goalscorer with 45 goals."
-    ],
-    "todayMatch": "Croatia v Ghana"
-  },
-  {
-    "id": "jan_koller",
-    "name": "Jan Koller",
-    "country": "Czech Republic",
-    "flag": "🇨🇿",
-    "years": "1993–2011",
-    "approved": true,
-    "aliases": [
-      "jan koller",
-      "koller",
-      "dino"
-    ],
-    "clues": [
-      "I was born on the 30th of March 1973. I played 91 times for my country, scoring 55 goals.",
-      "I started my career as a goalkeeper before being converted to a striker.",
-      "I won the Bundesliga in my first season at a German club.",
-      "At 2.02 metres tall, I was one of the tallest outfield players in top-level European football.",
-      "I scored in the 2002 UEFA Cup final for Borussia Dortmund, but we lost 3–2."
     ]
   },
   {
-    "id": "michu",
-    "name": "Michu",
-    "country": "Spain",
-    "flag": "🇪🇸",
-    "years": "2003–2017",
+    "id": "chris_wood",
+    "name": "Chris Wood",
+    "country": "New Zealand",
+    "flag": "🇳🇿",
+    "years": "2008–",
     "approved": true,
     "aliases": [
-      "michu",
-      "miguel pérez cuesta"
+      "chris wood",
+      "wood"
     ],
     "clues": [
-      "I was born on the 21st of March 1986. I played once for my country, scoring 0 goals.",
-      "I scored 22 goals in all competitions in my debut season in English football.",
-      "I won the 2013 Football League Cup, scoring in the final.",
-      "The following season I managed just two Premier League goals — and within three years, a chronic ankle injury forced me to retire at 31.",
-      "My club was Swansea City."
+      "I played at the 2010 World Cup, playing 3 games and scoring 0 goals for my country. I'm here again at the 2026 World Cup.",
+      "It was at Leeds and later Burnley that I became a more prolific goalscorer.",
+      "I have never lost a World Cup game (as of the 18th of June 2026).",
+      "I was the Championship's Golden Boot winner in 2017, scoring 27 goals for a club that hadn't been in the Premier League since 2004.",
+      "I scored a Premier League hat-trick on Boxing Day 2023 for Nottingham Forest against my old club Newcastle, aged 31, helping save Forest from relegation that season."
     ]
   },
   {
-    "id": "vieri",
-    "name": "Christian Vieri",
-    "country": "Italy",
-    "flag": "🇮🇹",
-    "years": "1991–2008",
-    "approved": true,
-    "aliases": [
-      "bobo vieri",
-      "christian vieri"
-    ],
-    "clues": [
-      "I was born on the 12th of July 1973. I played 49 times for my country, scoring 23 goals.",
-      "In 1999 I became the world's most expensive player.",
-      "I played for seven different clubs in Serie A — more than almost any other top striker of my generation.",
-      "I grew up in Sydney and idolised the Australian cricketer Allan Border — I'd have preferred to be a professional cricketer.",
-      "I scored nine goals across two World Cups — and spent six years at Inter Milan."
-    ]
-  },
-  {
-    "id": "coloccini",
-    "name": "Fabricio Coloccini",
+    "id": "mascherano",
+    "name": "Javier Mascherano",
     "country": "Argentina",
     "flag": "🇦🇷",
-    "years": "1998–2022",
+    "years": "2003–2020",
     "approved": true,
     "aliases": [
-      "fabricio coloccini",
-      "coloccini"
+      "mascherano",
+      "javier mascherano",
+      "el jefecito"
     ],
     "clues": [
-      "I was born on the 22nd of January 1982. I played 39 times for my country, scoring 1 goal.",
-      "I made my professional debut at one of Argentina's most famous clubs — but played just one league match before being sold to Italy.",
-      "I made over 275 appearances across eight seasons at my English club — my longest stint anywhere.",
-      "I experienced relegation with my English club in my first season — but stayed and helped them win promotion as champions.",
-      "I was named in the PFA Team of the Year in 2012 as a centre-back at a north-east English club."
+      "I played in four World Cups (2006, 2010, 2014 and 2018), playing 19 games and scoring 0 goals.",
+      "I won the Champions League twice for a Spanish club.",
+      "I joined the Premier League in 2006, moving controversially to London, but played most of my PL football in the North West.",
+      "I lost the 2014 World Cup Final to Germany in extra time.",
+      "I was converted by Pep into a centre-back later on in my career."
     ]
   },
   {
-    "id": "wes_brown",
-    "name": "Wes Brown",
+    "id": "sneijder",
+    "name": "Wesley Sneijder",
+    "country": "Netherlands",
+    "flag": "🇳🇱",
+    "years": "2002–2019",
+    "approved": true,
+    "aliases": [
+      "sneijder",
+      "wesley sneijder"
+    ],
+    "clues": [
+      "I played in three World Cups (2006, 2010 and 2014), scoring 6 goals across 15 games.",
+      "I came second in the Ballon d'Or vote to Messi in the same year that I lost a World Cup final.",
+      "I am my country's most capped player with 134 caps and 31 goals.",
+      "I was sold by one of the big clubs to make way for the incoming Ronaldo.",
+      "I won the treble in Italy under Mourinho."
+    ]
+  },
+  {
+    "id": "griezmann",
+    "name": "Antoine Griezmann",
+    "country": "France",
+    "flag": "🇫🇷",
+    "years": "2009–",
+    "approved": true,
+    "aliases": [
+      "griezmann",
+      "antoine griezmann",
+      "grizou"
+    ],
+    "clues": [
+      "I played in three World Cups (2014, 2018 and 2022), scoring 6 goals across 17 games.",
+      "I am a World Cup winner, even though I was rejected by every academy from my country for being too small as a teenager.",
+      "I was signed for a huge fee by a club playing in the same league.",
+      "I'm one of only three players to score in a World Cup final, a European Championship final and a Champions League final.",
+      "I'm one of my country's all-time top scorers, behind only Giroud, Henry and Mbappé."
+    ]
+  },
+  {
+    "id": "ashley_young",
+    "name": "Ashley Young",
     "country": "England",
     "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    "years": "1996–2017",
+    "years": "2003–",
     "approved": true,
     "aliases": [
-      "wes brown",
-      "brown"
+      "ashley young",
+      "young"
     ],
     "clues": [
-      "I was born on the 13th of October 1979. I played 23 times for my country, scoring 1 goal.",
-      "I was sent off in 2015 for a foul that John O'Shea had actually committed — the red card was rescinded on appeal but the moment became one of the strangest dismissals in Premier League history.",
-      "I won the Jimmy Murphy Young Player of the Year award twice as a Manchester United youth — only Ryan Giggs had done it before me.",
-      "Sir Alex Ferguson once called me 'without question the best natural defender this club has had for years'.",
-      "I spent fifteen years at Manchester United — five Premier League titles, two Champions Leagues."
+      "I played at the 2018 World Cup, playing 3 games and scoring 0 goals for my country.",
+      "I was PFA Young Player of the Year at Aston Villa before being signed by a Premier League giant.",
+      "I have won the Premier League and Serie A.",
+      "I lost the 2018 World Cup semi-final to Croatia in extra time.",
+      "I was signed by Manchester United for £17 million in 2011."
     ]
   },
   {
-    "id": "ray_parlour",
-    "name": "Ray Parlour",
-    "country": "England",
-    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    "years": "1992–2007",
-    "approved": true,
-    "aliases": [
-      "ray parlour",
-      "parlour",
-      "the romford pele"
-    ],
-    "clues": [
-      "I was born on the 7th of March 1973. I played 10 times for my country, never scoring a goal.",
-      "My nickname 'The Romford Pelé' was an ironic joke first cracked by Marc Overmars when he joined Arsenal — and it stuck for the rest of my career.",
-      "I scored a 30-yarder against Finland in 2000 that clearly crossed the line — wrongly disallowed by a linesman in one of the era's most notorious refereeing errors.",
-      "I opened the 2002 FA Cup final with a 30-yard screamer — prompting Tim Lovejoy's now-legendary commentary line: 'Oh, it's all right, it's only Ray Parlour.'",
-      "I won three Premier League titles and four FA Cups across twelve years at Arsenal."
-    ]
-  },
-  {
-    "id": "llorente",
-    "name": "Fernando Llorente",
+    "id": "morientes",
+    "name": "Fernando Morientes",
     "country": "Spain",
     "flag": "🇪🇸",
-    "years": "2005–2021",
+    "years": "1993–2010",
     "approved": true,
     "aliases": [
-      "fernando llorente",
-      "llorente",
-      "el rey leon"
+      "morientes",
+      "fernando morientes",
+      "nando"
     ],
     "clues": [
-      "I was born on the 26th of February 1985. I played 24 times for my country, scoring 7 goals.",
-      "I scored the winner against Manchester City in the 2019 Champions League quarter-final — but only got 8 minutes of the final against Liverpool.",
-      "After a defeat to Real Sociedad in 2012 I had a furious argument with manager Marcelo Bielsa and walked out of training — it ended my Athletic Bilbao career.",
-      "I won Euro 2012 with Spain as an unused squad member — and the World Cup in 2010 as a fringe player.",
-      "I was Athletic Bilbao's towering number 9 — and ended my career as Tottenham and Napoli's most physically improbable super-sub."
+      "I played at the 2002 World Cup, scoring 3 goals in 5 games for my country.",
+      "I was a Premier League failure after a £6.3 million signing in 2005.",
+      "I won the Champions League with the club that has won it most times.",
+      "I played upfront for my international team with Raúl.",
+      "I was replaced as first-choice striker at club level by the Brazilian Ronaldo."
     ]
   },
   {
-    "id": "paul_konchesky",
-    "name": "Paul Konchesky",
-    "country": "England",
-    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    "years": "1997–2017",
+    "id": "giroud",
+    "name": "Olivier Giroud",
+    "country": "France",
+    "flag": "🇫🇷",
+    "years": "2005–",
     "approved": true,
     "aliases": [
-      "paul konchesky",
-      "konchesky"
+      "giroud",
+      "olivier giroud"
     ],
     "clues": [
-      "I was born on the 15th of May 1981. I played 2 times for my country, never scoring a goal.",
-      "I became Charlton's youngest first-team player at 16 years and 93 days, against Oxford United in 1997.",
-      "My disastrous Liverpool spell is remembered for an error against Spurs that gifted Aaron Lennon the winning goal — and an unprintable Facebook reaction from my mum.",
-      "I scored in West Ham's 2006 FA Cup final against Liverpool — they won on penalties.",
-      "I now run a pie and mash café in Brentwood called Konch's Kafe — with my mum on the staff."
+      "I played in three World Cups (2014, 2018 and 2022), scoring 4 goals across 17 games.",
+      "I won Ligue 1 with Montpellier in 2012, one of the most unexpected title wins in French football history.",
+      "I won Serie A with AC Milan in 2022, in my first season at the club after eight years in London.",
+      "My scorpion kick against Crystal Palace on New Year's Day 2017 won the FIFA Puskás Award for goal of the year.",
+      "I was my country's all-time leading scorer when I retired from international football. Mbappé has just overtaken me."
     ]
   },
   {
-    "id": "niko_kranjcar",
-    "name": "Niko Kranjčar",
-    "country": "Croatia",
-    "flag": "🇭🇷",
-    "years": "2001–2018",
+    "id": "asamoah_gyan",
+    "name": "Asamoah Gyan",
+    "country": "Ghana",
+    "flag": "🇬🇭",
+    "years": "2003–2022",
     "approved": true,
     "aliases": [
-      "niko kranjcar",
-      "kranjcar",
-      "kranjčar"
+      "asamoah gyan",
+      "gyan",
+      "baby jet"
     ],
     "clues": [
-      "I was born on the 13th of August 1984. I played 81 times for my country, scoring 15 goals.",
-      "My move from Dinamo Zagreb to bitter rivals Hajduk Split in 2005 was so divisive that 200 candles were lit in mourning outside my home — and 10,000 fans showed up at my Hajduk unveiling.",
-      "I am the son of Zlatko, who also managed our country — football runs in the family.",
-      "I won the FA Cup with Portsmouth in 2007–08.",
-      "I followed Harry Redknapp to three different clubs — Portsmouth, Tottenham and QPR."
+      "I played in three World Cups (2006, 2010 and 2014), scoring 6 goals across 11 games.",
+      "I'm my country's all-time leading scorer with 51 international goals.",
+      "I played for Sunderland in the Premier League, scoring 10 league goals in my first season.",
+      "I missed a penalty in the last minute of a World Cup quarter-final after the opposition had been reduced to ten men for a handball on the line.",
+      "I featured on a song called 'African Girls' with Castro while still playing, and it went viral in Ghana."
     ]
   },
   {
-    "id": "benni_mccarthy",
-    "name": "Benni McCarthy",
-    "country": "South Africa",
-    "flag": "🇿🇦",
+    "id": "nigel_de_jong",
+    "name": "Nigel De Jong",
+    "country": "Netherlands",
+    "flag": "🇳🇱",
+    "years": "2002–2019",
+    "approved": true,
+    "aliases": [
+      "nigel de jong",
+      "de jong"
+    ],
+    "clues": [
+      "I played in two World Cups (2010 and 2014), playing 11 games and scoring 0 goals.",
+      "I won the Eredivisie and KNVB Cup at Ajax before moving to Hamburg in 2006.",
+      "I played for Manchester City for a number of years before winning Serie A with AC Milan.",
+      "I lost the 2010 World Cup final.",
+      "In that final, I was somehow not sent off for a kung-fu kick on the chest of Xabi Alonso."
+    ]
+  },
+  {
+    "id": "lucio",
+    "name": "Lúcio",
+    "country": "Brazil",
+    "flag": "🇧🇷",
+    "years": "1997–2020",
+    "approved": true,
+    "aliases": [
+      "lucio",
+      "lúcio"
+    ],
+    "clues": [
+      "I played in three World Cups (2002, 2006 and 2010), playing 17 games and scoring 0 goals.",
+      "I have won a World Cup and a Champions League.",
+      "I have also lost a Champions League final, in which Zidane famously scored a spinning volley from outside the box.",
+      "Both the manager of my World Cup win and the manager of my Champions League win were managers at Chelsea, but I never played for them.",
+      "I won the treble in 2010."
+    ]
+  },
+  {
+    "id": "tim_krul",
+    "name": "Tim Krul",
+    "country": "Netherlands",
+    "flag": "🇳🇱",
+    "years": "2005–",
+    "approved": true,
+    "aliases": [
+      "tim krul",
+      "krul"
+    ],
+    "clues": [
+      "I played at the 2014 World Cup, playing 1 game and conceding 0 goals.",
+      "I won the Championship with Norwich City in 2019, after a season-long loan that became permanent.",
+      "I joined Newcastle United at 17 from ADO Den Haag, and made over 150 Premier League appearances for them.",
+      "I was substituted on in the 120th minute of a World Cup quarter-final, and saved two penalties.",
+      "I'm a Dutch goalkeeper with 15 international caps, mostly playing back-up to Cillessen."
+    ]
+  },
+  {
+    "id": "anelka",
+    "name": "Nicolas Anelka",
+    "country": "France",
+    "flag": "🇫🇷",
+    "years": "1995–2014",
+    "approved": true,
+    "aliases": [
+      "anelka",
+      "nicolas anelka",
+      "le sulk"
+    ],
+    "clues": [
+      "I played at the 2010 World Cup, playing 1 game and scoring 0 goals for my country.",
+      "I won a Champions League but also lost a Champions League final.",
+      "I was sent home from a World Cup after a row with my coach.",
+      "I have won the Premier League with two different clubs.",
+      "I took the deciding penalty in the 2008 Champions League final for Chelsea against Manchester United, and missed."
+    ]
+  },
+  {
+    "id": "sofyan_amrabat",
+    "name": "Sofyan Amrabat",
+    "country": "Morocco",
+    "flag": "🇲🇦",
+    "years": "2014–",
+    "approved": true,
+    "aliases": [
+      "sofyan amrabat",
+      "amrabat"
+    ],
+    "clues": [
+      "I played in two World Cups (2018 and 2022), playing 9 games and scoring 0 goals. I am here again at the 2026 World Cup.",
+      "I was born in the Netherlands and represented Dutch youth teams before switching to my parents' country at senior level.",
+      "I was named Player of the Match against Spain in the 2022 World Cup Round of 16, when my country won on penalties.",
+      "I later moved on loan to Manchester United.",
+      "I was the heartbeat of the Moroccan side that became the first African team ever to reach a World Cup semi-final."
+    ]
+  },
+  {
+    "id": "chiellini",
+    "name": "Giorgio Chiellini",
+    "country": "Italy",
+    "flag": "🇮🇹",
+    "years": "2000–2023",
+    "approved": true,
+    "aliases": [
+      "chiellini",
+      "giorgio chiellini"
+    ],
+    "clues": [
+      "I played in two World Cups (2010 and 2014), playing 6 games and scoring 0 goals.",
+      "I lost two Champions League finals with Juventus.",
+      "I was famously bitten in a World Cup.",
+      "I controversially fouled a player in a European Championship final.",
+      "I was awarded an Italian state honour, knighted by President Mattarella, for winning Euro 2020."
+    ]
+  },
+  {
+    "id": "pepe_portugal",
+    "name": "Pepe",
+    "country": "Portugal",
+    "flag": "🇵🇹",
+    "years": "2001–2024",
+    "approved": true,
+    "aliases": [
+      "pepe",
+      "kepler"
+    ],
+    "clues": [
+      "I played in four World Cups (2010, 2014, 2018 and 2022), playing 13 games and scoring 1 goal.",
+      "I scored in my last World Cup against Switzerland at age 39, becoming the oldest player ever to score in a World Cup knockout match.",
+      "I won three Champions Leagues.",
+      "I was banned for 10 games for an attack on a player in La Liga, including a stamp while he lay on the ground.",
+      "I was known as one of the most physical and dirty players in European football, and Mourinho loved me."
+    ]
+  },
+  {
+    "id": "mustafi",
+    "name": "Shkodran Mustafi",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "years": "2009–2024",
+    "approved": true,
+    "aliases": [
+      "mustafi",
+      "shkodran mustafi"
+    ],
+    "clues": [
+      "I played at the 2014 World Cup, playing 1 game and scoring 0 goals.",
+      "I ended my career in Italy, where I'd also started it.",
+      "I was signed for £35 million by a Premier League club. It was not a success.",
+      "I won the 2014 World Cup, but hardly played.",
+      "I won the FA Cup twice, under both Wenger and Arteta."
+    ]
+  },
+  {
+    "id": "koulibaly",
+    "name": "Kalidou Koulibaly",
+    "country": "Senegal",
+    "flag": "🇸🇳",
+    "years": "2010–",
+    "approved": true,
+    "aliases": [
+      "koulibaly",
+      "kalidou koulibaly"
+    ],
+    "clues": [
+      "I played in two World Cups (2018 and 2022), playing 6 games and scoring 1 goal. I'm here again at the 2026 World Cup.",
+      "I spent eight years at Napoli before a £33 million move to a Premier League club in 2022.",
+      "I scored in the 2022 AFCON final penalty shootout against Egypt, which we went on to win for our first ever AFCON title.",
+      "I was born in France but represent the country my parents emigrated from at international level.",
+      "I scored the goal that put my country into the Round of 16 at the 2022 World Cup, against Ecuador."
+    ]
+  },
+  {
+    "id": "gattuso",
+    "name": "Gennaro Gattuso",
+    "country": "Italy",
+    "flag": "🇮🇹",
     "years": "1995–2013",
     "approved": true,
     "aliases": [
-      "benni mccarthy",
-      "benni",
-      "mccarthy"
+      "gattuso",
+      "rino gattuso",
+      "gennaro gattuso"
     ],
     "clues": [
-      "I was born on the 12th of November 1977. I played 80 times for my country, scoring 31 goals.",
-      "Manchester United hired me as their first-team striker's coach from 2022 to 2024.",
-      "I scored four goals in 13 minutes against Namibia at AFCON 1998 — became joint top scorer of the tournament and Player of the Tournament.",
-      "I spent four seasons at Blackburn Rovers — finished second in the 2006–07 Premier League Golden Boot race with 18 goals.",
-      "I'm the only South African ever to win the Champions League — did it with Mourinho's Porto in 2003–04."
-    ]
-  },
-  {
-    "id": "schwarzer",
-    "name": "Mark Schwarzer",
-    "country": "Australia",
-    "flag": "🇦🇺",
-    "years": "1990–2016",
-    "approved": true,
-    "aliases": [
-      "mark schwarzer",
-      "schwarzer"
-    ],
-    "clues": [
-      "I was born on the 6th of October 1972. I played 109 times for my country, never scoring a goal.",
-      "I won the Premier League with Leicester in 2015–16 as a squad keeper — the first player since Eric Cantona to win it with two clubs in successive seasons.",
-      "At 41 years and 65 days I became the oldest player ever to debut in the Champions League — keeping a clean sheet for Chelsea against Steaua București.",
-      "I won the League Cup with Middlesbrough in 2004 — though I made what was generously described as a 'howler' in the final.",
-      "I was the first non-Briton ever to make 500 Premier League appearances."
-    ]
-  },
-  {
-    "id": "geovanni",
-    "name": "Geovanni",
-    "country": "Brazil",
-    "flag": "🇧🇷",
-    "years": "1997–2010",
-    "approved": true,
-    "aliases": [
-      "geovanni",
-      "geovanni gomez"
-    ],
-    "clues": [
-      "I was born on the 11th of January 1980. I played just once for my country, never scoring a goal.",
-      "I won the FIFA U-17 World Championship with Brazil in 1997 — also topped the scoring charts at the South American U-17.",
-      "I was San Jose Earthquakes' first ever MLS Designated Player.",
-      "I was twice my Portuguese club's Player of the Year, in 2004 and 2005.",
-      "I scored the first ever Premier League goal for my Yorkshire club on debut against Fulham in August 2008."
-    ]
-  },
-  {
-    "id": "ravanelli",
-    "name": "Fabrizio Ravanelli",
-    "country": "Italy",
-    "flag": "🇮🇹",
-    "years": "1986–2005",
-    "approved": true,
-    "aliases": [
-      "fabrizio ravanelli",
-      "ravanelli",
-      "the white feather"
-    ],
-    "clues": [
-      "I was born on the 11th of December 1968. I played 22 times for my country, scoring 8 goals.",
-      "My signature shirt-over-the-head celebration was so iconic that FIFA later rewrote the rules to make it a yellow-card offence.",
-      "I inherited my nickname 'The White Feather' from Juventus legend Roberto Bettega — both because of my prematurely white hair.",
-      "I scored a Premier League hat-trick on my debut for Middlesbrough against Liverpool, opening day of the 1996–97 season.",
-      "I won the Champions League with Juventus in 1996 — scored their goal in the final against Ajax in Rome."
-    ]
-  },
-  {
-    "id": "andy_johnson",
-    "name": "Andrew Johnson",
-    "country": "England",
-    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
-    "years": "1998–2015",
-    "approved": true,
-    "aliases": [
-      "andy johnson",
-      "andrew johnson",
-      "aj"
-    ],
-    "clues": [
-      "I was born on the 10th of February 1981. I played 8 times for my country, never scoring a goal.",
-      "I revealed I could represent Poland through my grandfather mid-2004–05 — Sven-Göran Eriksson hurried up and gave me my England debut against the Netherlands shortly after.",
-      "Mourinho publicly branded me 'untrustworthy' after a Chelsea-Everton game in 2006 — Everton threatened legal action and he apologised two days later.",
-      "I scored 21 Premier League goals in my debut top-flight season — second only to Thierry Henry.",
-      "I was voted into Crystal Palace's Centenary XI in 2005 — the only player still at the club."
-    ]
-  },
-  {
-    "id": "rui_costa",
-    "name": "Rui Costa",
-    "country": "Portugal",
-    "flag": "🇵🇹",
-    "years": "1990–2008",
-    "approved": true,
-    "aliases": [
-      "rui costa",
-      "manuel rui costa"
-    ],
-    "clues": [
-      "I was born on the 29th of March 1972. I played 94 times for my country, scoring 26 goals.",
-      "The only red card of my career came in 1997 — for walking off the pitch too slowly while being substituted in a World Cup qualifier against Germany. They equalised moments later.",
-      "I starred in Nike's 1996 'Good vs Evil' commercial alongside Ronaldo, Maldini and Cantona.",
-      "I won the Champions League with AC Milan at Old Trafford in 2003 — beating Juventus on penalties.",
-      "I've been the president of Benfica since 2021 — elected with 84% of the vote."
-    ]
-  },
-  {
-    "id": "koumas",
-    "name": "Jason Koumas",
-    "country": "Wales",
-    "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
-    "years": "1998–2014",
-    "approved": true,
-    "aliases": [
-      "jason koumas",
-      "koumas"
-    ],
-    "clues": [
-      "I was born on the 25th of September 1979. I played 34 times for my country, scoring 10 goals.",
-      "My son Lewis came through the same academy I did and made his senior debut for the club in 2024.",
-      "I was the Championship Player of the Year in 2006–07 at West Brom.",
-      "I came through the Liverpool academy alongside Steven Gerrard and Michael Owen — I left because they wouldn't play me centrally.",
-      "The Guardian once argued my talent was no less than Gerrard's — and put my career down to being undisciplined."
-    ]
-  },
-  {
-    "id": "overmars",
-    "name": "Marc Overmars",
-    "country": "Netherlands",
-    "flag": "🇳🇱",
-    "years": "1990–2009",
-    "approved": true,
-    "aliases": [
-      "marc overmars",
-      "overmars"
-    ],
-    "clues": [
-      "I was born on the 29th of March 1973. I played 86 times for my country, scoring 17 goals.",
-      "I announced my £25m transfer on my own personal website before telling the media — it generated 250,000 hits in a single day.",
-      "I resigned as Ajax's director of football in 2022 after admitting to sending inappropriate messages to female colleagues.",
-      "I completely tore my cruciate ligament in 1995 and came back to anchor a Premier League and FA Cup Double-winning Arsenal side.",
-      "I was a flying Dutch winger for Ajax, Arsenal and Barcelona — and a Champions League winner with Ajax in 1995."
+      "I played in two World Cups (2002 and 2006), playing 11 games and scoring 0 goals.",
+      "I won the Champions League twice, but famously lost one in Istanbul.",
+      "I met my wife while playing football in Scotland.",
+      "I headbutted the Tottenham Assistant Manager in 2011, and was known for my physical style of play.",
+      "I won the 2006 World Cup, playing with Pirlo in the midfield."
     ]
   },
   {
@@ -1411,7 +1391,7 @@ window.PLAYERS = [
     "name": "Ricardo Carvalho",
     "country": "Portugal",
     "flag": "🇵🇹",
-    "years": "1997–2017",
+    "years": "1997–2018",
     "approved": true,
     "aliases": [
       "ricardo carvalho",
