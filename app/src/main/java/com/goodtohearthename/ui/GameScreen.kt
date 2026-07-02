@@ -7,10 +7,13 @@ package com.goodtohearthename.ui
 
 import android.graphics.Bitmap
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -26,8 +29,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.union
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -45,6 +53,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -53,10 +62,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -145,6 +158,7 @@ fun GameScreen(
     stats: Stats?,
     dayNumber: Int,
     isArchiveDay: Boolean = false,
+    onOpenSettings: () -> Unit = {},
     onQueryChange: (TextFieldValue) -> Unit,
     onPickSuggestion: (NameEntry) -> Unit,
     onSubmitGuess: () -> Unit,
@@ -157,6 +171,22 @@ fun GameScreen(
     showCelebration: Boolean = false,
     onDismissCelebration: () -> Unit = {},
 ) {
+    // Focus + peek state for the pinned-input UX:
+    //   isInputFocused   — driven by the GuessInput's onFocusChanged
+    //   peekExpanded     — true while user has tapped the compressed silhouette to peek
+    //   selectedTab      — hoisted from ContentTabs so isCompressed can gate on Clues tab only
+    //   isCompressed     — silhouette/tab bar shrink whenever focused (and not peeking) on Clues tab
+    // All three are keyed on dayNumber so switching archive days resets them cleanly.
+    var isInputFocused by remember(dayNumber) { mutableStateOf(false) }
+    var peekExpanded by remember(dayNumber) { mutableStateOf(false) }
+    var selectedTab by remember(dayNumber) { mutableStateOf(0) }
+    val isCompressed = isInputFocused && !state.revealed && selectedTab == 0 && !peekExpanded
+    val isPeekable = isInputFocused && !state.revealed && selectedTab == 0
+    // Reset the peek as soon as focus is lost so the next focus session starts compressed.
+    LaunchedEffect(isInputFocused) {
+        if (!isInputFocused) peekExpanded = false
+    }
+
     Box(modifier = Modifier.fillMaxSize()) {
         Scaffold(
             containerColor = AppColors.Bg,
@@ -166,9 +196,14 @@ fun GameScreen(
                     .fillMaxSize()
                     .padding(padding)
                     .imePadding(),
-                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
+                contentPadding = PaddingValues(
+                    start = 16.dp,
+                    end = 16.dp,
+                    top = 12.dp,
+                    bottom = if (!state.revealed) 96.dp else 12.dp,
+                ),
             ) {
-                item { Header(dayNumber = dayNumber, onOpenArchive = onOpenArchive, todayMatch = player.todayMatch) }
+                item { Header(dayNumber = dayNumber, onOpenArchive = onOpenArchive, onOpenSettings = onOpenSettings, todayMatch = player.todayMatch) }
                 if (isArchiveDay) {
                     item {
                         Box(
@@ -191,7 +226,16 @@ fun GameScreen(
                     }
                 }
                 item { Spacer(Modifier.height(12.dp)) }
-                item { HeroCard(silhouette = silhouette, photo = photo, revealed = state.revealed) }
+                item {
+                    HeroCard(
+                        silhouette = silhouette,
+                        photo = photo,
+                        revealed = state.revealed,
+                        isCompressed = isCompressed,
+                        isPeekable = isPeekable,
+                        onPeekTap = { peekExpanded = !peekExpanded },
+                    )
+                }
 
                 if (state.revealed) {
                     item { Spacer(Modifier.height(14.dp)) }
@@ -216,6 +260,9 @@ fun GameScreen(
                         stats = stats,
                         suggestions = suggestions,
                         isArchiveDay = isArchiveDay,
+                        isCompressed = isCompressed,
+                        selectedTab = selectedTab,
+                        onSelectTab = { selectedTab = it },
                         onQueryChange = onQueryChange,
                         onPickSuggestion = onPickSuggestion,
                         onSubmitGuess = onSubmitGuess,
@@ -228,6 +275,18 @@ fun GameScreen(
                 }
                 item { Spacer(Modifier.height(40.dp)) }
             }
+        }
+
+        if (!state.revealed) {
+            BottomInputBar(
+                modifier = Modifier.align(Alignment.BottomCenter),
+                query = state.query,
+                suggestions = suggestions,
+                onQueryChange = onQueryChange,
+                onPickSuggestion = onPickSuggestion,
+                onSubmitGuess = onSubmitGuess,
+                onFocusChange = { isInputFocused = it },
+            )
         }
 
         AnimatedVisibility(
@@ -323,6 +382,9 @@ private fun ContentTabs(
     stats: Stats?,
     suggestions: List<NameEntry>,
     isArchiveDay: Boolean,
+    isCompressed: Boolean,
+    selectedTab: Int,
+    onSelectTab: (Int) -> Unit,
     onQueryChange: (TextFieldValue) -> Unit,
     onPickSuggestion: (NameEntry) -> Unit,
     onSubmitGuess: () -> Unit,
@@ -332,33 +394,39 @@ private fun ContentTabs(
     onShare: () -> Unit,
     onBackToToday: () -> Unit,
 ) {
-    var selectedTab by remember { mutableStateOf(0) }
     val hasAbout = player.story.isNotEmpty()
     val hasHighlights = !player.youtube.isNullOrEmpty()
 
-    // Tab bar
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(12.dp))
-            .background(AppColors.Line)
-            .padding(3.dp),
-        horizontalArrangement = Arrangement.spacedBy(3.dp),
+    // Tab bar collapses when input is focused — it's noise during typing.
+    AnimatedVisibility(
+        visible = !isCompressed,
+        enter = expandVertically(animationSpec = tween(200)) + fadeIn(tween(200)),
+        exit = shrinkVertically(animationSpec = tween(200)) + fadeOut(tween(200)),
     ) {
-        TabPill("Clues", selected = selectedTab == 0, locked = false, modifier = Modifier.weight(1f)) { selectedTab = 0 }
-        if (hasAbout) {
-            TabPill("About", selected = selectedTab == 1, locked = !state.revealed, modifier = Modifier.weight(1f)) {
-                if (state.revealed) selectedTab = 1
+        Column {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(AppColors.Line)
+                    .padding(3.dp),
+                horizontalArrangement = Arrangement.spacedBy(3.dp),
+            ) {
+                TabPill("Clues", selected = selectedTab == 0, locked = false, modifier = Modifier.weight(1f)) { onSelectTab(0) }
+                if (hasAbout) {
+                    TabPill("About", selected = selectedTab == 1, locked = !state.revealed, modifier = Modifier.weight(1f)) {
+                        if (state.revealed) onSelectTab(1)
+                    }
+                }
+                if (hasHighlights) {
+                    TabPill("Highlights", selected = selectedTab == 2, locked = !state.revealed, modifier = Modifier.weight(1f)) {
+                        if (state.revealed) onSelectTab(2)
+                    }
+                }
             }
-        }
-        if (hasHighlights) {
-            TabPill("Highlights", selected = selectedTab == 2, locked = !state.revealed, modifier = Modifier.weight(1f)) {
-                if (state.revealed) selectedTab = 2
-            }
+            Spacer(Modifier.height(14.dp))
         }
     }
-
-    Spacer(Modifier.height(14.dp))
 
     // Tab content
     when (selectedTab) {
@@ -431,35 +499,6 @@ private fun CluesTabContent(
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         if (!state.revealed) {
             CluesCard(player = player, upToIndex = state.currentClueIndex)
-            // Input row + suggestions overlay below
-            Box {
-                Column {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Box(modifier = Modifier.weight(1f)) {
-                            GuessInput(value = state.query, onValueChange = onQueryChange, onSubmitGuess = onSubmitGuess)
-                        }
-                        if (state.query.text.isNotBlank()) {
-                            Box(
-                                modifier = Modifier
-                                    .size(48.dp)
-                                    .clip(RoundedCornerShape(14.dp))
-                                    .background(AppColors.Accent)
-                                    .clickable { onSubmitGuess() },
-                                contentAlignment = Alignment.Center,
-                            ) {
-                                Text("→", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                            }
-                        }
-                    }
-                    if (suggestions.isNotEmpty() && state.query.text.length >= 2) {
-                        SuggestionList(suggestions = suggestions, onPick = onPickSuggestion)
-                    }
-                }
-            }
             PipsRow(
                 usedCount = state.wrongGuesses.size + state.skips,
                 total = player.clues.size,
@@ -573,27 +612,42 @@ private fun HighlightsTabContent(youtubeUrl: String) {
 }
 
 @Composable
-private fun Header(dayNumber: Int, onOpenArchive: () -> Unit = {}, todayMatch: String? = null) {
+private fun Header(dayNumber: Int, onOpenArchive: () -> Unit = {}, onOpenSettings: () -> Unit = {}, todayMatch: String? = null) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Box(
-                modifier = Modifier
-                    .size(28.dp)
-                    .clip(CircleShape)
-                    .background(AppColors.Accent),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text("⚽", fontSize = 16.sp)
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Spacer(Modifier.weight(1f))
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(
+                    modifier = Modifier
+                        .size(28.dp)
+                        .clip(CircleShape)
+                        .background(AppColors.Accent),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text("⚽", fontSize = 16.sp)
+                }
+                Spacer(Modifier.width(10.dp))
+                Text(
+                    "Good to Hear the Name",
+                    color = AppColors.Text,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                )
             }
-            Spacer(Modifier.width(10.dp))
+            Spacer(Modifier.weight(1f))
             Text(
-                "Good to Hear the Name",
-                color = AppColors.Text,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
+                "⚙",
+                color = AppColors.Muted,
+                fontSize = 20.sp,
+                modifier = Modifier
+                    .clickable { onOpenSettings() }
+                    .padding(8.dp),
             )
         }
         Spacer(Modifier.height(8.dp))
@@ -714,7 +768,14 @@ private fun ShareButton(onShare: () -> Unit) {
 
 
 @Composable
-private fun HeroCard(silhouette: Bitmap?, photo: Bitmap?, revealed: Boolean) {
+private fun HeroCard(
+    silhouette: Bitmap?,
+    photo: Bitmap?,
+    revealed: Boolean,
+    isCompressed: Boolean = false,
+    isPeekable: Boolean = false,
+    onPeekTap: () -> Unit = {},
+) {
     // Only animate the reveal transition; when photo is null (day switch) snap to 0
     val photoAlpha by animateFloatAsState(
         targetValue = if (revealed && photo != null) 1f else 0f,
@@ -727,11 +788,26 @@ private fun HeroCard(silhouette: Bitmap?, photo: Bitmap?, revealed: Boolean) {
     val ratio = silhouette
         ?.let { it.width.toFloat() / it.height.toFloat() }
         ?: (3f / 4f)
+    // When compressed, switch to a fixed small height + Fit so the image scales
+    // down (rather than cropping). When not compressed, keep the natural aspect.
+    val sizeModifier = if (isCompressed) {
+        Modifier.fillMaxWidth().height(110.dp)
+    } else {
+        Modifier.fillMaxWidth().aspectRatio(ratio).heightIn(max = 540.dp)
+    }
+    // Tap target lives whenever the input is focused (i.e. peekable) — NOT only
+    // when compressed — so that a tap while peeking can collapse back. If the
+    // clickable were only attached in the compressed state, the user could
+    // expand once and never re-compress.
+    val tapModifier = if (isPeekable) Modifier.clickable { onPeekTap() } else Modifier
     Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .aspectRatio(ratio)
-            .heightIn(max = 540.dp),
+            .then(sizeModifier)
+            .then(tapModifier)
+            .animateContentSize(animationSpec = tween(durationMillis = 200))
+            .semantics {
+                contentDescription = if (isCompressed) "Expand silhouette" else "Silhouette"
+            },
         shape = RoundedCornerShape(18.dp),
         colors = CardDefaults.cardColors(containerColor = AppColors.Card),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
@@ -741,7 +817,7 @@ private fun HeroCard(silhouette: Bitmap?, photo: Bitmap?, revealed: Boolean) {
                 Image(
                     bitmap = it.asImageBitmap(),
                     contentDescription = null,
-                    contentScale = ContentScale.Crop,
+                    contentScale = if (isCompressed) ContentScale.Fit else ContentScale.Crop,
                     alignment = Alignment.Center,
                     modifier = Modifier.fillMaxSize(),
                 )
@@ -750,7 +826,7 @@ private fun HeroCard(silhouette: Bitmap?, photo: Bitmap?, revealed: Boolean) {
                 Image(
                     bitmap = it.asImageBitmap(),
                     contentDescription = null,
-                    contentScale = ContentScale.Crop,
+                    contentScale = if (isCompressed) ContentScale.Fit else ContentScale.Crop,
                     alignment = Alignment.Center,
                     modifier = Modifier.fillMaxSize().alpha(photoAlpha),
                 )
@@ -869,7 +945,66 @@ private fun AllCluesCard(player: Footballer, seenUpTo: Int) {
 }
 
 @Composable
-private fun GuessInput(value: TextFieldValue, onValueChange: (TextFieldValue) -> Unit, onSubmitGuess: () -> Unit = {}) {
+private fun BottomInputBar(
+    modifier: Modifier = Modifier,
+    query: TextFieldValue,
+    suggestions: List<NameEntry>,
+    onQueryChange: (TextFieldValue) -> Unit,
+    onPickSuggestion: (NameEntry) -> Unit,
+    onSubmitGuess: () -> Unit,
+    onFocusChange: (Boolean) -> Unit = {},
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            // Union with navigationBars so the bar clears the 3-button nav when the keyboard
+            // is down. When the keyboard is up, ime.height > navBars.height so union == ime,
+            // i.e. no double-padding. iOS gets this free via .safeAreaInset; Android does not.
+            .windowInsetsPadding(WindowInsets.ime.union(WindowInsets.navigationBars))
+            .background(AppColors.Bg)
+            .padding(horizontal = 16.dp, vertical = 10.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        if (suggestions.isNotEmpty() && query.text.length >= 2) {
+            SuggestionList(suggestions = suggestions, onPick = onPickSuggestion)
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Box(modifier = Modifier.weight(1f)) {
+                GuessInput(
+                    value = query,
+                    onValueChange = onQueryChange,
+                    onSubmitGuess = onSubmitGuess,
+                    onFocusChange = onFocusChange,
+                )
+            }
+            if (query.text.isNotBlank()) {
+                Box(
+                    modifier = Modifier
+                        .size(48.dp)
+                        .clip(RoundedCornerShape(14.dp))
+                        .background(AppColors.Accent)
+                        .clickable { onSubmitGuess() },
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text("→", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun GuessInput(
+    value: TextFieldValue,
+    onValueChange: (TextFieldValue) -> Unit,
+    onSubmitGuess: () -> Unit = {},
+    onFocusChange: (Boolean) -> Unit = {},
+) {
+    val focusManager = LocalFocusManager.current
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(14.dp),
@@ -882,15 +1017,18 @@ private fun GuessInput(value: TextFieldValue, onValueChange: (TextFieldValue) ->
             onValueChange = onValueChange,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 18.dp, vertical = 14.dp),
+                .padding(horizontal = 18.dp, vertical = 14.dp)
+                .onFocusChanged { onFocusChange(it.isFocused) },
             textStyle = LocalTextStyle.current.copy(
                 color = AppColors.Text,
                 fontSize = 16.sp,
             ),
             cursorBrush = SolidColor(AppColors.Accent),
             singleLine = true,
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Go),
-            keyboardActions = KeyboardActions(onGo = { onSubmitGuess() }),
+            // Imitate iOS build 5: Done key dismisses the keyboard, doesn't submit.
+            // Submit still works via the → button or tapping a suggestion.
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+            keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
             decorationBox = { inner ->
                 if (value.text.isEmpty()) {
                     Text(
@@ -908,7 +1046,7 @@ private fun GuessInput(value: TextFieldValue, onValueChange: (TextFieldValue) ->
 @Composable
 private fun SuggestionList(suggestions: List<NameEntry>, onPick: (NameEntry) -> Unit) {
     Card(
-        modifier = Modifier.fillMaxWidth().heightIn(max = 280.dp),
+        modifier = Modifier.fillMaxWidth().heightIn(max = 160.dp),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = AppColors.Card),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),

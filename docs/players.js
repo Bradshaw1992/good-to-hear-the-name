@@ -1387,6 +1387,1044 @@ window.PLAYERS = [
     ]
   },
   {
+    "id": "daniele_de_rossi",
+    "name": "Daniele De Rossi",
+    "country": "Italy",
+    "flag": "🇮🇹",
+    "years": "2001–2019",
+    "approved": true,
+    "aliases": [
+      "daniele de rossi",
+      "rossi",
+      "de rossi"
+    ],
+    "clues": [
+      "I played in three World Cups (2006, 2010 and 2014), playing 9 games and scoring 2 goals.",
+      "I came on as a substitute in a World Cup final and converted one of the penalties in the shootout that won the trophy.",
+      "I have a World Cup winner's medal but I never won my own domestic league title.",
+      "I spent eighteen years at one Italian club in the capital, then flew to Argentina to live out a boyhood dream for a few months.",
+      "Wearing number 16, I captained the side from Rome for the best part of a decade."
+    ]
+  },
+  {
+    "id": "steven_nzonzi",
+    "name": "Steven Nzonzi",
+    "country": "France",
+    "flag": "🇫🇷",
+    "years": "2007–present",
+    "approved": true,
+    "aliases": [
+      "steven nzonzi",
+      "nzonzi"
+    ],
+    "clues": [
+      "I played at the 2018 World Cup, playing 3 games and scoring 0 goals.",
+      "I have a World Cup winner's medal but I only started one World Cup match.",
+      "After I lifted the World Cup, my national team manager never picked me again.",
+      "I came on early in the second half of a World Cup final, and my captain later said I changed the game.",
+      "I was once Stoke City's player of the year, anchoring midfield at a famously cold ground."
+    ]
+  },
+  {
+    "id": "sami_khedira",
+    "name": "Sami Khedira",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "years": "2006–2021",
+    "approved": true,
+    "aliases": [
+      "sami khedira",
+      "khedira"
+    ],
+    "clues": [
+      "I played in three World Cups (2010, 2014 and 2018), playing 15 games and scoring 2 goals.",
+      "I scored my country's fifth goal on the night they beat the hosts seven-one in a World Cup semi-final.",
+      "I was named in the starting eleven for a World Cup final, but pulled up injured in the warm-up minutes before kick-off.",
+      "I won the Champions League with my Spanish club just weeks before lifting the World Cup that same summer.",
+      "I won four straight Italian league titles after leaving Madrid for Turin."
+    ]
+  },
+  {
+    "id": "mats_hummels",
+    "name": "Mats Hummels",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "years": "2006–present",
+    "approved": true,
+    "aliases": [
+      "mats hummels",
+      "hummels"
+    ],
+    "clues": [
+      "I played in three World Cups (2010, 2014 and 2018), playing 16 games and scoring 3 goals.",
+      "I headed in my country's second goal of the 2014 World Cup, against Portugal in the opening match.",
+      "I've played in two Champions League finals more than a decade apart, and lost both of them.",
+      "I moved between Germany's two giants in opposite directions, and won league titles at each of them.",
+      "I lifted the World Cup at the Maracanã wearing the number 5 shirt, and my best years were spent in yellow."
+    ]
+  },
+  {
+    "id": "luca_toni",
+    "name": "Luca Toni",
+    "country": "Italy",
+    "flag": "🇮🇹",
+    "years": "1994–2016",
+    "approved": true,
+    "aliases": [
+      "luca toni",
+      "toni"
+    ],
+    "clues": [
+      "I played at the 2006 World Cup, playing 6 games and scoring 2 goals.",
+      "I had a header disallowed for offside in the World Cup final, and hit the crossbar with another effort.",
+      "I'm a World Cup winner, a European Golden Shoe winner, and a Bundesliga top scorer.",
+      "I scored 31 league goals in a single Serie A season and won the European Golden Shoe.",
+      "I'm 6 feet 4 inches tall, and I scored a hat-trick on my Bundesliga debut."
+    ]
+  },
+  {
+    "id": "robbie_keane",
+    "name": "Robbie Keane",
+    "country": "Republic of Ireland",
+    "flag": "🇮🇪",
+    "years": "1997–2018",
+    "approved": true,
+    "aliases": [
+      "robbie keane",
+      "keane"
+    ],
+    "clues": [
+      "I was born on the 8th of July 1980. I played 146 times for my country, scoring 68 goals.",
+      "I am the London club's record league scorer of the Premier League era for a foreign-born striker.",
+      "I had an unhappy spell in Serie A before bouncing back in Yorkshire, playing up front alongside players such as Mark Viduka and Alan Smith.",
+      "I captained my country at a World Cup where our talisman went home before a ball was kicked.",
+      "My celebration involved a forward roll and pretending to fire two pistols into the sky, and I did it on four continents."
+    ]
+  },
+  {
+    "id": "heurelho_gomes",
+    "name": "Heurelho Gomes",
+    "country": "Brazil",
+    "flag": "🇧🇷",
+    "years": "2000s–2010s",
+    "approved": true,
+    "aliases": [
+      "heurelho gomes",
+      "gomes",
+      "heurelho"
+    ],
+    "clues": [
+      "I was born on the 15th of February 1981. I played 11 times for my country, scoring 0 goals.",
+      "My first name is one of the strangest in football, a pure invention of my grandfather that nobody else on Earth shares.",
+      "My early years in the Premier League were so rough that pundits used my name as shorthand for goalkeeping panic.",
+      "At Tottenham I was eventually displaced by Brad Friedel and quietly slipped down the pecking order.",
+      "At Watford I became a folk hero by the end of my career, the most loved goalkeeper in the club's modern history."
+    ]
+  },
+  {
+    "id": "damien_duff",
+    "name": "Damien Duff",
+    "country": "Ireland",
+    "flag": "🇮🇪",
+    "years": "1996–2014",
+    "approved": true,
+    "aliases": [
+      "damien duff",
+      "duff"
+    ],
+    "clues": [
+      "I was born on the 2nd of March 1979. I played 100 times for my country, scoring 8 goals.",
+      "I won two Premier Leagues in three seasons under José Mourinho, playing on the wing.",
+      "Although I won those titles at Chelsea, I played more games for Blackburn and Fulham.",
+      "I starred at the 2002 World Cup, dazzling defenders with my dribbling in the run to the last 16, before eventually going out on penalties to Spain.",
+      "My 100th cap for the Republic of Ireland made me one of the most decorated wingers in the country's history."
+    ]
+  },
+  {
+    "id": "matt_le_tissier",
+    "name": "Matt Le Tissier",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "1986–2002",
+    "approved": true,
+    "aliases": [
+      "matt le tissier",
+      "tissier",
+      "le tissier",
+      "le god"
+    ],
+    "clues": [
+      "I was born on the 14th of October 1968. I played 8 times for my country, scoring 0 goals.",
+      "When Xavi Hernández was asked to name the most technically gifted English footballer he had ever watched, he picked me, and the clip still resurfaces online every few years.",
+      "I scored a televised volley against Newcastle that the BBC named goal of the season, lobbing the keeper from outside the box after flicking the ball over a defender.",
+      "I am still the all-time leading scorer for the only senior club I ever represented, with two hundred and nine goals across sixteen years.",
+      "I scored the final ever competitive goal at The Dell, and my testimonial there packed the stand one last time."
+    ]
+  },
+  {
+    "id": "clarence_seedorf",
+    "name": "Clarence Seedorf",
+    "country": "Netherlands",
+    "flag": "🇳🇱",
+    "years": "1992–2014",
+    "approved": true,
+    "aliases": [
+      "clarence seedorf",
+      "seedorf"
+    ],
+    "clues": [
+      "I was born on the 1st of April 1976. I played 87 times for my country, scoring 11 goals.",
+      "I played for Ajax, Real Madrid, Inter Milan, and AC Milan, winning the league in Holland, Spain and Italy.",
+      "I am the only player ever to win the European Cup with three different clubs, in three different countries.",
+      "I missed a penalty for the Dutch team at Euro 2000, a moment I have never quite shaken off.",
+      "I moved across Milan in 2002 and stayed for a decade, lifting the Champions League twice more in red and black."
+    ]
+  },
+  {
+    "id": "ruud_van_nistelrooy",
+    "name": "Ruud van Nistelrooy",
+    "country": "Netherlands",
+    "flag": "🇳🇱",
+    "years": "1996–2012",
+    "approved": true,
+    "aliases": [
+      "ruud van nistelrooy",
+      "nistelrooy",
+      "van nistelrooy",
+      "ruud"
+    ],
+    "clues": [
+      "I was born on the 1st of July 1976. I played 70 times for my country, scoring 35 goals.",
+      "I have served as a temporary manager at the Premier League club I famously played for.",
+      "I signed for Real Madrid in 2006 and won the Pichichi in my first season at the Bernabéu.",
+      "I had a bust-up with a young Portuguese winger over training-ground free kicks.",
+      "I was signed by Sir Alex Ferguson in 2001 and spent five years scoring 150 goals at Old Trafford for Manchester United."
+    ]
+  },
+  {
+    "id": "walter_samuel",
+    "name": "Walter Samuel",
+    "country": "Argentina",
+    "flag": "🇦🇷",
+    "years": "1996–2016",
+    "approved": true,
+    "aliases": [
+      "walter samuel",
+      "samuel",
+      "the wall",
+      "el muro"
+    ],
+    "clues": [
+      "I was born on the 23rd of March 1978. I played 56 times for my country, scoring 5 goals.",
+      "I won the Copa Libertadores and Intercontinental Cup with Boca Juniors as an imposing centre back before crossing the Atlantic.",
+      "I left Roma in 2004 for a 25 million euro deal to move to Real Madrid, but I returned to Italy to join Inter Milan after a failed season.",
+      "I won a treble under José Mourinho.",
+      "I formed a defensive partnership with the Brazilian known simply as Lúcio."
+    ]
+  },
+  {
+    "id": "olof_mellberg",
+    "name": "Olof Mellberg",
+    "country": "Sweden",
+    "flag": "🇸🇪",
+    "years": "1997–2014",
+    "approved": true,
+    "aliases": [
+      "olof mellberg",
+      "mellberg"
+    ],
+    "clues": [
+      "I was born on the 3rd of September 1977. I played 117 times for my country, scoring 8 goals.",
+      "I was paired in central defence with Denmark's Martin Laursen for one of the most underrated partnerships of the Premier League era.",
+      "I grew up in a small Swedish town but made my name at Aston Villa.",
+      "I scored a brace against England at Euro 2012, in a 3-2 group-stage defeat that turned out to be my last act in a Sweden shirt.",
+      "I left for Italy on a Bosman in 2008, signing for Juventus at the age of thirty."
+    ]
+  },
+  {
+    "id": "yaya_toure",
+    "name": "Yaya Touré",
+    "country": "Ivory Coast",
+    "flag": "🇨🇮",
+    "years": "2001–2018",
+    "approved": true,
+    "aliases": [
+      "yaya touré",
+      "yaya toure",
+      "toure",
+      "yaya"
+    ],
+    "clues": [
+      "I was born on the 13th of May 1983. I played 100 times for my country, scoring 19 goals.",
+      "My agent once said I was upset because nobody at my club had wished me a happy birthday, and the story spiralled into a global meme about cake.",
+      "I won a Champions League playing as an emergency centre-back in a final, filling in for a suspended teammate.",
+      "I won three Premier League titles, scoring 20 league goals in one season from midfield.",
+      "I was named African Footballer of the Year four years in a row, a record that still stands."
+    ]
+  },
+  {
+    "id": "yossi_benayoun",
+    "name": "Yossi Benayoun",
+    "country": "Israel",
+    "flag": "🇮🇱",
+    "years": "1998–2014",
+    "approved": true,
+    "aliases": [
+      "yossi benayoun",
+      "benayoun",
+      "yossi"
+    ],
+    "clues": [
+      "I was born on the 5th of May 1980. I played 102 times for my country, scoring 23 goals.",
+      "I played for West Ham, Liverpool, Chelsea, and Arsenal consecutively.",
+      "When Juan Mata signed for Chelsea in 2011, I gave him my number 10 shirt.",
+      "I was booed in 2011 during a friendly in Malaysia because of my nationality.",
+      "I am the most-capped player in my country's history and operated as an attacking midfielder."
+    ]
+  },
+  {
+    "id": "lucas_moura",
+    "name": "Lucas Moura",
+    "country": "Brazil",
+    "flag": "🇧🇷",
+    "years": "2010–present",
+    "approved": true,
+    "aliases": [
+      "lucas moura",
+      "moura",
+      "lucas"
+    ],
+    "clues": [
+      "I was born on the 13th of August 1992. I played 38 times for my country, scoring 4 goals.",
+      "I was signed from São Paulo by PSG as their club-record signing, but never really made it there.",
+      "I lost a Champions League final for a club that has only made it there once.",
+      "My last-minute winner against Ajax for Spurs in the Champions League remains one of the most iconic moments in the club's history.",
+      "I joined PSG in 2013 for around forty-five million euros, then a Brazilian record fee."
+    ]
+  },
+  {
+    "id": "memphis_depay",
+    "name": "Memphis Depay",
+    "country": "Netherlands",
+    "flag": "🇳🇱",
+    "years": "2011–present",
+    "approved": true,
+    "aliases": [
+      "memphis depay",
+      "depay",
+      "memphis"
+    ],
+    "clues": [
+      "I was born on the 13th of February 1994. I played 102 times for my country, scoring 51 goals.",
+      "I won the Eredivisie golden boot the year my club lifted the title, then left for England at twenty-one.",
+      "I have a rap career that the maker of this game has no idea is good or not.",
+      "I joined Manchester United from PSV in 2015 and lasted eighteen months at Old Trafford.",
+      "I am the all-time top scorer in my country's history."
+    ]
+  },
+  {
+    "id": "andy_carroll",
+    "name": "Andy Carroll",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "2006–present",
+    "approved": true,
+    "aliases": [
+      "andy carroll",
+      "carroll"
+    ],
+    "clues": [
+      "I was born on the 6th of January 1989. I played 9 times for my country, scoring 2 goals.",
+      "I was signed to replace a Spanish striking legend who had been sold to Chelsea.",
+      "I came through at my hometown club on the Tyne and made my debut at seventeen.",
+      "My ponytail did more for tabloid photographers than any of my goals ever did.",
+      "I powered in a header for England against Sweden at a European Championship in Kiev to put us ahead."
+    ]
+  },
+  {
+    "id": "nwankwo_kanu",
+    "name": "Nwankwo Kanu",
+    "country": "Nigeria",
+    "flag": "🇳🇬",
+    "years": "1993–2012",
+    "approved": true,
+    "aliases": [
+      "nwankwo kanu",
+      "kanu"
+    ],
+    "clues": [
+      "I was born on the 1st of August 1976. I played 87 times for my country, scoring 13 goals.",
+      "I won a Champions League in Italy with a club from the north before a move to London.",
+      "I scored the only goal of an FA Cup final at Wembley for a south-coast club under Harry Redknapp in 2008, my second winners' medal in the competition.",
+      "I was discovered at a junior tournament in Africa and signed by a Dutch giant before I had finished growing into my frame.",
+      "At six foot five I was once described as moving like a giraffe wearing roller skates, and I had a step-over that defied physics."
+    ]
+  },
+  {
+    "id": "aaron_ramsey",
+    "name": "Aaron Ramsey",
+    "country": "Wales",
+    "flag": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+    "years": "2007–present",
+    "approved": true,
+    "aliases": [
+      "aaron ramsey",
+      "ramsey"
+    ],
+    "clues": [
+      "I was born on the 26th of December 1990. I played 86 times for my country, scoring 22 goals.",
+      "I scored the winner in two FA Cup finals for a London club, both from close range, one of them in extra time.",
+      "A horror tackle at the Britannia almost ended me before I turned twenty.",
+      "I won Serie A with Juventus.",
+      "I captained Wales to a semi-final at our first major tournament in nearly sixty years."
+    ]
+  },
+  {
+    "id": "aaron_lennon",
+    "name": "Aaron Lennon",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "2003–2020",
+    "approved": true,
+    "aliases": [
+      "aaron lennon",
+      "lennon"
+    ],
+    "clues": [
+      "I was born on the 16th of April 1987. I played 21 times for my country, scoring 0 goals.",
+      "My acceleration on the wing over the first ten yards was once measured as among the fastest in the league.",
+      "I played for England against Algeria in a game that the creator of this app has not really mentally recovered from.",
+      "I scored a late equaliser in a North London derby, a 4-4 draw that is still remembered.",
+      "My best years were as a flying right winger at Tottenham, supplying crosses for Berbatov, Defoe, and Bale."
+    ]
+  },
+  {
+    "id": "michael_ballack",
+    "name": "Michael Ballack",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "years": "1995–2012",
+    "approved": true,
+    "aliases": [
+      "michael ballack",
+      "ballack"
+    ],
+    "clues": [
+      "I was born on the 26th of September 1976. I played 98 times for my country, scoring 42 goals.",
+      "The year 2002 was the cruellest of my career: I finished runner-up in the league, the cup, the Champions League and the World Cup.",
+      "I won three doubles in four years at Bayern Munich before deciding I wanted to test myself in England.",
+      "I signed for Chelsea on a free in 2006 and won the Premier League, three FA Cups and reached a Champions League final in Moscow.",
+      "I grew up in Chemnitz when it was still called Karl-Marx-Stadt, and I started out at the local club before anyone in the west had heard of me."
+    ]
+  },
+  {
+    "id": "ledley_king",
+    "name": "Ledley King",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "1999–2012",
+    "approved": true,
+    "aliases": [
+      "ledley king",
+      "king",
+      "ledley"
+    ],
+    "clues": [
+      "I was born on the 12th of October 1980. I played 21 times for my country, scoring 2 goals.",
+      "Managers said that on one leg I was still better than most defenders on two.",
+      "I spent my entire career at a London club.",
+      "My most frequent centre-back partner was Michael Dawson.",
+      "I lifted the League Cup in 2008 with Tottenham, beating Chelsea in extra time, and it was the only major trophy of my career."
+    ]
+  },
+  {
+    "id": "wayne_bridge",
+    "name": "Wayne Bridge",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "1998–2014",
+    "approved": true,
+    "aliases": [
+      "wayne bridge",
+      "bridge"
+    ],
+    "clues": [
+      "I was born on the 5th of August 1980. I played 36 times for my country, scoring 1 goal.",
+      "I was signed by both Chelsea and Manchester City at the beginning of their big spending eras.",
+      "I scored a famous winner at Highbury in a Champions League quarter-final.",
+      "I refused to shake hands with a former teammate in a pre-match line-up in February 2010, after a tabloid scandal involving my ex-partner.",
+      "I came through the Southampton academy as a classy attacking left back."
+    ]
+  },
+  {
+    "id": "bojan_krkic",
+    "name": "Bojan Krkić",
+    "country": "Spain",
+    "flag": "🇪🇸",
+    "years": "2007–2019",
+    "approved": true,
+    "aliases": [
+      "bojan krkić",
+      "bojan krkic",
+      "krkic",
+      "bojan"
+    ],
+    "clues": [
+      "I was born on the 28th of August 1990. I played 1 time for my country, scoring 0 goals.",
+      "I was tipped to be the successor to the greatest footballer ever, becoming the youngest player to feature in a La Liga match for this club.",
+      "I played in the English Championship, having originally been signed by Mark Hughes.",
+      "I was in Pep Guardiola's Champions League final squad at Barcelona, although I did not get on the pitch.",
+      "Stoke City fans still sing about me, and I think about that little corner of England often."
+    ]
+  },
+  {
+    "id": "andros_townsend",
+    "name": "Andros Townsend",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "2009–present",
+    "approved": true,
+    "aliases": [
+      "andros townsend",
+      "townsend"
+    ],
+    "clues": [
+      "I was born on the 16th of July 1991. I played 13 times for my country, scoring 3 goals.",
+      "I came through the Tottenham Hotspur academy and played for the first team for five seasons, but you will probably know me for my five years at Crystal Palace.",
+      "My long-range volley for a London club against Manchester City was the Premier League goal of the season in 2018-19.",
+      "I most recently played in the Premier League with Luton in a renaissance season.",
+      "I scored on my England debut against Montenegro at the old stadium and thought I'd cracked it."
+    ]
+  },
+  {
+    "id": "dimitar_berbatov",
+    "name": "Dimitar Berbatov",
+    "country": "Bulgaria",
+    "flag": "🇧🇬",
+    "years": "1999–2017",
+    "approved": true,
+    "aliases": [
+      "dimitar berbatov",
+      "berbatov"
+    ],
+    "clues": [
+      "I was born on the 30th of January 1981. I played 78 times for my country, scoring 48 goals.",
+      "I played in the 2002 Champions League final for a Bundesliga club, although I am not German.",
+      "I won two Premier League titles and a Golden Boot, sharing the latter with another striker on 20 goals.",
+      "I scored five goals in a single Premier League match against Blackburn, including a hat-trick in the second half.",
+      "My first touch was once described as \"like a cat in slippers\", and I rarely broke into a jog let alone a sprint."
+    ]
+  },
+  {
+    "id": "wilfried_bony",
+    "name": "Wilfried Bony",
+    "country": "Ivory Coast",
+    "flag": "🇨🇮",
+    "years": "2007–2021",
+    "approved": true,
+    "aliases": [
+      "wilfried bony",
+      "bony"
+    ],
+    "clues": [
+      "I was born on the 10th of December 1988. I played 59 times for my country, scoring 18 goals.",
+      "My January move to Manchester City made me one of the most expensive African footballers ever at the time.",
+      "I won a League Cup at one of the big six, but the transfer was undoubtedly a failure and I ended up back at the club I was sold from.",
+      "I was the top scorer in the calendar year of the Premier League at a club in Wales.",
+      "I joined the AFCON squad mid-tournament in 2015 after a transfer saga, and we won it."
+    ]
+  },
+  {
+    "id": "park_ji_sung",
+    "name": "Park Ji-sung",
+    "country": "South Korea",
+    "flag": "🇰🇷",
+    "years": "2000–2014",
+    "approved": true,
+    "aliases": [
+      "park ji-sung",
+      "ji-sung",
+      "park",
+      "ji sung park",
+      "ji-sung park"
+    ],
+    "clues": [
+      "I was born on the 25th of February 1981. I played 100 times for my country, scoring 13 goals.",
+      "My nickname translated as \"Three Lung\", because teammates swore I ran twice as far as anyone else on the pitch.",
+      "I scored in three consecutive World Cups, and captained my country at the third of them in South Africa.",
+      "I was deployed as a man-marker on AC Milan's playmaker in a Champions League knockout tie, and the Italian press dubbed me a destroyer.",
+      "I won three Premier League titles and was the first Asian player to lift the European Cup."
+    ]
+  },
+  {
+    "id": "mark_viduka",
+    "name": "Mark Viduka",
+    "country": "Australia",
+    "flag": "🇦🇺",
+    "years": "1992–2009",
+    "approved": true,
+    "aliases": [
+      "mark viduka",
+      "viduka"
+    ],
+    "clues": [
+      "I was born on the 9th of October 1975. I played 43 times for my country, scoring 11 goals.",
+      "I played in the 2001 Champions League semi-final loss to Valencia for Leeds, and the club's financial collapse later forced them to sell me.",
+      "I captained Australia in the 2005 shootout against Uruguay in Sydney that sent us to our first World Cup since 1974.",
+      "I scored four goals in a single Premier League match against Liverpool at Elland Road in 2000.",
+      "I am remembered as the most prolific Australian striker of my generation, a powerhouse number nine with surprising touch."
+    ]
+  },
+  {
+    "id": "owen_hargreaves",
+    "name": "Owen Hargreaves",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "1997–2012",
+    "approved": true,
+    "aliases": [
+      "owen hargreaves",
+      "hargreaves"
+    ],
+    "clues": [
+      "I was born on the 20th of January 1981. I played 42 times for my country, scoring 0 goals.",
+      "I was born in Calgary to a Welsh father and an English mother, and I could have played for three countries.",
+      "I won the Champions League twice, the first time with Bayern Munich and the second time with a Premier League club.",
+      "I played for two Premier League clubs, Manchester United and Manchester City.",
+      "I came on as a substitute in the Moscow rain and helped win another Champions League trophy."
+    ]
+  },
+  {
+    "id": "yohan_cabaye",
+    "name": "Yohan Cabaye",
+    "country": "France",
+    "flag": "🇫🇷",
+    "years": "2004–2019",
+    "approved": true,
+    "aliases": [
+      "yohan cabaye",
+      "cabaye"
+    ],
+    "clues": [
+      "I was born on the 14th of January 1986. I played 48 times for my country, scoring 4 goals.",
+      "The first four clubs of my career were Lille, Newcastle, PSG and Crystal Palace.",
+      "France called me up for Euro 2012 and the 2014 World Cup, where I helped my country reach the quarter-finals.",
+      "At Newcastle I was once voted the club's player of the season after a dazzling debut campaign in the Premier League.",
+      "At Newcastle United I formed a famously fluent partnership with Cheick Tioté in midfield."
+    ]
+  },
+  {
+    "id": "thomas_vermaelen",
+    "name": "Thomas Vermaelen",
+    "country": "Belgium",
+    "flag": "🇧🇪",
+    "years": "2003–2022",
+    "approved": true,
+    "aliases": [
+      "thomas vermaelen",
+      "vermaelen",
+      "the verminator"
+    ],
+    "clues": [
+      "I was born on the 14th of November 1985. I played 85 times for my country, scoring 2 goals.",
+      "I was part of the Arsenal squad that won the FA Cup at Wembley in 2014, ending a near nine-year trophy drought for the club.",
+      "I was part of Belgium's golden generation, lining up at three major tournaments through the 2010s.",
+      "I came up at Ajax in a defensive unit alongside Toby Alderweireld and Jan Vertonghen, all three of us future Premier League fixtures.",
+      "I captained Arsenal during the mid-2010s, with Mikel Arteta succeeding me when I left for Barcelona."
+    ]
+  },
+  {
+    "id": "michael_carrick",
+    "name": "Michael Carrick",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "1998–2018",
+    "approved": true,
+    "aliases": [
+      "michael carrick",
+      "carrick"
+    ],
+    "clues": [
+      "I was born on the 28th of July 1981. I played 34 times for my country, scoring 0 goals.",
+      "I won five Premier Leagues, one Champions League and a Europa League.",
+      "I won my first Premier League title in my debut season at my biggest club, having moved from Tottenham in 2006.",
+      "Sir Alex Ferguson once said signing me was one of the best decisions of his late career.",
+      "I am currently managing a Premier League club that I famously played for."
+    ]
+  },
+  {
+    "id": "marco_reus",
+    "name": "Marco Reus",
+    "country": "Germany",
+    "flag": "🇩🇪",
+    "years": "2006–present",
+    "approved": true,
+    "aliases": [
+      "marco reus",
+      "reus"
+    ],
+    "clues": [
+      "I was born on the 31st of May 1989. I played 48 times for my country, scoring 15 goals.",
+      "I never won a Bundesliga, and I have been a Champions League losing finalist twice with the same club, more than a decade apart.",
+      "I provided assists for both Lewandowski and Haaland at the same club.",
+      "I was voted German Footballer of the Year twice and Bundesliga Player of the Season on three occasions, all as an attacking midfielder.",
+      "I am still playing football, in LA."
+    ]
+  },
+  {
+    "id": "esteban_cambiasso",
+    "name": "Esteban Cambiasso",
+    "country": "Argentina",
+    "flag": "🇦🇷",
+    "years": "1998–2017",
+    "approved": true,
+    "aliases": [
+      "esteban cambiasso",
+      "cambiasso",
+      "cuchu"
+    ],
+    "clues": [
+      "I was born on the 18th of April 1980. I played 52 times for my country, scoring 5 goals.",
+      "I won the 2010 Champions League in the centre of midfield.",
+      "I had a glorious one-season cameo at Leicester in England, helping a small club avoid relegation against the odds.",
+      "I won Serie A five times in a row for one of the Milan clubs.",
+      "I scored the famous 24-pass goal for Argentina at the 2006 World Cup, finishing off one of the greatest team moves ever seen."
+    ]
+  },
+  {
+    "id": "adriano",
+    "name": "Adriano",
+    "country": "Brazil",
+    "flag": "🇧🇷",
+    "years": "2000–2016",
+    "approved": true,
+    "aliases": [
+      "adriano",
+      "l'imperatore",
+      "imperatore",
+      "the emperor"
+    ],
+    "clues": [
+      "I was born on the 17th of February 1982. I played 48 times for my country, scoring 27 goals.",
+      "I finished in the top 10 of the Ballon d'Or in both 2004 and 2005, before winning Serie A in 2006.",
+      "I was on the cover of Pro Evolution Soccer 6.",
+      "I grew up in a Rio favela where playing barefoot on concrete left me with a left foot like a sledgehammer.",
+      "I returned to my boyhood club Flamengo and inspired them to a Brazilian title, before the off-field troubles caught up with me again."
+    ]
+  },
+  {
+    "id": "jonathan_woodgate",
+    "name": "Jonathan Woodgate",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "1998–2016",
+    "approved": true,
+    "aliases": [
+      "jonathan woodgate",
+      "woodgate"
+    ],
+    "clues": [
+      "I was born on the 22nd of January 1980. I played 8 times for my country, scoring 0 goals.",
+      "I scored a cup final winner for Tottenham against Chelsea in the 2008 League Cup.",
+      "I came through the Leeds academy in the late 1990s and was a senior pro by the time they reached the Champions League semi-final.",
+      "My debut for Real Madrid is probably the most disastrous in history, an own goal and a red card on the same afternoon.",
+      "I had three separate spells at Middlesbrough and even managed the club for a season in the Championship."
+    ]
+  },
+  {
+    "id": "florent_malouda",
+    "name": "Florent Malouda",
+    "country": "France",
+    "flag": "🇫🇷",
+    "years": "1996–2017",
+    "approved": true,
+    "aliases": [
+      "florent malouda",
+      "malouda"
+    ],
+    "clues": [
+      "I was born on the 13th of June 1980. I played 80 times for my country, scoring 9 goals.",
+      "I came on in a World Cup final and was involved in the move that led to a famous headbutt by my captain.",
+      "A move to west London cost 13 million pounds, and it took me a full season to silence the doubters.",
+      "I once finished a Premier League season with 12 goals from the left wing, in a title-winning team under Carlo Ancelotti.",
+      "I was born in French Guiana, a long way from any European football pyramid, and I still represented the territory in non-FIFA tournaments late in my career."
+    ]
+  },
+  {
+    "id": "dimitri_payet",
+    "name": "Dimitri Payet",
+    "country": "France",
+    "flag": "🇫🇷",
+    "years": "2005–present",
+    "approved": true,
+    "aliases": [
+      "dimitri payet",
+      "payet"
+    ],
+    "clues": [
+      "I was born on the 29th of March 1987. I played 38 times for my country, scoring 8 goals.",
+      "I was in the team of the tournament at UEFA Euro 2016, reaching the final.",
+      "I was in the PFA Team of the Year in 2016, despite not playing for one of the biggest clubs.",
+      "I had two spells at Marseille with a Premier League stint in between.",
+      "I scored a free kick for West Ham so good that the opposing manager applauded me on the touchline."
+    ]
+  },
+  {
+    "id": "daley_blind",
+    "name": "Daley Blind",
+    "country": "Netherlands",
+    "flag": "🇳🇱",
+    "years": "2008–present",
+    "approved": true,
+    "aliases": [
+      "daley blind",
+      "blind"
+    ],
+    "clues": [
+      "I was born on the 9th of March 1990. I played 99 times for my country, scoring 2 goals.",
+      "I got to the semi-final of the 2014 World Cup, before being signed by the same manager for a Premier League club.",
+      "I could play left-back, centre-back, or sit in front of the back four, and managers loved me for it.",
+      "I won three Eredivisie titles before I left, and another one when I came home a decade later.",
+      "I spent four seasons at Old Trafford before going home to Ajax in 2018."
+    ]
+  },
+  {
+    "id": "sami_hyypia",
+    "name": "Sami Hyypiä",
+    "country": "Finland",
+    "flag": "🇫🇮",
+    "years": "1992–2011",
+    "approved": true,
+    "aliases": [
+      "sami hyypiä",
+      "sami hyypia",
+      "hyypia",
+      "hyypiä"
+    ],
+    "clues": [
+      "I was born on the 7th of October 1973. I played 105 times for my country, scoring 5 goals.",
+      "I won a cup treble in my second season in England, lifting the FA Cup, League Cup and UEFA Cup in one summer.",
+      "My country never qualified for a major tournament throughout my long international career as captain.",
+      "I formed a formidable centre-back partnership with a future Sky Sports pundit.",
+      "I won the Champions League final in Istanbul."
+    ]
+  },
+  {
+    "id": "stewart_downing",
+    "name": "Stewart Downing",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "2001–2019",
+    "approved": true,
+    "aliases": [
+      "stewart downing",
+      "downing"
+    ],
+    "clues": [
+      "I was born on the 22nd of July 1984. I played 35 times for my country, scoring 0 goals.",
+      "I played in a UEFA Cup final for my hometown club, losing to Sevilla in Eindhoven in 2006.",
+      "I joined Liverpool in 2011 for around 20 million pounds and endured a famously rough first season under Kenny Dalglish.",
+      "I returned to Middlesbrough for a third spell, helping the club back into the Premier League.",
+      "England fans will remember me from Euro 2012, where I played every minute of the group stage on the right wing."
+    ]
+  },
+  {
+    "id": "fabien_barthez",
+    "name": "Fabien Barthez",
+    "country": "France",
+    "flag": "🇫🇷",
+    "years": "1992–2007",
+    "approved": true,
+    "aliases": [
+      "fabien barthez",
+      "barthez"
+    ],
+    "clues": [
+      "I was born on the 28th of June 1971. I played 87 times for my country, scoring 0 goals.",
+      "At one point I was the most expensive goalkeeping transfer in British football history.",
+      "I won the European Cup with Marseille.",
+      "I won both the World Cup and the European Championship with my country.",
+      "I won the Premier League in my first season at Manchester United."
+    ]
+  },
+  {
+    "id": "jermain_defoe",
+    "name": "Jermain Defoe",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "1999–2022",
+    "approved": true,
+    "aliases": [
+      "jermain defoe",
+      "defoe"
+    ],
+    "clues": [
+      "I was born on the 7th of October 1982. I played 57 times for my country, scoring 20 goals.",
+      "I'm one of only a handful of players to score 150 plus goals in the English top flight.",
+      "I was one of those players that Harry Redknapp kept signing.",
+      "I formed one of the classic big-man-little-man partnerships with Peter Crouch.",
+      "I left Tottenham twice and came back twice, which says something about my feelings for the place."
+    ]
+  },
+  {
+    "id": "david_villa",
+    "name": "David Villa",
+    "country": "Spain",
+    "flag": "🇪🇸",
+    "years": "2000–2019",
+    "approved": true,
+    "aliases": [
+      "david villa",
+      "villa",
+      "el guaje",
+      "guaje"
+    ],
+    "clues": [
+      "I was born on the 3rd of December 1981. I played 98 times for my country, scoring 59 goals.",
+      "I top-scored at Euro 2008 with four goals, then had to watch the final from the bench after picking up an injury in the semi.",
+      "I won silverware in Spain with Valencia, Barcelona and Atlético Madrid.",
+      "I won the Champions League in my first season at the Camp Nou.",
+      "I am still my country's all-time top scorer, and I lifted the World Cup wearing the number 7 shirt."
+    ]
+  },
+  {
+    "id": "henrik_larsson",
+    "name": "Henrik Larsson",
+    "country": "Sweden",
+    "flag": "🇸🇪",
+    "years": "1992–2009",
+    "approved": true,
+    "aliases": [
+      "henrik larsson",
+      "larsson"
+    ],
+    "clues": [
+      "I was born on the 20th of September 1971. I played 106 times for my country, scoring 37 goals.",
+      "I won the Champions League, setting up both goals against Arsenal.",
+      "I played for Manchester United in a brief loan spell in 2007.",
+      "I was a prolific scorer in the United Kingdom, but not in the Premier League.",
+      "I scored for Sweden in the 1994 World Cup third-place match."
+    ]
+  },
+  {
+    "id": "darren_bent",
+    "name": "Darren Bent",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "2001–2017",
+    "approved": true,
+    "aliases": [
+      "darren bent",
+      "bent"
+    ],
+    "clues": [
+      "I was born on the 6th of February 1984. I played 13 times for my country, scoring 4 goals.",
+      "I scored a goal that deflected in off an inflatable beach ball and the referee gave it.",
+      "In the 2009-10 season I scored 24 league goals, roughly half of Sunderland's total for the entire campaign.",
+      "I was a striker who played for Charlton, Tottenham, Sunderland and Aston Villa, scoring effectively at every one of them.",
+      "I was frequently close to making England squads for major tournaments but never made the final cut."
+    ]
+  },
+  {
+    "id": "andrey_arshavin",
+    "name": "Andrey Arshavin",
+    "country": "Russia",
+    "flag": "🇷🇺",
+    "years": "2000–2018",
+    "approved": true,
+    "aliases": [
+      "andrey arshavin",
+      "arshavin"
+    ],
+    "clues": [
+      "I was born on the 29th of May 1981. I played 75 times for my country, scoring 17 goals.",
+      "I became Arsenal's most expensive signing in history at the time of my arrival.",
+      "I scored four goals in a game.",
+      "I had a feud with a manager over fitness and weight which the tabloids loved to cover.",
+      "My number-23 shirt at Arsenal sold in huge numbers in Moscow the summer I signed."
+    ]
+  },
+  {
+    "id": "joleon_lescott",
+    "name": "Joleon Lescott",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "2000–2017",
+    "approved": true,
+    "aliases": [
+      "joleon lescott",
+      "lescott"
+    ],
+    "clues": [
+      "I was born on the 16th of August 1982. I played 26 times for my country, scoring 1 goal.",
+      "I lifted the Premier League trophy on the last day of the 2012 season.",
+      "My move to Merseyside in 2006 took a few seasons to convince the locals, but I left as a fan favourite.",
+      "I was hit by a car as a five-year-old and left with a fractured skull, but recovered to become a professional footballer.",
+      "I was bought by a Manchester club in a late-summer 2009 saga that involved my old club lodging a tapping-up complaint."
+    ]
+  },
+  {
+    "id": "dwight_yorke",
+    "name": "Dwight Yorke",
+    "country": "Trinidad and Tobago",
+    "flag": "🇹🇹",
+    "years": "1989–2009",
+    "approved": true,
+    "aliases": [
+      "dwight yorke",
+      "yorke"
+    ],
+    "clues": [
+      "I was born on the 3rd of November 1971. I played 74 times for my country, scoring 19 goals.",
+      "I formed one of the most famous striking partnerships in Premier League history.",
+      "I scored 17 league goals in a single season at a Midlands club, then doubled my haul in red after a club-record move.",
+      "I scored in both legs of a Champions League semi-final against Juventus, including a header in Turin that helped turn the tie.",
+      "I won the treble in 1999 at Old Trafford, and my goal-of-the-month against Arsenal in the FA Cup semi-final still gets replayed."
+    ]
+  },
+  {
+    "id": "jamie_carragher",
+    "name": "Jamie Carragher",
+    "country": "England",
+    "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "years": "1996–2013",
+    "approved": true,
+    "aliases": [
+      "jamie carragher",
+      "carragher",
+      "carra"
+    ],
+    "clues": [
+      "I was born on the 28th of January 1978. I played 38 times for my country, scoring 0 goals.",
+      "As a child I supported the biggest local rival of the team I went on to play for my entire career.",
+      "I have scored seven own goals in my Premier League career, the second-most in the competition's history.",
+      "I retired from international football, then called into talkSPORT to push back at a pundit's criticism of me.",
+      "I played in two Champions League finals in three years, winning one and losing the other to a Milan side I'd already beaten."
+    ]
+  },
+  {
+    "id": "tomas_rosicky",
+    "name": "Tomáš Rosický",
+    "country": "Czech Republic",
+    "flag": "🇨🇿",
+    "years": "1998–2017",
+    "approved": true,
+    "aliases": [
+      "tomáš rosický",
+      "tomas rosicky",
+      "rosicky",
+      "rosický",
+      "little mozart"
+    ],
+    "clues": [
+      "I was born on the 4th of October 1980. I played 105 times for my country, scoring 23 goals.",
+      "I won two FA Cups at Arsenal, although injuries restricted my appearances over a decade in north London.",
+      "I won the German League title in 2002.",
+      "I captained the Czech Republic at Euro 2012.",
+      "I scored a memorable volley against Sunderland in 2013 for Arsenal that won the Premier League goal of the season."
+    ]
+  },
+  {
     "id": "ricardo_carvalho",
     "name": "Ricardo Carvalho",
     "country": "Portugal",

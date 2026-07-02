@@ -19,12 +19,19 @@ ios/
 keystore.properties
 *.keystore
 
+# Firebase config (contains project API keys — drop into app/ before building)
+app/google-services.json
+
 # Keep private working files out of the public repo
 .claude/
 MARKETING_PLAN.md
 
 # python venv for local tooling
 scripts/.venv/
+
+# social poster credentials (X + Bluesky)
+scripts/.env
+scripts/.env.local
 
 # generated marketing print artefacts (rebuild with scripts/make_print_assets.py)
 marketing_print/

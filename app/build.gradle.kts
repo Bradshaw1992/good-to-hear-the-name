@@ -5,6 +5,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
     id("org.jetbrains.kotlin.plugin.serialization")
+    id("com.google.gms.google-services")
 }
 
 val keystoreProperties = Properties().apply {
@@ -20,8 +21,8 @@ android {
         applicationId = "com.goodtohearthename"
         minSdk = 26
         targetSdk = 35
-        versionCode = 38
-        versionName = "1.4.4"
+        versionCode = 45
+        versionName = "1.6"
     }
 
     signingConfigs {
@@ -83,6 +84,9 @@ dependencies {
     implementation("androidx.glance:glance-material3:1.1.1")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation("com.google.firebase:firebase-analytics")
 
     debugImplementation("androidx.compose.ui:ui-tooling")
 }

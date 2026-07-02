@@ -1,10 +1,16 @@
 package com.goodtohearthename
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
@@ -23,8 +29,11 @@ import com.goodtohearthename.data.GameStatePersistence
 import android.content.Intent
 import com.goodtohearthename.data.GuessRecord
 import com.goodtohearthename.data.NameEntry
+import com.goodtohearthename.analytics.Analytics
 import com.goodtohearthename.data.Stats
 import com.goodtohearthename.data.StatsPersistence
+import com.goodtohearthename.push.DailyReminderScheduler
+import com.goodtohearthename.push.PushPrefs
 import com.goodtohearthename.widget.DailyWidget
 import com.goodtohearthename.widget.WidgetRefreshScheduler
 import androidx.glance.appwidget.updateAll
@@ -33,6 +42,9 @@ import com.goodtohearthename.ui.AppTheme
 import com.goodtohearthename.ui.ArchiveDialog
 import com.goodtohearthename.ui.GameScreen
 import com.goodtohearthename.ui.GameUiState
+import com.goodtohearthename.ui.PushPrePromptSheet
+import com.goodtohearthename.ui.PushTimePickerDialog
+import com.goodtohearthename.ui.SettingsDialog
 import com.goodtohearthename.ui.getCommentaryQuote
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -58,6 +70,7 @@ class MainActivity : ComponentActivity() {
                 // Which day we're playing — can differ from today when using archive
                 var playingDayIndex by remember { mutableStateOf(todayDayIndex) }
                 var showArchive by remember { mutableStateOf(false) }
+                var showSettings by remember { mutableStateOf(false) }
 
                 // Derived from playingDayIndex
                 val player = remember(playingDayIndex) {
@@ -104,6 +117,48 @@ class MainActivity : ComponentActivity() {
                     mutableStateOf(saved?.commentaryQuote)
                 }
                 var showCelebration by remember(playingDayIndex) { mutableStateOf(false) }
+                var puzzleStartedLogged by remember(playingDayIndex) { mutableStateOf(false) }
+
+                // Push opt-in state
+                var showPushPrePrompt by remember { mutableStateOf(false) }
+                var showPushTimePicker by remember { mutableStateOf(false) }
+                val requestPushPermission = rememberLauncherForActivityResult(
+                    contract = ActivityResultContracts.RequestPermission(),
+                ) { granted ->
+                    if (granted) {
+                        PushPrefs.setEnabled(ctx, true)
+                        DailyReminderScheduler.scheduleNext(ctx)
+                    }
+                }
+
+                fun enablePushWithPermissionCheck() {
+                    val needsRuntimePermission = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                    if (!needsRuntimePermission) {
+                        PushPrefs.setEnabled(ctx, true)
+                        DailyReminderScheduler.scheduleNext(ctx)
+                        return
+                    }
+                    val granted = ContextCompat.checkSelfPermission(
+                        ctx, Manifest.permission.POST_NOTIFICATIONS,
+                    ) == PackageManager.PERMISSION_GRANTED
+                    if (granted) {
+                        PushPrefs.setEnabled(ctx, true)
+                        DailyReminderScheduler.scheduleNext(ctx)
+                    } else {
+                        requestPushPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                    }
+                }
+
+                // Trigger pre-prompt after first completed day, once the celebration is gone.
+                LaunchedEffect(revealed, showCelebration, isArchiveDay) {
+                    if (revealed && !showCelebration && !isArchiveDay
+                        && !PushPrefs.optInPromptShown(ctx)
+                    ) {
+                        delay(800)
+                        PushPrefs.setOptInPromptShown(ctx, true)
+                        showPushPrePrompt = true
+                    }
+                }
 
                 var silhouette by remember(playingDayIndex) { mutableStateOf<Bitmap?>(null) }
                 var photo by remember(playingDayIndex) { mutableStateOf<Bitmap?>(null) }
@@ -123,7 +178,14 @@ class MainActivity : ComponentActivity() {
                 }
 
 
+                fun logPuzzleStartedOnce() {
+                    if (puzzleStartedLogged || isArchiveDay) return
+                    puzzleStartedLogged = true
+                    Analytics.puzzleStarted(ctx, dayNumber)
+                }
+
                 fun shareResult() {
+                    Analytics.shareTapped(ctx, dayNumber, wasCorrect)
                     val total = player.clues.size
                     val streak = stats?.currentStreak ?: 0
                     val streakStr = if (streak > 0) " 🔥$streak" else ""
@@ -206,6 +268,7 @@ class MainActivity : ComponentActivity() {
                     // Refresh widget so it can swap silhouette → photo on correct
                     if (revealed && playingDayIndex == todayDayIndex) {
                         scope.launch { DailyWidget().updateAll(ctx) }
+                        PushPrefs.setLastPlayedDayIndex(ctx, todayDayIndex)
                     }
                 }
 
@@ -213,6 +276,7 @@ class MainActivity : ComponentActivity() {
                     if (revealed) return
                     val name = query.text.trim()
                     if (name.isEmpty()) return
+                    logPuzzleStartedOnce()
                     if (ContentRepository.isCorrect(player, name)) {
                         view.performHapticFeedback(HapticFeedbackConstants.CONFIRM)
                         wasCorrect = true
@@ -221,6 +285,9 @@ class MainActivity : ComponentActivity() {
                         showCelebration = true
                         query = TextFieldValue("")
                         suggestions = emptyList()
+                        if (!isArchiveDay) {
+                            Analytics.puzzleWon(ctx, dayNumber, clueIndex + 1, wrongGuesses.size, skips)
+                        }
                     } else {
                         val entry = allNames.find {
                             ContentRepository.normalize(it.n) == ContentRepository.normalize(name)
@@ -230,6 +297,9 @@ class MainActivity : ComponentActivity() {
                         if (wrongGuesses.size + skips >= player.clues.size) {
                             wasCorrect = false
                             revealed = true
+                            if (!isArchiveDay) {
+                                Analytics.puzzleGivenUp(ctx, dayNumber, wrongGuesses.size, skips)
+                            }
                         }
                         query = TextFieldValue("")
                         suggestions = emptyList()
@@ -248,11 +318,15 @@ class MainActivity : ComponentActivity() {
                 fun skipClue() {
                     if (revealed) return
                     if (clueIndex >= player.clues.size - 1) return
+                    logPuzzleStartedOnce()
                     skips++
                     clueIndex = (wrongGuesses.size + skips).coerceAtMost(player.clues.size - 1)
                     if (wrongGuesses.size + skips >= player.clues.size) {
                         wasCorrect = false
                         revealed = true
+                        if (!isArchiveDay) {
+                            Analytics.puzzleGivenUp(ctx, dayNumber, wrongGuesses.size, skips)
+                        }
                     }
                     persistState()
                 }
@@ -261,7 +335,34 @@ class MainActivity : ComponentActivity() {
                     if (revealed) return
                     wasCorrect = false
                     revealed = true
+                    if (!isArchiveDay) {
+                        Analytics.puzzleGivenUp(ctx, dayNumber, wrongGuesses.size, skips)
+                    }
                     persistState()
+                }
+
+                if (showPushPrePrompt) {
+                    PushPrePromptSheet(
+                        onSetTime = {
+                            showPushPrePrompt = false
+                            showPushTimePicker = true
+                        },
+                        onDecline = { showPushPrePrompt = false },
+                        onDismiss = { showPushPrePrompt = false },
+                    )
+                }
+
+                if (showPushTimePicker) {
+                    PushTimePickerDialog(
+                        initialHour = PushPrefs.reminderHour(ctx),
+                        initialMinute = PushPrefs.reminderMinute(ctx),
+                        onConfirm = { hour, minute ->
+                            showPushTimePicker = false
+                            PushPrefs.setReminderTime(ctx, hour, minute)
+                            enablePushWithPermissionCheck()
+                        },
+                        onDismiss = { showPushTimePicker = false },
+                    )
                 }
 
                 // Archive dialog
@@ -271,8 +372,15 @@ class MainActivity : ComponentActivity() {
                         onDaySelected = { selectedDayIndex ->
                             showArchive = false
                             playingDayIndex = selectedDayIndex
+                            val selectedDayNumber =
+                                ((selectedDayIndex - epochDay) + 1).toInt().coerceAtLeast(1)
+                            Analytics.archiveOpened(ctx, selectedDayNumber)
                         },
                     )
+                }
+
+                if (showSettings) {
+                    SettingsDialog(onDismiss = { showSettings = false })
                 }
 
                 GameScreen(
@@ -299,6 +407,7 @@ class MainActivity : ComponentActivity() {
                     onReveal = ::reveal,
                     onShare = ::shareResult,
                     onOpenArchive = { showArchive = true },
+                    onOpenSettings = { showSettings = true },
                     onBackToToday = { playingDayIndex = todayDayIndex },
                     showCelebration = showCelebration,
                     onDismissCelebration = { showCelebration = false },
@@ -314,5 +423,10 @@ class MainActivity : ComponentActivity() {
         val app = applicationContext
         WidgetRefreshScheduler.scheduleNextRefresh(app)
         lifecycleScope.launch { DailyWidget().updateAll(app) }
+
+        val todayDayIndex = System.currentTimeMillis() / 86_400_000L
+        PushPrefs.setLastOpenDayIndex(app, todayDayIndex)
+        if (PushPrefs.winbackStage(app) > 0) PushPrefs.setWinbackStage(app, 0)
+        DailyReminderScheduler.scheduleNext(app)
     }
 }
