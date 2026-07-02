@@ -698,6 +698,16 @@ if(location.hostname==="bradshaw1992.github.io"){
   .celebration-card .celebration-app-buttons .store-btn {
     flex: 1; justify-content: center; padding: 8px 10px; font-size: 12px;
   }
+  .celebration-card .celebration-app-follow {
+    font-size: 12px; color: var(--muted); margin: 12px 0 8px;
+  }
+  .celebration-card .celebration-ig-btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px;
+    border-radius: 10px; font-size: 12px; font-weight: 600; text-decoration: none;
+    color: var(--accent); border: 1px solid var(--line);
+    transition: transform 120ms ease, filter 120ms ease;
+  }
+  .celebration-card .celebration-ig-btn:hover { transform: translateY(-1px); filter: brightness(1.08); }
 
 </style>
 </head>
@@ -788,6 +798,8 @@ if(location.hostname==="bradshaw1992.github.io"){
       <a href="https://apps.apple.com/app/goodtohearthename/id6767861587" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:600">🍎 iPhone</a>
       <span class="sep">·</span>
       <a href="https://play.google.com/store/apps/details?id=com.goodtohearthename" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:600">🤖 Android</a>
+      <span class="sep">·</span>
+      <a href="https://instagram.com/goodtohearthename" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:600">📸 Instagram</a>
       <span class="sep">·</span><span style="color:var(--muted)">made by Bradshaw</span>
     </div>
   </div>
@@ -1326,6 +1338,8 @@ if(location.hostname==="bradshaw1992.github.io"){
             <a class="store-btn" href="https://apps.apple.com/app/goodtohearthename/id6767861587" target="_blank" rel="noopener">🍎 App Store</a>
             <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.goodtohearthename" target="_blank" rel="noopener">🤖 Google Play</a>
           </div>
+          <div class="celebration-app-follow">Not ready for the app? Follow for a new face every day.</div>
+          <a class="celebration-ig-btn" href="https://instagram.com/goodtohearthename" target="_blank" rel="noopener">📸 @goodtohearthename</a>
         </div>
       </div>
     `;
