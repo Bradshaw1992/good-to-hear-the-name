@@ -15,14 +15,14 @@ val keystoreProperties = Properties().apply {
 
 android {
     namespace = "com.goodtohearthename"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.goodtohearthename"
         minSdk = 26
-        targetSdk = 35
-        versionCode = 45
-        versionName = "1.6"
+        targetSdk = 36
+        versionCode = 46
+        versionName = "1.6.1"
     }
 
     signingConfigs {
