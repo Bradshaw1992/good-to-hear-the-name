@@ -11,6 +11,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
@@ -29,6 +32,7 @@ import com.goodtohearthename.data.GameStatePersistence
 import android.content.Intent
 import com.goodtohearthename.data.GuessRecord
 import com.goodtohearthename.data.NameEntry
+import com.goodtohearthename.data.RemoteImageCache
 import com.goodtohearthename.analytics.Analytics
 import com.goodtohearthename.data.Stats
 import com.goodtohearthename.data.StatsPersistence
@@ -58,8 +62,22 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         val app = applicationContext
         val todayMillis = System.currentTimeMillis()
-        val todayDayIndex = todayMillis / 86_400_000L
         val epochDay = java.time.LocalDate.of(2026, 5, 5).toEpochDay()
+        val realTodayDayIndex = todayMillis / 86_400_000L
+        // DEBUG-ONLY Kick-off soak test: on a debuggable (non-release) build, wind the
+        // calendar forward so "today" is the first new Kick-off player (Day 131) on the
+        // reference date below, then advance naturally with each real midnight. This
+        // exercises the real date -> player -> render path rather than bypassing it.
+        // Release builds are not debuggable, so this branch is stripped from production.
+        val todayDayIndex = if (
+            (applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0
+        ) {
+            val debugFirstDayNumber = 131L                                   // first new player
+            val debugRefDay = java.time.LocalDate.of(2026, 8, 4).toEpochDay() // set to your install date
+            (epochDay + debugFirstDayNumber - 1) + (realTodayDayIndex - debugRefDay)
+        } else {
+            realTodayDayIndex
+        }
 
         setContent {
             AppTheme {
@@ -71,6 +89,7 @@ class MainActivity : ComponentActivity() {
                 var playingDayIndex by remember { mutableStateOf(todayDayIndex) }
                 var showArchive by remember { mutableStateOf(false) }
                 var showSettings by remember { mutableStateOf(false) }
+                var showKickoffIntro by remember { mutableStateOf(false) }
 
                 // Derived from playingDayIndex
                 val player = remember(playingDayIndex) {
@@ -162,6 +181,7 @@ class MainActivity : ComponentActivity() {
 
                 var silhouette by remember(playingDayIndex) { mutableStateOf<Bitmap?>(null) }
                 var photo by remember(playingDayIndex) { mutableStateOf<Bitmap?>(null) }
+                var photoResolved by remember(playingDayIndex) { mutableStateOf(false) }
                 var suggestions by remember { mutableStateOf<List<NameEntry>>(emptyList()) }
                 var allNames by remember { mutableStateOf<List<NameEntry>>(emptyList()) }
                 var stats by remember(playingDayIndex) { mutableStateOf<Stats?>(null) }
@@ -212,16 +232,41 @@ class MainActivity : ComponentActivity() {
                 }
 
                 LaunchedEffect(player.id) {
+                    // Silhouette is bundled — load and show it immediately, never gated behind
+                    // the remote photo fetch (which may be slow or, offline, block until timeout).
                     withContext(Dispatchers.IO) {
-                        val sil = ContentRepository.loadSilhouette(ctx, player)
-                        val orig = ContentRepository.loadOriginal(ctx, player)
-                        silhouette = sil
-                        photo = orig
+                        silhouette = ContentRepository.loadSilhouette(ctx, player)
                     }
+                    // Reveal photo is remote — fetch separately so it can't delay the silhouette.
+                    withContext(Dispatchers.IO) {
+                        photo = ContentRepository.loadOriginal(ctx, player)
+                    }
+                    // Fetch attempt is done: the offline placeholder may now show if it failed.
+                    photoResolved = true
                 }
                 LaunchedEffect(Unit) {
                     withContext(Dispatchers.IO) {
                         allNames = ContentRepository.autocompleteNames(ctx)
+                    }
+                }
+                // One-time explainer the first time the new Kick-off mechanic appears.
+                LaunchedEffect(player.id) {
+                    if (player.kickoff.isNotBlank() && !PushPrefs.kickoffIntroShown(ctx)) {
+                        showKickoffIntro = true
+                    }
+                }
+                // Prefetch the reveal photos for today + the previous 6 days (a 7-day window) so
+                // the daily reveal is instant and recent archive days work offline. Future days
+                // aren't playable yet, so there's no point pulling them — and this keeps the
+                // first-launch data use small (~7 photos) for metered connections.
+                LaunchedEffect(Unit) {
+                    withContext(Dispatchers.IO) {
+                        val names = (0..6)
+                            .map { off ->
+                                ContentRepository.forDay(app, (todayDayIndex - off) * 86_400_000L).image
+                            }
+                            .distinct()
+                        RemoteImageCache.prefetch(app, names)
                     }
                 }
                 var suggestionsReadyAt by remember { mutableStateOf(0L) }
@@ -383,6 +428,29 @@ class MainActivity : ComponentActivity() {
                     SettingsDialog(onDismiss = { showSettings = false })
                 }
 
+                if (showKickoffIntro) {
+                    val dismissIntro = {
+                        PushPrefs.setKickoffIntroShown(ctx)
+                        showKickoffIntro = false
+                    }
+                    AlertDialog(
+                        onDismissRequest = dismissIntro,
+                        confirmButton = {
+                            TextButton(onClick = dismissIntro) { Text("Got it") }
+                        },
+                        title = { Text("Something new") },
+                        text = {
+                            Text(
+                                "I've changed the clues a little. The old first clue, your player's " +
+                                    "birth date and caps, was handy for grounding you but almost " +
+                                    "impossible to guess from. It is now a free Kick-off line above the " +
+                                    "clues, which frees all five clues to be proper, gettable ones that " +
+                                    "start a bit harder. Enjoy!"
+                            )
+                        },
+                    )
+                }
+
                 GameScreen(
                     player = player,
                     state = GameUiState(
@@ -396,6 +464,7 @@ class MainActivity : ComponentActivity() {
                     ),
                     silhouette = silhouette,
                     photo = photo,
+                    photoResolved = photoResolved,
                     suggestions = suggestions,
                     stats = stats,
                     dayNumber = dayNumber,

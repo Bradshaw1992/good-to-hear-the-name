@@ -12,8 +12,15 @@ object PushPrefs {
     const val KEY_LAST_OPEN_DAY_INDEX = "last_open_day_index"
     const val KEY_WINBACK_STAGE = "winback_stage"
     const val KEY_OPT_IN_PROMPT_SHOWN = "opt_in_prompt_shown"
+    const val KEY_KICKOFF_INTRO_SHOWN = "kickoff_intro_shown"
 
     fun prefs(ctx: Context) = ctx.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+
+    fun kickoffIntroShown(ctx: Context): Boolean =
+        prefs(ctx).getBoolean(KEY_KICKOFF_INTRO_SHOWN, false)
+
+    fun setKickoffIntroShown(ctx: Context) =
+        prefs(ctx).edit().putBoolean(KEY_KICKOFF_INTRO_SHOWN, true).apply()
 
     fun isEnabled(ctx: Context): Boolean =
         prefs(ctx).getBoolean(KEY_DAILY_REMINDER_ENABLED, false)

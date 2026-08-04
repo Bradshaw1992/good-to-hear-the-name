@@ -154,6 +154,7 @@ fun GameScreen(
     state: GameUiState,
     silhouette: Bitmap?,
     photo: Bitmap?,
+    photoResolved: Boolean = false,
     suggestions: List<NameEntry>,
     stats: Stats?,
     dayNumber: Int,
@@ -230,6 +231,7 @@ fun GameScreen(
                     HeroCard(
                         silhouette = silhouette,
                         photo = photo,
+                        photoResolved = photoResolved,
                         revealed = state.revealed,
                         isCompressed = isCompressed,
                         isPeekable = isPeekable,
@@ -498,6 +500,9 @@ private fun CluesTabContent(
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         if (!state.revealed) {
+            if (player.kickoff.isNotBlank()) {
+                KickoffCard(text = player.kickoff)
+            }
             CluesCard(player = player, upToIndex = state.currentClueIndex)
             PipsRow(
                 usedCount = state.wrongGuesses.size + state.skips,
@@ -513,6 +518,9 @@ private fun CluesTabContent(
                 WrongGuessesCard(state.wrongGuesses)
             }
         } else {
+            if (player.kickoff.isNotBlank()) {
+                KickoffCard(text = player.kickoff)
+            }
             AllCluesCard(player = player, seenUpTo = state.currentClueIndex)
             if (stats != null) {
                 StatsCard(stats = stats, isArchiveDay = isArchiveDay)
@@ -771,6 +779,7 @@ private fun ShareButton(onShare: () -> Unit) {
 private fun HeroCard(
     silhouette: Bitmap?,
     photo: Bitmap?,
+    photoResolved: Boolean = false,
     revealed: Boolean,
     isCompressed: Boolean = false,
     isPeekable: Boolean = false,
@@ -831,6 +840,53 @@ private fun HeroCard(
                     modifier = Modifier.fillMaxSize().alpha(photoAlpha),
                 )
             }
+            // Reveal photos are fetched from the network; if one couldn't load (offline and not
+            // yet cached) show a calm, explained placeholder over the silhouette so it reads as
+            // "no connection", not "broken". Only after the fetch has RESOLVED — so a slow load
+            // in progress doesn't briefly flash "offline". The game itself is unaffected.
+            if (revealed && photo == null && photoResolved && !isCompressed) {
+                Box(
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
+                        .background(AppColors.Card.copy(alpha = 0.92f))
+                        .padding(horizontal = 16.dp, vertical = 12.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        "Connect to the internet to see the photo",
+                        color = AppColors.TextSoft,
+                        fontSize = 13.sp,
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun KickoffCard(text: String) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = AppColors.Card),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+    ) {
+        Column(modifier = Modifier.padding(horizontal = 18.dp, vertical = 14.dp)) {
+            Text(
+                "KICK-OFF",
+                color = AppColors.Muted,
+                fontSize = 11.sp,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = 1.4.sp,
+            )
+            Spacer(Modifier.height(6.dp))
+            Text(
+                text,
+                color = AppColors.TextSoft,
+                fontSize = 15.sp,
+                lineHeight = 21.sp,
+            )
         }
     }
 }

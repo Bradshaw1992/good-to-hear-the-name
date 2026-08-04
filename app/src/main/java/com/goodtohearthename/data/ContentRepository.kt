@@ -74,8 +74,26 @@ object ContentRepository {
         context.assets.open(path).use { BitmapFactory.decodeStream(it, null, opts) }
     }.getOrNull()
 
-    fun loadOriginal(context: Context, p: Footballer, w: Int = 1200, h: Int = 1600): Bitmap? =
-        loadImage(context, "images/${p.image}", w, h)
+    // Reveal photos migrate to remote hosting (Cloudflare R2) + on-disk cache — see
+    // RemoteImageCache / project-remote-images-v17. Rollout is bundled-FIRST: while the photos
+    // are still in the APK they are used as-is (zero behaviour change, no network needed); the
+    // moment they are removed from assets/images (the deliberate size-shrink step, once R2 is
+    // live) this transparently switches to the remote/cached copy. So this is safe to ship even
+    // before R2 exists — worst case the app simply doesn't shrink, it never breaks.
+    // `allowNetwork` is false for callers that must not block on the network (e.g. the widget),
+    // which then fall back to the bundled silhouette. Silhouettes always stay bundled.
+    fun loadOriginal(
+        context: Context,
+        p: Footballer,
+        w: Int = 1200,
+        h: Int = 1600,
+        allowNetwork: Boolean = true,
+    ): Bitmap? {
+        if (!RemoteImageCache.FORCE_REMOTE) {
+            loadImage(context, "images/${p.image}", w, h)?.let { return it }
+        }
+        return RemoteImageCache.loadPhoto(context, p.image, w, h, allowNetwork)
+    }
 
     fun loadSilhouette(context: Context, p: Footballer, w: Int = 1200, h: Int = 1600): Bitmap? =
         loadImage(context, "silhouettes/${if (p.silhouette.isNotEmpty()) p.silhouette else p.image}", w, h)

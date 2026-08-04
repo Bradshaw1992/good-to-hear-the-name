@@ -34,6 +34,7 @@ def main():
             "approved": True,
             "aliases": p.get("aliases", []),
             "clues": p.get("clues", []),
+            "kickoff": p.get("kickoff", ""),
         })
 
     body = json.dumps(out, ensure_ascii=False, indent=2)

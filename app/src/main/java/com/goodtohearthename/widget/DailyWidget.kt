@@ -39,8 +39,12 @@ class DailyWidget : GlanceAppWidget() {
         val state = GameStatePersistence.load(context, todayDay)
         val solved = state != null && state.playerId == today.id && state.wasCorrect
 
+        // Photos are remote; the widget must not block on the network, so read the photo
+        // cache-only (allowNetwork = false) and fall back to the bundled silhouette if the
+        // solved player's photo hasn't been cached yet.
         val bitmap = if (solved) {
-            ContentRepository.loadOriginal(context, today, w = 480, h = 480)
+            ContentRepository.loadOriginal(context, today, w = 480, h = 480, allowNetwork = false)
+                ?: ContentRepository.loadSilhouette(context, today, w = 480, h = 480)
         } else {
             ContentRepository.loadSilhouette(context, today, w = 480, h = 480)
         }

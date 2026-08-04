@@ -40,3 +40,11 @@ marketing_print/
 silhouette_previews/
 .claude/
 
+# v1.7 content-prep working folders (source photos + clue/reveal drafts + one-off merge scripts)
+New Pictures/
+New Players Content/
+
+# Internal ops docs (reference infra / test steps — keep local, documented in memory)
+REMOTE_IMAGES_SETUP.md
+V1_7_TEST_PLAN.md
+

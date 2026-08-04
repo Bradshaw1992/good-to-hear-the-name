@@ -11,6 +11,7 @@ data class Footballer(
     val years: String = "",
     val aliases: List<String> = emptyList(),
     val clues: List<String> = emptyList(),
+    val kickoff: String = "",
     val image: String,
     val silhouette: String = "",
     val position: String = "",

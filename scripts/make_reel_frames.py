@@ -164,9 +164,9 @@ CONFIGS = {
     },
     "morientes": {
         "day": 59,
-        "hook_top": "REPLACED BY RONALDO.",
+        "hook_top": "REPLACED BY THE BRAZILIAN RONALDO.",
         "hook_bottom": "THREE CHAMPIONS LEAGUES.",
-        "tom_opener": "Today's player got replaced at his club by Ronaldo. Won three Champions Leagues anyway.",
+        "tom_opener": "Today's player got replaced at his club by the Brazilian Ronaldo. Won three Champions Leagues anyway.",
     },
     "giroud": {
         "day": 60,
@@ -180,6 +180,184 @@ CONFIGS = {
         "hook_bottom": "HIT THE BAR.",
         "tom_opener": "Today's player took a penalty in the last minute of a World Cup quarter-final. It hit the bar.",
     },
+    "nigel_de_jong": {
+        "day": 62,
+        "hook_top": "KUNG-FU KICK IN A WORLD CUP FINAL.",
+        "hook_bottom": "AND STAYED ON THE PITCH.",
+        "tom_opener": "Today's player kicked an opponent in the chest in a World Cup final, and somehow stayed on the pitch.",
+    },
+    "lucio": {
+        "day": 63,
+        "hook_top": "LOST THREE FINALS IN ONE SEASON.",
+        "hook_bottom": "THEN WON THE LOT.",
+        "tom_opener": "Today's player lost three finals in a single season, then went on to win a World Cup and a treble.",
+    },
+    "tim_krul": {
+        "day": 64,
+        "hook_top": "BROUGHT ON IN THE LAST MINUTE",
+        "hook_bottom": "OF EXTRA TIME.",
+        "tom_opener": "Today's player was brought on in the last minute of extra time of a World Cup quarter-final.",
+    },
+    # --- reminder-to-play reels (cover_tease only): difficult, non-revealing covers.
+    # Deliberately give LESS away as the days progress (followers growing over time).
+    "anelka": {
+        "day": 65,
+        "cover_tease": "Today's player was at the heart of a World Cup controversy.",
+    },
+    "sofyan_amrabat": {
+        "day": 66,
+        "cover_tease": "Today's player was the engine of a historic World Cup run.",
+    },
+    "chiellini": {
+        "day": 67,
+        "cover_tease": "Today's player was part of one of football's most infamous moments.",
+    },
+    "pepe_portugal": {
+        "day": 68,
+        "cover_tease": "Today's player was still making history long after most retire.",
+    },
+    "mustafi": {
+        "day": 69,
+        "cover_tease": "Today's player owns a winner's medal you might have forgotten.",
+    },
+    "koulibaly": {
+        "day": 70,
+        "cover_tease": "Can you name today's player from five clues?",
+    },
+    # Days 71-81: covers lean lighter still. Vague curiosity hooks, no event that
+    # points at the player. Just enough intrigue to stop the scroll.
+    "gattuso": {
+        "day": 71,
+        "cover_tease": "Today's player left everything on the pitch, and sometimes a bit more.",
+    },
+    "daniele_de_rossi": {
+        "day": 72,
+        "cover_tease": "Today's player was one city's favourite son.",
+    },
+    "steven_nzonzi": {
+        "day": 73,
+        "cover_tease": "Today's player won the biggest prize of all, then all but vanished.",
+    },
+    "sami_khedira": {
+        "day": 74,
+        "cover_tease": "Today's player's biggest night was over before it began.",
+    },
+    "mats_hummels": {
+        "day": 75,
+        "cover_tease": "Today's player knew the highest high and the cruellest low.",
+    },
+    "luca_toni": {
+        "day": 76,
+        "cover_tease": "Today's player was every defender's worst nightmare.",
+    },
+    "robbie_keane": {
+        "day": 77,
+        "cover_tease": "Today's player never went anywhere quietly.",
+    },
+    "heurelho_gomes": {
+        "day": 78,
+        "cover_tease": "Today's player went from a punchline to a hero.",
+    },
+    "damien_duff": {
+        "day": 79,
+        "cover_tease": "Today's player could beat you before you'd blinked.",
+    },
+    "matt_le_tissier": {
+        "day": 80,
+        "cover_tease": "Today's player had a gift the game never fully used.",
+    },
+    "clarence_seedorf": {
+        "day": 81,
+        "cover_tease": "Today's player holds a record no one else ever will.",
+    },
+    "ruud_van_nistelrooy": {
+        "day": 82,
+        "cover_tease": "Today's player only ever needed one chance.",
+    },
+    "walter_samuel": {
+        "day": 83,
+        "cover_tease": "Today's player was the wall strikers couldn't get past.",
+    },
+    "olof_mellberg": {
+        "day": 84,
+        "cover_tease": "Today's player was the quiet backbone of every side he joined.",
+    },
+    "yaya_toure": {
+        "day": 85,
+        "cover_tease": "Today's player could take over a game whenever he pleased.",
+    },
+    "yossi_benayoun": {
+        "day": 86,
+        "cover_tease": "Today's player suited up for clubs that can't stand each other.",
+    },
+    "lucas_moura": {
+        "day": 87,
+        "cover_tease": "Today's player had one magical night no one saw coming.",
+    },
+    "memphis_depay": {
+        "day": 88,
+        "cover_tease": "Today's player has a whole second career you'd never guess.",
+    },
+    "andy_carroll": {
+        "day": 89,
+        "cover_tease": "Today's player carried a price tag he could never live up to.",
+    },
+    "nwankwo_kanu": {
+        "day": 90,
+        "cover_tease": "Today's player moved like nothing you'd ever seen.",
+    },
+    "aaron_ramsey": {
+        "day": 91,
+        "cover_tease": "Today's player came back from an injury that should have finished him.",
+    },
+    "aaron_lennon": {
+        "day": 92,
+        "cover_tease": "Today's player was as quick as anyone the league had seen.",
+    },
+    "michael_ballack": {
+        "day": 93,
+        "cover_tease": "Today's player finished second more times than seemed fair.",
+    },
+    "ledley_king": {
+        "day": 94,
+        "cover_tease": "Today's player was better on one leg than most are on two.",
+    },
+    "wayne_bridge": {
+        "day": 95,
+        "cover_tease": "Today's player made his biggest headline off the pitch.",
+    },
+    "bojan_krkic": {
+        "day": 96,
+        "cover_tease": "Today's player was the next big thing that never quite was.",
+    },
+    "andros_townsend": {
+        "day": 97,
+        "cover_tease": "Today's player once scored the goal of the whole season.",
+    },
+    "dimitar_berbatov": {
+        "day": 98,
+        "cover_tease": "Today's player made the game look effortless, almost lazy.",
+    },
+    "wilfried_bony": {
+        "day": 99,
+        "cover_tease": "Today's player was unstoppable, right up until the big move.",
+    },
+    "park_ji_sung": {
+        "day": 100,
+        "cover_tease": "Today's player seemed to run twice as far as anyone else.",
+    },
+    "mark_viduka": {
+        "day": 101,
+        "cover_tease": "Today's player was all power, with a touch no one expected.",
+    },
+    "owen_hargreaves": {
+        "day": 102,
+        "cover_tease": "Today's player could have played for three different countries.",
+    },
+    "yohan_cabaye": {
+        "day": 103,
+        "cover_tease": "Today's player pulled every string from midfield.",
+    },
 }
 
 PLAYER_ID = sys.argv[1] if len(sys.argv) > 1 else "diego_forlan"
@@ -187,9 +365,13 @@ if PLAYER_ID not in CONFIGS:
     raise SystemExit(f"no reel config for {PLAYER_ID}. add it to CONFIGS.")
 cfg = CONFIGS[PLAYER_ID]
 DAY = cfg["day"]
-HOOK_TOP = cfg["hook_top"]
-HOOK_BOTTOM = cfg["hook_bottom"]
+HOOK_TOP = cfg.get("hook_top", "")
+HOOK_BOTTOM = cfg.get("hook_bottom", "")
 TOM_OPENER = cfg.get("tom_opener", "")
+# cover_tease: a single difficult, non-revealing line for the cover frame. When set
+# it replaces the two-line HOOK_TOP/HOOK_BOTTOM (which tend to give the player away).
+# Used for reminder-to-play reels aimed at existing followers.
+COVER_TEASE = cfg.get("cover_tease", "")
 URL_TEXT = f"goodtohearthename.co.uk?day={DAY}"
 
 OUT = os.path.join(ROOT, "marketing_print", "reel_frames", PLAYER_ID)
@@ -380,9 +562,36 @@ def frame_brand(out_name):
     top_bar(c, d)
 
     sil_path = os.path.join(SILS, f"{PLAYER_ID}.jpg")
+    safe_w = SAFE_RIGHT - SAFE_LEFT
+
+    # Difficult, non-revealing cover: a single teasing sentence instead of the two
+    # giveaway hooks. Editorial layout — sentence wraps above the full silhouette.
+    if COVER_TEASE:
+        chosen = None
+        for size in range(60, 34, -2):
+            f = font(size, bold=True)
+            lines = wrap(COVER_TEASE, f, safe_w, d)
+            if len(lines) <= 4:
+                chosen = (f, lines, size)
+                break
+        if chosen is None:
+            f = font(34, bold=True)
+            chosen = (f, wrap(COVER_TEASE, f, safe_w, d)[:4], 34)
+        f_text, lines, size = chosen
+        line_h = int(size * 1.25)
+        cy = SAFE_TOP + 20
+        for line in lines:
+            center_text(d, line, f_text, cy, color=INK)
+            cy += line_h
+        paste_silhouette(c, sil_path, top=cy + 30, bottom=SAFE_BOTTOM - 110)
+        center_text(d, "WHO IS IT?", font(40, bold=True), SAFE_BOTTOM - 90, color=GREEN)
+        center_text(d, f"DAY {DAY}  ·  FIVE CLUES.  FIVE GUESSES.", font(28, bold=True),
+                    SAFE_BOTTOM - 40, color=MUTED)
+        c.save(os.path.join(OUT, out_name), "PNG")
+        print("wrote", out_name)
+        return
 
     # hook lines auto-fit to the safe width so longer phrases don't overflow.
-    safe_w = SAFE_RIGHT - SAFE_LEFT
     f_top_hook = fit_font(HOOK_TOP, max_size=74, max_width=safe_w, draw=d)
     f_bot_hook = fit_font(HOOK_BOTTOM, max_size=74, max_width=safe_w, draw=d)
 
@@ -441,40 +650,39 @@ def frame_clue(idx, clue_text, out_name):
 
 
 def frame_endcard(out_name):
-    """No-reveal end card. All content inside the verified IG safe band."""
+    """No-reveal end card. Leads with the comments-guessing CTA (the Reel's job is
+    engagement + the follow, not the click), then a soft 'link in bio' website nudge.
+    No day-specific URL: a Reel has no clickable link, so we point people to the bio."""
     c = Image.new("RGB", (W, H), CREAM)
     d = ImageDraw.Draw(c)
     sil_path = os.path.join(SILS, f"{PLAYER_ID}.jpg")
 
     top_bar(c, d)
 
-    # silhouette occupies the upper portion of the safe band
+    # silhouette occupies the upper portion of the safe band (still no reveal)
     paste_silhouette(c, sil_path, top=SAFE_TOP, bottom=SAFE_TOP + 420)
 
-    # tier 1: hook + day-specific URL
+    safe_w = SAFE_RIGHT - SAFE_LEFT
+
+    # tier 1: the primary ask — guess in the comments (keeps the mystery, drives engagement)
     base_y = SAFE_TOP + 470
-    f_hook = font(54, bold=True)
-    center_text(d, "THINK YOU'VE GOT IT?", f_hook, base_y, color=INK)
+    f_hook = font(46, bold=True)
+    center_text(d, "THINK YOU KNOW HIM?", f_hook, base_y, color=INK)
 
-    f_label = font(32)
-    center_text(d, f"Play Day {DAY}:", f_label, base_y + 80, color=MUTED)
-
-    f_url = font(38, bold=True)
-    center_text(d, URL_TEXT, f_url, base_y + 130, color=GREEN)
+    f_cta = fit_font("GUESS IN THE COMMENTS", max_size=56, max_width=safe_w, draw=d, bold=True)
+    center_text(d, "GUESS IN THE COMMENTS", f_cta, base_y + 70, color=GREEN)
 
     # divider
-    div_y = base_y + 210
+    div_y = base_y + 175
     d.rectangle([(W // 2 - 80, div_y), (W // 2 + 80, div_y + 4)], fill=MUTED)
 
-    # tier 2: archive funnel — last item lands no lower than SAFE_BOTTOM - 60
-    f_more = font(36, bold=True)
-    center_text(d, "Plus 40+ more days to play.", f_more, div_y + 45, color=INK)
+    # tier 2: soft website funnel — no clickable URL on a Reel, so point at the bio
+    f_more = font(40, bold=True)
+    center_text(d, "More than 50 to play.", f_more, div_y + 45, color=INK)
 
-    f_more_sub = font(30)
-    center_text(d, "A new one every day at:", f_more_sub, div_y + 100, color=MUTED)
-
-    f_home = font(40, bold=True)
-    center_text(d, "goodtohearthename.co.uk", f_home, div_y + 150, color=GREEN)
+    f_more_sub = fit_font("A new one every day. Link in bio.",
+                          max_size=36, max_width=safe_w, draw=d, bold=True)
+    center_text(d, "A new one every day. Link in bio.", f_more_sub, div_y + 100, color=GREEN)
 
     c.save(os.path.join(OUT, out_name), "PNG")
     print("wrote", out_name)
@@ -519,7 +727,7 @@ if __name__ == "__main__":
         "",
         "Transitions: quick fade (0.2s) between clue frames. Slow fade (0.6s) between clue 5 and end card.",
         "",
-        "Caption: \"Day 42 from the archive. Think you've got it? Five clues. Five guesses. Play it cold at the link.\"",
+        f"Caption: \"Day {DAY}. Five clues, five guesses. Think you know him? Drop your guess in the comments and I'll tell you if you're right. More than 50 to play, link in bio.\"",
         "Hashtags: see captions.md from the daily IG batch.",
     ]
     manifest_path = os.path.join(OUT, "STORYBOARD.md")
