@@ -42,10 +42,13 @@ object RemoteImageCache {
     fun loadPhoto(context: Context, name: String, reqW: Int, reqH: Int, allowNetwork: Boolean): Bitmap? {
         if (name.isBlank()) return null
         val f = fileFor(context, name)
-        if (!f.exists() || f.length() == 0L) {
-            if (!allowNetwork) return null
-            if (!download(name, f)) return null
+        if (f.exists() && f.length() > 0L) {
+            val cached = decodeSampled(f, reqW, reqH)
+            if (cached != null) return cached
+            f.delete()   // cached file is corrupt/undecodable — drop it so we re-download below
         }
+        if (!allowNetwork) return null
+        if (!download(name, f)) return null
         return decodeSampled(f, reqW, reqH)
     }
 
@@ -60,8 +63,11 @@ object RemoteImageCache {
 
     private fun download(name: String, dest: File): Boolean {
         var conn: HttpURLConnection? = null
-        val tmp = File(dest.parentFile, "${dest.name}.tmp")
+        var tmp: File? = null
         return try {
+            // Unique temp per download so a concurrent prefetch + retry of the SAME photo can't
+            // interleave writes into one shared file and corrupt it.
+            tmp = File.createTempFile("dl_", ".tmp", dest.parentFile)
             conn = (URL(urlFor(name)).openConnection() as HttpURLConnection).apply {
                 connectTimeout = 8_000
                 readTimeout = 15_000
@@ -70,19 +76,32 @@ object RemoteImageCache {
             }
             if (conn.responseCode !in 200..299) return false
             conn.inputStream.use { input -> FileOutputStream(tmp).use { out -> input.copyTo(out) } }
-            if (tmp.length() > 0L) {
+            // Reject an incomplete body: if the server declared a Content-Length, require the whole
+            // thing, and require it to decode — so a truncated/corrupt response is never cached (a
+            // cached-but-undecodable file would otherwise stick forever).
+            val expected = conn.contentLengthLong
+            val complete = expected <= 0L || tmp.length() == expected
+            if (tmp.length() > 0L && complete && isDecodable(tmp)) {
                 if (dest.exists()) dest.delete()
                 tmp.renameTo(dest)
                 true
             } else {
-                tmp.delete(); false
+                false
             }
         } catch (e: Exception) {
-            tmp.delete()
             false
         } finally {
             conn?.disconnect()
+            tmp?.let { if (it.exists()) it.delete() }   // remove temp on any non-success path
         }
+    }
+
+    private fun isDecodable(file: File): Boolean = try {
+        val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        BitmapFactory.decodeFile(file.path, bounds)
+        bounds.outWidth > 0 && bounds.outHeight > 0
+    } catch (e: Exception) {
+        false
     }
 
     private fun decodeSampled(file: File, reqW: Int, reqH: Int): Bitmap? {

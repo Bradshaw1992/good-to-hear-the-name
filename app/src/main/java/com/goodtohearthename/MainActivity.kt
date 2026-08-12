@@ -52,6 +52,7 @@ import com.goodtohearthename.ui.SettingsDialog
 import com.goodtohearthename.ui.getCommentaryQuote
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -90,6 +91,7 @@ class MainActivity : ComponentActivity() {
                 var showArchive by remember { mutableStateOf(false) }
                 var showSettings by remember { mutableStateOf(false) }
                 var showKickoffIntro by remember { mutableStateOf(false) }
+                var showPhotoNote by remember { mutableStateOf(false) }
 
                 // Derived from playingDayIndex
                 val player = remember(playingDayIndex) {
@@ -231,18 +233,33 @@ class MainActivity : ComponentActivity() {
                     startActivity(Intent.createChooser(intent, "Share result"))
                 }
 
-                LaunchedEffect(player.id) {
+                LaunchedEffect(playingDayIndex) {
+                    // Keyed on the day, not player.id: two archive days a full roster apart map to
+                    // the same player, and we still want the images (re)loaded when switching.
                     // Silhouette is bundled — load and show it immediately, never gated behind
                     // the remote photo fetch (which may be slow or, offline, block until timeout).
                     withContext(Dispatchers.IO) {
                         silhouette = ContentRepository.loadSilhouette(ctx, player)
                     }
-                    // Reveal photo is remote — fetch separately so it can't delay the silhouette.
-                    withContext(Dispatchers.IO) {
-                        photo = ContentRepository.loadOriginal(ctx, player)
+                    // Reveal photo is remote — keep retrying until it loads (or the day changes),
+                    // so a slow or briefly-failed download recovers on its own without the user
+                    // navigating away and back. Each attempt reads the on-disk cache first.
+                    var attempt = 0
+                    while (isActive) {
+                        val p = withContext(Dispatchers.IO) {
+                            ContentRepository.loadOriginal(ctx, player)
+                        }
+                        if (p != null) {
+                            photo = p
+                            photoResolved = true
+                            break
+                        }
+                        attempt++
+                        if (attempt >= 2) photoResolved = true   // allow placeholder, but keep trying
+                        // Backoff 2s,4s,8s,... capped at 30s: recover fast from a transient failure
+                        // but don't hammer the network / drain battery when offline or photo missing.
+                        delay(minOf(2000L * (1L shl minOf(attempt - 1, 4)), 30_000L))
                     }
-                    // Fetch attempt is done: the offline placeholder may now show if it failed.
-                    photoResolved = true
                 }
                 LaunchedEffect(Unit) {
                     withContext(Dispatchers.IO) {
@@ -253,6 +270,12 @@ class MainActivity : ComponentActivity() {
                 LaunchedEffect(player.id) {
                     if (player.kickoff.isNotBlank() && !PushPrefs.kickoffIntroShown(ctx)) {
                         showKickoffIntro = true
+                    }
+                }
+                // One-time note about the v1.7.1 photo fix.
+                LaunchedEffect(Unit) {
+                    if (!PushPrefs.photoNoteShown(ctx)) {
+                        showPhotoNote = true
                     }
                 }
                 // Prefetch the reveal photos for today + the previous 6 days (a 7-day window) so
@@ -428,7 +451,29 @@ class MainActivity : ComponentActivity() {
                     SettingsDialog(onDismiss = { showSettings = false })
                 }
 
-                if (showKickoffIntro) {
+                if (showPhotoNote) {
+                    val dismissNote = {
+                        PushPrefs.setPhotoNoteShown(ctx)
+                        showPhotoNote = false
+                    }
+                    AlertDialog(
+                        onDismissRequest = dismissNote,
+                        confirmButton = {
+                            TextButton(onClick = dismissNote) { Text("Got it") }
+                        },
+                        title = { Text("Sorry about that") },
+                        text = {
+                            Text(
+                                "I moved the player photos online to make the app smaller, which " +
+                                    "meant some of you got \"connect to the internet\" instead of the " +
+                                    "reveal photo. Like Ranieri, sometimes tinkering too much causes " +
+                                    "problems. It is fixed now. Thanks for bearing with me."
+                            )
+                        },
+                    )
+                }
+
+                if (showKickoffIntro && !showPhotoNote) {
                     val dismissIntro = {
                         PushPrefs.setKickoffIntroShown(ctx)
                         showKickoffIntro = false

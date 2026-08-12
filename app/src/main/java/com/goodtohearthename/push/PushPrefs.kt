@@ -13,6 +13,7 @@ object PushPrefs {
     const val KEY_WINBACK_STAGE = "winback_stage"
     const val KEY_OPT_IN_PROMPT_SHOWN = "opt_in_prompt_shown"
     const val KEY_KICKOFF_INTRO_SHOWN = "kickoff_intro_shown"
+    const val KEY_PHOTO_NOTE_SHOWN = "photo_note_shown"
 
     fun prefs(ctx: Context) = ctx.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
 
@@ -21,6 +22,12 @@ object PushPrefs {
 
     fun setKickoffIntroShown(ctx: Context) =
         prefs(ctx).edit().putBoolean(KEY_KICKOFF_INTRO_SHOWN, true).apply()
+
+    fun photoNoteShown(ctx: Context): Boolean =
+        prefs(ctx).getBoolean(KEY_PHOTO_NOTE_SHOWN, false)
+
+    fun setPhotoNoteShown(ctx: Context) =
+        prefs(ctx).edit().putBoolean(KEY_PHOTO_NOTE_SHOWN, true).apply()
 
     fun isEnabled(ctx: Context): Boolean =
         prefs(ctx).getBoolean(KEY_DAILY_REMINDER_ENABLED, false)
