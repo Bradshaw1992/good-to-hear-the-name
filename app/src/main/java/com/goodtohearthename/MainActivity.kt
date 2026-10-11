@@ -91,6 +91,7 @@ class MainActivity : ComponentActivity() {
                 var showArchive by remember { mutableStateOf(false) }
                 var showSettings by remember { mutableStateOf(false) }
                 var showKickoffIntro by remember { mutableStateOf(false) }
+                var showV18Thanks by remember { mutableStateOf(false) }
                 var showPhotoNote by remember { mutableStateOf(false) }
 
                 // Derived from playingDayIndex
@@ -276,6 +277,18 @@ class MainActivity : ComponentActivity() {
                 LaunchedEffect(Unit) {
                     if (!PushPrefs.photoNoteShown(ctx)) {
                         showPhotoNote = true
+                    }
+                }
+                // One-time thank you for people who already had the game before v1.8.
+                // Someone installing fresh has played nothing yet, so they are marked as
+                // seen straight away and never get a message meant for returning players.
+                LaunchedEffect(Unit) {
+                    if (!PushPrefs.v18ThanksShown(ctx)) {
+                        if (StatsPersistence.load(ctx).played > 0) {
+                            showV18Thanks = true
+                        } else {
+                            PushPrefs.setV18ThanksShown(ctx)
+                        }
                     }
                 }
                 // Prefetch the reveal photos for today + the previous 6 days (a 7-day window) so
@@ -491,6 +504,47 @@ class MainActivity : ComponentActivity() {
                                     "impossible to guess from. It is now a free Kick-off line above the " +
                                     "clues, which frees all five clues to be proper, gettable ones that " +
                                     "start a bit harder. Enjoy!"
+                            )
+                        },
+                    )
+                }
+
+                if (showV18Thanks && !showPhotoNote && !showKickoffIntro) {
+                    val dismissThanks = {
+                        PushPrefs.setV18ThanksShown(ctx)
+                        showV18Thanks = false
+                    }
+                    AlertDialog(
+                        onDismissRequest = dismissThanks,
+                        confirmButton = {
+                            TextButton(onClick = {
+                                dismissThanks()
+                                val intent = Intent(Intent.ACTION_SEND).apply {
+                                    type = "text/plain"
+                                    putExtra(
+                                        Intent.EXTRA_TEXT,
+                                        "Good to Hear the Name, a daily football guessing game. " +
+                                            "Five clues, one player. https://goodtohearthename.co.uk"
+                                    )
+                                }
+                                ctx.startActivity(Intent.createChooser(intent, "Share"))
+                            }) { Text("Share it with someone") }
+                        },
+                        dismissButton = {
+                            TextButton(onClick = dismissThanks) { Text("No thanks") }
+                        },
+                        title = { Text("Thank you") },
+                        text = {
+                            Text(
+                                "There are 86 new players in this update, which takes the game " +
+                                    "to 279 days in all.\n\n" +
+                                    "Mostly though I wanted to say thank you. I made this for myself " +
+                                    "and assumed about four other people would ever play it. Instead " +
+                                    "there is a stubborn and genuinely dedicated group of you " +
+                                    "turning up every day to identify a blurred man who once played " +
+                                    "eleven games for Bolton, and I am delighted about it.\n\n" +
+                                    "If you enjoy it, please pass it on. Word of mouth is the only " +
+                                    "way a silly game like this grows."
                             )
                         },
                     )

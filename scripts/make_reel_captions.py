@@ -56,12 +56,12 @@ DAY {day} — {name.upper()} — {pid}/{pid}_reel.mp4
 {bar}
 {hook}
 
-Day {day}. Five clues, five guesses.
+Day {day}. You only get three clues here, so if you are stumped, that is rather the point.
 
-Reckon you know him? Drop your guess in the comments. To find out if you're right, play it yourself here:
+The full puzzle is on the website. Five clues, five guesses, and the reveal. Have a proper go:
 {HOME_URL}?day={day}
 
-Enjoyed it? There are 50+ more to play on the website.
+A new player every single day, with well over a hundred more to play.
 
 Made by a fan, for the obsessives.
 

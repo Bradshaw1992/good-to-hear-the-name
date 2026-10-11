@@ -47,8 +47,10 @@ SOURCE_DIR = os.path.join(ROOT, "Player Pictures")
 PREVIEW_DIR = os.path.join(ROOT, "silhouette_previews")
 
 # Reveal-image targets: same filename across all three platforms
+# Android stopped bundling reveal photos in v1.7: it fetches them from the R2 CDN
+# and app/src/main/assets/images was deleted in b5ec2d4. iOS still bundles its
+# copy, and the web serves docs/images directly from Pages.
 IMAGES_TARGETS = [
-    os.path.join(ROOT, "app/src/main/assets/images"),
     os.path.join(ROOT, "ios/GoodToHearTheName/GoodToHearTheName/Resources/images"),
     os.path.join(ROOT, "docs/images"),
 ]
@@ -63,7 +65,25 @@ SILHOUETTE_TARGETS = [
 SILHOUETTE_SCRIPT = os.path.join(ROOT, "scripts/silhouette.swift")
 ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".avif"}
 SILHOUETTE_SUFFIX = "_sil"
-MIN_RESOLUTION = 800
+# Thresholds are advisory only. The user reviewed the worst case (Sturridge, 460x276) and
+# accepted it: "I am not entering an art competition." So nothing is refused on size any
+# more; the script reports and proceeds. 700+ fine, 500-699 soft, below 500 warns.
+# Per-player tier overrides, chosen by the user after reviewing all 86 previews (2026-10-06).
+# Without this, re-running --review would quietly put these back to tier 2 and the leaks
+# would have to be spotted by eye all over again.
+TIER_OVERRIDES = {
+    "oliver_kahn": 4,        # gloves visible plus a readable Hamburg advertising board
+    "chris_smalling": 3,
+    "christian_benteke": 3,
+    "emmanuel_petit": 3,
+    "hulk": 3,
+    "teddy_sheringham": 3,
+    "theo_walcott": 3,
+}
+
+MIN_RESOLUTION = 500
+SOFT_WARN_RESOLUTION = 700
+HARD_FLOOR_RESOLUTION = 0
 BRIGHTNESS_BREAKPOINT = 0.25  # fx:mean above this counts as a "bright" source
 
 
@@ -72,10 +92,20 @@ BRIGHTNESS_BREAKPOINT = 0.25  # fx:mean above this counts as a "bright" source
 def run(cmd, **kw):
     return subprocess.run(cmd, check=True, capture_output=True, **kw)
 
+# Reveal photos are capped at 1600px on the long edge at quality 82. Recorded plan was
+# 87MB -> 34MB across the bundle; 29 of the v1.8 sources exceed 1600px. The ">" in the
+# resize geometry means shrink-only, so small sources are never upscaled.
+REVEAL_MAX_PX = 1600
+REVEAL_QUALITY = 82
+
+
 def normalize_to_jpg(src, dst):
-    run(["sips", "--setProperty", "format", "jpeg",
-         "-s", "formatOptions", "92",
+    # sips first because it reads everything macOS can, including .jxl which ImageMagick cannot
+    run(["sips", "--setProperty", "format", "jpeg", "-s", "formatOptions", "95",
          src, "--out", dst])
+    # then cap the size and set the shipping quality
+    run(["magick", dst, "-resize", f"{REVEAL_MAX_PX}x{REVEAL_MAX_PX}>",
+         "-strip", "-quality", str(REVEAL_QUALITY), dst])
 
 def measure_brightness(jpg_path):
     """Return mean luminance in [0,1]."""
@@ -177,8 +207,14 @@ def process(pid, slots, tier, tmp, preview_only):
 
     # Resolution check
     w, h = measure_resolution(sil_input)
-    if min(w, h) < MIN_RESOLUTION:
-        print(f"    WARN: source is {w}x{h}, below {MIN_RESOLUTION}px minimum.  See Shevchenko issue.")
+    short = min(w, h)
+    if short < HARD_FLOOR_RESOLUTION:
+        print(f"    REFUSED: source is {w}x{h}. Below {HARD_FLOOR_RESOLUTION}px it will look like Shevchenko. Find another.")
+        return None
+    elif short < MIN_RESOLUTION:
+        print(f"    WARN: source is {w}x{h}, under the {MIN_RESOLUTION}px floor. Usable but it will show on a big phone.")
+    elif short < SOFT_WARN_RESOLUTION:
+        print(f"    note: source is {w}x{h}. Fine for the reveal, slightly soft if anyone pinches in.")
 
     # Brightness measurement (drives tier-2 recipe branch)
     mean = measure_brightness(sil_input)
@@ -221,8 +257,8 @@ def main():
                       help="Write only to silhouette_previews/ (default if neither flag given)")
     mode.add_argument("--commit", action="store_true",
                       help="Write to all 6 platform folders")
-    p.add_argument("--tier", type=int, default=2, choices=[1, 2, 3, 4],
-                   help="Treatment tier 1-4 (default 2)")
+    p.add_argument("--tier", type=int, default=None, choices=[1, 2, 3, 4],
+                   help="Force a tier for this run. Default: per-player TIER_OVERRIDES, else 2")
     p.add_argument("--only", help="Only process this player_id")
     p.add_argument("--dry-run", action="store_true", help="Show what would happen without writing")
     args = p.parse_args()
@@ -241,7 +277,7 @@ def main():
         return
 
     mode_label = "REVIEW (preview folder only)" if preview_only else "COMMIT (writing to all platforms)"
-    print(f"\nMode: {mode_label}   Tier: {args.tier}")
+    print(f"\nMode: {mode_label}   Tier: {args.tier if args.tier else 'per-player (default 2)'}")
     print(f"Found {len(by_player)} player(s):")
     for pid in sorted(by_player):
         s = by_player[pid]
@@ -257,7 +293,8 @@ def main():
     failed = []
     for pid in sorted(by_player):
         try:
-            process(pid, by_player[pid], args.tier, tmp, preview_only)
+            tier = args.tier if args.tier else TIER_OVERRIDES.get(pid, 2)
+            process(pid, by_player[pid], tier, tmp, preview_only)
         except subprocess.CalledProcessError as e:
             err = (e.stderr or b"").decode("utf-8", errors="replace").strip()
             print(f"    ERROR processing {pid}: {err or e}")

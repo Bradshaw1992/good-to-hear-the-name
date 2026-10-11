@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Upload the 193 reveal photos to the Cloudflare R2 bucket that backs cdn.goodtohearthename.co.uk.
+# Upload every reveal photo to the Cloudflare R2 bucket that backs cdn.goodtohearthename.co.uk.
 # Photos are served at  https://cdn.goodtohearthename.co.uk/images/<id>.jpg  (see RemoteImageCache
 # on Android / RemotePhotoCache on iOS). Silhouettes stay bundled and are NOT uploaded.
 #
@@ -20,7 +20,9 @@
 
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-SRC="$ROOT/app/src/main/assets/images"     # complete, canonical set (all 193 referenced photos)
+# v1.7 deleted app/src/main/assets/images when Android moved to the CDN, so the
+# canonical complete set is now the web one, which is tracked in git.
+SRC="$ROOT/docs/images"
 CONTENT="$ROOT/app/src/main/assets/content.json"
 STAGE="$(mktemp -d)"
 trap 'rm -rf "$STAGE"' EXIT
@@ -59,3 +61,4 @@ aws s3 sync "$STAGE/" "s3://${R2_BUCKET}/images/" \
   --size-only
 
 echo "Done. Spot-check: https://cdn.goodtohearthename.co.uk/images/steve_bruce.jpg"
+echo "New in this batch, spot-check too: https://cdn.goodtohearthename.co.uk/images/peter_crouch.jpg"

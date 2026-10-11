@@ -48,3 +48,10 @@ New Players Content/
 REMOTE_IMAGES_SETUP.md
 V1_7_TEST_PLAN.md
 
+
+# Archived content-prep working folders (raw photos, spent previews)
+archive/
+
+# Python bytecode
+__pycache__/
+*.pyc

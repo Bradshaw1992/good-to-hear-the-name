@@ -11,6 +11,7 @@ Output: marketing_print/reel_frames/<player_id>/
 """
 import os
 import sys
+import glob
 import json
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
@@ -358,6 +359,239 @@ CONFIGS = {
         "day": 103,
         "cover_tease": "Today's player pulled every string from midfield.",
     },
+    "thomas_vermaelen": {
+        "day": 104,
+        "cover_tease": "Today's player belonged to a golden generation that promised more than it won.",
+    },
+    "michael_carrick": {
+        "day": 105,
+        "cover_tease": "Today's player did the quiet work while others took the glory.",
+    },
+    "marco_reus": {
+        "day": 106,
+        "cover_tease": "Today's player was as gifted as he was unlucky.",
+    },
+    "esteban_cambiasso": {
+        "day": 107,
+        "cover_tease": "Today's player did his best work where nobody was looking.",
+    },
+    "adriano": {
+        "day": 108,
+        "cover_tease": "Today's player had a left foot like a sledgehammer.",
+    },
+    "jonathan_woodgate": {
+        "day": 109,
+        "cover_tease": "Today's player survived the most disastrous debut imaginable.",
+    },
+    "florent_malouda": {
+        "day": 110,
+        "cover_tease": "Today's player took a while to win everyone over, then never looked back.",
+    },
+    "dimitri_payet": {
+        "day": 111,
+        "cover_tease": "Today's player scored goals that made rival managers applaud.",
+    },
+    "daley_blind": {
+        "day": 112,
+        "cover_tease": "Today's player could slot in anywhere and never let you down.",
+    },
+    "sami_hyypia": {
+        "day": 113,
+        "cover_tease": "Today's player was a giant who never got his moment on the biggest stage.",
+    },
+    # --- Days 114-123: reel covers stay HARD (deliberately vague from the first frame),
+    # while the IG picture hooks give a bit more away. See hook_text in make_instagram_posts.py.
+    "stewart_downing": {
+        "day": 114,
+        "cover_tease": "Today's player never quite lived up to the hype.",
+    },
+    "fabien_barthez": {
+        "day": 115,
+        "cover_tease": "Today's player had ice in his veins on the biggest nights.",
+    },
+    "jermain_defoe": {
+        "day": 116,
+        "cover_tease": "Today's player was a born finisher who kept coming home.",
+    },
+    "david_villa": {
+        "day": 117,
+        "cover_tease": "Today's player always turned up when it mattered most.",
+    },
+    "henrik_larsson": {
+        "day": 118,
+        "cover_tease": "Today's player was worshipped at one club above all others.",
+    },
+    "darren_bent": {
+        "day": 119,
+        "cover_tease": "Today's player scored goals wherever he went, and never got his due.",
+    },
+    "andrey_arshavin": {
+        "day": 120,
+        "cover_tease": "Today's player had one unforgettable night in front of goal.",
+    },
+    "joleon_lescott": {
+        "day": 121,
+        "cover_tease": "Today's player overcame more than most to reach the top.",
+    },
+    "dwight_yorke": {
+        "day": 122,
+        "cover_tease": "Today's player made the big nights look like fun.",
+    },
+    "jamie_carragher": {
+        "day": 123,
+        "cover_tease": "Today's player left it all out there, every single game.",
+    },
+    # --- Days 125-134: reel covers stay HARD (vague from the first frame; the reel walks all 5 clues).
+    "ricardo_carvalho": {
+        "day": 125,
+        "cover_tease": "Today's player was a defender the very best managers built around.",
+    },
+    "cheick_tiote": {
+        "day": 126,
+        "cover_tease": "Today's player scored a goal his fans will never forget.",
+    },
+    "mauro_icardi": {
+        "day": 127,
+        "cover_tease": "Today's player made as many headlines off the pitch as on it.",
+    },
+    "michael_essien": {
+        "day": 128,
+        "cover_tease": "Today's player was pure power in the middle of the park.",
+    },
+    "jimmy_bullard": {
+        "day": 129,
+        "cover_tease": "Today's player took the unlikeliest road to the top.",
+    },
+    "kevin_phillips": {
+        "day": 130,
+        "cover_tease": "Today's player just kept finding the net.",
+    },
+    "steve_bruce": {
+        "day": 131,
+        "cover_tease": "Today's player was a born leader at the back.",
+    },
+    "wilfried_zaha": {
+        "day": 132,
+        "cover_tease": "Today's player was a nightmare to defend against on his day.",
+    },
+    "thiago_alcantara": {
+        "day": 133,
+        "cover_tease": "Today's player made the middle of the pitch look like art.",
+    },
+    "titus_bramble": {
+        "day": 134,
+        "cover_tease": "Today's player could win it, or lose it, on any given day.",
+    },
+    "keylor_navas": {
+        "day": 135,
+        "cover_tease": "Today's player kept goal on the biggest nights of all.",
+    },
+    "ruud_gullit": {
+        "day": 136,
+        "cover_tease": "Today's player was once the biggest name in the game.",
+    },
+    "troy_deeney": {
+        "day": 137,
+        "cover_tease": "Today's player scored a goal an entire club will never forget.",
+    },
+    "javier_zanetti": {
+        "day": 138,
+        "cover_tease": "Today's player looked like he could play forever.",
+    },
+    "rafael_van_der_vaart": {
+        "day": 139,
+        "cover_tease": "Today's player made the game look effortlessly elegant.",
+    },
+    "shay_given": {
+        "day": 140,
+        "cover_tease": "Today's player was on the wrong end of a famous injustice.",
+    },
+    "robert_huth": {
+        "day": 142,
+        "cover_tease": "Today's player was part of the most unlikely triumph of all.",
+    },
+    "scott_parker": {
+        "day": 143,
+        "cover_tease": "Today's player shone brightest as his team fell apart.",
+    },
+    "emmanuel_adebayor": {
+        "day": 144,
+        "cover_tease": "Today's player once celebrated a goal in the most provocative way imaginable.",
+    },
+    "paolo_maldini": {
+        "day": 145,
+        "cover_tease": "Today's player gave everything to one club, for a very long time.",
+    },
+    "ross_barkley": {
+        "day": 146,
+        "cover_tease": "Today's player carried the hopes of his hometown.",
+    },
+    "samuel_etoo": {
+        "day": 147,
+        "cover_tease": "Today's player was a winning machine.",
+    },
+    "nani": {
+        "day": 148,
+        "cover_tease": "Today's player lived in the shadow of a countryman legend.",
+    },
+    "rory_delap": {
+        "day": 149,
+        "cover_tease": "Today's player had one weapon defenders genuinely feared.",
+    },
+    "fabio_da_silva": {
+        "day": 150,
+        "cover_tease": "Today's player had an identical twin who played too.",
+    },
+    "paolo_di_canio": {
+        "day": 151,
+        "cover_tease": "Today's player once chose sportsmanship over an open goal.",
+    },
+    "marc_albrighton": {
+        "day": 152,
+        "cover_tease": "Today's player was a free transfer who ended up winning it all.",
+    },
+    "leandro_paredes": {
+        "day": 153,
+        "cover_tease": "Today's player shared a pitch with the biggest names in the game.",
+    },
+    "nuno_espirito_santo": {
+        "day": 154,
+        "cover_tease": "Today's player is better known now for the dugout than the pitch.",
+    },
+    "ryan_bertrand": {
+        "day": 155,
+        "cover_tease": "Today's player's first big night was the biggest of all.",
+    },
+    "peter_odemwingie": {
+        "day": 156,
+        "cover_tease": "Today's player was involved in one of deadline day's funniest moments.",
+    },
+    "marek_hamsik": {
+        "day": 157,
+        "cover_tease": "Today's player rewrote the record books at one club.",
+    },
+    "richard_dunne": {
+        "day": 158,
+        "cover_tease": "Today's player holds a record most defenders would rather forget.",
+    },
+    "edinson_cavani": {
+        "day": 159,
+        "cover_tease": "Today's player once sent a global superstar home from a World Cup.",
+    },
+    "marc_overmars": {
+        "day": 160,
+        "cover_tease": "Today's player was lightning down the wing.",
+    },
+    "paul_ince": {
+        "day": 161,
+        "cover_tease": "Today's player broke barriers and crossed a great divide.",
+    },
+    # --- Throwback archive reels (launch-roster classics, Days 1-50). "This player" phrasing
+    # instead of "Today's player" since these are reposted out of sequence.
+    "batistuta": {
+        "day": 10,
+        "cover_tease": "This player scored for fun, and loved one club too much to leave.",
+    },
 }
 
 PLAYER_ID = sys.argv[1] if len(sys.argv) > 1 else "diego_forlan"
@@ -373,6 +607,10 @@ TOM_OPENER = cfg.get("tom_opener", "")
 # Used for reminder-to-play reels aimed at existing followers.
 COVER_TEASE = cfg.get("cover_tease", "")
 URL_TEXT = f"goodtohearthename.co.uk?day={DAY}"
+
+# How many clues the reel shows. Full walkthrough = 5. Teaser = 3 (withhold the giveaway
+# clues, drive to the website to play the full puzzle). Override per run: REEL_CLUE_LIMIT=3
+CLUE_LIMIT = int(os.environ.get("REEL_CLUE_LIMIT", "5"))
 
 OUT = os.path.join(ROOT, "marketing_print", "reel_frames", PLAYER_ID)
 os.makedirs(OUT, exist_ok=True)
@@ -688,6 +926,42 @@ def frame_endcard(out_name):
     print("wrote", out_name)
 
 
+def frame_endcard_teaser(out_name):
+    """Teaser end card (3-clue reels). Withholds the answer and drives to the website to
+    play the FULL puzzle. Keeps a light comments nudge, since comments still feed reach.
+    No 'the missing clues are on the site' promise: the site plays fresh from clue 1."""
+    c = Image.new("RGB", (W, H), CREAM)
+    d = ImageDraw.Draw(c)
+    sil_path = os.path.join(SILS, f"{PLAYER_ID}.jpg")
+
+    top_bar(c, d)
+    paste_silhouette(c, sil_path, top=SAFE_TOP, bottom=SAFE_TOP + 400)
+
+    safe_w = SAFE_RIGHT - SAFE_LEFT
+    base_y = SAFE_TOP + 450
+
+    # primary ask: go and play the full thing (the answer lives on the site, not here)
+    center_text(d, "STILL GUESSING?", font(46, bold=True), base_y, color=INK)
+    f_cta = fit_font("PLAY THE FULL PUZZLE", max_size=58, max_width=safe_w, draw=d, bold=True)
+    center_text(d, "PLAY THE FULL PUZZLE", f_cta, base_y + 70, color=GREEN)
+    center_text(d, "Five clues, five guesses. Free.", font(34, bold=True), base_y + 150, color=INK)
+
+    # divider
+    div_y = base_y + 215
+    d.rectangle([(W // 2 - 80, div_y), (W // 2 + 80, div_y + 4)], fill=MUTED)
+
+    # website funnel (no clickable link on a Reel, so point at the bio) + light comment nudge
+    center_text(d, "Link in bio  ·  goodtohearthename.co.uk", font(30, bold=True),
+                div_y + 30, color=GREEN)
+    f_nudge = fit_font("New player every day. Or guess in the comments.",
+                       max_size=28, max_width=safe_w, draw=d, bold=True)
+    center_text(d, "New player every day. Or guess in the comments.", f_nudge,
+                div_y + 78, color=MUTED)
+
+    c.save(os.path.join(OUT, out_name), "PNG")
+    print("wrote", out_name)
+
+
 # ---------- driver ----------
 
 def load_player():
@@ -701,37 +975,39 @@ def load_player():
 
 if __name__ == "__main__":
     player = load_player()
-    clues = player["clues"]
+    all_clues = player["clues"]
+    clues = all_clues[:CLUE_LIMIT]
+    teaser = CLUE_LIMIT < len(all_clues)
+
+    # Clear stale frames first so a shorter (teaser) rebuild can't leave old clue4/clue5
+    # frames behind for render_reel.py to pick up.
+    for old in glob.glob(os.path.join(OUT, "*.png")):
+        os.remove(old)
 
     frame_brand("01_brand.png")
     frame_brand_tom("01_brand_tom.png")
     for i, clue in enumerate(clues, start=1):
         frame_clue(i, clue, f"0{1+i}_clue{i}.png")
-    frame_endcard("07_endcard.png")
+    if teaser:
+        frame_endcard_teaser("07_endcard.png")
+    else:
+        frame_endcard("07_endcard.png")
 
-    # write a timing manifest
+    mode = f"{len(clues)}-clue teaser (drive to site)" if teaser else "full 5-clue walkthrough"
     manifest = [
-        f"# Reel storyboard — {player['name']} (Day {DAY} archive, no-reveal CTA)",
-        "Total runtime: ~26.5 seconds.",
-        "Aspect: 1080x1920 portrait. Audio: low stadium hum bed, soft transition cue under end card.",
+        f"# Reel storyboard — {player['name']} (Day {DAY}) — {mode}",
+        "Aspect: 1080x1920 portrait. Audio: stadium hum bed + soft cue under the end card.",
+        f"Frames: 01_brand + {len(clues)} clue frames + 07_endcard.",
+        "Render to MP4 with: scripts/render_reel.py " + PLAYER_ID + " (auto-detects the clue count).",
         "",
-        "| t (s)        | Frame             | Duration |",
-        "|--------------|-------------------|----------|",
-        "| 0.0 – 1.0    | 01_brand.png      | 1.0s     |",
-        "| 1.0 – 4.5    | 02_clue1.png      | 3.5s     |",
-        "| 4.5 – 8.0    | 03_clue2.png      | 3.5s     |",
-        "| 8.0 – 11.5   | 04_clue3.png      | 3.5s     |",
-        "| 11.5 – 16.0  | 05_clue4.png      | 4.5s     |",
-        "| 16.0 – 20.5  | 06_clue5.png      | 4.5s     |",
-        "| 20.5 – 27.0  | 07_endcard.png    | 6.5s     |",
+        ("Endcard: no reveal. Withholds the answer and points to the website to play the full "
+         "puzzle; keeps a light comments nudge." if teaser
+         else "Endcard: no reveal. Guess-in-comments CTA + link in bio."),
         "",
-        "Transitions: quick fade (0.2s) between clue frames. Slow fade (0.6s) between clue 5 and end card.",
-        "",
-        f"Caption: \"Day {DAY}. Five clues, five guesses. Think you know him? Drop your guess in the comments and I'll tell you if you're right. More than 50 to play, link in bio.\"",
-        "Hashtags: see captions.md from the daily IG batch.",
+        f"Caption + hashtags: see marketing_print/reel_captions.txt for Day {DAY}.",
     ]
     manifest_path = os.path.join(OUT, "STORYBOARD.md")
     with open(manifest_path, "w") as f:
         f.write("\n".join(manifest))
     print(f"\nwrote {os.path.relpath(manifest_path, ROOT)}")
-    print(f"\nDone. Frames + storyboard in {os.path.relpath(OUT, ROOT)}/")
+    print(f"\nDone ({mode}). Frames + storyboard in {os.path.relpath(OUT, ROOT)}/")

@@ -806,8 +806,8 @@ if(location.hostname==="bradshaw1992.github.io"){
     </div>
   </div>
 
-<script src="players.js?v=28"></script>
-<script src="bios.js?v=26"></script>
+<script src="players.js?v=29"></script>
+<script src="bios.js?v=27"></script>
 <script>
 (() => {
   const COMMENTARY_QUOTES = {
@@ -901,6 +901,7 @@ if(location.hostname==="bradshaw1992.github.io"){
 
   // ---- Stats (localStorage) ----
   const STATS_KEY = "gthn_stats_v1";
+  const THANKS_KEY = "gthn_v18_thanks";
   const defaultStats = () => ({
     played: 0, won: 0, currentStreak: 0, maxStreak: 0,
     distribution: [0, 0, 0, 0, 0, 0],
@@ -967,7 +968,7 @@ if(location.hostname==="bradshaw1992.github.io"){
 
   // ---- Autocomplete names (lazy-loaded) ----
   let allNames = ALL_PLAYERS.map(p => ({ n: p.name, f: p.flag, y: p.years || "" }));
-  fetch("names.json?v=29").then(r => r.json()).then(big => {
+  fetch("names.json?v=30").then(r => r.json()).then(big => {
     const seen = new Set(allNames.map(e => e.n.toLowerCase()));
     for (const e of big) { const k = e.n.toLowerCase(); if (!seen.has(k)) { seen.add(k); allNames.push(e); } }
     allNames.sort((a, b) => a.n.toLowerCase().localeCompare(b.n.toLowerCase()));
@@ -1010,9 +1011,9 @@ if(location.hostname==="bradshaw1992.github.io"){
   // One-time explainer shown the first time the new Kick-off mechanic appears.
   function maybeShowKickoffIntro() {
     try {
-      if (!player || !player.kickoff) return;
-      if (localStorage.getItem("gthn_kickoff_intro_v1")) return;
-    } catch (e) { return; }
+      if (!player || !player.kickoff) return false;
+      if (localStorage.getItem("gthn_kickoff_intro_v1")) return false;
+    } catch (e) { return false; }
     const ov = document.createElement("div");
     ov.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px";
     ov.innerHTML = `
@@ -1026,6 +1027,48 @@ if(location.hostname==="bradshaw1992.github.io"){
     document.body.appendChild(ov);
     const close = () => { try { localStorage.setItem("gthn_kickoff_intro_v1", "1"); } catch (e) {} ov.remove(); };
     ov.querySelector("#kickoffIntroBtn").addEventListener("click", close);
+    ov.addEventListener("click", (e) => { if (e.target === ov) close(); });
+    return true;
+  }
+
+  // One-time thank you, shown only to people who already had the game before
+  // this update. A fresh install has no recorded plays, so it never sees this.
+  function maybeShowUpdateThanks() {
+    try {
+      if (localStorage.getItem(THANKS_KEY)) return;
+      const s = JSON.parse(localStorage.getItem(STATS_KEY) || "null");
+      if (!s || !s.played) {                 // new here, so nothing to thank them for yet
+        localStorage.setItem(THANKS_KEY, "1");
+        return;
+      }
+    } catch (e) { return; }
+    const ov = document.createElement("div");
+    ov.style.cssText = "position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px";
+    ov.innerHTML = `
+      <div style="background:var(--card,#fff);color:var(--text,#1a1a1a);max-width:400px;width:100%;border-radius:18px;padding:24px;box-shadow:0 12px 40px rgba(0,0,0,0.25)">
+        <div style="font-size:19px;font-weight:800;margin-bottom:10px">Thank you</div>
+        <div style="font-size:15px;line-height:1.55;color:var(--text-soft,#3a4858)">
+          <p style="margin:0 0 12px">There are <b>86 new players</b> in this update, which takes the game to 279 days in all.</p>
+          <p style="margin:0 0 12px">Mostly though I wanted to say thank you. I made this for myself and assumed about four other people would ever play it. Instead there is a stubborn and genuinely dedicated group of you turning up every day to identify a blurred man who once played eleven games for Bolton, and I am delighted about it.</p>
+          <p style="margin:0">If you enjoy it, please pass it on. Word of mouth is the only way a silly game like this grows.</p>
+        </div>
+        <button id="thanksShareBtn" style="margin-top:18px;width:100%;padding:12px;border:none;border-radius:12px;background:var(--accent,#0f7a3e);color:#fff;font-size:15px;font-weight:700;cursor:pointer">Share it with someone</button>
+        <button id="thanksCloseBtn" style="margin-top:8px;width:100%;padding:12px;border:none;border-radius:12px;background:transparent;color:var(--text-soft,#3a4858);font-size:15px;font-weight:600;cursor:pointer">No thanks</button>
+      </div>`;
+    document.body.appendChild(ov);
+    const close = () => {
+      try { localStorage.setItem(THANKS_KEY, "1"); } catch (e) {}
+      ov.remove();
+    };
+    ov.querySelector("#thanksShareBtn").addEventListener("click", async () => {
+      const text = "Good to Hear the Name, a daily football guessing game. Five clues, one player. https://goodtohearthename.co.uk";
+      try {
+        if (navigator.share) { await navigator.share({ text }); }
+        else { await navigator.clipboard.writeText(text); }
+      } catch (e) {}
+      close();
+    });
+    ov.querySelector("#thanksCloseBtn").addEventListener("click", close);
     ov.addEventListener("click", (e) => { if (e.target === ov) close(); });
   }
 
@@ -1681,7 +1724,7 @@ if(location.hostname==="bradshaw1992.github.io"){
     : null;
   const bootDay = (pinDayAbs && pinDayAbs <= today) ? pinDayAbs : today;
   loadGame(bootDay);
-  maybeShowKickoffIntro();
+  if (!maybeShowKickoffIntro()) maybeShowUpdateThanks();
   if (demoMode === "reveal") setTimeout(() => revealAnswer(false), 100);
   if (demoMode === "correct") setTimeout(() => submitGuess(player.name), 100);
   if (demoMode === "mid") setTimeout(() => { submitGuess("Wayne Rooney"); submitGuess("Steven Gerrard"); }, 100);

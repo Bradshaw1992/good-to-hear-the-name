@@ -1,0 +1,93 @@
+# v1.8 photo URLs. Paste a link after each id, separated by a space or tab.
+# Lines without a URL are ignored, so fill them in any order and run as often as you like.
+#
+#   check first:   python3 scripts/fetch_player_photos.py planning/v1_8_photo_urls.txt --check
+#   then stage:    python3 scripts/fetch_player_photos.py planning/v1_8_photo_urls.txt --commit
+#   then:          python3 scripts/distribute_player_pictures.py --review
+
+seamus_coleman https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FS%25C3%25A9amus_Coleman&ved=0CBcQjRxqFwoTCPij_6ODpZcDFQAAAAAdAAAAABA3&opi=89978449
+ricardo_quaresma https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.skysports.com%2Ffootball%2Fplayer%2F11954%2Fricardo-quaresma&ved=0CBcQjRxqFwoTCIC4oKmDpZcDFQAAAAAdAAAAABBO&opi=89978449
+john_carew https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.skysports.com%2Ffootball%2Fnews%2F11694%2F7079212%2Fcarew-in-championship-talks&ved=0CBcQjRxqFwoTCMCDybaDpZcDFQAAAAAdAAAAABA3&opi=89978449
+kalvin_phillips https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.theguardian.com%2Ffootball%2F2021%2Fjun%2F13%2Fkalvin-phillips-quiet-excellence-offers-england-something-new-and-hopeful&ved=0CBcQjRxqFwoTCOjnpL-DpZcDFQAAAAAdAAAAABA3&opi=89978449
+roy_makaay https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fnydlfc.com%2Fplayers%2Froy-makaay%2F&ved=0CBcQjRxqFwoTCMCOv8aDpZcDFQAAAAAdAAAAABA3&opi=89978449
+conor_coady
+patrick_kluivert
+thomas_gravesen https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.mirror.co.uk%2Fsport%2Ffootball%2Fnews%2Fthomas-gravesen-addresses-rumours-worth-19579192&ved=0CBcQjRxqFwoTCNDtkJ2MpZcDFQAAAAAdAAAAABA3&opi=89978449
+jens_lehmann https://www.google.com/imgres?q=Jens%20lehman&imgurl=https%3A%2F%2Fthumb.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F9%2F9b%2FJens_Lehmann.jpg%2F250px-Jens_Lehmann.jpg%3Futm_source%3Den.wikipedia.org%26utm_campaign%3Dparser%26utm_content%3Dthumbnail&imgrefurl=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FJens_Lehmann&docid=OVrnqIX-pPL-_M&tbnid=ECJ6CkfNh46raM&vet=12ahUKEwiRjeaijKWXAxUEaUEAHXRqF9QQnPAOegQIQhAA..i&w=250&h=375&hcb=2&ved=2ahUKEwiRjeaijKWXAxUEaUEAHXRqF9QQnPAOegQIQhAA
+diego_milito https://www.skysports.com/football/player/12023/diego-milito
+ivan_toney https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.theguardian.com%2Ffootball%2F2022%2Fdec%2F20%2Fivan-toney-hit-with-additional-betting-charge-by-football-association&ved=0CBcQjRxqFwoTCJiJprqMpZcDFQAAAAAdAAAAABA3&opi=89978449
+thiago_motta https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.skysports.com%2Ffootball%2Fplayer%2F14584%2Fthiago-motta&ved=0CBcQjRxqFwoTCMD_-8KMpZcDFQAAAAAdAAAAABA3&opi=89978449
+shaun_wright_phillips
+frederic_kanoute https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fthesefootballtimes.co%2F2017%2F04%2F14%2Ffreddie-kanoute-the-languid-average-striker-who-suddenly-became-one-of-europes-best%2F&ved=0CBcQjRxqFwoTCOjW9tCMpZcDFQAAAAAdAAAAABBS&opi=89978449
+joaquin https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fthesefootballtimes.co%2F2020%2F11%2F06%2Fjoaquin-the-record-breaker-the-joker-and-the-nearly-man%2F&ved=0CBcQjRxqFwoTCPCEsNmMpZcDFQAAAAAdAAAAABA3&opi=89978449
+hernan_crespo https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.skysports.com%2Ffootball%2Fplayer%2F2367%2Fhernan-crespo&ved=0CBcQjRxqFwoTCPCBmeGMpZcDFQAAAAAdAAAAABA3&opi=89978449
+laurent_robert
+per_mertesacker
+duncan_ferguson https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.hotwatercomedy.co.uk%2Fcomedian%2F4069%2Fduncan-ferguson%2F&ved=0CBcQjRxqFwoTCIiVlLONpZcDFQAAAAAdAAAAABA3&opi=89978449
+ian_wright
+oliver_kahn
+javier_saviola https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.fcbarcelona.com%2Fen%2Ffootball%2Ffirst-team%2Factualites%2F2182614%2F20-years-since-saviola-joined-barca&ved=0CBcQjRxqFwoTCNDFnNKNpZcDFQAAAAAdAAAAABA3&opi=89978449
+jack_rodwell https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.skysports.com%2Ffootball%2Fplayer%2F6809%2Fjack-rodwell&ved=0CBcQjRxqFwoTCOjxydmNpZcDFQAAAAAdAAAAABA3&opi=89978449
+helder_postiga https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fen.atleticodemadrid.com%2Fnoticias%2Fhelder-postiga-the-star-signing-of-atletico-de-kolkata&ved=0CBcQjRxqFwoTCPiW8ZaOpZcDFQAAAAAdAAAAABA3&opi=89978449
+nemanja_vidic https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.independent.co.uk%2Fsport%2Ffootball%2Fpremier-league%2Fmanchester-united-hero-nemanja-vidic-retires-defender-s-five-greatest-moments-at-old-trafford-a6842111.html&ved=0CBcQjRxqFwoTCJCQtZyOpZcDFQAAAAAdAAAAABA3&opi=89978449
+peter_crouch
+john_oshea https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.bbc.com%2Fsport%2Farticles%2Fcrged7y79lyo&ved=0CBcQjRxqFwoTCKj-qK-OpZcDFQAAAAAdAAAAABBS&opi=89978449
+kaka https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fbleacherreport.com%2Farticles%2F2738922-the-forgotten-genius-of-kaka&ved=0CBcQjRxqFwoTCOCZ1LyOpZcDFQAAAAAdAAAAABA3&opi=89978449
+theo_walcott https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.independent.co.uk%2Fsport%2Ffootball%2Fpremier-league%2Ftheo-walcott-confident-of-returning-to-form-for-arsenal-and-england-8960521.html&ved=0CBcQjRxqFwoTCPjnusmOpZcDFQAAAAAdAAAAABA3&opi=89978449
+marcelo
+shola_ameobi https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.newcastleunited.com%2Fen%2Fhall-of-fame%2Fshola-ameobi&ved=0CBcQjRxqFwoTCPDD-tqPpZcDFQAAAAAdAAAAABBS&opi=89978449
+diego_costa
+santi_cazorla https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.skysports.com%2Fsanti-cazorla&ved=0CBcQjRxqFwoTCND20vqPpZcDFQAAAAAdAAAAABA3&opi=89978449
+teddy_sheringham
+robbie_fowler
+phil_neville
+lomana_lualua
+emmanuel_petit https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.skysports.com%2Ffootball%2Fnews%2F10069035%2Fmeet-ex-england-and-west-ham-forward-dean-ashton-on-the-fantasy-football-club&ved=0CBcQjRxqFwoTCOiA_rqRpZcDFQAAAAAdAAAAABA3&opi=89978449
+fabrizio_ravanelli
+dennis_bergkamp
+jimmy_floyd_hasselbaink
+juan_pablo_angel https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.independent.co.uk%2Fsport%2Ffootball%2Faston-villa-england-river-plate-united-states-stan-collymore-b2249745.html&ved=0CBcQjRxqFwoTCMC4x-iRpZcDFQAAAAAdAAAAABA3&opi=89978449
+victor_valdes
+gabriel_agbonlahor
+juninho_pernambucano
+christian_vieri
+pablo_zabaleta
+danny_welbeck
+jussi_jaaskelainen
+angel_di_maria
+gonzalo_higuain
+raul
+marco_materazzi
+nemanja_matic
+dirk_kuyt
+mark_noble
+fabio_quagliarella
+les_ferdinand
+emmanuel_eboue
+guti
+jack_wilshere
+daniel_sturridge
+ngolo_kante
+robert_pires
+leon_britton
+fabian_delph
+phil_jagielka
+antonio_valencia
+juan_roman_riquelme
+dida
+alex_oxlade_chamberlain
+chris_smalling
+christian_benteke
+jermaine_beckford
+julio_cesar
+nicky_butt
+jaap_stam
+luis_garcia
+hulk
+john_mcginn
+patrick_bamford
+james_ward_prowse
+oriol_romeu
+pascal_gross
+kim_kallstrom
+raul_meireles

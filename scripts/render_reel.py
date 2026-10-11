@@ -12,6 +12,7 @@ Output: marketing_print/reel_frames/<player_id>/<player_id>_reel.mp4
 """
 import os
 import sys
+import glob
 import subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,17 +20,16 @@ PLAYER_ID = sys.argv[1] if len(sys.argv) > 1 else "diego_forlan"
 FRAMES = os.path.join(ROOT, "marketing_print", "reel_frames", PLAYER_ID)
 OUT = os.path.join(FRAMES, f"{PLAYER_ID}_reel.mp4")
 
-# (filename, visible_seconds, xfade_to_next_seconds, xfade_kind)
-# Last entry has xfade_to_next=None.
-SEGMENTS = [
-    ("01_brand.png",   2.2,  0.20, "fade"),
-    ("02_clue1.png",   3.5,  0.20, "fade"),
-    ("03_clue2.png",   3.5,  0.20, "fade"),
-    ("04_clue3.png",   3.5,  0.20, "fade"),
-    ("05_clue4.png",   4.5,  0.20, "fade"),
-    ("06_clue5.png",   4.5,  0.60, "fade"),  # gentle fade into endcard (no reveal)
-    ("07_endcard.png", 6.5,  None, None),
-]
+# (filename, visible_seconds, xfade_to_next_seconds, xfade_kind); last entry xfade_to_next=None.
+# Built from whatever clue frames exist so this stays in sync with make_reel_frames.py's
+# CLUE_LIMIT — a 3-clue teaser and a full 5-clue reel both render correctly.
+_clue_frames = sorted(os.path.basename(p)
+                      for p in glob.glob(os.path.join(FRAMES, "0[2-9]_clue*.png")))
+SEGMENTS = [("01_brand.png", 2.2, 0.20, "fade")]
+for _i, _cf in enumerate(_clue_frames):
+    _last = _i == len(_clue_frames) - 1
+    SEGMENTS.append((_cf, 4.5 if _last else 3.5, 0.60 if _last else 0.20, "fade"))
+SEGMENTS.append(("07_endcard.png", 6.5, None, None))
 
 FPS = 30
 
